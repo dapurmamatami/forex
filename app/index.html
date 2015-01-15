@@ -1,0 +1,90 @@
+<!doctype html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <meta name="description" content="">
+        <!-- 强制 360 浏览器开启「极速模式」 -->
+        <meta name="renderer" content="webkit">
+        <meta name="viewport" content="width=device-width">
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" >
+        <!-- build:css(.) styles/vendor.css -->
+        <!-- bower:css -->
+        <!-- endbower -->
+        <!-- endbuild -->
+        <!-- build:css(.tmp) styles/main.css -->
+        <link rel="stylesheet" href="styles/main.css">
+        <!-- endbuild -->
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//dn-tigerwit.qbox.me/scripts/ga-test.js','ga');
+            ga('create', 'UA-57157623-1', 'auto');
+            ga('send', 'pageview');
+        </script>
+    </head>
+    <body ng-app="tigerwitPersonalApp">
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
+        <div ui-view></div>
+        <!-- build:js(.) scripts/oldieshim.js -->
+        <!--[if lt IE 9]>
+        <script src="bower_components/es5-shim/es5-shim.js"></script>
+        <script src="bower_components/json3/lib/json3.js"></script>
+        <![endif]-->
+        <!-- endbuild -->
+
+        <!-- build:js(.) scripts/vendor.js -->
+        <!-- bower:js -->
+        <script src="bower_components/jquery/dist/jquery.js"></script>
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/angular-resource/angular-resource.js"></script>
+        <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+        <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+        <script src="bower_components/angular-route/angular-route.js"></script>
+        <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+        <script src="bower_components/angular-animate/angular-animate.js"></script>
+        <script src="bower_components/highcharts-release/highcharts.js"></script>
+        <script src="bower_components/highcharts-release/highcharts-more.js"></script>
+        <script src="bower_components/highcharts-release/modules/exporting.js"></script>
+        <!-- endbower -->
+        <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+
+        <script src="scripts/common/services/config.js"></script>
+        <script src="scripts/common/services/storage.js"></script>
+        
+        <script src="scripts/account/services/account.js"></script>
+       
+        <script src="scripts/personal/controllers/personal_info.js"></script>
+        <script src="scripts/personal/controllers/hot_dynamics.js"></script>
+        <!-- endbuild -->
+         <script language="javascript">
+            window.OpenChat = function (){
+                var chatUrl=" /live800/chatClient/chatbox.jsp?companyID=371437&jid=2997261242";
+                      chatUrl+="&enterurl="+encodeURIComponent(document.referrer||document.URL);
+                      chatUrl+="&t="+new Date().getTime();
+                try{
+                    window.open(chatUrl,"chatbox79482","toolbar=0,scrollbars=0,location=0,menubar=0,resizable=1,width=570,height=424");
+                }catch(e){
+                    // browser blocked
+                    // do nothing;
+                }
+            }
+        </script>
+        <div id="floatBtn" style="position: fixed; padding: 5px; line-height: 20px; color: #fff; bottom: 40px; right: 10px;">
+            <img src="/live800/SurferServer?cmd=111&amp;companyID=371437&amp;online=%2Flive800%2FchatClient%2Ficons%2F0_online.gif&amp;offline=%2Flive800%2FchatClient%2Ficons%2F0_offline.gif&amp;tm=1417155370480"
+            onclick="OpenChat();"
+            border="0" style="cursor:pointer;">
+        </div>
+</body>
+</html>

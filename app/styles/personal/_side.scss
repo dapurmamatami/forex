@@ -1,0 +1,193 @@
+@include b(personal_info) {
+    margin-right: 5px;
+    
+    @include e(panel) {
+        padding: 15px;
+        border-bottom: 1px solid #ddd;
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+    
+    @include b(basic_info) {
+        $basic_info: &;
+
+        @include e(photo_wrap) {
+            width: 150px;
+            height: 150px;
+            margin: -11px auto 0;
+            @include box-shadow($brand-primary 0 0 0 4px);
+            
+            &:hover {
+                @include box-shadow($brand-primary 0 0 10px 4px);
+            }
+
+            @include e(photo, $basic_info) {
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        @include e(name) {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            font-size: 30px;
+            overflow:hidden;
+           
+        }
+
+        @include e(location) {
+
+            @include e(region, $basic_info) {
+            }
+
+            @include e(nation, $basic_info) {
+                i {
+                    &:hover {
+                        color: $brand-primary;
+                    }
+                }
+            }
+        }    
+    }
+
+    @include b(MT4) {
+        $MT4: &;
+
+        @include e(title, $MT4) {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        @include e(detail, $MT4) {
+            text-align: right;
+            span {
+                font-size: 16px;
+                font-weight: 700;
+            }
+        }
+    }
+
+    @include b(social_counter) {
+        $social_counter: &;
+
+        font-size: 0;
+        @include e(counter_itm) {
+            display: inline-block;
+            vertical-align: top;
+            width: 33%;
+            text-align: center;
+            
+            >h4 {
+                font-weight: 700;
+                color: $brand-primary;
+            }
+            >p {
+                font-size: 14px;
+                color: $gray-lighter;
+            }
+        }
+    }
+
+    @include b(real_account) {
+        $real_account: &;
+        
+        @include e(title) {
+        }
+        
+        @include e(percent) {
+            //font-size: 16px;
+            //color: $gray-light;
+
+            >span {
+                font-size: 28px;
+                font-weight: 700;
+             }
+        }
+
+        @include e(open_btn) {
+            display: block;
+            margin: 20px 0;
+            font-size: 16px;
+        }
+         
+    }  
+}
+
+@include b(personal_ad) {
+    min-height: 700px;
+    border: 1px solid #ddd;
+    border-left: none;
+
+    @include b(deposit_pnl) {
+        margin-bottom:18px;
+        padding:15px;
+        
+        @include e(title) {
+            margin-top: 0;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        @include e(number) {
+            margin-bottom: 20px;
+            text-align: right;
+            font-size:38px;
+            font-weight: 700;
+        }
+
+        @include e(time) {
+            text-align:center;
+            font-size: 13px;
+            color:$gray-lighter;
+        }
+
+        @include e(to_detail) {
+            font-size: 16px;
+        }
+    
+    }
+
+    @include e(ad_pnl) {
+        padding:0 15px;
+        border-top: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+
+        img {
+            display: block;
+            width:100%;
+            margin:15px 0;
+        }
+    }
+
+    @include b(customer_service) {
+        padding: 15px;
+
+        @include e(tip) {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        @include e(title) {
+        }
+
+        @include e(tel_number) {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        @include e(e_mail) {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        @include e(help_btn) {
+            margin:0 12px;
+        }
+    }
+    
+}
