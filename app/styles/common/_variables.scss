@@ -198,6 +198,9 @@ $input-group-addon-bg:           $gray-lighter !default;
 //** Border color for textual input addons
 $input-group-addon-border-color: $input-border !default;
 
+//** Disabled cursor for form controls and buttons.
+$cursor-disabled:                not-allowed !default;
+
 //** Global color for active items (e.g., navs or dropdowns).
 $component-active-color:    #fff !default;
 //** Global background color for active items (e.g., navs or dropdowns).

@@ -1,11 +1,3 @@
-.col-left {
-    float: left;
-}
-.col-right {
-    overflow: hidden;
-    zoom: 1;
-}
-
 @include b(hd) {
     .navbar-inverse {
         background-color: $gray-dark;
@@ -78,7 +70,7 @@
     }
 
     .module {
-        background-color: $module-bg;
+        
         padding: 54px 0;
         .container-module {
             padding-left: 0;
@@ -113,9 +105,9 @@
         }
     }
     .bd {
-        background-color: $module-bg;
+        
         .hd-sub {
-            background-color: $module-bg;
+            
             height: 68px;
             line-height: 79px;
             font-size: $font-size-h3;
@@ -157,8 +149,7 @@
 }
 // 两列布局
 @include b(layout-2) {
-    background-color: $module-bg;
-
+    
     @include b(hd) {
         .logo {
             margin-top: -8px;
@@ -190,7 +181,7 @@
 
 // 三列布局
 @include b(layout-3) {
-    background-color: $module-bg;
+    
     
     @include b(bd_col_3) {
         @extend .container;
