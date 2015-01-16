@@ -6,6 +6,12 @@
     zoom: 1;
 }
 
+@include b(hd) {
+    .navbar-inverse {
+        background-color: $gray-dark;
+        @include box-shadow(0 0 2px 2px $gray-dark);
+    }
+}
 .container {
 
     @include m(main) {
@@ -49,6 +55,8 @@
     }
 
 }
+
+
 
 .doc1 {
     .navbar-lang {

@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * @ngdoc overview
  * @name tigerwitPersonalApp
@@ -29,8 +27,7 @@ angular
 
 angular
     .module('tigerwitPersonalApp')
-    .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$controllerProvider',
-            function ($stateProvider, $urlRouterProvider, $httpProvider, controllerProvider) {
+    .config(['$httpProvider', function ($httpProvider) {
         $httpProvider.interceptors.push(['$rootScope', '$location', '$q', 'config',
                 function ($rootScope, $location, $q, config) {
             return {
@@ -64,14 +61,12 @@ angular
         }]);            
     }]);
 
-
-
 angular
     .module('tigerwitPersonalApp')
     .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$controllerProvider',
             function ($stateProvider, $urlRouterProvider, $httpProvider, $controllerProvider) {
         $urlRouterProvider.otherwise('/index');
-
+        
         $stateProvider
             .state('personal', {
                 views: {
@@ -80,7 +75,8 @@ angular
                         controller: 'PersonalInfoController'
                     },
                     'hd@personal': {
-                        templateUrl: 'views/navs/navbar-logined.html'   
+                        templateUrl: 'views/navbar/navbar-logined.html',
+                        controller: 'NavbarController'   
                     },
                     'sidebar@personal': {
                         templateUrl: 'views/personal/info_side.html'
@@ -139,7 +135,8 @@ angular
                         controller: 'PersonalInfoController'
                     },
                     'hd@invest_detail': {
-                        templateUrl: 'views/navs/navbar-logined.html'
+                        templateUrl: 'views/navbar/navbar-logined.html',
+                        controller: 'NavbarController'
                     },
                     'sidebar@invest_detail': {
                         templateUrl: 'views/personal/info_side.html'
@@ -159,7 +156,6 @@ angular
                         templateUrl: function ($stateParams) {
                             $stateParams.subPage = $stateParams.subPage || 'statistics';
                             var url = 'views/invest_detail/' + $stateParams.subPage + '.html';
-                            console.info(url);
                             return 'views/invest_detail/' + $stateParams.subPage + '.html';
                         }
                     }

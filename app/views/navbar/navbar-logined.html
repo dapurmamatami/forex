@@ -73,10 +73,8 @@
             </div>
         </div>
     </div>
-</div> -->
-
-
-
+</div>
+ -->
 <div class="navbar navbar-inverse">
     <div class="container-main">
         <div class="row">
@@ -88,13 +86,19 @@
 
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="#/personal/index" ng-class="{'active':  parentState === 'personal'}">个人中心</a>
+                    <a ui-sref="personal.subPage" ng-class="{'active':  parentState === 'personal' || parentState === 'invest_detail'}">
+                        个人中心
+                    </a>
                 </li>
                 <li>
-                    <a href="#/master" ng-class="{'active':  parentState === 'master'}">交易高手</a>
+                    <a href="#/master" ng-class="{'active':  parentState === 'master'}">
+                        交易高手
+                    </a>
                 </li>
                 <li>
-                    <a href="#/guides" ng-class="{'active':  parentState === 'guides'}">新手指南</a>
+                    <a href="#/guides" ng-class="{'active':  parentState === 'guides'}">
+                        新手指南
+                    </a>
                 </li>
                 <li>
                     <a href="#/setting/index" ng-class="{'active':  parentState === 'setting'}">设置</a>
@@ -102,10 +106,46 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li>
-                     <a href="">
-                         {{profile.username}}
-                     </a>
+                <li class="dropdown" ng-mouseenter="showInfo()" ng-mouseleave="hideInfo()">
+                    <a class="nav_profile" href="" >
+                        <img class="nav_profile__photo" ng-src="" alt="**">
+                        <span class="nav_profile__name">{{profile.username}}</span>
+                        <i class="fa fa-sort-down"></i>
+                    </a>
+                    <div class="dropdown-menu nav_profile_detail" ng-show="infoShow" >
+                        <div class="nav_profile_detail__basic">
+                            <div class="row">
+                                <div class="col-xs-5">
+                                    <img class="nav_profile_detail__photo" src="" alt="**">
+                                </div>
+                                <div class="col-xs-7">
+                                    <div class="nav_profile_detail__name">
+                                        {{profile.username}}     
+                                    </div>
+                                    <p>
+                                        真实账号： {{profile.real_id}}
+                                    </p>
+                                    <p>
+                                        模拟账号： {{profile.demo_id}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="social_counter">
+                            <div class="social_counter__counter_itm">
+                                <h4>9999</h4>
+                                <p>关注</p>
+                            </div>
+                             <div class="social_counter__counter_itm">
+                                <h4>9999</h4>
+                                <p>粉丝</p>
+                            </div>
+                             <div class="social_counter__counter_itm">
+                                <h4>{{profile.copy_count}}</h4>
+                                <p>复制</p>
+                            </div>
+                        </div>  
+                    </div>
                 </li>
             </ul>
         </div>

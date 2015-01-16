@@ -32,9 +32,10 @@
 @import "common/carousel";
 
 // Module scss
+@import "navbar/navbar";
 @import "personal/side";
 @import "personal/content";
-@import "invest_detail/index.scss";
+@import "invest_detail/index";
 /* @import "tigerwit/index";
 @import "account/register";
 @import "account/login";

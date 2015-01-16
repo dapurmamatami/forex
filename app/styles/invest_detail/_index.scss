@@ -1,0 +1,22 @@
+@include b(real_virtual) {
+    padding:15px;
+    border: 1px solid #ddd;
+
+    .col-xs-3{
+        text-align: right;
+    }
+
+    @include e(name) {
+        margin-top: 0;
+        font-weight: 700;
+    }
+
+    @include e(switch) {
+        padding: 5px 20px;
+        font-size: 18px;
+    }
+    @include e(switch_tip) {
+        font-size: 13px;
+        color: $brand-warning;
+    }
+}

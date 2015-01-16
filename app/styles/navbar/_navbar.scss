@@ -1,0 +1,20 @@
+.hd{
+    .navbar {
+        .nav {
+            >li {
+                margin: 0 10px;
+
+                >a {
+                    padding-bottom: 10px;
+                    font-size: 16px;
+                    font-weight: 700;
+                }
+            }
+
+            >.dropdown .dropdown-menu {
+                display: block;
+            }
+
+        }
+    }
+}

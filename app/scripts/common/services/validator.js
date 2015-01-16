@@ -1,295 +1,280 @@
-'use strict';
+(function () {
+    'use strict';
 
-angular.module('tigerwitApp')
-.factory('wdValidator', ['$window', function($window) {
+    angular
+        .module('tigerwitPersonalApp')
+        .factory('validator', validator);
 
-    var validateFuns = {
-        regTypes: {
-            'phone': {
+    validator.$inject = ['$window'];
+
+    function validator($window) {
+        var validateFuns = {
+            regTypes: {
+                'phone': {
                 tips: "请输入正确的手机号",
                 reg:'^(?:\\+86)?(1[0-9]{10}$)'
-            },
-            'email': {
-                tips: '请输入正确的邮箱名，邮箱前缀由英文数字、下划线、减号、点组成，以英文数字结尾',
-                reg:'^\\w+([-.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$'
-            },
-            'money': {
-                tips: '请输入正确的金额，只能为小数或者整数。小数点后两位',
-                reg: '(^0\\.[0-9]{1,2}$)|(^[1-9][0-9]*\\.[0-9]{1,2}$)|(^[1-9][0-9]*$)'
-            },
-            'num': {
-                tips: '输入项不能包含数字',
-                type: '数字',
-                reg: '0-9'
-            },
-            'zh': {
-                tips: "输入项不能包含中文",
-                type: '中文',
-                reg: '\\u4e00-\\u9fa5·'
-            },
-            'en': {
-                tips: "输入项不能包含英文",
-                type: '英文',
-                reg: 'a-zA-Z'
-            },
-            'sym': {
-                tips: "输入项不能包含特殊符号",
-                type: "特殊符号",
-                reg: '[!@#$%^&*()_+]'
-            }
-        },
-        number: function (str, type) {
-            var validateResult = !/\D/.test(str);
-            var validateReason = "";
-
-            if (!validateResult) {
-                validateReason = '输入项必须为数字！';
-            }
-
-            return {
-                validate_reason: validateReason,
-                validate_result: validateResult
-            };
-        },
-        id: function (str) {
-            var validateResult = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X)$)/.test(str);
-            var validateReason = "";
-
-            if (!validateResult) {
-                validateReason = '输入的身份证号格式不正确';
-                if (/x$/.test(str)) {
-                    validateReason = '输入的身份证号最后一位应为大写X';
+                },
+                'email': {
+                    tips: '请输入正确的邮箱名，邮箱前缀由英文数字、下划线、减号、点组成，以英文数字结尾',
+                    reg:'^\\w+([-.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$'
+                },
+                'money': {
+                    tips: '请输入正确的金额，只能为小数或者整数。小数点后两位',
+                    reg: '(^0\\.[0-9]{1,2}$)|(^[1-9][0-9]*\\.[0-9]{1,2}$)|(^[1-9][0-9]*$)'
+                },
+                'num': {
+                    tips: '输入项不能包含数字',
+                    type: '数字',
+                    reg: '0-9'
+                },
+                'zh': {
+                    tips: "输入项不能包含中文",
+                    type: '中文',
+                    reg: '\\u4e00-\\u9fa5·'
+                },
+                'en': {
+                    tips: "输入项不能包含英文",
+                    type: '英文',
+                    reg: 'a-zA-Z'
+                },
+                'sym': {
+                    tips: "输入项不能包含特殊符号",
+                    type: "特殊符号",
+                    reg: '[!@#$%^&*()_+]'
                 }
-            }
-            return {
-                validate_reason: validateReason,
-                validate_result: validateResult
-            };
-        },
-        /*
-        *text 书写规则: text:en-zh-num, 是"或"的关系, 且仅有
-        */
-        text: function (str, type) {
-            var textTypes = type.split(":")[1];
-            var textTypeList = textTypes.split("-");
+            },
+            number: function (str, type) {
+                var validateResult = !/\D/.test(str);
+                var validateReason = "";
 
-            var regStr = "";
-            textTypeList.forEach(function (item) {
-                regStr += '' + (validateFuns.regTypes[item].reg || '');
-            });
-            var textRegStr = "[" + regStr + "]";
-            var antiTextRegStr = "[^" + regStr + "]";
-            // trim string
-            var textReg = new RegExp(textRegStr);
-            var antiTextReg = new RegExp(antiTextRegStr);
-            var validateResult = textReg.test(str) && !antiTextReg.test(str);
-
-            var validateReason = "";
-            if (!validateResult) {
-                if (antiTextReg.test(str)) {
-                    validateReason = "输入项只能包含";
-                    textTypeList.forEach(function (item) {
-                        validateReason += '' + (validateFuns.regTypes[item].type);
-                    });
+                if (!validateResult) {
+                    validateReason = '输入项必须为数字！';
                 }
-            }
 
-            if (/\s/.test(str)) {
-                validateResult = false;
-                validateReason = "请勿包含空格";
-            }
+                return {
+                    validate_reason: validateReason,
+                    validate_result: validateResult
+                };
+            },
+            id: function (str) {
+                var validateResult = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X)$)/.test(str);
+                var validateReason = "";
 
-            return {
-                validate_reason: validateReason,
-                validate_result: validateResult
-            };
-        },
-        /*
-         *密码验证：6-15位字符，可由大写字母，小写字母，数字，符号组成，且至少包含其中2项
-         */
-        password: function (str) {
-
-            var typeCounter = 0;
-            if (str.search(/\d/) != -1) {
-                typeCounter += 1;
-            }
-
-            if (str.search(/[a-z]/) != -1) {
-                typeCounter += 1;
-            }
-
-            if (str.search(/[A-Z]/) != -1) {
-                typeCounter += 1;
-            }
-
-            if (str.search(/[!@#$%^&*()_+]/) != -1) {
-                typeCounter += 1;
-            }
-
-            var hasBadChar = false;
-            if (str.search(/[^a-zA-Z0-9!@#$%^&*()_+]/) !=-1) {
-                hasBadChar = true;
-            }
-
-            var validateReason = "";
-            var validateResult = true;
-            if (typeCounter < 2) {
-                validateReason = "密码必须包含大写字母，小写字母，数字和符号其中两项";
-                validateResult = false;
-            }
-
-            if (hasBadChar){
-                validateReason = "包含非法输入项";
-                validateResult = false;
-            }
-
-            return {
-                validate_reason: validateReason,
-                validate_result: validateResult
-            };
-        },
-        /*
-         * length 书写规则： length:start-end
-         */
-        length: function (str, type) {
-            var lengthContent = type.split(":")[1];
-            var lengthStart = lengthContent.split("-")[0];
-            var lengthEnd = lengthContent.split("-")[1];
-            var strLength = str.replace(/[^\x00-\xff]/g,"**").length;
-
-            var validateResult = (lengthStart <= strLength && strLength <= lengthEnd);
-            var validateReason = "";
-            if (!validateResult) {
-                validateReason = "输入项长度应介于 " + lengthStart + " 位和 " + lengthEnd + " 位之间, 一个中文为两个字符";
-            }
-            return {
-                validate_reason: validateReason,
-                validate_result: validateResult
-            };
-        },
-        option: function (str) {
-            return {
-                validate_reason: "",
-                validate_result: true
-            };
-        },
-        required: function (str) {
-            var validateResult = false;
-            var validateReason = "";
-            if (str) {
-                validateResult = true;
-            } else {
-                validateReason = "此项为必填项";
-            }
-
-            return {
-                validate_reason: validateReason,
-                validate_result: validateResult
-            };
-        },
-        phone: function (str) {
-            var phoneReg = new RegExp(this.regTypes.phone.reg);
-            var validateReason = "";
-            var validateResult = phoneReg.test(str);
-            if (!validateResult) {
-                validateReason = this.regTypes.phone.tips;
-            }
-
-            return {
-                validate_reason: validateReason,
-                validate_result: validateResult
-            };
-        },
-        money: function (str) {
-            var moneyReg = new RegExp(this.regTypes.money.reg);
-            var validateReason = "";
-            var validateResult = moneyReg.test(str);
-            if (!validateResult) {
-                validateReason = this.regTypes.money.tips;
-            }
-
-            if (/\s/.test(str)) {
-                validateResult = false;
-                validateReason = "请勿包含空格";
-            }
-
-            return {
-                validate_reason: validateReason,
-                validate_result: validateResult
-            };
-        },
-        email: function (str) {
-            var emailReg = new RegExp(this.regTypes.email.reg);
-            var validateReason = "";
-            var validateResult = emailReg.test(str);
-            if (!validateResult) {
-                validateReason = this.regTypes.email.tips;
-            }
-
-            if (/\s/.test(str)) {
-                validateResult = false;
-                validateReason = "请勿包含空格";
-            }
-
-            return {
-                validate_reason: validateReason,
-                validate_result: validateResult
-            };
-        }
-    };
-
-
-    return {
-        validateFuns: validateFuns,
-        validateInput: function (moduelId) {
-            var $validateInput = $('#' + moduelId + ' [data-validate]:visible');
-            var valideAll = {
-                result: true,
-                reason: ''
-            };
-
-            var isBreaking;
-            var that = this;
-            $validateInput.each(function (index, element) {
-                    var $elem = $(element);
-                    var validatorType = $elem.attr("data-validate");
-                    var validatorVal = $elem.val();
-                    var validateResObj = that.validate(validatorType, validatorVal);
-                    $elem.closest(".form-group").removeClass("has-error");
-                    if (!validateResObj.validate_result) {
-                        $elem.closest(".form-group").addClass("has-error");
-                        valideAll.reason = validateResObj.validate_reason;
+                if (!validateResult) {
+                    validateReason = '输入的身份证号格式不正确';
+                    if (/x$/.test(str)) {
+                        validateReason = '输入的身份证号最后一位应为大写X';
                     }
-                    valideAll.result = valideAll.result && validateResObj.validate_result;
-            });
+                }
+                return {
+                    validate_reason: validateReason,
+                    validate_result: validateResult
+                };
+            },
+            /*
+            *text 书写规则: text:en-zh-num, 是"或"的关系, 且仅有
+            */
+            text: function (str, type) {
+                var textTypes = type.split(":")[1];
+                var textTypeList = textTypes.split("-");
 
-            return valideAll;
-        },
-        validate: function(type, str) {
-            var typeList = type.split(" ");
+                var regStr = "";
+                textTypeList.forEach(function (item) {
+                    regStr += '' + (validateFuns.regTypes[item].reg || '');
+                });
+                var textRegStr = "[" + regStr + "]";
+                var antiTextRegStr = "[^" + regStr + "]";
+                // trim string
+                var textReg = new RegExp(textRegStr);
+                var antiTextReg = new RegExp(antiTextRegStr);
+                var validateResult = textReg.test(str) && !antiTextReg.test(str);
+
+                var validateReason = "";
+                if (!validateResult) {
+                    if (antiTextReg.test(str)) {
+                        validateReason = "输入项只能包含";
+                        textTypeList.forEach(function (item) {
+                            validateReason += '' + (validateFuns.regTypes[item].type);
+                        });
+                    }
+                }
+
+                if (/\s/.test(str)) {
+                    validateResult = false;
+                    validateReason = "请勿包含空格";
+                }
+
+                return {
+                    validate_reason: validateReason,
+                    validate_result: validateResult
+                };
+            },
+            /*
+             *密码验证：6-15位字符，可由大写字母，小写字母，数字，符号组成，且至少包含其中2项
+             */
+            password: function (str) {
+
+                var typeCounter = 0;
+                if (str.search(/\d/) != -1) {
+                    typeCounter += 1;
+                }
+
+                if (str.search(/[a-z]/) != -1) {
+                    typeCounter += 1;
+                }
+
+                if (str.search(/[A-Z]/) != -1) {
+                    typeCounter += 1;
+                }
+
+                if (str.search(/[!@#$%^&*()_+]/) != -1) {
+                    typeCounter += 1;
+                }
+
+                var hasBadChar = false;
+                if (str.search(/[^a-zA-Z0-9!@#$%^&*()_+]/) !=-1) {
+                    hasBadChar = true;
+                }
+
+                var validateReason = "";
+                var validateResult = true;
+                if (typeCounter < 2) {
+                    validateReason = "密码必须包含大写字母，小写字母，数字和符号其中两项";
+                    validateResult = false;
+                }
+
+                if (hasBadChar){
+                    validateReason = "包含非法输入项";
+                    validateResult = false;
+                }
+
+                return {
+                    validate_reason: validateReason,
+                    validate_result: validateResult
+                };
+            },
+            /*
+             * length 书写规则： length:start-end
+             */
+            length: function (str, type) {
+                var lengthContent = type.split(":")[1];
+                var lengthStart = lengthContent.split("-")[0];
+                var lengthEnd = lengthContent.split("-")[1];
+                var strLength = str.replace(/[^\x00-\xff]/g,"**").length;
+
+                var validateResult = (lengthStart <= strLength && strLength <= lengthEnd);
+                var validateReason = "";
+                if (!validateResult) {
+                    validateReason = "输入项长度应介于 " + lengthStart + " 位和 " + lengthEnd + " 位之间, 一个中文为两个字符";
+                }
+                return {
+                    validate_reason: validateReason,
+                    validate_result: validateResult
+                };
+            },
+            option: function (str) {
+                return {
+                    validate_reason: "",
+                    validate_result: true
+                };
+            },
+            required: function (str) {
+                var validateResult = false;
+                var validateReason = "";
+                if (str) {
+                    validateResult = true;
+                } else {
+                    validateReason = "此项为必填项";
+                }
+
+                return {
+                    validate_reason: validateReason,
+                    validate_result: validateResult
+                };
+            },
+            phone: function (str) {
+                var phoneReg = new RegExp(this.regTypes.phone.reg);
+                var validateReason = "";
+                var validateResult = phoneReg.test(str);
+                if (!validateResult) {
+                    validateReason = this.regTypes.phone.tips;
+                }
+
+                return {
+                    validate_reason: validateReason,
+                    validate_result: validateResult
+                };
+            },
+            money: function (str) {
+                var moneyReg = new RegExp(this.regTypes.money.reg);
+                var validateReason = "";
+                var validateResult = moneyReg.test(str);
+                if (!validateResult) {
+                    validateReason = this.regTypes.money.tips;
+                }
+
+                if (/\s/.test(str)) {
+                    validateResult = false;
+                    validateReason = "请勿包含空格";
+                }
+
+                return {
+                    validate_reason: validateReason,
+                    validate_result: validateResult
+                };
+            },
+            email: function (str) {
+                var emailReg = new RegExp(this.regTypes.email.reg);
+                var validateReason = "";
+                var validateResult = emailReg.test(str);
+                if (!validateResult) {
+                    validateReason = this.regTypes.email.tips;
+                }
+
+                if (/\s/.test(str)) {
+                    validateResult = false;
+                    validateReason = "请勿包含空格";
+                }
+
+                return {
+                    validate_reason: validateReason,
+                    validate_result: validateResult
+                };
+            }
+        };
+
+        var service = {
+            validateFuns: validateFuns,
+            //validateInput: validateInput,
+            validate: validate
+        };
+        return service;
+
+        function validate(type, str) {
+            var typeList = type.split(' ');
             var validateResult = {
                 validate_result: true,
-                validate_reason: ""
+                validate_reason: ''
             };
 
-            if (typeList.indexOf("option") >= 0 && str === "") {
+            if (typeList.indexOf('option') >= 0 && str == '') {
                 return validateResult;
             }
 
-            var isbreak = false;
+            var isBreak = false;
             typeList.forEach(function (type) {
-                if (!isbreak) {
-                    var funcsType = type.split(":")[0];
-                    var temptResultObj = validateFuns[funcsType](str, type);
+                if (!isBreak) {
+                    var funsType = type.split(':')[0];
+                    var temptResultObj = validateFuns[funsType](str,type);
+
                     if (!temptResultObj.validate_result) {
-                        isbreak = true;
+                        isBreak = true;
                         validateResult = temptResultObj;
-                        ga('send', 'event', 'validate-error', type, temptResultObj.validate_reason);
+                        //ga('send', 'event', 'validate-error', type, temptResultObj.validate_reason);
                     }
                 }
             });
             return validateResult;
         }
-    };
-    // 结束
-}]);
+    }
+})();
