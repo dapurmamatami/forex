@@ -65,11 +65,10 @@ angular
     .module('tigerwitPersonalApp')
     .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$controllerProvider',
             function ($stateProvider, $urlRouterProvider, $httpProvider, $controllerProvider) {
-        $urlRouterProvider.otherwise('/index');
+        $urlRouterProvider.otherwise('/personal/hot_dynamics');
         
         $stateProvider
             .state('personal', {
-                url: '',
                 views: {
                     '@': {
                         templateUrl: 'views/layout/layout-3.html',
@@ -127,36 +126,36 @@ angular
                 }
             })
             
-            .state('invest_detail', {
-                url: '',
+            .state('invest', {
                 views: {
                     '@': {
                         templateUrl: 'views/layout/layout-2.html',
                         controller: 'PersonalInfoController'
                     },
-                    'hd@invest_detail': {
+                    'hd@invest': {
                         templateUrl: 'views/navbar/navbar-logined.html',
                         controller: 'NavbarController'
                     },
-                    'sidebar@invest_detail': {
+                    'sidebar@invest': {
                         templateUrl: 'views/personal/info_side.html'
                     },
-                    'content@invest_detail': {
-                        templateUrl: 'views/invest_detail/index.html'
+                    'content@invest': {
+                        templateUrl: 'views/invest/index.html',
+                        controller: 'InvestIndexController'
                     },
-                    'ft@invest_detail': {
+                    'ft@invest': {
                         templateUrl: 'views/layout/footer.html'
                     }
                 }
             })
-            .state('invest_detail.subPage', {
-                url: '/invest_detail/:subPage',
+            .state('invest.subPage', {
+                url: '/invest/:subPage',
                 views: {
-                    '@invest_detail': {
+                    '@invest': {
                         templateUrl: function ($stateParams) {
                             $stateParams.subPage = $stateParams.subPage || 'statistics';
-                            var url = 'views/invest_detail/' + $stateParams.subPage + '.html';
-                            return 'views/invest_detail/' + $stateParams.subPage + '.html';
+                            var url = 'views/invest/' + $stateParams.subPage + '.html';
+                            return 'views/invest/' + $stateParams.subPage + '.html';
                         }
                     }
                 }

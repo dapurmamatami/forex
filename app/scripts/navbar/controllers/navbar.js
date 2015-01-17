@@ -5,11 +5,9 @@
         .module('tigerwitPersonalApp')
         .controller('NavbarController', NavbarController);
 
-    NavbarController.$inject = ['$scope', '$state', '$timeout', '$location', '$window',
-            'account', 'storage', 'validator'];
+    NavbarController.$inject = ['$scope', '$state', '$timeout', 'account', 'storage', 'validator'];
 
-    function NavbarController($scope, $state, $timeout, $location, $window, account,
-            storage, validator) {
+    function NavbarController($scope, $state, $timeout, account, storage, validator) {
         var stateUrl = $state.current.url;
         var stateUrlList = stateUrl.split('/');
         $scope.parentState = stateUrlList[1];

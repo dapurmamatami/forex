@@ -16,19 +16,19 @@
     </div>
 </div>
 <ul class="invest_tab nav nav-tabs">
-    <li class="invest_tab__item ">
+    <li class="invest_tab__item">
         <a  href="">
            <img src="">概况 
         </a>
     </li>
-    <li class="invest_tab__item active">
-        <a  href="">
+    <li class="invest_tab__item" ng-class="{'active': childState === 'statistics'}" ng-click="switchTab('statistics')">
+        <a  ng-href="#/invest/statistics">
            <i class="fa fa-line-chart"></i>
            数据统计
         </a>
     </li>
-    <li class="invest_tab__item">
-        <a  href="">
+    <li class="invest_tab__item" ng-class="{'active': childState === 'history'}" ng-click="switchTab('history')">
+        <a  ng-href="#/invest/history">
            <img src="">交易历史
         </a>
     </li>
@@ -39,5 +39,4 @@
     </li>
 </ul>
 <div class="invest_tab_content" ui-view>
-    
 </div>
