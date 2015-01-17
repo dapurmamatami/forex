@@ -69,8 +69,9 @@ angular
         
         $stateProvider
             .state('personal', {
+                url: '',
                 views: {
-                    '': {
+                    '@': {
                         templateUrl: 'views/layout/layout-3.html',
                         controller: 'PersonalInfoController'
                     },
@@ -91,10 +92,8 @@ angular
             })
             .state('personal.subPage', {
                 url: '/personal/:subPage',
-                primaryPage: 'personal',
-                authenticate: true,
                 views: {
-                    'content': {
+                    'content@personal': {
                         templateUrl: function ($stateParams) {
                             $stateParams.subPage = $stateParams.subPage || 'hot_dynamics';
                             return 'views/personal/' + $stateParams.subPage + '.html';
@@ -129,8 +128,9 @@ angular
             })
             
             .state('invest_detail', {
+                url: '',
                 views: {
-                    '': {
+                    '@': {
                         templateUrl: 'views/layout/layout-2.html',
                         controller: 'PersonalInfoController'
                     },
@@ -152,7 +152,7 @@ angular
             .state('invest_detail.subPage', {
                 url: '/invest_detail/:subPage',
                 views: {
-                    '': {
+                    '@invest_detail': {
                         templateUrl: function ($stateParams) {
                             $stateParams.subPage = $stateParams.subPage || 'statistics';
                             var url = 'views/invest_detail/' + $stateParams.subPage + '.html';
