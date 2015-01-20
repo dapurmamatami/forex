@@ -3,6 +3,9 @@
         background-color: $gray-dark;
         @include box-shadow(0 0 2px 2px $gray-dark);
     }
+    .logo {
+        margin-top: -8px;
+    }
 }
 .container {
 
@@ -15,12 +18,15 @@
         @extend .container;
         width: $container-lg;// 1170px
     }
+
+    @include m(sm) {
+        @extend .container;
+        width: $container-sm;
+    }
 }
 
 @include b(ft) {
-    margin-top: 20px;
     padding: 30px 0;
-    background-color: $navbar-inverse-color;
     
     h4 {
         color: $text-inverse-title-color;
@@ -29,21 +35,45 @@
         margin-bottom: 14px;
     }
     ul {
-        margin: 0;
+        margin-bottom: 10px;
         padding: 0;
+        text-align: center;
+        font-size: 0;
         li {
+            display: inline-block;
+            padding: 0 15px;
+            border-right: 1px solid $gray-dark;
+            font-size: 14px;
             list-style: none;
-            margin-bottom: 4px;
-            
+
+            &:last-child {
+                border-right: none;
+            }
+
             a {
-                color: $text-content-color;
+                color: $gray-dark;
             }
         }
     }
+    p {
+        margin-bottom: 0;
+        text-align: center;
+        font-size: 13px;
+    }
+
 
     @include e(risk_tip) {
         margin-top: 20px;
-        color: $text-title-sub-color;
+        padding-top: 10px;
+        border-top: 1px solid $brand-border-color;
+
+        h5 {
+            font-weight: 700;
+        }
+        p {
+            margin-bottom: 0;
+            text-align: left;
+        }
     }
 
 }
@@ -149,12 +179,6 @@
 }
 // 两列布局
 @include b(layout-2) {
-    
-    @include b(hd) {
-        .logo {
-            margin-top: -8px;
-        }
-    }
 
     @include b(bd_col_2) {
         @extend .container;
@@ -172,16 +196,11 @@
             padding: 0;
         }
     }
-
-    @include b(ft) {
-
-    }
 }
 
 
 // 三列布局
 @include b(layout-3) {
-    
     
     @include b(bd_col_3) {
         @extend .container;

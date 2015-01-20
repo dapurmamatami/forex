@@ -14,7 +14,8 @@
         stock.getEquityReport({
             period: 7
         }).then(function (data) {
-            $scope.$broadcast('paintChart', data.data);        
+            console.info(data);
+            $scope.$broadcast('paintLineChart', data.data);        
         });        
 
         stock.getSummaryReport().then(function (data) {
@@ -28,7 +29,7 @@
             stock.getEquityReport({
                 period: count
             }).then(function (data) {     
-                $scope.$broadcast('paintChart', data.data);
+                $scope.$broadcast('paintLineChart', data.data);
             });
         }      
     }

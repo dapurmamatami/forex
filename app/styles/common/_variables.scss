@@ -291,8 +291,7 @@ $container-large-desktop:      ((1140px + $grid-gutter-width)) !default;
 //** For `$screen-lg-min` and up.
 $container-lg:                 $container-large-desktop !default;
 
-// wxl custome width: 960px
-$container-main:         960px;
+$container-main:               960px;
 
 //== Thumbnails
 //

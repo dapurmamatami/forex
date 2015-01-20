@@ -12,7 +12,7 @@
             template: '<div id="chart" class="line_chart" style="width: 650px;height: 250px;margin: 0 auto;">' +
                       '<img src="ngsrc/ajax-loading.gif" style="width:150px;margin:50px 250px;"></div>',
             link: function (scope, element, attrs) {
-                scope.$on('paintChart', function (event, data) {
+                scope.$on('paintLineChart', function (event, data) {
                     data = Highcharts.map(data, function (config) {
                         return {
                             x: config[0] * 1000,
@@ -37,10 +37,10 @@
                             gapGridLineWidth: 0,
                             type: 'datetime',
                             dateTimeLabelFormats: {
-                                day: '%m%d',
-                                month: '%m%d',
+                                day: '%m/%d',
+                                month: '%m/%d',
                                 year: '%m年',
-                                week: '%m%d'
+                                week: '%m/%d'
                             }
                         },
                         credits: {
@@ -50,7 +50,6 @@
                             enabled: false
                         },
                         legend: {
-                            //enabled: false
                             align: 'center',
                             verticalAlign: 'bottom',
                             borderWidth: 1,
