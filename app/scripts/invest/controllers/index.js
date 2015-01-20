@@ -18,7 +18,7 @@
         if ($scope.childState === '' || $scope.childState === ':subPage') {
             $scope.childState = 'statistics';
         }
-
+                    
         function switchTab(childState) {
             $scope.childState = childState;
         }

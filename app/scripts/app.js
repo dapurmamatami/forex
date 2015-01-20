@@ -35,6 +35,12 @@ angular
                     configParam.timeout = config.httpTimeout;
                     if (!/^[http|https|ws]/.test(configParam.url) && 
                             !/\.html$/.test(configParam.url)) {
+                        if (configParam.url === '/equity_report' ||
+                                configParam.url === '/summary_report') {
+                            configParam.url = '/api/v2' + configParam.url;
+                            return configParam;
+                        }
+
                         configParam.url = config.apiUrl + configParam.url;
                     }
                     return configParam;
@@ -98,8 +104,8 @@ angular
                             return 'views/personal/' + $stateParams.subPage + '.html';
                         },
                         controllerProvider: function ($stateParams) {
-                            var ctrlPrefix = "Personal";
-                            var ctrlSuffix = "Controller";
+                            var ctrlPrefix = 'Personal';
+                            var ctrlSuffix = 'Controller';
                             var subPage = $stateParams.subPage || 'hot_dynamics';
                             var ctrlRoot = modifyCtrlName(subPage);
                             var ctrlName = ctrlPrefix + ctrlRoot + ctrlSuffix;
@@ -156,6 +162,31 @@ angular
                             $stateParams.subPage = $stateParams.subPage || 'statistics';
                             var url = 'views/invest/' + $stateParams.subPage + '.html';
                             return 'views/invest/' + $stateParams.subPage + '.html';
+                        },
+                        controllerProvider: function($stateParams) {
+                            var ctrlPrefix = 'Invest';
+                            var ctrlSuffix = 'Controller';
+                            var subPage = $stateParams.subPage || 'statistics';
+                            var ctrlRoot = modifyCtrlName(subPage);
+                            var ctrlName = ctrlPrefix + ctrlRoot + ctrlSuffix;
+                            return ctrlName;
+
+                            function modifyCtrlName(name) {
+                               var strArray = name.split(/[-_]/i);
+
+                               var i,
+                                    length = strArray.length,
+                                    tmpStr = '',
+                                    newName = '';
+                                
+                                for (i = 0;i < length;i++) {
+                                    tmpStr = strArray[i].charAt(0).toUpperCase() + 
+                                            strArray[i].substring(1);  
+                                    newName += tmpStr;
+                                }
+                                
+                                return newName;
+                            }
                         }
                     }
                 }

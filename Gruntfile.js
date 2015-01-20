@@ -341,7 +341,9 @@ module.exports = function (grunt) {
             '*.html',
             'views/{,*/}*.html',
             'images/{,*/}*.{webp}',
-            'fonts/{,*/}*.*'
+            'fonts/{,*/}*.*',
+            'base/{,*/}*.*',
+            'ngsrc/{,*/}*.*'
           ]
         }, {
           expand: true,
@@ -420,7 +422,7 @@ module.exports = function (grunt) {
     'concat',
     'ngAnnotate',
     'copy:dist',
-    'cdnify',
+    //'cdnify',
     'cssmin',
     'uglify',
     'filerev',

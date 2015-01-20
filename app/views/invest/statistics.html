@@ -1,72 +1,146 @@
 <div class="asset_curve">
-    <h4 class="asset_curve__title">
-        <span class="asset_curve__interval">30</span>
-        天内的资产变化曲线
-    </h4>
+    <div class="row">
+        <h4 class="asset_curve__title">
+            {{currentPeriod}}的资产变化曲线
+        </h4>
+        <div class="dropdown"  tw-dropdown>
+            <button class="btn btn-default" ng-click="toggleDropdown()" >
+                {{currentPeriod}}
+                <i class="caret"></i>
+            </button>
+            <ul class="dropdown-menu" ng-class="{'show': dropdownShow}">
+                <li>
+                    <a href="" ng-click="repaintChart(7, '近 1 周内')" ng-class="{'active':  currentPeriod === '近 1 周内'}">
+                        近 1 周内
+                    </a>
+                </li>
+                <li>
+                    <a href="" ng-click="repaintChart(30, '近 1 个月内')" ng-class="{'active':  currentPeriod === '近 1 个月内'}">
+                        近 1 个月内
+                    </a>
+                </li>
+                <li> 
+                    <a href="" ng-click="repaintChart(90, '近 3 个月内')" ng-class="{'active':  currentPeriod === '近 3 个月内'}">
+                        近 3 个月内
+                    </a>
+                </li>
+                <li>
+                    <a href="" ng-click="repaintChart(180, '近 6 个月内')" ng-class="{'active':  currentPeriod === '近 6 个月内'}">
+                        近 6 个月内
+                    </a>
+                </li>
+                <li>
+                    <a href="" ng-click="repaintChart(365, '近 1 年内')" ng-class="{'active':  currentPeriod === '近 1 年内'}">
+                        近 1 年内
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
     <div class="asset_curve__graph">
-        <h1>数据统计曲线图</h1>  
+        <div tw-line-chart></div>  
     </div>
 </div>
+
 <div class="asset_detail">
+    <div class="asset_detail__h_divider"></div>
     <div class="row">
         <div class="asset_detail__panel col-xs-4">
             <h4>盈利率</h4>
             <p class="asset_detail__percent">
-                +64.21%
+                +{{summary.total_profit_rate}}
             </p>
-            <p>
+            <p class="asset_detail__tips">
                 用户的盈利幅度
             </p>
         </div>
         <div class="asset_detail__panel col-xs-4">
+            <div class="asset_detail__v_divider"></div>
             <h4>交易手数</h4>
             <p class="asset_detail__amount">
-                +64.21%
+                {{summary.total_volume}}
             </p>
-            <p>
+            <p class="asset_detail__tips">
                 已平仓交易的交易手数
             </p>
         </div>
          <div class="asset_detail__panel col-xs-4">
+            <div class="asset_detail__v_divider"></div>
             <h4>获利点数</h4>
             <p class="asset_detail__number">
-                35.8
+                {{summary.total_pips}}
             </p>
-            <p>
+            <p class="asset_detail__tips">
                 以标准手计算
             </p>
         </div>
     </div>
+    <div class="asset_detail__h_divider"></div>
 </div>
+
 <div class="transaction_data">
     <h3 class="transaction_data__title">
-        共
-        <span>473</span>
-        单平仓交易
+        共 {{summary.order_count}} 单平仓交易
     </h3>
-    <p>
-        采样于
-        <span>30</span>
-        天内的交易数据
+    <p class="transaction_data__tips">
+        采样于最近 1 个月的交易数据
     </p>
-    <div class="profit_order">
+    <div class="transaction_data__order">
         <div class="row"> 
-            <div class="profit_order_graph col-xs-4" >
-                盈利订单 91%
+            <div class="col-xs-6" >
+                <div class="row">
+                    <div class="transaction_data__graph col-xs-6">
+                        <div id="donut_chart_profit" tw-donut-chart></div>
+                    </div>
+                    <div class="transaction_data__graph_intro col-xs-6">
+                        <h2>{{summary.profit_rate}} %</h2>
+                        <p>盈利订单</p>
+                    </div>
+                </div>
             </div>
-            <div class="col-xs-4 text-center">其中</div>
-            <div class="profit_order__detail col-xs-4">
-                <p>
+            <div class="col-xs-1">其中</div>
+            <div class="transaction_data__order_detail col-xs-5">
+                <p class="transaction_data__profit_detail">
                     最大收益
-                    +<span>278.00%</span>
+                    <span>+{{summary.max_profit}}%</span>
                 </p>
-                <p>
+                <p class="transaction_data__profit_detail">
                     平均收益
-                    +<span>100%</span>
+                    <span>+{{summary.avg_profit}}%</span>
                 </p>
-                <p>
+                <p class="transaction_data__profit_detail">
                     最小收益
-                    +<span>100%</span>
+                    <span>+{{summary.min_profit}}%</span>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="transaction_data__order">
+        <div class="row"> 
+            <div class="col-xs-6" >
+                <div class="row">
+                    <div class="transaction_data__graph col-xs-6">
+                        <div id="donut_chart_deficit" tw-donut-chart></div>
+                    </div>
+                    <div class="transaction_data__graph_intro col-xs-6">
+                        <h2>{{summary.deficit_rate}} %</h2>
+                        <p>亏损订单</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-1">其中</div>
+            <div class="transaction_data__order_detail col-xs-5">
+                <p class="transaction_data__deficit_detail">
+                    最大收益
+                    <span>-{{summary.max_deficit}}%</span>
+                </p>
+                <p class="transaction_data__deficit_detail">
+                    平均收益
+                    <span>-{{summary.avg_deficit}}%</span>
+                </p>
+                <p class="transaction_data__deficit_detail">
+                    最小收益
+                    <span>-{{summary.min_deficit}}%</span>
                 </p>
             </div>
         </div>

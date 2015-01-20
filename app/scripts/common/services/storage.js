@@ -14,7 +14,7 @@
             remove: remove
         };
         return service;
-
+                            
         function get(name) {
             return $window.localStorage.getItem(name);
         }

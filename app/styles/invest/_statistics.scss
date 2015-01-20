@@ -1,0 +1,174 @@
+@include b(asset_curve) {
+    padding: 5px 30px 30px;
+
+    .dropdown {
+        float:right;
+
+        .dropdown-menu {
+            width: 120px;
+            min-width: 120px;
+            margin: -1px 0 0;
+            padding:0;
+            border-bottom-left-radius: 4px;
+            border-bottom-right-radius: 4px;
+
+            >li {
+                border-bottom: 1px solid lighten($brand-border-color, 10%);
+
+                >a {
+                    padding: 6px 20px;
+
+                    &:hover {
+                        text-decoration: none;
+                        background-color: darken(#fff, 10%);
+                    }
+                    &.active {
+                        background-color: darken(#fff, 10%);
+                    }
+                }
+            }
+        }
+    }
+    .btn-default {
+        width: 120px;
+        border-color: $brand-border-color;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        font-weight: 700;
+
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    @include e(title) {
+        float: left;
+        font-weight: 700;
+        color: $gray-light;
+    }
+}
+
+@include b(asset_detail) {
+    $asset_detail: &;
+
+    @include e(h_divider) {
+        height: 1px;
+        margin: 15px;
+        background-color: $brand-border-color;
+    }
+
+    @include e(v_divider) {
+        position: absolute;
+        top: 0;
+        width: 1px;
+        height: 100px;
+        background-color: $brand-border-color;
+    }
+    @include e(panel) {
+        text-align: center;
+
+        @include e(percent, $asset_detail) {
+            font-size: 32px;
+            font-weight: 700;
+            color: $brand-green;
+        }
+
+        @include e(amount, $asset_detail) {
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        @include e(number, $asset_detail) {
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        @include e(tips, $asset_detail) {
+            color: $gray-lighter;
+        }
+
+        >h4 {
+            font-size: 16px;
+            font-weight: 700;
+        }
+    }
+}
+
+@include b(transaction_data) {
+    $transaction_data: &;
+    padding: 15px;
+
+    .col-xs-1 {
+        height: 150px;
+        line-height: 150px;
+        text-align: center;
+    }
+    .col-xs-5 {
+        height: 150px;
+    }
+    .col-xs-6 {
+        height: 150px;
+        text-align: center;
+    }
+
+    @include e(title) {
+        font-size: 28px;
+        font-weight: 700;
+    }
+
+    @include e(tips) {
+        color: $gray-light;
+    }
+
+    @include e(graph) {
+        padding: 0;
+    }
+
+    @include e(graph_intro) {
+        padding-left: 0;
+
+        h2 {
+            margin-top: 35px;
+            font-size: 38px;
+        }
+    }
+
+    @include e(order) {
+        padding-bottom: 30px;
+    }
+    @include e(order_detail) {
+        padding-left: 50px;
+        
+        @include e(profit_detail, $transaction_data) {
+            line-height: 40px;
+            border-bottom: 1px solid $brand-border-color;
+            
+            &:last-child {
+                border-bottom: none;
+            }
+            >span {
+                float: right;
+                font-size: 16px;
+                font-weight: 700;
+                color: $brand-green;
+            }
+            
+        }
+
+        @include e(deficit_detail, $transaction_data) {
+            line-height: 40px;
+            border-bottom: 1px solid $brand-border-color;
+        
+            >span {
+                float: right;
+                font-size: 16px;
+                font-weight: 700;
+                color: $brand-red;
+            }
+            
+        }
+    }
+
+    
+}
