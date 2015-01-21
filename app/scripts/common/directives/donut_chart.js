@@ -22,8 +22,6 @@
                     }
             
                     var dataRest = 100 - data;
-
-                    console.info(data +',' + dataRest);
                     var options = {
                         chart: {
                             type: 'pie'

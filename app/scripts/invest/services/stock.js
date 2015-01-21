@@ -52,8 +52,10 @@
          *   avg_deficit:       //平均亏损
          * }
          */
-        function getSummaryReport() {
-            return $http.get('/summary_report');
+        function getSummaryReport(opts) {
+            return $http.get('/summary_report', {
+                params: opts
+            });
         }
     }
 })();

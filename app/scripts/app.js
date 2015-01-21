@@ -35,12 +35,13 @@ angular
                     configParam.timeout = config.httpTimeout;
                     if (!/^[http|https|ws]/.test(configParam.url) && 
                             !/\.html$/.test(configParam.url)) {
-                        if (configParam.url === '/equity_report' ||
+                       
+                        /*if (configParam.url === '/equity_report' ||
                                 configParam.url === '/summary_report') {
                             configParam.url = '/api/v2' + configParam.url;
                             return configParam;
-                        }
-
+                        }*/
+                        
                         configParam.url = config.apiUrl + configParam.url;
                     }
                     return configParam;
@@ -71,6 +72,7 @@ angular
     .module('tigerwitPersonalApp')
     .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$controllerProvider',
             function ($stateProvider, $urlRouterProvider, $httpProvider, $controllerProvider) {
+        
         $urlRouterProvider.otherwise('/personal/hot_dynamics');
         
         $stateProvider
@@ -164,6 +166,7 @@ angular
                             return 'views/invest/' + $stateParams.subPage + '.html';
                         },
                         controllerProvider: function($stateParams) {
+
                             var ctrlPrefix = 'Invest';
                             var ctrlSuffix = 'Controller';
                             var subPage = $stateParams.subPage || 'statistics';

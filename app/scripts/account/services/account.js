@@ -11,7 +11,6 @@
         var service = {
             getInfo: getInfo
         };
-
         return service;
 
         function getInfo(type) {
