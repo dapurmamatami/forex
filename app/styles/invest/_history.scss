@@ -67,12 +67,31 @@
             width: 35px;
             height: 35px;
         }
+        
         @include e(operate, $history_orders) {
             line-height: 30px !important;
 
             p {
                 margin: 0;
             }
+        }
+
+        @include e(exchange, $history_orders) {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        @include e(symbol, $history_orders) {
+            font-size: 16px;
+            font-weight: 700;
+            color: $brand-primary;
+        }
+
+        @include e(way, $history_orders) {
+            padding: 2px;
+            border-radius: 4px;
+            font-size: 12px;
+            background-color: #ebebea;
         }
     }
 }
