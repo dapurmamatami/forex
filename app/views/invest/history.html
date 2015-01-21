@@ -24,15 +24,15 @@
                     </div>
                     <div class="col-xs-2 history_orders__operate">
                         <p>
-                            <span class="history_orders__">
+                            <span class="history_orders__exchange">
                                 {{order.cmd ? '卖出' : '买入'}}
                             </span>
-                            <span>
+                            <span class="history_orders__symbol">
                                 {{order.symbol | symbolBeauty}}
                             </span>
                         </p>
                         <p>
-                            <span>
+                            <span class="history_orders__way">
                                 {{['手动', '止损', '止盈', '强制'][order.liquidation_type] + '平仓'}}
                             </span>
                             <span>{{order.bp | startNow}}前</span>
