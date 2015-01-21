@@ -16,7 +16,7 @@ angular
 
 angular
     .module('tigerwitPersonalApp')
-    
+
     // 在 IE 8 中请求会被缓存，通过下面来阻止缓存
     .config(['$httpProvider', function ($httpProvider) {
         if (!$httpProvider.defaults.headers.get) {
@@ -33,15 +33,15 @@ angular
             return {
                 'request': function(configParam) {
                     configParam.timeout = config.httpTimeout;
-                    if (!/^[http|https|ws]/.test(configParam.url) && 
+                    if (!/^[http|https|ws]/.test(configParam.url) &&
                             !/\.html$/.test(configParam.url)) {
-                       
+
                         /*if (configParam.url === '/equity_report' ||
                                 configParam.url === '/summary_report') {
                             configParam.url = '/api/v2' + configParam.url;
                             return configParam;
                         }*/
-                        
+
                         configParam.url = config.apiUrl + configParam.url;
                     }
                     return configParam;
@@ -64,27 +64,27 @@ angular
                         return $q.reject(response);
                     }
                 }
-            };        
-        }]);            
+            };
+        }]);
     }]);
 
 angular
     .module('tigerwitPersonalApp')
     .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$controllerProvider',
             function ($stateProvider, $urlRouterProvider, $httpProvider, $controllerProvider) {
-        
-        $urlRouterProvider.otherwise('/personal/hot_dynamics');
-        
+
+        $urlRouterProvider.otherwise('/personal/communicateinfo');
+
         $stateProvider
             .state('personal', {
                 views: {
-                    '@': {
+                    '': {
                         templateUrl: 'views/layout/layout-3.html',
                         controller: 'PersonalInfoController'
                     },
                     'hd@personal': {
                         templateUrl: 'views/navbar/navbar-logined.html',
-                        controller: 'NavbarController'   
+                        controller: 'NavbarController'
                     },
                     'sidebar@personal': {
                         templateUrl: 'views/personal/info_side.html'
@@ -102,7 +102,7 @@ angular
                 views: {
                     'content@personal': {
                         templateUrl: function ($stateParams) {
-                            $stateParams.subPage = $stateParams.subPage || 'hot_dynamics';
+                            $stateParams.subPage = $stateParams.subPage || 'communicate_info';
                             return 'views/personal/' + $stateParams.subPage + '.html';
                         },
                         controllerProvider: function ($stateParams) {
@@ -112,7 +112,7 @@ angular
                             var ctrlRoot = modifyCtrlName(subPage);
                             var ctrlName = ctrlPrefix + ctrlRoot + ctrlSuffix;
                             return ctrlName;
-                        
+
                             function modifyCtrlName(name) {
                                var strArray = name.split(/[-_]/i);
 
@@ -120,20 +120,20 @@ angular
                                     length = strArray.length,
                                     tmpStr = '',
                                     newName = '';
-                                
+
                                 for (i = 0;i < length;i++) {
-                                    tmpStr = strArray[i].charAt(0).toUpperCase() + 
-                                            strArray[i].substring(1);  
+                                    tmpStr = strArray[i].charAt(0).toUpperCase() +
+                                            strArray[i].substring(1);
                                     newName += tmpStr;
                                 }
-                                
+
                                 return newName;
                             }
                         }
                     }
                 }
             })
-            
+
             .state('invest', {
                 views: {
                     '@': {
@@ -181,13 +181,13 @@ angular
                                     length = strArray.length,
                                     tmpStr = '',
                                     newName = '';
-                                
+
                                 for (i = 0;i < length;i++) {
-                                    tmpStr = strArray[i].charAt(0).toUpperCase() + 
-                                            strArray[i].substring(1);  
+                                    tmpStr = strArray[i].charAt(0).toUpperCase() +
+                                            strArray[i].substring(1);
                                     newName += tmpStr;
                                 }
-                                
+
                                 return newName;
                             }
                         }

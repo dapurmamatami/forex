@@ -1,14 +1,14 @@
 (function () {
-    'use strict'
+  'use strict'
 
-    angular
-        .module('tigerwitPersonalApp')
-        .controller('PersonalHotDynamicsController',PersonalHotDynamicsController);
+  angular
+    .module('tigerwitPersonalApp')
+    .controller('PersonalHotDynamicsController',PersonalHotDynamicsController);
 
-    PersonalHotDynamicsController.$inject = ['$scope'];
+  PersonalHotDynamicsController.$inject = ['$scope'];
 
-    function PersonalHotDynamicsController($scope) {
-        console.info('hot dynamics page');
-    }
+  function PersonalHotDynamicsController($scope) {
+    console.info('hot dynamics page');
+  }
 
 })();
