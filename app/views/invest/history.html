@@ -1,1 +1,55 @@
-<h1>交易历史</h1>
+<div class="history_orders">
+    <div ng-if="orders.length > 0">
+        <div class="history_orders__nav">
+            <a class="active" href="">全部交易</a>
+            <a href="">自主交易</a>
+            <a href="">复制交易</a>
+        </div>
+
+        <div class="history_orders__header">
+            <div class="row">
+                <div class="col-xs-3">操作</div>
+                <div class="col-xs-3">复制者</div>
+                <div class="col-xs-2">开仓价</div>
+                <div class="col-xs-2">平仓价</div>
+                <div class="col-xs-2">盈亏</div>
+            </div>
+        </div>
+
+        <ul class="history_orders__pnl">
+            <li ng-repeat="order in orders">
+                <div class="row">
+                    <div class="col-xs-1">
+                        <img class="history_orders__logo" ng-src="images/test.png" alt="**">
+                    </div>
+                    <div class="col-xs-2 history_orders__operate">
+                        <p>
+                            <span class="history_orders__">
+                                {{order.cmd ? '卖出' : '买入'}}
+                            </span>
+                            <span>
+                                {{order.symbol | symbolBeauty}}
+                            </span>
+                        </p>
+                        <p>
+                            <span>
+                                {{['手动', '止损', '止盈', '强制'][order.liquidation_type] + '平仓'}}
+                            </span>
+                            <span>{{order.bp | startNow}}前</span>
+                        </p>
+                    </div>
+                    <div class="col-xs-3"></div>
+                    <div class="col-xs-2">{{order.open_price}}</div>
+                    <div class="col-xs-2">{{order.close_price}}</div>
+                    <div class="col-xs-2">{{order.sum}}</div>
+                </div>
+            </li>
+        </ul>
+        <a href=""    ng-click="getMoreOrders()">
+            加载更多...    ng-if="orders.length === 30"
+        </a>
+    </div>
+    <div ng-if="orders.length <= 0">
+        <p class="text-center marketing-text">您暂时没有交易历史，赶快去交易一笔试试！</p>
+    </div>
+</div>

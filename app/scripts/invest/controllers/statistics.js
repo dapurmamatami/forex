@@ -21,15 +21,13 @@
                 period: 7,
                 tiger_source: $scope.$parent.accountType.key
             }).then(function (data) {
-                $scope.$broadcast('paintLineChart', data.data);
-                console.info(data);        
+                $scope.$broadcast('paintLineChart', data.data);    
             });
 
             stock.getSummaryReport({
                 tiger_source: $scope.accountType.key
             }).then(function (data) {
                 $scope.summary = data;
-                console.info($scope.summary);
                 $scope.$broadcast('paintDonutChart', data);
             });   
         }, true);

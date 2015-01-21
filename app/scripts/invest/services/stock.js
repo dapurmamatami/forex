@@ -10,12 +10,13 @@
     function stock($rootScope, $http) {
         var service = {
             getEquityReport: getEquityReport,
-            getSummaryReport: getSummaryReport
+            getSummaryReport: getSummaryReport,
+            getHistory: getHistory
         };
         return service;
 
         /*
-         * 投资详情 - 近期资产情况
+         * 投资详情（Invest） - 近期资产情况
          *
          * @method getEquityReport
          * @param {Object} {
@@ -34,7 +35,7 @@
         }
 
         /*
-         * 投资详情 - 账户概况
+         * 投资详情（Invest） - 账户概况
          *
          * @method getSummaryReport
          * @return {Object} {
@@ -57,5 +58,30 @@
                 params: opts
             });
         }
+
+        /*
+         * 投资详情（Invest） - 历史交易记录
+         *
+         * @method getHistory
+         * @param {Object} {
+         *   after: // 从某个编号（id） 之后取记录,
+         *   count: // 拉取记录的数量
+         * }
+         * @return {Object} {
+         *   id: // 历史单编号
+         *   open_price: // 开仓价格
+         *   close_price: // 平仓价格
+         *   profit: // 收益金额
+         *   storage: // 隔夜利息
+         *   timestamp: // 平仓时间
+         *   symbol: // 外汇名称
+         *   cmd: //类型， 0是做多的平仓， 1是做空的平仓
+         * }
+         */
+         function getHistory(opts) {
+            return $http.get('/get_history', {
+                params: opts
+            })
+         }
     }
 })();

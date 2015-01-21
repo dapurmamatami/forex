@@ -1,0 +1,78 @@
+@include b(history_orders) {
+    $history_orders: &;
+    min-height: 400px;
+
+    @include e(nav) {
+        padding: 10px 0;
+        text-align: right;
+        font-size: 0;
+        a {
+            display: inline-block;
+            margin: 0 10px;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 15px;
+            font-weight: 700;
+            color: $brand-primary;
+
+            &:hover,
+            &:focus {
+                text-decoration: none;
+                color: $brand-dark;
+            }
+
+            &.active {
+                color: $brand-white;
+                background-color: $brand-primary;
+
+                &:hover {
+                    cursor: default;
+                }
+            }
+        }
+    }
+
+    @include e(header) {
+        border-bottom: 1px solid $brand-border-color;
+        line-height: 2.5;
+        text-align: center;
+        font-size: 16px;
+        font-weight: 700;
+    }
+
+    @include e(pnl) {
+        li {
+            padding: 15px;
+            text-align: center;
+
+            &:nth-child(even) {
+                background-color: $gray-lightest;
+            }
+
+            .col-xs-1,
+            .col-xs-2,
+            .col-xs-3 {
+                padding: 0;
+                line-height: 60px;
+            }
+
+            .col-xs-2 {
+                &:first-child {
+                    text-align: left;
+                }
+            }
+        }
+
+        @include e(logo, $history_orders) {
+            width: 35px;
+            height: 35px;
+        }
+        @include e(operate, $history_orders) {
+            line-height: 30px !important;
+
+            p {
+                margin: 0;
+            }
+        }
+    }
+}
