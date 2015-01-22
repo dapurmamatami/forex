@@ -21,9 +21,11 @@
        
         function switchTab(childState) {
             $scope.childState = childState;
+            $scope.$broadcast('showLoadingImg');
         }
 
         function switchAccount() {
+            $scope.$broadcast('showLoadingImg');
             if ($scope.accountType.key === 'real') {
                 $scope.accountType.key = 'demo';
                 $scope.accountType.value = '模拟';

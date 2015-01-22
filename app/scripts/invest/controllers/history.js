@@ -7,7 +7,7 @@
 
     InvestHistoryController.$inject = ['$scope', 'stock'];
 
-    function InvestHistoryController($scope, stock) {
+    function InvestHistoryController($scope, stock) {    
         $scope.orders = [];                //交易历史订单
         $scope.count = 3;                  //单页订单数 
         $scope.noMoreOrders = false;
@@ -28,6 +28,8 @@
                 category: $scope.orderType,
                 tiger_source: $scope.$parent.accountType.key
             }).then(function (data) {
+                $scope.$broadcast('hideLoadingImg');
+
                 $scope.orders = data.data;
                 var dataLength = $scope.orders.length;
                 if (dataLength) {
@@ -55,6 +57,7 @@
         }
 
         function switchOrderType(type) {
+            $scope.$broadcast('showLoadingImg');
             $scope.orderType = type;
             
             stock.getHistory({
@@ -62,8 +65,8 @@
                 category: $scope.orderType,
                 tiger_source: $scope.$parent.accountType.key
             }).then(function (data) {
+                $scope.$broadcast('hideLoadingImg');
                 $scope.orders = data.data;
-                console.info($scope.orders);
                 var dataLength = $scope.orders.length;
                 if (dataLength) {
                     lastId = data.data[dataLength - 1].id;
