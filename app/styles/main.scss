@@ -30,11 +30,12 @@
 @import "common/content";
 @import "common/table";
 @import "common/carousel";
-
+@import "common/dropdown";
 // Module scss
 @import "navbar/navbar";
 @import "personal/side";
 @import "personal/content";
+@import "personal/communicate_info";
 @import "invest/index";
 @import "invest/statistics";
 @import "invest/history";

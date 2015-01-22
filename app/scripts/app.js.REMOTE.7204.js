@@ -72,15 +72,9 @@ angular
     .module('tigerwitPersonalApp')
     .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$controllerProvider',
             function ($stateProvider, $urlRouterProvider, $httpProvider, $controllerProvider) {
-<<<<<<< HEAD
-        
-        $urlRouterProvider.otherwise('/personal/communicate_info');
-        
-=======
 
         $urlRouterProvider.otherwise('/personal/communicateinfo');
 
->>>>>>> 31e2c1f4b343840ad227946f3a6e6997ce929491
         $stateProvider
             .state('personal', {
                 views: {
@@ -114,7 +108,7 @@ angular
                         controllerProvider: function ($stateParams) {
                             var ctrlPrefix = 'Personal';
                             var ctrlSuffix = 'Controller';
-                            var subPage = $stateParams.subPage || 'communicate_info';
+                            var subPage = $stateParams.subPage || 'hot_dynamics';
                             var ctrlRoot = modifyCtrlName(subPage);
                             var ctrlName = ctrlPrefix + ctrlRoot + ctrlSuffix;
                             return ctrlName;
