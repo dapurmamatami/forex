@@ -60,6 +60,7 @@
           ul {
             @extend .dropdown-menu;
             min-width:124px;
+            display: block;
             top:85%;
           }
       }

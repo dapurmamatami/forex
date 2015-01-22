@@ -17,8 +17,7 @@ angular
 angular
     .module('tigerwitPersonalApp')
 
-    // 在 IE 8 中请求会被缓存，通过下面来阻止缓存
-    .config(['$httpProvider', function ($httpProvider) {
+    // �IE 8 中请求会被缓存，通过下面来阻止缓�    .config(['$httpProvider', function ($httpProvider) {
         if (!$httpProvider.defaults.headers.get) {
             $httpProvider.defaults.headers.get = {};
         }
@@ -55,8 +54,7 @@ angular
                     }
                 },
                 'responseError': function(response) {
-                    // 当修改密码成功时不自动跳转到登录页
-                    if (response.status === 401 && $rootScope.resetPassword) {
+                    // 当修改密码成功时不自动跳转到登录�                    if (response.status === 401 && $rootScope.resetPassword) {
                         //ga('send', 'event', '401', response.config.url);
                         $location.path('/login')
                         return $q.reject(response);
@@ -73,7 +71,6 @@ angular
     .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$controllerProvider',
             function ($stateProvider, $urlRouterProvider, $httpProvider, $controllerProvider) {
         $urlRouterProvider.otherwise('/invest/statistics');
-
         $stateProvider
             .state('personal', {
                 views: {
@@ -107,7 +104,7 @@ angular
                         controllerProvider: function ($stateParams) {
                             var ctrlPrefix = 'Personal';
                             var ctrlSuffix = 'Controller';
-                            var subPage = $stateParams.subPage || 'communicate_info';
+                            var subPage = $stateParams.subPage || 'hot_dynamics';
                             var ctrlRoot = modifyCtrlName(subPage);
                             var ctrlName = ctrlPrefix + ctrlRoot + ctrlSuffix;
                             return ctrlName;
