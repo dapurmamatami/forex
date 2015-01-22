@@ -5,9 +5,9 @@
         .module('tigerwitPersonalApp')
         .controller('InvestIndexController', InvestIndexController);
 
-    InvestIndexController.$inject = ['$scope', '$state', '$injector', '$location'];
+    InvestIndexController.$inject = ['$scope', '$location'];
 
-    function InvestIndexController($scope, $state, $injector, $location) {
+    function InvestIndexController($scope, $location) {
         $scope.childState = '';               // tab 切换参数
         $scope.accountType = {
             key: 'demo',
@@ -26,6 +26,7 @@
 
         function switchAccount() {
             $scope.$broadcast('showLoadingImg');
+            
             if ($scope.accountType.key === 'real') {
                 $scope.accountType.key = 'demo';
                 $scope.accountType.value = '模拟';
