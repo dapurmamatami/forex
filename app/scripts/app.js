@@ -41,8 +41,12 @@ angular
                             configParam.url = '/api/v2' + configParam.url;
                             return configParam;
                         }*/
+                        if(/_p$/.test(configParam.url)){
+                          configParam.url = config.personalUrl + configParam.url;
+                        }else{
+                          configParam.url = config.apiUrl + configParam.url;
+                        }
 
-                        configParam.url = config.apiUrl + configParam.url;
                     }
                     return configParam;
                 },
@@ -73,7 +77,7 @@ angular
     .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$controllerProvider',
             function ($stateProvider, $urlRouterProvider, $httpProvider, $controllerProvider) {
 
-        $urlRouterProvider.otherwise('/personal/communicateinfo');
+        $urlRouterProvider.otherwise('/personal/communicate_info');
 
         $stateProvider
             .state('personal', {

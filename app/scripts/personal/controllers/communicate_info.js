@@ -1,62 +1,41 @@
 (function () {
-  'use strict'
+  'use strict';
 
-  angular.module('tigerwitPersonalApp')
-    .controller('PersonalCommunicateInfoController',PersonalCommunicateInfoController)
+  console.info("hello world  communicateinfo !!!");
+  angular
+    .module('tigerwitPersonalApp')
+    .controller('PersonalCommunicateInfoController',
+    PersonalCommunicateInfoController);
 
-  PersonalCommunicateInfoController.$injector = ['$scope','CommunicateData'];
+  PersonalCommunicateInfoController.$inject = ['$scope','communicate'];
 
-  function PersonalCommunicateInfoController($scope,CommunicateData) {
+  function PersonalCommunicateInfoController($scope,communicate) {
+
+    /**
+     *
+     * hello a
+     *
+     *
+     * @type {boolean}
+     */
     $scope.showDropdown = false;
-    $scope.showcommentToggle = false;
 
-
-    $scope.dropmenu = dropmenus;
-    $scope.getbackmenu = getbackmenus;
-    $scope.showCommentCase = showCommentCase;
-    $scope.getbackCommentCase = getbackCommentCase;
-    $scope.skipDetail = skipDetail;
-
+    $scope.showMenu = showMenu;
+    $scope.backMenu = backMenu;
 
     $scope.loadMore = loadMore;
     $scope.publishTopic = publishTopic;
-    $scope.doComment = doComment;
-    $scope.doSupport = doSupport;
-    $scope.doTransmit = doTransmit;
-    $scope.getTopicDetial = getTopicDetail;
 
 
-    function dropmenus() {
+    function showMenu() {
       $scope.showDropdown = true;
     }
 
-    function getbackmenus() {
+    function backMenu() {
       $scope.showDropdown = false;
     }
 
-    function showCommentCase(){
-      $scope.showcommentToggle = true;
-    }
-    function getbackCommentCase(){
-      $scope.showcommentToggle = false;
-    }
-
     function publishTopic(){
-
-    }
-    function doComment(){
-
-    }
-    function doSupport(){
-
-    }
-    function doTransmit(){
-
-    }
-    function getTopicDetail(){
-
-    }
-    function skipDetail(){
 
     }
 
@@ -69,23 +48,61 @@
         $scope.data = [];
       }
       var startIndex = $scope.data.length;
-      var promise = CommunicateData.hotInvester({"startindex":startIndex,"offset":10});
+      var promise = communicate.hotInvester({"startindex":startIndex,"offset":10});
 
       promise.then(function(data){
-          if(data.statecode){
-            $scope.data = $scope.data.concat(data.data);
-          }else{
-            console.log("statemessage:"+jdata.statemessage)
-          }
-        },
-      function(data){
-        console.log(data);
-      });
+            if(data.statecode){
+              $scope.data = $scope.data.concat(data.data);
+            }else{
+              console.log("statemessage:"+data.statemessage);
+            }
+          },
+          function(data){
+            console.log(data);
+          });
     }
     getCommunicateInfo();
   }
 
 
-})()
+  angular
+    .module('tigerwitPersonalApp')
+    .controller('PersonalCommentToggleController',PersonalCommentToggleController);
+
+    PersonalCommentToggleController.$inject=["$scope"];
+
+    function PersonalCommentToggleController($scope){
+      $scope.commentShowToggle = false;
+      $scope.showDropComment = showDropComment;
+
+      $scope.doComment = doComment;
+      $scope.doSupport = doSupport;
+      $scope.doTransmit = doTransmit;
+      $scope.getTopicDetial = getTopicDetail;
+      $scope.skipDetail = skipDetail;
+
+      function showDropComment(){
+        $scope.commentShowToggle = !$scope.commentShowToggle;
+      }
+
+
+      function doComment(){
+
+      }
+      function doSupport(){
+
+      }
+      function doTransmit(){
+
+      }
+      function getTopicDetail(){
+
+      }
+      function skipDetail(){
+
+      }
+    }
+
+})();
 
 
