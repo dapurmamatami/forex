@@ -17,7 +17,7 @@ angular
 angular
     .module('tigerwitPersonalApp')
 
-    // �IE 8 中请求会被缓存，通过下面来阻止缓�    .config(['$httpProvider', function ($httpProvider) {
+    .config(['$httpProvider', function ($httpProvider) {
         if (!$httpProvider.defaults.headers.get) {
             $httpProvider.defaults.headers.get = {};
         }
@@ -57,8 +57,8 @@ angular
                         return response.data;
                     }
                 },
-                'responseError': function(response) {
-                    // 当修改密码成功时不自动跳转到登录�                    if (response.status === 401 && $rootScope.resetPassword) {
+                'responseError': function(response) {              
+                    if (response.status === 401 && $rootScope.resetPassword) {
                         //ga('send', 'event', '401', response.config.url);
                         $location.path('/login')
                         return $q.reject(response);
