@@ -89,9 +89,52 @@
 
         @include e(way, $history_orders) {
             padding: 2px;
+            margin: 0 2px;
             border-radius: 4px;
             font-size: 12px;
             background-color: #ebebea;
+        }
+
+        @include e(time, $history_orders) {
+            color: $gray-lighter;
+        }
+
+        @include e(duplicator, $history_orders) {
+            font-size: 16px;
+            font-weight: 700;
+            color: $brand-primary;   
+        }
+
+        @include e(price, $history_orders) {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        @include e(profit, $history_orders) {
+            font-size: 16px;
+            font-weight: 700;
+            color: $brand-green;
+        }
+
+        @include e(deficit, $history_orders) {
+            font-size: 16px;
+            font-weight: 700;
+            color: $brand-red;
+        }
+        
+        @include e(more, $history_orders) {
+            display: block;
+            width: 480px;
+            margin: 15px auto 0;
+            border: 1px solid $brand-border-color;
+            text-align: center;
+            line-height: 25px; 
+            background-color: $gray-lightest;
+
+             &:hover,
+             &:focus {
+                text-decoration: none;
+             }
         }
     }
 }

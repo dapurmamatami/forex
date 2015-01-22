@@ -8,15 +8,17 @@
     InvestIndexController.$inject = ['$scope', '$state', '$injector', '$location'];
 
     function InvestIndexController($scope, $state, $injector, $location) {
-        $scope.childState = 'statistics';               // tab 切换参数
+        $scope.childState = '';               // tab 切换参数
         $scope.accountType = {
             key: 'demo',
             value: '模拟'
         };
-        
         $scope.switchTab = switchTab;
         $scope.switchAccount = switchAccount;
-              
+
+        var url = $location.path();
+        $scope.childState = url.split('/')[2];
+       
         function switchTab(childState) {
             $scope.childState = childState;
         }
