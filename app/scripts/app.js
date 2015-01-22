@@ -77,7 +77,7 @@ angular
     .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$controllerProvider',
             function ($stateProvider, $urlRouterProvider, $httpProvider, $controllerProvider) {
 
-        $urlRouterProvider.otherwise('/personal/communicate_info');
+        $urlRouterProvider.otherwise('/personal/communicateinfo');
 
         $stateProvider
             .state('personal', {
