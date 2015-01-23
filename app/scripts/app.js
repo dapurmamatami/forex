@@ -42,11 +42,7 @@ angular
                             return configParam;
                         }*/
 
-                      if(/_p$/.test(configParam.url)){
-                        configParam.url = config.personalUrl + configParam.url;
-                      }else{
                         configParam.url = config.apiUrl + configParam.url;
-                      }
                     }
                     return configParam;
                 },
@@ -75,9 +71,8 @@ angular
 angular
     .module('tigerwitPersonalApp')
     .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$controllerProvider',
-            function ($stateProvider, $urlRouterProvider, $httpProvider, $controllerProvider) {
-
-        $urlRouterProvider.otherwise('/personal/communicateinfo');
+            function ($stateProvider, $urlRouterProvider, $httpProvider, $controllerProvider) {  
+        $urlRouterProvider.otherwise('/invest/statistics');
 
         $stateProvider
             .state('personal', {
@@ -112,7 +107,7 @@ angular
                         controllerProvider: function ($stateParams) {
                             var ctrlPrefix = 'Personal';
                             var ctrlSuffix = 'Controller';
-                            var subPage = $stateParams.subPage || 'hot_dynamics';
+                            var subPage = $stateParams.subPage || 'communicate_info';
                             var ctrlRoot = modifyCtrlName(subPage);
                             var ctrlName = ctrlPrefix + ctrlRoot + ctrlSuffix;
                             return ctrlName;

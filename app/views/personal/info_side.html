@@ -43,13 +43,13 @@
         </div>
     </div>  
 
-    <div class="personal_info__panel real_account " ng-show="!profile.real_id">
+    <div class="personal_info__panel real_account " ng-show="profile.real_id">
         <h5 class="real_account__title">开通真实账户进行交易</h5>
         <p class="real_account__percent">
             当前进度 
             <span>20%</span>
         </p>
-        <a class="real_account__open_btn btn btn-md btn-primary" href="" target="_blank">
+        <a class="real_account__open_btn btn btn-md btn-primary" href="" ng-click="openModal()">
             开通真实账户
         </a>  
     </div>

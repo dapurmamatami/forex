@@ -21,6 +21,7 @@
                 period: 7,
                 tiger_source: $scope.$parent.accountType.key
             }).then(function (data) {
+                $scope.$broadcast('hideLoadingImg');
                 $scope.$broadcast('paintLineChart', data.data);    
             });
 

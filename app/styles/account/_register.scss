@@ -1,0 +1,55 @@
+@include b(account_register) {
+    $account_register: &;
+
+    .modal-header {
+        border-bottom: none;
+    }
+    .modal-body {
+        label {
+            font-size: 16px;
+            color: $gray-light;
+        }
+    }
+    .modal-footer {
+        padding-top: 0;
+        border-top: none;
+        text-align: center;
+    }
+    .btn-primary {
+        font-size: 16px;
+        padding: 8px 50px;
+        
+    }
+
+    @include e(step_tip) {
+        float: right;
+        margin: 10px 30px;
+    }
+
+    /* @include e(image) {
+        display: block;
+        width: 130px;
+        height: 130px;
+        margin: 0 auto;
+    } */
+
+    @include e(tip) {
+        margin-top: 30px;
+
+        h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: $gray-light;
+        }
+
+        @include e(warning, $account_register) {
+            margin-top: 20px;
+            font-size: 16px;
+            color: $brand-red;
+        }
+    }
+
+    @include e(size) {
+        margin-top: 30px;
+    }
+}

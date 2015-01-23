@@ -1,11 +1,17 @@
+<div tw-loading-img></div>
 <div class="history_orders">
+    <div class="history_orders__nav">
+        <a href="" ng-class="{active: orderType === 'normal'}" ng-click="switchOrderType('normal')">
+            全部交易
+        </a>
+        <a href="" ng-class="{active: orderType === 'not_copy'}" ng-click="switchOrderType('not_copy')">
+            自主交易
+        </a>
+        <a href="" ng-class="{active: orderType === 'only_copy'}" ng-click="switchOrderType('only_copy')">
+            复制交易
+        </a>
+    </div>
     <div ng-if="orders.length > 0">
-        <div class="history_orders__nav">
-            <a class="active" href="">全部交易</a>
-            <a href="">自主交易</a>
-            <a href="">复制交易</a>
-        </div>
-
         <div class="history_orders__header">
             <div class="row">
                 <div class="col-xs-3">操作</div>
@@ -20,7 +26,7 @@
             <li ng-repeat="order in orders">
                 <div class="row">
                     <div class="col-xs-1">
-                        <img class="history_orders__logo" ng-src="images/test.png" alt="**">
+                        <img class="history_orders__logo" alt="**" src="images/test.png" >
                     </div>
                     <div class="col-xs-2 history_orders__operate">
                         <p>
@@ -35,18 +41,30 @@
                             <span class="history_orders__way">
                                 {{['手动', '止损', '止盈', '强制'][order.liquidation_type] + '平仓'}}
                             </span>
-                            <span>{{order.bp | startNow}}前</span>
+                            <span class="history_orders__time">
+                                {{order.bp | startNow}}前
+                            </span>
                         </p>
                     </div>
-                    <div class="col-xs-3"></div>
-                    <div class="col-xs-2">{{order.open_price}}</div>
-                    <div class="col-xs-2">{{order.close_price}}</div>
-                    <div class="col-xs-2">{{order.sum}}</div>
+                    <div class="col-xs-3">
+                        <span class="history_orders__duplicator">
+                            wodKKHLJa
+                        </span>
+                    </div>
+                    <div class="col-xs-2 history_orders__price">{{order.open_price}}</div>
+                    <div class="col-xs-2 history_orders__price">{{order.close_price}}</div>
+                    <div class="col-xs-2 history_orders__profit" ng-show="order.sum.indexOf('-') < 0">
+                        {{order.sum}}
+                    </div>
+                    <div class="col-xs-2 history_orders__deficit" ng-show="order.sum.indexOf('-') >= 0">
+                        {{order.sum}}
+                    </div>
                 </div>
             </li>
         </ul>
-        <a href=""    ng-click="getMoreOrders()">
-            加载更多...    ng-if="orders.length === 30"
+
+        <a class="history_orders__more" href="" ng-show="!noMoreOrders"  ng-click="getMoreOrders()">
+            点击加载更多...    
         </a>
     </div>
     <div ng-if="orders.length <= 0">
