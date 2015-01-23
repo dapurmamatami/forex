@@ -71,15 +71,8 @@ angular
 angular
     .module('tigerwitPersonalApp')
     .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$controllerProvider',
-            function ($stateProvider, $urlRouterProvider, $httpProvider, $controllerProvider) {
-
-        
-        $urlRouterProvider.otherwise('/personal/communicate_info');
-        
-
-
-        $urlRouterProvider.otherwise('/personal/communicateinfo');
-
+            function ($stateProvider, $urlRouterProvider, $httpProvider, $controllerProvider) {  
+        $urlRouterProvider.otherwise('/invest/statistics');
 
         $stateProvider
             .state('personal', {
