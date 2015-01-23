@@ -31,8 +31,6 @@
           }
         );
 
-        });
-
         function openModal(size) {
             var modalInstance = $modal.open({
                 templateUrl: '/views/account/register.html',
