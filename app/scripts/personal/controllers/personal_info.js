@@ -6,13 +6,15 @@
         .controller('PersonalInfoController', PersonalInfoController);
     
     PersonalInfoController.$inject = ['$rootScope', '$scope','$state', '$timeout',
-            'account', 'money'];
+            '$modal', 'account', 'money'];
 
-    function PersonalInfoController($rootScope, $scope, $state, $timeout, account, money) {
+    function PersonalInfoController($rootScope, $scope, $state, $timeout, $modal, account, money) {
         $scope.profile = {};
+        $scope.profileLoad = false;
+        $scope.openModal = openModal;
 
         account.getInfo().then(function (data) {
-            $scope.hasLoadProfile = true;
+            $scope.profileLoad = true;
             $scope.profile = data;
 
             if (data.verified) {
@@ -26,6 +28,18 @@
             }
         });
         
+        function openModal(size) {
+            var modalInstance = $modal.open({
+                templateUrl: '/views/account/register.html',
+                controller: 'AccountRegisterController',
+                size: size,
+                resolve: {
+                    items: function () {
+                        return $scope.items;
+                    }
+                }
+            });
+        }
     }
 
 })();

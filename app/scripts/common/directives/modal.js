@@ -1,3 +1,6 @@
+/*
+ * This file's services and directives may depend on $transition in transition.js
+ */
 angular
     .module('tigerwitPersonalApp')
 /**

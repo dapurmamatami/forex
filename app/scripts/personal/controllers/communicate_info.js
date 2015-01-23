@@ -1,7 +1,6 @@
 (function () {
   'use strict';
 
-  console.info("hello world  communicateinfo !!!");
   angular
     .module('tigerwitPersonalApp')
     .controller('PersonalCommunicateInfoController',
