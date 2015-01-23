@@ -4,28 +4,23 @@
   console.info("hello world  communicateinfo !!!");
   angular
     .module('tigerwitPersonalApp')
-    .controller('PersonalCommunicateInfoController',
-    PersonalCommunicateInfoController);
+    .controller('PersonalCommunicateInfoController',PersonalCommunicateInfoController);
 
-  PersonalCommunicateInfoController.$inject = ['$scope','communicate'];
+  PersonalCommunicateInfoController.$inject = ['$rootScope','$timeout','$scope','communicate'];
 
-  function PersonalCommunicateInfoController($scope,communicate) {
+  function PersonalCommunicateInfoController($rootScope,$timeout,$scope,communicate) {
 
     /**
      *
-     * hello a
-     *
+     * 控制交流页面的
      *
      * @type {boolean}
      */
+    $rootScope.usercode = 1120;
     $scope.showDropdown = false;
-
     $scope.showMenu = showMenu;
     $scope.backMenu = backMenu;
-
     $scope.loadMore = loadMore;
-    $scope.publishTopic = publishTopic;
-
 
     function showMenu() {
       $scope.showDropdown = true;
@@ -33,10 +28,6 @@
 
     function backMenu() {
       $scope.showDropdown = false;
-    }
-
-    function publishTopic(){
-
     }
 
     function loadMore(){
@@ -64,43 +55,158 @@
     getCommunicateInfo();
   }
 
+  angular
+    .module('tigerwitPersonalApp')
+    .controller('PersonalTopicPublishController',PersonalTopicPublishController);
+
+  PersonalTopicPublishController.$inject = ['$scope','$rootScope','$timeout','communicate'];
+
+  function PersonalTopicPublishController($scope,$rootScope,$timeout,communicate){
+
+    /**
+     * 控制话题发表
+     * @type {number}
+     */
+
+    $scope.tRemainSum = 0;
+    $scope.publishTopic = publishTopic;
+    $scope.matchTopicContent = matchTopicContent;
+    function publishTopic(){
+      if($scope.ptopicContent.trim()==""){
+        return;
+      }
+      communicate.publishTopic({
+        "publisher_id":$rootScope.usercode,
+        "content":$scope.ptopicContent,
+        "bystramsmitid":0
+      }).then(function(data){
+        if(data.statecode){
+          $scope.showOrNo = 'ng-enter';
+          $timeout(function(){
+            $scope.showOrNo = 'ng-leave';
+          },1000);
+        }
+      },function(){
+
+      });
+      $scope.tempTopicContent =$scope.ptopicContent;
+      $scope.ptopicContent = "";
+      $scope.tRemainSum = 0;
+    }
+
+
+    function matchTopicContent(){
+      var contentLength = $scope.ptopicContent.length;
+      if(contentLength>1024){
+        $scope.ptopicContent = $scope.ptopicContent.substring(0,1024);
+        return;
+      }
+      $scope.tRemainSum =contentLength;
+    }
+
+  }
 
   angular
     .module('tigerwitPersonalApp')
-    .controller('PersonalCommentToggleController',PersonalCommentToggleController);
+    .controller('PersonalCommunicateDoController',PersonalCommunicateDoController);
 
-    PersonalCommentToggleController.$inject=["$scope"];
+    PersonalCommunicateDoController.$inject=['$rootScope','$timeout',"$scope",'communicate'];
 
-    function PersonalCommentToggleController($scope){
+    function PersonalCommunicateDoController($rootScope,$timeout,$scope,communicate){
+      /**
+       * 控制每一条话题的
+       * @type {boolean}
+       */
+
       $scope.commentShowToggle = false;
+      $scope.tRemainSum=0;
       $scope.showDropComment = showDropComment;
 
       $scope.doComment = doComment;
       $scope.doSupport = doSupport;
       $scope.doTransmit = doTransmit;
       $scope.getTopicDetial = getTopicDetail;
-      $scope.skipDetail = skipDetail;
+      $scope.matchCommentContent = matchCommentContent;
+
 
       function showDropComment(){
         $scope.commentShowToggle = !$scope.commentShowToggle;
       }
 
+      function matchCommentContent(){
+        var contentLength = $scope.commentContent.length;
+        if(contentLength>1024){
+          $scope.commentContent = $scope.commentContent.substring(0,1024);
+          return;
+        }
+        $scope.tRemainSum =contentLength;
+      }
+
 
       function doComment(){
+        if($scope.commentContent.trim()==""){
+          return;
+        }
 
+        communicate.doComment({
+          "type":0,
+          "usercode":$rootScope.usercode,
+          "content":$scope.commentContent,
+          "topicid":$scope.mData.topicid
+        }).then(function(data){
+          if(data.statecode){
+            $scope.toastMsg = "评论成功！";
+            $scope.mData.comment_sum=$scope.mData.comment_sum+1;
+          }else{
+            $scope.toastMsg = "评论失败";
+          }
+            $scope.showOrNo = 'ng-enter';
+            $timeout(function(){
+              $scope.showOrNo = 'ng-leave';
+            },1000);
+          },
+        function(){});
+        $scope.tempContent =$scope.commentContent;
+        $scope.commentContent = "";
+        $scope.tRemainSum = 0;
       }
+
       function doSupport(){
+        communicate.doSupportPoint({
+          "type":0,
+          "usercode":$rootScope.usercode,
+          "topicid":$scope.mData.topicid
+        }).then(function(data){
+          if(data.statecode){
+            $scope.mData.support_sum =  $scope.mData.support_sum+1;
+          }
 
+        },function(){});
       }
+
       function doTransmit(){
+        communicate.publishTopic({
+          "publisher_id":$rootScope.usercode,
+          "content":$scope.mData.content,
+          "bytramsmitid":$scope.mData.topicid
+        }).then(function(data){
+          if(data.statecode){
+            $scope.mData.tramsmit_sum =  $scope.mData.tramsmit_sum+1;
+          }
+        },function(){
 
+        });
       }
+
       function getTopicDetail(){
+        communicate.topicDetail({
+          topicid:$scope.mData.topicid
+        }).then(function(data){
 
-      }
-      function skipDetail(){
 
+        },function(data){});
       }
+
     }
 
 })();

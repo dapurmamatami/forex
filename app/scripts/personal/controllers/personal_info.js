@@ -4,7 +4,7 @@
     angular
         .module('tigerwitPersonalApp')
         .controller('PersonalInfoController', PersonalInfoController);
-    
+
     PersonalInfoController.$inject = ['$rootScope', '$scope','$state', '$timeout',
             'account', 'money'];
 
@@ -24,8 +24,11 @@
                     });
                 })();
             }
-        });
-        
+        },function(data){
+            $scope.hasLoadProfile = true;
+          }
+        );
+
     }
 
 })();
