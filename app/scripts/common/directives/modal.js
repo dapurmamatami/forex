@@ -1,4 +1,5 @@
-angular.module('tigerwitApp')
+angular
+    .module('tigerwitPersonalApp')
 /**
  * A helper, internal data structure that acts as a map but also allows getting / removing
  * elements in the LIFO order
