@@ -41,6 +41,11 @@ angular
                             configParam.url = '/api/v2' + configParam.url;
                             return configParam;
                         }*/
+                      //add by fwb
+                      if(/_p$/.test(configParam.url)) {
+                        configParam.url = config.personalUrl + configParam.url;
+                        return configParam;
+                      }
 
                         configParam.url = config.apiUrl + configParam.url;
                     }
@@ -71,7 +76,7 @@ angular
 angular
     .module('tigerwitPersonalApp')
     .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$controllerProvider',
-            function ($stateProvider, $urlRouterProvider, $httpProvider, $controllerProvider) {  
+            function ($stateProvider, $urlRouterProvider, $httpProvider, $controllerProvider) {
         $urlRouterProvider.otherwise('/invest/statistics');
 
         $stateProvider
