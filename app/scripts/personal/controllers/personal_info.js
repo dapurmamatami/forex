@@ -4,7 +4,7 @@
     angular
         .module('tigerwitPersonalApp')
         .controller('PersonalInfoController', PersonalInfoController);
-    
+
     PersonalInfoController.$inject = ['$rootScope', '$scope','$state', '$timeout',
             '$modal', 'account', 'money'];
 
@@ -26,8 +26,11 @@
                     });
                 })();
             }
-        });
-        
+        },function(data){
+            $scope.hasLoadProfile = true;
+          }
+        );
+
         function openModal(size) {
             var modalInstance = $modal.open({
                 templateUrl: '/views/account/register.html',

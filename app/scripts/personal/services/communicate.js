@@ -23,18 +23,22 @@
     return service;
 
     /**
-     *
+     *  获取热门投资动态信息
      * @param requestJsondata
      * @returns {HttpPromise}
      */
     function hotInvester(requestJsondata) {
+
       return $http.get('/hotinvester_p', {
         params: requestJsondata
+      },{
+        headers:{'Access-Control-Allow-Headers': 'If-Modified-Since'}
       });
     }
 
     /**
      *
+     * 发表话题
      * @param requestJsondata
      * @returns {HttpPromise}
      */
@@ -46,7 +50,7 @@
     }
 
     /**
-     *
+     * 获取话题详情
      * @param requestJsondata
      * @returns {HttpPromise}
      */
@@ -59,6 +63,7 @@
 
     /**
      *
+     * 获取关注和粉丝数据
      * @param requestJsondata
      * @returns {HttpPromise}
      */
@@ -71,6 +76,7 @@
 
     /**
      *
+     * 获取相关联的动态信息
      * @param requestJsondata
      * @returns {HttpPromise}
      */
@@ -83,6 +89,8 @@
 
     /**
      *
+     *
+     * 点赞
      * @param requestJsondata
      * @returns {HttpPromise}
      */
@@ -94,6 +102,7 @@
 
     /**
      *
+     *  评论
      * @param requestJsondata
      * @returns {HttpPromise}
      */
@@ -104,7 +113,7 @@
       }
 
     /**
-     *
+     *  关注
      * @param requestJsondata
      * @returns {HttpPromise}
      */
@@ -115,7 +124,7 @@
       }
 
     /**
-     *
+     * 删除已经发表的话题
      * @param requestJsondata
      * @returns {HttpPromise}
      */

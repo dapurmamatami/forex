@@ -10,7 +10,7 @@
     function config($rootScope, $location) {
         var service = {
             apiUrl: '/api/v1',
-            personalUrl:'http://'+$location.host()+':5002/communicate/api',
+            personalUrl:'/communicate/api',
             webSocketUrl: 'ws://' + $location.host() + '/api/v1',
             httpTimeout: 10000
         };
