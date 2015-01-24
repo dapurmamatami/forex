@@ -1,5 +1,5 @@
 <div class="account_register">
-    <div class="account_register__step">
+    <div class="account_register__step" ng-show="step === 1">
         <div class="modal-header">
             <button class="close">X</button>
             <span class="account_register__step_tip">
@@ -15,14 +15,41 @@
                     <img  src="/ngsrc/photo-woman.png" style="width:130px;">
                 </div>
                 <div class="col-xs-7">
-                    <form novalidate>
+                    <form name="formStep1" novalidate>
                         <div class="form-group">
-                            <label for="name">真实姓名</label>
-                            <input id="name" class="form-control" type="text" required>
+                            <label>真实姓名</label>
+                            <input class="form-control" 
+                                   name="name" 
+                                   type="text"
+                                   required
+                                   ng-model="name"
+                                   ng-pattern="/^[\u4e00-\u9fa5\.]{2,20}$/">
+                            <div ng-show="formStep1.name.$dirty">
+                                <p ng-show="formStep1.name.$error.required">
+                                    请填写姓名
+                                </p>
+                                <p ng-show="formStep1.name.$error.pattern">
+                                    名字为 2-20 个汉字以及 . 号
+                                </p>
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label for="id_number">身份证号</label>
-                            <input id="id_number" class="form-control" type="text">
+                            <label>身份证号</label>
+                            <input class="form-control" 
+                                   name="idNumber"
+                                   type="text"
+                                   required 
+                                   ng-model="idNumber"
+                                   ng-pattern="/(^\d{15}$)|(^\d{17}([0-9]|X)$)/"
+                                   ng-blur="checkExistence()">
+                            <div ng-show="formStep1.idNumber.$dirty">
+                                <p ng-show="formStep1.idNumber.$error.pattern">
+                                    身份证号无效！若最后一位为字母，请用大写 X
+                                </p>
+                                <p ng-show="idNumberExist">
+                                    该身份证号已经注册！
+                                </p>
+                            </div>
                         </div>
                     </form>    
                 </div>
@@ -37,10 +64,13 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button class="btn btn-primary">下一步</button>
+            <button class="btn btn-primary" ng-disabled="formStep1.$invalid || !idNumberReady" ng-click="submitFormStep1()">
+                下一步
+            </button>
         </div>
     </div>
-    <div class="account_register__step">
+
+    <div class="account_register__step" ng-show="step === 2">
         <div class="modal-header">
             <button class="close">X</button>
             <span class="account_register__step_tip">
@@ -67,7 +97,8 @@
             <button class="btn btn-primary">下一步</button>
         </div>
     </div>
-    <div class="account_register__step">
+
+   <!--  <div class="account_register__step">
         <div class="modal-header">
             <button class="close">X</button>
             <span class="account_register__step_tip">
@@ -124,6 +155,7 @@
             <button class="btn btn-primary">下一步</button>
         </div>
     </div>
+
     <div class="account_register__step">
         <div class="modal-header">
             <button class="close">X</button>
@@ -147,6 +179,5 @@
         <div class="modal-footer">
             <button class="btn btn-primary">马上入金进行交易</button>
         </div>
-    </div>
-
+    </div> -->
 </div>
