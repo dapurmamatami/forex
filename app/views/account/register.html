@@ -41,13 +41,19 @@
                                    required 
                                    ng-model="idNumber"
                                    ng-pattern="/(^\d{15}$)|(^\d{17}([0-9]|X)$)/"
-                                   ng-blur="checkExistence()">
+                                   ng-focus="validate()">
                             <div ng-show="formStep1.idNumber.$dirty">
-                                <p ng-show="formStep1.idNumber.$error.pattern">
-                                    身份证号无效！若最后一位为字母，请用大写 X
+                                <p ng-show="formStep1.idNumber.$error.required">
+                                    请填写身份证号
                                 </p>
-                                <p ng-show="idNumberExist">
+                                <p ng-show="formStep1.idNumber.$error.pattern">
+                                    15 或 18 位数字，最后一位为字母时用大写 X
+                                </p>
+                                <p ng-show="idNumberCheck.existence">
                                     该身份证号已经注册！
+                                </p>
+                                <p ng-show="!idNumberCheck.valid">
+                                    该身份证号无效！
                                 </p>
                             </div>
                         </div>
@@ -64,7 +70,7 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button class="btn btn-primary" ng-disabled="formStep1.$invalid || !idNumberReady" ng-click="submitFormStep1()">
+            <button class="btn btn-primary" ng-disabled="formStep1.$invalid" ng-click="submitFormStep1()">
                 下一步
             </button>
         </div>

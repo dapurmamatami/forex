@@ -11,7 +11,7 @@
         var service = {
             getInfo: getInfo,
             setInfo: setInfo,
-            checkExistence: checkExistence
+            checkNumberExistence: checkNumberExistence
         };
         return service;
 
@@ -31,10 +31,11 @@
             });
         }
 
-        function checkExistence(number, userName) {
+        function checkNumberExistence(number) {
             return $http.get('/exists', {
-                key: number,
-                user_name: userName
+                params: {
+                    key: number
+                }
             });
         }
     }

@@ -11,29 +11,60 @@
     function AccountRegisterController($scope, $window, $location, $state, $timeout, $interval,
             $modal, account, config, validator) {
         $scope.step = 1;
+        /*
+         * 表单第一步的数据模型
+         */
         $scope.name = '';
         $scope.idNumber = '';
-        $scope.idNumberExist = false;
-        $scope.idNumberReady = false; // 查询数据库，数据返回后为 true
+        $scope.idNumberCheck = {
+            success: false,
+            existence: false,
+            valid: false
+        }; 
         $scope.forkCode = null;
         $scope.submitFormStep1 = submitFormStep1;
-        $scope.checkExistence = checkExistence;
+        $scope.validate = validate;
+
+        /*
+         * 表单第二步的数据模型
+         */
+        
+
+
+
+
+
+
+
+
+
+
+
 
         function submitFormStep1() {
-            account.setInfo($scope.name, $scope.idNumber, $scope.forkCode).
-                    then(function (data) {
-                console.info(data);
-                $scope.step += 1;
+            account.checkNumberExistence($scope.idNumber).then(function (data) {
+                $scope.idNumberCheck.success = data.is_succ;
+
+                if ($scope.idNumberCheck.success) {
+                    $scope.idNumberCheck.existence = data.data;
+
+                    if ($scope.idNumberCheck.existence) {
+                        return;
+                    }
+                    account.setInfo($scope.name, $scope.idNumber, $scope.forkCode).
+                            then(function (data) {
+                        $scope.idNumberCheck.valid = data.is_succ;
+                        if ($scope.idNumberCheck.valid) {
+                            $scope.step += 1;
+                        }
+                    });
+                }
             });
         }
 
-        function checkExistence() {
-            account.checkExistence($scope.idNumber, '').then(function (data) {
-                console.info(data);
-                // if idNumber 存在 $scope.idNumberExist = true;
-                // if idNumber 不存在 $scope.idNumberExist = false; 同时 $scope.idNumberReady = true;
-                $scope.idNumberReady = true;
-            });
+        function validate() {
+           $scope.idNumberCheck.valid = true;
+           $scope.idNumberCheck.existence = false;
         }
     }
 })();
