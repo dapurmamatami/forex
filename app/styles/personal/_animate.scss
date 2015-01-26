@@ -4,7 +4,7 @@
   for the element that has the .repeated-item
   class
 */
-.repeated-item.ng-enter, .repeated-item.ng-move {
+.repeated-item.cm-enter, .repeated-item.cm-move {
   -webkit-transition:0.5s linear all;
   -moz-transition:0.5s linear all;
   -o-transition:0.5s linear all;
@@ -30,7 +30,7 @@
 */
 
 
-.ng-enter {
+.cm-enter {
   -webkit-animation: 1s fade-in;
   -moz-animation: 1s fade-in;
   -o-animation: 1s fade-in;
@@ -39,7 +39,7 @@
   opacity:1 !important;
 }
 
-.ng-leave {
+.cm-leave {
   -webkit-animation: 1s fade-out;
   -moz-animation: 1s fade-out;
   -o-animation: 1s fade-out;

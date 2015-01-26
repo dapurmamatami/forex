@@ -71,33 +71,33 @@
     $scope.publishTopic = publishTopic;
     $scope.matchTopicContent = matchTopicContent;
     function publishTopic(){
-      if($scope.ptopicContent.trim()==""){
+      if($scope.inputContent.trim()==""){
         return;
       }
       communicate.publishTopic({
         "publisher_id":$rootScope.usercode,
-        "content":$scope.ptopicContent,
+        "content":$scope.inputContent,
         "bystramsmitid":0
       }).then(function(data){
         if(data.statecode){
-          $scope.showOrNo = 'ng-enter';
+          $scope.showOrNo = 'cm-enter';
           $timeout(function(){
-            $scope.showOrNo = 'ng-leave';
+            $scope.showOrNo = 'cm-leave';
           },1000);
         }
       },function(){
 
       });
-      $scope.tempTopicContent =$scope.ptopicContent;
-      $scope.ptopicContent = "";
+      $scope.tempTopicContent =$scope.inputContent;
+      $scope.inputContent = "";
       $scope.tRemainSum = 0;
     }
 
 
     function matchTopicContent(){
-      var contentLength = $scope.ptopicContent.length;
+      var contentLength = $scope.inputContent.length;
       if(contentLength>1024){
-        $scope.ptopicContent = $scope.ptopicContent.substring(0,1024);
+        $scope.inputContent = $scope.inputContent.substring(0,1024);
         return;
       }
       $scope.tRemainSum =contentLength;
@@ -133,9 +133,9 @@
       }
 
       function matchCommentContent(){
-        var contentLength = $scope.commentContent.length;
+        var contentLength = $scope.inputContent.length;
         if(contentLength>1024){
-          $scope.commentContent = $scope.commentContent.substring(0,1024);
+          $scope.inputContent = $scope.inputContent.substring(0,1024);
           return;
         }
         $scope.tRemainSum =contentLength;
@@ -143,14 +143,14 @@
 
 
       function doComment(){
-        if($scope.commentContent.trim()==""){
+        if($scope.inputContent.trim()==""){
           return;
         }
 
         communicate.doComment({
           "type":0,
           "usercode":$rootScope.usercode,
-          "content":$scope.commentContent,
+          "content":$scope.inputContent,
           "topicid":$scope.mData.topicid
         }).then(function(data){
           if(data.statecode){
@@ -159,14 +159,14 @@
           }else{
             $scope.toastMsg = "评论失败";
           }
-            $scope.showOrNo = 'ng-enter';
+            $scope.showOrNo = 'cm-enter';
             $timeout(function(){
-              $scope.showOrNo = 'ng-leave';
+              $scope.showOrNo = 'cm-leave';
             },1000);
           },
         function(){});
-        $scope.tempContent =$scope.commentContent;
-        $scope.commentContent = "";
+        $scope.tempContent =$scope.inputContent;
+        $scope.inputContent = "";
         $scope.tRemainSum = 0;
       }
 
@@ -207,6 +207,52 @@
       }
 
     }
+
+  angular
+    .module('tigerwitPersonalApp')
+    .controller('showContent',showContent);
+
+  showContent.$inject = ['$scope',''];
+
+  function showContent($scope){
+
+    var contentArray = new Array();
+    $scope.contentArray = getContentArray(contentArray,$scope.mData['content']);
+
+    function getContentArray(arrayContent, content) {
+
+      var regex = /^@\S+\s|^\$\S+\s|\s@\S+\s|\s\$\S+\s/g;
+
+      var count = 0;
+      var mached = [];
+      if (mached = regex.exec(content)) {
+        var speacial = mached[0];
+        if (regex.lastIndex > speacial.length) {
+          var reStr = content.substring(0, regex.lastIndex - speacial.length);
+          arrayContent.push({
+            show: false,
+            content: reStr
+          });
+        }
+        arrayContent.push({
+          show: true,
+          content: speacial
+        });
+        if (content.length > regex.lastIndex) {
+          return getContentArray(arrayContent,content.substring(regex.lastIndex));
+        } else {
+          return arrayContent;
+        }
+      } else {
+        arrayContent.push({
+          show: false,
+          content: content
+        });
+        return arrayContent;
+      }
+    }
+  }
+
 
 })();
 
