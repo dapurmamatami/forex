@@ -10,6 +10,7 @@
     function account($rootScope, $http, storage) {
         var service = {
             getInfo: getInfo,
+            getStepInfo: getStepInfo,
             setInfo: setInfo,
             checkNumberExistence: checkNumberExistence
         };
@@ -35,6 +36,14 @@
             return $http.get('/exists', {
                 params: {
                     key: number
+                }
+            });
+        }
+
+        function getStepInfo(type) {
+            return $http.get('/get_info_progress', {
+                params: {
+                    type: type    //'ReliableInformation' or 'idPicInformation'
                 }
             });
         }

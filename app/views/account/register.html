@@ -88,11 +88,33 @@
         </div>
         <div class="modal-body">
             <div class="row">
-                <div class="col-xs-6 text-center">
-                    <img  src="/ngsrc/photo-woman.png" style="width:200px;height:130px;">
-                </div>
-                <div class="col-xs-6 text-center">
-                    <img  src="/ngsrc/photo-man.png" style="width:200px;height:130px;"> 
+                <div class="upload_form">
+                    <div class="col-xs-6 text-center">
+                        <div class="upload_form__front" data-face="front" tw-upload-form >
+                        </div>
+                    </div>
+                    <div class="col-xs-6 text-center">
+                        <div class="upload_form__back" data-face="back" tw-upload-form >
+                        </div> 
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="upload-tip">
+                            <p class="" ng-if="idImage.frontImageStatus === 1">正在上传...</p>
+                            <p class="" ng-if="idImage.frontImageStatus === 2">上传成功</p>
+                            <p class="" ng-if="idImage.frontImageStatus === 3">
+                                {{idImage.frontImageError}}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="upload-tip">
+                            <p class="" ng-if="idImage.backImageStatus === 1">正在上传...</p>
+                            <p class="" ng-if="idImage.backImageStatus === 2">上传成功</p>
+                            <p class="" ng-if="idImage.backImageStatus === 3">
+                                {{idImage.backImageError}}
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
             <p class="account_register__tip">
@@ -100,11 +122,13 @@
             </p>
         </div>
         <div class="modal-footer">
-            <button class="btn btn-primary">下一步</button>
+            <button class="btn btn-primary" ng-disabled="idImage.frontImageStatus !== 2 || idImage.backImageStatus !== 2" ng-click="submitFormStep2()">
+                下一步
+            </button>
         </div>
     </div>
 
-   <!--  <div class="account_register__step">
+    <div class="account_register__step">
         <div class="modal-header">
             <button class="close">X</button>
             <span class="account_register__step_tip">
@@ -162,7 +186,7 @@
         </div>
     </div>
 
-    <div class="account_register__step">
+   <!--  <div class="account_register__step">
         <div class="modal-header">
             <button class="close">X</button>
             <h3 class="modal-title">
@@ -185,5 +209,5 @@
         <div class="modal-footer">
             <button class="btn btn-primary">马上入金进行交易</button>
         </div>
-    </div> -->
+    </div>  -->
 </div>

@@ -35,11 +35,12 @@ angular
                     if (!/^(http|https|ws)/.test(configParam.url) &&
                             !/\.html$/.test(configParam.url)) {
 
-                        /*if (configParam.url === '/equity_report' ||
-                                configParam.url === '/summary_report') {
+                        if (configParam.url === '/equity_report' ||
+                                configParam.url === '/summary_report' ||
+                                configParam.url === '/get_info_progress') {
                             configParam.url = '/api/v2' + configParam.url;
                             return configParam;
-                        }*/
+                        }
                       
                         //add by fwb
                         if(/_p$/.test(configParam.url)) {
