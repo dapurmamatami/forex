@@ -74,7 +74,7 @@
           if(!$scope.inputContent){
               return;
           }
-          if($scope.inputContent.trim()==""){
+          if($.trim($scope.inputContent)==""){
              return;
           }
           communicate.publishTopic({
@@ -149,16 +149,16 @@
           if(!$scope.inputContent){
               return;
           }
-          if($scope.inputContent.trim()==""){
+          if($.trim($scope.inputContent)==""){
               return;
           }
 
           communicate.doComment({
-            "type":0,
-            "usercode":$rootScope.usercode,
-            "content":$scope.inputContent,
-            "topicid":$scope.mData.topicid
-          }).then(function(data){
+              "type":0,
+              "usercode":$rootScope.usercode,
+              "content":$scope.inputContent,
+              "topicid":$scope.mData.topicid
+            }).then(function(data){
             if(data.statecode){
               $scope.toastMsg = "评论成功！";
               $scope.mData.comment_sum=$scope.mData.comment_sum+1;
