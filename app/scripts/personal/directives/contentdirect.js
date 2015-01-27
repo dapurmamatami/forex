@@ -4,14 +4,13 @@
   angular
     .module('tigerwitPersonalApp')
     .directive('contentshow',contentshow);
-  //contentshow.$inject = ['$scope','senstiviyWord'];
   function contentshow() {
     return {
       restrict: 'E',
       template: "<p>" +
-                    "<span ng-repeat = 'item in contentArray'>" +
-                        "<span  ng-if='item.show' class = 'focusname'>{{item.content|senstiviyWord}}</span>" +
-                        "<span ng-if='!item.show'>{{item.content|senstiviyWord}}</span>"+
+                    "<span ng-repeat = 'citem in contentArray'>" +
+                        "<span  ng-if='citem.show' class = 'focusname'>{{citem.content|senstiviyWord}}</span>" +
+                        "<span ng-if='!citem.show'>{{citem.content|senstiviyWord}}</span>"+
                     "</span>" +
                 "</p>",
       replace: true,
@@ -52,7 +51,6 @@
             return arrayContent;
           }
         }
-
       }
     }
   }
