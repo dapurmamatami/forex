@@ -1,26 +1,27 @@
 @import "compass";
-// bower:scss
-// endbower
-
-// Reset
-@import "common/normalize";
 
 // Core variables and mixins
 @import "common/variables";
 @import "common/font_variables";
 @import "common/mixins";
 
-// Common Components
-@import "common/utilities";
-@import "common/type";
+// Reset and dependencies
+@import "common/normalize";
+
+// Core CSS
 @import "common/scaffolding";
+@import "common/type";
 @import "common/grid";
-@import "common/navs";
+@import "common/table";
 @import "common/forms";
 @import "common/buttons";
+
+// Common Components
 @import "common/font_icons";
 @import "common/font_core";
 @import "common/font_path";
+@import "common/alerts";
+@import "common/navs";
 @import "common/navbar";
 @import "common/layout";
 @import "common/dropdown";
@@ -28,10 +29,10 @@
 @import "common/icons";
 @import "common/modal";
 @import "common/content";
-@import "common/table";
 @import "common/carousel";
 @import "common/dropdown";
-// Module scss
+
+// Module CSS
 @import "navbar/navbar";
 @import "account/register";
 @import "personal/side";
@@ -64,7 +65,8 @@
 @import "master/recommend_lst";
 @import "guides/index"; */
 
+// Utility classes
+@import "common/utilities";
 
 // Third party
-
 @import "../base/webuploader-0.1.5/webuploader";

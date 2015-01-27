@@ -16,6 +16,15 @@
   @include box-sizing(border-box);
 }
 
+// Reset outline
+
+*:focus,
+button:focus,
+input:focus,
+.btn:focus {
+    outline: none !important;
+}
+
 // Body reset
 
 html {

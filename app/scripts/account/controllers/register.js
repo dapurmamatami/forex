@@ -6,10 +6,11 @@
         .controller('AccountRegisterController', AccountRegisterController);
 
     AccountRegisterController.$inject = ['$scope', '$window', '$location', '$state', '$timeout',
-            '$interval', '$modal', 'account', 'config', 'validator'];
+            '$interval', '$modal', '$modalInstance', 'account', 'config', 'validator'];
 
     function AccountRegisterController($scope, $window, $location, $state, $timeout, $interval,
-            $modal, account, config, validator) {
+            $modal, $modalInstance, account, config, validator) {
+        $scope.closeModal = closeModal;
         /*
          * 确定显示第几步
          */
@@ -19,7 +20,7 @@
             }
         });*/
 
-        $scope.step = 2;
+        $scope.step = 3;
 
         /*
          * 第一步的数据模型
@@ -51,12 +52,14 @@
                 case 'front':
                     $scope.$apply(function () {
                         $scope.idImage.frontImageStatus = 1;
-                        $scope.idImage.frontImageError = '';
-                    });
+                        $scope.idImage.frontImageError = '';    
+                    });            
                     break;
                 case 'back':
-                    $scope.idImage.backImageStatus = 1;
-                    $scope.idImage.backImageError = '';
+                    $scope.$apply(function () {
+                        $scope.idImage.backImageStatus = 1;
+                        $scope.idImage.backImageError = '';
+                    });
                     break;
                 default:
                     break;
@@ -72,8 +75,12 @@
                     });
                     break;
                 case 'back':
-                    $scope.idImage.backImageError = '';
-                    $scope.idImage.backImageStatus = 2;
+                    $scope.$apply(function () {
+                        $scope.idImage.backImageError = '';
+                        $scope.idImage.backImageStatus = 2;
+                    });
+                    break;
+                default:
                     break;
             }
         });
@@ -82,15 +89,17 @@
             switch(data.face) {
                 case 'front':
                     $scope.$apply(function () {
-                        $scope.idImage.frontImageError = '上传失败! 请上传小于 3MB 的图片';
+                        $scope.idImage.frontImageError = '上传失败！请上传小于 3MB 的图片';
                         $scope.idImage.frontImageStatus = 3;
                     });
                     break;
                 case 'back':
                     $scope.$apply(function () {
-                        $scope.idImage.backImageError = '上传失败! 请上传小于 3MB 的图片';
+                        $scope.idImage.backImageError = '上传失败！请上传小于 3MB 的图片';
                         $scope.idImage.backImageStatus = 3;
                     });
+                    break;
+                default:
                     break;
             }
         });
@@ -99,16 +108,17 @@
             switch(data.face) {
                 case 'front':
                     $scope.$apply(function () {
-                        $scope.idImage.frontImageError = '上传的类型不正确，只支持 jpg, jpeg, png 三种格式';
+                        $scope.idImage.frontImageError = '上传失败！图片格式不正确';
                         $scope.idImage.frontImageStatus = 3;
                     });
-                    
                     break;
                 case 'back':
                     $scope.$apply(function () {
-                        $scope.idImage.backImageError = '上传的类型不正确，只支持 jpg, jpeg, png 三种格式';
+                        $scope.idImage.backImageError = '上传失败！图片格式不正确';
                         $scope.idImage.backImageStatus = 3;
                     });
+                    break;
+                default:
                     break;
             }
         });
@@ -121,6 +131,9 @@
          $scope.experience = '';
          $scope.submitFormStep3 = submitFormStep3;
 
+         function closeModal() {
+            $modalInstance.close();
+         }
 
 
         function submitFormStep1() {

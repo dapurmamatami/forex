@@ -20,8 +20,8 @@ $brand-border-color:    #ccc !default;
 
 
 
-$gray-darker:            lighten(#000, 13.5%) !default; // #222
-$gray:                   lighten(#000, 33.5%) !default; // #555
+$gray-darker:           lighten(#000, 13.5%) !default; // #222
+$gray:                  lighten(#000, 33.5%) !default; // #555
 $brand-success:         #5cb85c !default;
 $brand-info:            #589eef !default;
 $brand-light-info:      #589ecf !default;
@@ -446,6 +446,31 @@ $modal-footer-border-color:   $modal-header-border-color !default;
 $modal-lg:                    900px !default;
 $modal-md:                    600px !default;
 $modal-sm:                    300px !default;
+
+
+//== Alerts
+//
+//## Define alert colors, border radius, and padding.
+
+$alert-padding:               15px !default;
+$alert-border-radius:         $border-radius-base !default;
+$alert-link-font-weight:      bold !default;
+
+$alert-success-bg:            $state-success-bg !default;
+$alert-success-text:          $state-success-text !default;
+$alert-success-border:        $state-success-border !default;
+
+$alert-info-bg:               $state-info-bg !default;
+$alert-info-text:             $state-info-text !default;
+$alert-info-border:           $state-info-border !default;
+
+$alert-warning-bg:            $state-warning-bg !default;
+$alert-warning-text:          $state-warning-text !default;
+$alert-warning-border:        $state-warning-border !default;
+
+$alert-danger-bg:             $state-danger-bg !default;
+$alert-danger-text:           $state-danger-text !default;
+$alert-danger-border:         $state-danger-border !default;
 
 
 //== Tables

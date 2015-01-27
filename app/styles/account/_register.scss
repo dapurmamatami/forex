@@ -21,18 +21,28 @@
         
     }
 
+    .alert {
+        padding: 5px;
+        margin: 5px 0;
+    }
+
     @include e(step_tip) {
         float: right;
         margin: 10px 30px;
     }
 
-    /* @include e(image) {
-        display: block;
+    @include e(photo_logo) {
         width: 130px;
         height: 130px;
-        margin: 0 auto;
-    } */
+        margin-top: 6px;
+    }
 
+    @include e(research_logo) {
+        width: 150px;
+        height: 160px;
+        margin-top: 30px;
+    }
+    
     @include e(tip) {
         margin-top: 30px;
 
@@ -57,15 +67,15 @@
 @include b(upload_form) {
     @include e(front) {
         display: inline-block;
-        width: 210px;
-        height: 130px;
+        width: 250px;
+        height: 150px;
         background: url('../images/id-card-front.png') no-repeat 50%;
     }
 
     @include e(back) {
         display: inline-block;
-        width: 210px;
-        height: 130px;
+        width: 250px;
+        height: 150px;
         background: url('../images/id-card-back.png') no-repeat 50%;
     }
 

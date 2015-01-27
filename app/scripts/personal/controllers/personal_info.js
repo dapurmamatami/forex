@@ -31,7 +31,7 @@
         });
 
         function openModal(size) {
-            var modalInstance = $modal.open({
+              $modal.open({
                 templateUrl: '/views/account/register.html',
                 controller: 'AccountRegisterController',
                 size: size
