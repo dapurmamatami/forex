@@ -146,8 +146,11 @@
 
 
         function doComment(){
+          if(!$scope.inputContent){
+              return;
+          }
           if($scope.inputContent.trim()==""){
-            return;
+              return;
           }
 
           communicate.doComment({
