@@ -71,6 +71,9 @@
       $scope.publishTopic = publishTopic;
       $scope.matchTopicContent = matchTopicContent;
       function publishTopic(){
+          if(!$scope.inputContent){
+              return;
+          }
           if($scope.inputContent.trim()==""){
              return;
           }
