@@ -10,8 +10,10 @@
     function account($rootScope, $http, storage) {
         var service = {
             getInfo: getInfo,
+            getStepInfo: getStepInfo,
             setInfo: setInfo,
-            checkExistence: checkExistence
+            checkNumberExistence: checkNumberExistence,
+            submitQuestionnaire: submitQuestionnaire
         };
         return service;
 
@@ -31,10 +33,27 @@
             });
         }
 
-        function checkExistence(number, userName) {
+        function checkNumberExistence(number) {
             return $http.get('/exists', {
-                key: number,
-                user_name: userName
+                params: {
+                    key: number
+                }
+            });
+        }
+
+        function getStepInfo(type) {
+            return $http.get('/get_info_progress', {
+                params: {
+                    type: type    //'ReliableInformation' or 'idPicInformation'
+                }
+            });
+        }
+
+        function submitQuestionnaire(employment, income, experience) {
+            return $http.post('/questionnaire', {
+                current_situation: employment,
+                yearly_income: income,
+                investing_experience: experience
             });
         }
     }

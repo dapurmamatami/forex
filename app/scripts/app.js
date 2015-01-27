@@ -8,7 +8,6 @@
  */
 angular
     .module('tigerwitPersonalApp', [
-        'ngAnimate',
         'ngRoute',
         'ngSanitize',
         'ui.router'
@@ -33,20 +32,21 @@ angular
             return {
                 'request': function(configParam) {
                     configParam.timeout = config.httpTimeout;
-                    if (!/^[http|https|ws]/.test(configParam.url) &&
+                    if (!/^(http|https|ws)/.test(configParam.url) &&
                             !/\.html$/.test(configParam.url)) {
 
-                        /*if (configParam.url === '/equity_report' ||
-                                configParam.url === '/summary_report') {
+                        if (configParam.url === '/equity_report' ||
+                                configParam.url === '/summary_report' ||
+                                configParam.url === '/get_info_progress') {
                             configParam.url = '/api/v2' + configParam.url;
                             return configParam;
-                        }*/
-                      //add by fwb
-                      if(/_p$/.test(configParam.url)) {
-                        configParam.url = config.personalUrl + configParam.url;
-                        return configParam;
-                      }
-
+                        }
+                      
+                        //add by fwb
+                        if(/_p$/.test(configParam.url)) {
+                            configParam.url = config.personalUrl + configParam.url;
+                            return configParam;
+                        }
                         configParam.url = config.apiUrl + configParam.url;
                     }
                     return configParam;
@@ -130,7 +130,6 @@ angular
                                             strArray[i].substring(1);
                                     newName += tmpStr;
                                 }
-
                                 return newName;
                             }
                         }

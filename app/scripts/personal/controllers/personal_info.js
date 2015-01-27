@@ -23,24 +23,18 @@
                     money.getLastEquity().then(function (data) {
                         $scope.equityInfo = data;
                         $timeout(getEquity, 5 * 1000);
+                    }, function (resp) {
+                        console.info(resp);
                     });
                 })();
             }
-        },function(data){
-            $scope.hasLoadProfile = true;
-          }
-        );
+        });
 
         function openModal(size) {
             var modalInstance = $modal.open({
                 templateUrl: '/views/account/register.html',
                 controller: 'AccountRegisterController',
-                size: size,
-                resolve: {
-                    items: function () {
-                        return $scope.items;
-                    }
-                }
+                size: size
             });
         }
     }
