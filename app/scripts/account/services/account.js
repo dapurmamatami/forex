@@ -12,7 +12,8 @@
             getInfo: getInfo,
             getStepInfo: getStepInfo,
             setInfo: setInfo,
-            checkNumberExistence: checkNumberExistence
+            checkNumberExistence: checkNumberExistence,
+            submitQuestionnaire: submitQuestionnaire
         };
         return service;
 
@@ -45,6 +46,14 @@
                 params: {
                     type: type    //'ReliableInformation' or 'idPicInformation'
                 }
+            });
+        }
+
+        function submitQuestionnaire(employment, income, experience) {
+            return $http.post('/questionnaire', {
+                current_situation: employment,
+                yearly_income: income,
+                investing_experience: experience
             });
         }
     }

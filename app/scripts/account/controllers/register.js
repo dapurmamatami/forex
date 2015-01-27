@@ -10,9 +10,8 @@
 
     function AccountRegisterController($scope, $window, $location, $state, $timeout, $interval,
             $modal, account, config, validator) {
-        $scope.step = 3;
         /*
-         * 确定显示第几步的表单
+         * 确定显示第几步
          */
        /* account.getStepInfo('ReliableInformation').then(function (data) {
             if (data.is_succ) {
@@ -20,8 +19,10 @@
             }
         });*/
 
+        $scope.step = 2;
+
         /*
-         * 表单第一步的数据模型
+         * 第一步的数据模型
          */
         $scope.name = '';
         $scope.idNumber = '';
@@ -35,7 +36,7 @@
         $scope.validate = validate;
 
         /*
-         * 表单第二步的数据模型以及业务逻辑
+         * 第二步的数据模型以及业务逻辑
          */
         $scope.idImage = {
             frontImageError: '',
@@ -112,6 +113,14 @@
             }
         });
 
+        /*
+         * 第三步数据模型
+         */
+         $scope.employment = '';
+         $scope.income = '';
+         $scope.experience = '';
+         $scope.submitFormStep3 = submitFormStep3;
+
 
 
         function submitFormStep1() {
@@ -142,6 +151,17 @@
 
         function submitFormStep2() {
             $scope.step += 1;
+        }
+
+        function submitFormStep3() {
+            if ($scope.formStep3.$valid) {
+                account.submitQuestionnaire($scope.employment, $scope.income, 
+                        $scope.experience).then(function (data) {
+                    if (data.is_succ) {
+                        $scope.step += 1;
+                    }
+                });
+            }
         }
     }
 })();

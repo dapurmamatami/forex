@@ -115,7 +115,6 @@ angular
                             var subPage = $stateParams.subPage || 'communicate_info';
                             var ctrlRoot = modifyCtrlName(subPage);
                             var ctrlName = ctrlPrefix + ctrlRoot + ctrlSuffix;
-                            return '';
                             return ctrlName;
 
                             function modifyCtrlName(name) {
