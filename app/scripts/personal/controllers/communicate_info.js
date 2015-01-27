@@ -9,49 +9,49 @@
 
   function PersonalCommunicateInfoController($rootScope,$timeout,$scope,communicate) {
 
-    /**
-     *
-     * 控制交流页面的
-     *
-     * @type {boolean}
-     */
-    $rootScope.usercode = 1120;
-    $scope.showDropdown = false;
-    $scope.showMenu = showMenu;
-    $scope.backMenu = backMenu;
-    $scope.loadMore = loadMore;
-
-    function showMenu() {
-      $scope.showDropdown = true;
-    }
-
-    function backMenu() {
+      /**
+       *
+       * 控制交流页面的
+       *
+       * @type {boolean}
+       */
+      $rootScope.usercode = 1120;
       $scope.showDropdown = false;
-    }
+      $scope.showMenu = showMenu;
+      $scope.backMenu = backMenu;
+      $scope.loadMore = loadMore;
 
-    function loadMore(){
-      getCommunicateInfo();
-    }
-
-    function getCommunicateInfo(){
-      if(!$scope.data){
-        $scope.data = [];
+      function showMenu() {
+          $scope.showDropdown = true;
       }
-      var startIndex = $scope.data.length;
-      var promise = communicate.hotInvester({"startindex":startIndex,"offset":10});
 
-      promise.then(function(data){
-            if(data.statecode){
-              $scope.data = $scope.data.concat(data.data);
-            }else{
-              console.log("statemessage:"+data.statemessage);
-            }
-          },
-          function(data){
-            console.log(data);
-          });
-    }
-    getCommunicateInfo();
+      function backMenu() {
+         $scope.showDropdown = false;
+      }
+
+      function loadMore(){
+         getCommunicateInfo();
+      }
+
+      function getCommunicateInfo(){
+          if(!$scope.data){
+              $scope.data = [];
+          }
+          var startIndex = $scope.data.length;
+          var promise = communicate.hotInvester({"startindex":startIndex,"offset":10});
+
+          promise.then(function(data){
+                if(data.statecode){
+                   $scope.data = $scope.data.concat(data.data);
+                }else{
+                    console.log("statemessage:"+data.statemessage);
+                }
+            },
+            function(data){
+                console.log(data);
+            });
+      }
+      getCommunicateInfo();
   }
 
   angular
@@ -67,41 +67,41 @@
      * @type {number}
      */
 
-    $scope.tRemainSum = 0;
-    $scope.publishTopic = publishTopic;
-    $scope.matchTopicContent = matchTopicContent;
-    function publishTopic(){
-      if($scope.ptopicContent.trim()==""){
-        return;
-      }
-      communicate.publishTopic({
-        "publisher_id":$rootScope.usercode,
-        "content":$scope.ptopicContent,
-        "bystramsmitid":0
-      }).then(function(data){
-        if(data.statecode){
-          $scope.showOrNo = 'ng-enter';
-          $timeout(function(){
-            $scope.showOrNo = 'ng-leave';
-          },1000);
-        }
-      },function(){
-
-      });
-      $scope.tempTopicContent =$scope.ptopicContent;
-      $scope.ptopicContent = "";
       $scope.tRemainSum = 0;
-    }
+      $scope.publishTopic = publishTopic;
+      $scope.matchTopicContent = matchTopicContent;
+      function publishTopic(){
+          if($scope.inputContent.trim()==""){
+             return;
+          }
+          communicate.publishTopic({
+              "publisher_id":$rootScope.usercode,
+              "content":$scope.inputContent,
+              "bystramsmitid":0
+          }).then(function(data){
+              if(data.statecode){
+                  $scope.showOrNo = 'cm-enter';
+                  $timeout(function(){
+                     $scope.showOrNo = 'cm-leave';
+                  },1000);
+              }
+          },function(){
 
-
-    function matchTopicContent(){
-      var contentLength = $scope.ptopicContent.length;
-      if(contentLength>1024){
-        $scope.ptopicContent = $scope.ptopicContent.substring(0,1024);
-        return;
+          });
+          $scope.tempTopicContent =$scope.inputContent;
+          $scope.inputContent = "";
+          $scope.tRemainSum = 0;
       }
-      $scope.tRemainSum =contentLength;
-    }
+
+
+      function matchTopicContent(){
+        var contentLength = $scope.inputContent.length;
+        if(contentLength>1024){
+          $scope.inputContent = $scope.inputContent.substring(0,1024);
+          return;
+        }
+        $scope.tRemainSum =contentLength;
+      }
 
   }
 
@@ -117,97 +117,95 @@
        * @type {boolean}
        */
 
-      $scope.commentShowToggle = false;
-      $scope.tRemainSum=0;
-      $scope.showDropComment = showDropComment;
+        $scope.commentShowToggle = false;
+        $scope.tRemainSum=0;
+        $scope.showDropComment = showDropComment;
 
-      $scope.doComment = doComment;
-      $scope.doSupport = doSupport;
-      $scope.doTransmit = doTransmit;
-      $scope.getTopicDetial = getTopicDetail;
-      $scope.matchCommentContent = matchCommentContent;
-
-
-      function showDropComment(){
-        $scope.commentShowToggle = !$scope.commentShowToggle;
-      }
-
-      function matchCommentContent(){
-        var contentLength = $scope.commentContent.length;
-        if(contentLength>1024){
-          $scope.commentContent = $scope.commentContent.substring(0,1024);
-          return;
-        }
-        $scope.tRemainSum =contentLength;
-      }
+        $scope.doComment = doComment;
+        $scope.doSupport = doSupport;
+        $scope.doTransmit = doTransmit;
+        $scope.getTopicDetial = getTopicDetail;
+        $scope.matchCommentContent = matchCommentContent;
 
 
-      function doComment(){
-        if($scope.commentContent.trim()==""){
-          return;
+        function showDropComment(){
+          $scope.commentShowToggle = !$scope.commentShowToggle;
         }
 
-        communicate.doComment({
-          "type":0,
-          "usercode":$rootScope.usercode,
-          "content":$scope.commentContent,
-          "topicid":$scope.mData.topicid
-        }).then(function(data){
-          if(data.statecode){
-            $scope.toastMsg = "评论成功！";
-            $scope.mData.comment_sum=$scope.mData.comment_sum+1;
-          }else{
-            $scope.toastMsg = "评论失败";
+        function matchCommentContent(){
+          var contentLength = $scope.inputContent.length;
+          if(contentLength>1024){
+            $scope.inputContent = $scope.inputContent.substring(0,1024);
+            return;
           }
-            $scope.showOrNo = 'ng-enter';
-            $timeout(function(){
-              $scope.showOrNo = 'ng-leave';
-            },1000);
-          },
-        function(){});
-        $scope.tempContent =$scope.commentContent;
-        $scope.commentContent = "";
-        $scope.tRemainSum = 0;
-      }
+          $scope.tRemainSum =contentLength;
+        }
 
-      function doSupport(){
-        communicate.doSupportPoint({
-          "type":0,
-          "usercode":$rootScope.usercode,
-          "topicid":$scope.mData.topicid
-        }).then(function(data){
-          if(data.statecode){
-            $scope.mData.support_sum =  $scope.mData.support_sum+1;
+
+        function doComment(){
+          if($scope.inputContent.trim()==""){
+            return;
           }
 
-        },function(){});
-      }
+          communicate.doComment({
+            "type":0,
+            "usercode":$rootScope.usercode,
+            "content":$scope.inputContent,
+            "topicid":$scope.mData.topicid
+          }).then(function(data){
+            if(data.statecode){
+              $scope.toastMsg = "评论成功！";
+              $scope.mData.comment_sum=$scope.mData.comment_sum+1;
+            }else{
+              $scope.toastMsg = "评论失败";
+            }
+              $scope.showOrNo = 'cm-enter';
+              $timeout(function(){
+                $scope.showOrNo = 'cm-leave';
+              },1000);
+            },
+          function(){});
+          $scope.tempContent =$scope.inputContent;
+          $scope.inputContent = "";
+          $scope.tRemainSum = 0;
+        }
 
-      function doTransmit(){
-        communicate.publishTopic({
-          "publisher_id":$rootScope.usercode,
-          "content":$scope.mData.content,
-          "bytramsmitid":$scope.mData.topicid
-        }).then(function(data){
-          if(data.statecode){
-            $scope.mData.tramsmit_sum =  $scope.mData.tramsmit_sum+1;
-          }
-        },function(){
+        function doSupport(){
+          communicate.doSupportPoint({
+            "type":0,
+            "usercode":$rootScope.usercode,
+            "topicid":$scope.mData.topicid
+          }).then(function(data){
+            if(data.statecode){
+              $scope.mData.support_sum =  $scope.mData.support_sum+1;
+            }
 
-        });
-      }
+          },function(){});
+        }
 
-      function getTopicDetail(){
-        communicate.topicDetail({
-          topicid:$scope.mData.topicid
-        }).then(function(data){
+        function doTransmit(){
+          communicate.publishTopic({
+            "publisher_id":$rootScope.usercode,
+            "content":$scope.mData.content,
+            "bytramsmitid":$scope.mData.topicid
+          }).then(function(data){
+            if(data.statecode){
+              $scope.mData.tramsmit_sum =  $scope.mData.tramsmit_sum+1;
+            }
+          },function(){
+
+          });
+        }
+
+        function getTopicDetail(){
+          communicate.topicDetail({
+            topicid:$scope.mData.topicid
+          }).then(function(data){
 
 
-        },function(data){});
-      }
-
+          },function(data){});
+        }
     }
-
 })();
 
 
