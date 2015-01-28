@@ -1,0 +1,149 @@
+
+@include b(topicDetail){
+
+    overflow:hidden;
+    width:520px;
+    background-color: $brand-white;
+    border: 1px solid #ddd;
+    padding: 20px;
+
+    hr {
+        border: 0 ;
+        background-color:$brand-border-color;
+        height:1px;
+        clear:both;
+    }
+    img{
+        height:48px;
+        width:48px;
+        float:left;
+        border: 1px solid transparent;
+        border-color:$brand-border-color;
+    }
+
+    @include b(topic){
+        float:right;
+        width:415px;
+
+
+        @include e(content){
+            overflow:hidden;
+            @include e(other){
+                float:right;
+                font-weight: 600;
+                color: $brand-primary;
+                font-size:15px;
+                clear:both;
+                span{
+                    cursor:pointer;
+                    &:hover{
+                        color:$brand-border-color;
+                    }
+                }
+            }
+        }
+
+        @include e(comment){
+            float:right;
+            min-height:88px;
+            width:415px;
+            position:relative;
+            textarea {
+                width:415px;
+                max-width:415px;
+                min-height:50px ;
+                max-height:70px;
+                margin-top: 10px;
+            }
+        }
+    }
+
+    @include b(comments){
+
+        width:415px;
+        overflow:hidden;
+        @include e(content){
+            float:right;
+            width:357px;
+//            overflow:hidden;
+//            height:94px;
+            @include e(other){
+                overflow:hidden;
+                .ptime{
+                    float:left;
+
+                }
+                .other_info{
+                    float:right;
+                    font-weight: 600;
+                    color: $brand-primary;
+                    font-size:15px;
+                    span{
+                        cursor:pointer;
+                        &:hover{
+                          color:$brand-border-color;
+                        }
+                    }
+                }
+            }
+        }
+        @include e(lists){
+            background-color: #eff9fd;
+            border: 1px solid transparent;
+            border-color:#9ddbf1;
+            margin-top: 10px;
+            hr{
+                width: 327px;
+                background-color:#9ddbf1;
+                margin-top: 15px;
+                margin-bottom: 15px;
+            }
+            textarea {
+                width:327px;
+                max-width:327px;
+                min-height:50px;
+                max-height:70px;
+                margin-top: 10px;
+            }
+            @include b(reply){
+                padding-left: 10px;
+                padding-right: 10px;
+                @include e(area){
+                    overflow: hidden;
+                }
+            }
+            @include e(item){
+                overflow: hidden;
+                margin-left: 10px;
+                margin-top: 10px;
+                margin-right: 10px;
+                @include b(ccContent){
+                    width:280px;
+                    float:right;
+
+                    @include e(other){
+                        overflow:hidden;
+                        .ptime{
+                          float:left;
+                        }
+                        .other_info{
+                            float:right;
+                            font-weight: 600;
+                            color: $brand-primary;
+                            font-size:15px;
+                            margin-right: 10px;
+                            span{
+                                cursor:pointer;
+                                &:hover{
+                                  color:$brand-border-color;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+}

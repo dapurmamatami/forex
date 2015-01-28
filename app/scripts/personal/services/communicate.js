@@ -9,129 +9,164 @@
 
   function communicate($http) {
 
-    var service = {
-      hotInvester: hotInvester,
-      publishTopic: publishTopic,
-      topicDetail: topicDetail,
-      attentionsFans: attentionsFans,
-      relationTopic: relationTopic,
-      doSupportPoint: doSupportPoint,
-      doComment: doComment,
-      doAttention: doAttention,
-      deleteTopic: deleteTopic
-    };
-    return service;
+      var service = {
+          hotInvester: hotInvester,
+          publishTopic: publishTopic,
+          topicDetail: topicDetail,
+          attentionsFans: attentionsFans,
+          relationTopic: relationTopic,
+          doSupportPoint: doSupportPoint,
+          doComment: doComment,
+          doAttention: doAttention,
+          deleteTopic: deleteTopic
+      };
+      return service;
 
     /**
-     *  获取热门投资动态信息
-     * @param requestJsondata
+     * 获取热门投资话题列表
+     * @param startindex  开始位置
      * @returns {HttpPromise}
      */
-    function hotInvester(requestJsondata) {
+      function hotInvester(startindex) {
 
-      return $http.get('/hotinvester_p', {
-        params: requestJsondata
-      },{
-        headers:{'Access-Control-Allow-Headers': 'If-Modified-Since'}
-      });
-    }
+          return $http.get('/hotinvester_p', {
+              params: {
+                 "startindex":startindex
+              }
+          },{
+            headers:{'Access-Control-Allow-Headers': 'If-Modified-Since'}
+          });
+      }
+
 
     /**
-     *
      * 发表话题
-     * @param requestJsondata
+     * @param publish_id
+     * @param content
+     * @param bytramsmitid
      * @returns {HttpPromise}
      */
 
-    function publishTopic(requestJsondata) {
-      return $http.get('/publishtopic_p', {
-        params: requestJsondata
-      });
-    }
-
-    /**
-     * 获取话题详情
-     * @param requestJsondata
-     * @returns {HttpPromise}
-     */
-      function topicDetail(requestJsondata){
-        return $http.get('/topicdetail_p',
-          {
-            params:requestJsondata
-          });
-      }
-
-    /**
-     *
-     * 获取关注和粉丝数据
-     * @param requestJsondata
-     * @returns {HttpPromise}
-     */
-      function attentionsFans(requestJsondata){
-        return $http.get('/attentionsfans_p',
-          {
-            params:requestJsondata
-          });
-      }
-
-    /**
-     *
-     * 获取相关联的动态信息
-     * @param requestJsondata
-     * @returns {HttpPromise}
-     */
-      function relationTopic(requestJsondata){
-        return $http.get('/relationtopic_p',
-          {
-            params:requestJsondata
-          });
-      }
-
-    /**
-     *
-     *
-     * 点赞
-     * @param requestJsondata
-     * @returns {HttpPromise}
-     */
-      function doSupportPoint(requestJsondata){
-        return  $http.get('/dosupportpoint_p',{
-          params:requestJsondata
+      function publishTopic(publish_id,content,bytramsmitid) {
+        return $http.get('/publishtopic_p', {
+          params: {
+            "publish_id":publish_id,
+            "content":content,
+            "bytramsmitid":bytramsmitid
+          }
         });
       }
 
-    /**
-     *
-     *  评论
-     * @param requestJsondata
-     * @returns {HttpPromise}
-     */
-      function doComment(requestJsondata){
-        return $http.get('/docomment_p',{
-          params:requestJsondata
-        });
-      }
+      /**
+       * 获取话题详情
+       * @param topicid
+       * @param commentstarindex
+       * @returns {HttpPromise}
+       */
+        function topicDetail(topicid,commentstarindex){
+          return $http.get('/topicdetail_p',
+              {
+                  params:{
+                      "topic_id":topicid,
+                      "comment_startindex":commentstarindex
+                  }
+              });
+        }
 
-    /**
-     *  关注
-     * @param requestJsondata
-     * @returns {HttpPromise}
-     */
-      function doAttention(requestJsondata){
-        return  $http.get('/doattention_p',{
-          params:requestJsondata
-        });
-      }
+        /**
+         *
+         * 获取关注和粉丝数据
+         * @param usercode
+         * @returns {HttpPromise}
+         */
+        function attentionsFans(usercode){
+            return $http.get('/attentionsfans_p',
+                {
+                    params:{
+                        "usercode":usercode
+                    }
+                });
+        }
 
-    /**
-     * 删除已经发表的话题
-     * @param requestJsondata
-     * @returns {HttpPromise}
-     */
-      function deleteTopic(requestJsondata){
-        return $http.get('/deletetopic_p',{
-          params:requestJsondata
-        });
-      }
+      /**
+       * 获取个人关联话题信息
+       * @param startindex
+       * @param usercode
+       * @returns {HttpPromise}
+       */
+        function relationTopic(startindex,usercode){
+            return $http.get('/relationtopic_p',
+              {
+                  params:{
+                      "startindex":startindex,
+                      "usercode":usercode
+                  }});
+        }
+
+      /**
+       *  点赞
+       * @param type
+       * @param usercode
+       * @param topicid
+       * @returns {HttpPromise}
+       */
+        function doSupportPoint(type,usercode,topicid){
+            return  $http.get('/dosupportpoint_p',{
+                params:{
+                    "type":type,
+                    "usercode":usercode,
+                    "topicid":topicid
+                }
+            });
+        }
+
+      /**
+       *
+       *  评论
+       * @param requestJsondata
+       * @returns {HttpPromise}
+       */
+        function doComment(type,usercode,content,topicid){
+            return $http.get('/docomment_p',{
+                params:{
+                    "type":type,
+                    "usercode":usercode,
+                    "content":content,
+                    "topicid":topicid
+                }
+            });
+        }
+
+        /**
+         * 关注
+         * @param by_attention_id
+         * @param usercode
+         * @returns {HttpPromise}
+         */
+        function doAttention(by_attention_id,usercode){
+            return  $http.get('/doattention_p', {
+                params: {
+                    "by_attention_id": by_attention_id,
+                    "usercode": usercode
+                }
+            });
+        }
+
+      /**
+       * 删除主题或者评论
+       * @param usercode
+       * @param type
+       * @param topicid
+       * @returns {HttpPromise}
+       */
+        function deleteTopic(usercode,type,topicid){
+            return $http.get('/deletetopic_p',{
+                params:{
+                    "usercode":usercode,
+                    "type":type,
+                    "topicid":topicid
+                }
+            });
+        }
   }
 })();

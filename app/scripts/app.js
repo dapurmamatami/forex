@@ -10,7 +10,8 @@ angular
     .module('tigerwitPersonalApp', [
         'ngRoute',
         'ngSanitize',
-        'ui.router'
+        'ui.router',
+        'ngCookies' //add by fwb
     ]);
 
 angular
@@ -41,7 +42,7 @@ angular
                             configParam.url = '/api/v2' + configParam.url;
                             return configParam;
                         }
-                      
+
                         //add by fwb
                         if(/_p$/.test(configParam.url)) {
                             configParam.url = config.personalUrl + configParam.url;
@@ -77,7 +78,7 @@ angular
     .module('tigerwitPersonalApp')
     .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$controllerProvider',
             function ($stateProvider, $urlRouterProvider, $httpProvider, $controllerProvider) {
-        $urlRouterProvider.otherwise('/invest/statistics');
+        $urlRouterProvider.otherwise('/personal/');
 
         $stateProvider
             .state('personal', {

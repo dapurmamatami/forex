@@ -38,7 +38,7 @@
               $scope.data = [];
           }
           var startIndex = $scope.data.length;
-          var promise = communicate.hotInvester({"startindex":startIndex,"offset":10});
+          var promise = communicate.hotInvester(startIndex);
 
           promise.then(function(data){
                 if(data.statecode){
@@ -77,20 +77,16 @@
           if($.trim($scope.inputContent)==""){
              return;
           }
-          communicate.publishTopic({
-              "publisher_id":$rootScope.usercode,
-              "content":$scope.inputContent,
-              "bystramsmitid":0
-          }).then(function(data){
-              if(data.statecode){
-                  $scope.showOrNo = 'cm-enter';
-                  $timeout(function(){
-                     $scope.showOrNo = 'cm-leave';
-                  },1000);
-              }
-          },function(){
-
-          });
+          communicate.publishTopic(
+              $rootScope.usercode,$scope.inputContent,0)
+              .then(function(data){
+                  if(data.statecode){
+                      $scope.showOrNo = 'cm-enter';
+                      $timeout(function(){
+                         $scope.showOrNo = 'cm-leave';
+                      },1000);
+                  }
+          },function(){});
           $scope.tempTopicContent =$scope.inputContent;
           $scope.inputContent = "";
           $scope.tRemainSum = 0;
@@ -98,12 +94,12 @@
 
 
       function matchTopicContent(){
-        var contentLength = $scope.inputContent.length;
-        if(contentLength>1024){
-          $scope.inputContent = $scope.inputContent.substring(0,1024);
-          return;
-        }
-        $scope.tRemainSum =contentLength;
+          var contentLength = $scope.inputContent.length;
+          if(contentLength>1024){
+              $scope.inputContent = $scope.inputContent.substring(0,1024);
+              return;
+          }
+          $scope.tRemainSum =contentLength;
       }
 
   }
@@ -112,9 +108,11 @@
     .module('tigerwitPersonalApp')
     .controller('PersonalCommunicateDoController',PersonalCommunicateDoController);
 
-    PersonalCommunicateDoController.$inject=['$rootScope','$timeout',"$scope",'communicate'];
+    PersonalCommunicateDoController.$inject=['$rootScope',
+      '$timeout',"$scope",'communicate','$state','$location','$cookieStore'];
 
-    function PersonalCommunicateDoController($rootScope,$timeout,$scope,communicate){
+    function PersonalCommunicateDoController($rootScope,$timeout, $scope,communicate,
+                                             $state,$location,$cookieStore){
       /**
        * 控制每一条话题的
        * @type {boolean}
@@ -127,21 +125,20 @@
         $scope.doComment = doComment;
         $scope.doSupport = doSupport;
         $scope.doTransmit = doTransmit;
-        $scope.getTopicDetial = getTopicDetail;
         $scope.matchCommentContent = matchCommentContent;
-
+        $scope.skipDetail = skipDetail;
 
         function showDropComment(){
           $scope.commentShowToggle = !$scope.commentShowToggle;
         }
 
         function matchCommentContent(){
-          var contentLength = $scope.inputContent.length;
-          if(contentLength>1024){
-            $scope.inputContent = $scope.inputContent.substring(0,1024);
-            return;
-          }
-          $scope.tRemainSum =contentLength;
+            var contentLength = $scope.inputContent.length;
+            if(contentLength>1024){
+                $scope.inputContent = $scope.inputContent.substring(0,1024);
+                return;
+            }
+            $scope.tRemainSum =contentLength;
         }
 
 
@@ -153,64 +150,54 @@
               return;
           }
 
-          communicate.doComment({
-              "type":0,
-              "usercode":$rootScope.usercode,
-              "content":$scope.inputContent,
-              "topicid":$scope.mData.topicid
-            }).then(function(data){
-            if(data.statecode){
-              $scope.toastMsg = "评论成功！";
-              $scope.mData.comment_sum=$scope.mData.comment_sum+1;
-            }else{
-              $scope.toastMsg = "评论失败";
-            }
-              $scope.showOrNo = 'cm-enter';
-              $timeout(function(){
-                $scope.showOrNo = 'cm-leave';
-              },1000);
-            },
-          function(){});
+          communicate.doComment(
+              0,$rootScope.usercode,$scope.inputContent,$scope.mData.topicid)
+              .then(function(data){
+                  if(data.statecode){
+                      $scope.toastMsg = "评论成功！";
+                      $scope.mData.comment_sum=$scope.mData.comment_sum+1;
+                  }else{
+                      $scope.toastMsg = "评论失败";
+                  }
+                      $scope.showOrNo = 'cm-enter';
+                      $timeout(function(){
+                         $scope.showOrNo = 'cm-leave';
+                    },1000);
+                  },
+                function(){});
           $scope.tempContent =$scope.inputContent;
           $scope.inputContent = "";
           $scope.tRemainSum = 0;
         }
 
         function doSupport(){
-          communicate.doSupportPoint({
-            "type":0,
-            "usercode":$rootScope.usercode,
-            "topicid":$scope.mData.topicid
-          }).then(function(data){
-            if(data.statecode){
-              $scope.mData.support_sum =  $scope.mData.support_sum+1;
-            }
+          communicate.doSupportPoint(
+              0,$rootScope.usercode,$scope.mData.topicid)
+              .then(function(data){
+                  if(data.statecode){
+                      $scope.mData.support_sum =  $scope.mData.support_sum+1;
+                          }
 
-          },function(){});
+        },function(){});
         }
 
         function doTransmit(){
-          communicate.publishTopic({
-            "publisher_id":$rootScope.usercode,
-            "content":$scope.mData.content,
-            "bytramsmitid":$scope.mData.topicid
-          }).then(function(data){
-            if(data.statecode){
-              $scope.mData.tramsmit_sum =  $scope.mData.tramsmit_sum+1;
-            }
-          },function(){
+            communicate.publishTopic(
+                $rootScope.usercode,$scope.mData.content,$scope.mData.topicid)
+                .then(function(data){
+                    if(data.statecode){
+                        $scope.mData.tramsmit_sum =  $scope.mData.tramsmit_sum+1;
+                    }
+                  },function(){
 
-          });
+                  });
+        }
+        function skipDetail(){
+            $cookieStore.put("mDetailTopicId",$scope.mData['topicid']);
+            //$state.go('topic_detail');
+            $location.path('/personal/topic_detail');
         }
 
-        function getTopicDetail(){
-          communicate.topicDetail({
-            topicid:$scope.mData.topicid
-          }).then(function(data){
-
-
-          },function(data){});
-        }
     }
 })();
 
