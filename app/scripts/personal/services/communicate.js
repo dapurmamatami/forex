@@ -23,8 +23,9 @@
       return service;
 
     /**
-     * 鑾峰彇鐑棬鎶曡祫璇濋鍒楄〃
-     * @param startindex  寮€濮嬩綅缃     * @returns {HttpPromise}
+     * 閼惧嘲褰囬悜顓㈡，閹舵洝绁拠婵嬵暯閸掓銆     
+     * @param startindex  瀵偓婵缍呯純     
+     * @returns {HttpPromise}
      */
       function hotInvester(startindex) {
 
@@ -40,7 +41,7 @@
 
     /**
      *
-     * 鍙戣〃璇濋
+     * 閸欐垼銆冪拠婵嬵暯
      * @param publish_id
      * @param content
      * @param bytramsmitid
@@ -58,8 +59,7 @@
       }
 
       /**
-       * 鑾峰彇璇濋璇︽儏
-       * @param topicid
+       * 閼惧嘲褰囩拠婵嬵暯鐠囷附鍎       * @param topicid
        * @param commentstarindex
        * @returns {HttpPromise}
        */
@@ -75,20 +75,19 @@
 
         /**
          *
-         * 鑾峰彇鍏虫敞鍜岀矇涓濇暟鎹         * @param usercode
+         * 閼惧嘲褰囬崗铏暈閸滃瞼鐭囨稉婵囨殶閹        * @param usercode
          * @returns {HttpPromise}
          */
-        function attentionsFans(usercode){
+        function attentionsFans(usercode){        
         return $http.get('/attentionsfans_p',{
                     params:{
                         "usercode":usercode
                     }
-        });
+                });
         }
 
       /**
-       * 鑾峰彇涓汉鍏宠仈璇濋淇℃伅
-       * @param startindex
+       * 閼惧嘲褰囨稉顏冩眽閸忓疇浠堢拠婵嬵暯娣団剝浼       * @param startindex
        * @param usercode
        * @returns {HttpPromise}
        */
@@ -102,8 +101,7 @@
         }
 
       /**
-       *  鐐硅禐
-       * @param type
+       *  閻愮绂       * @param type
        * @param usercode
        * @param topicid
        * @returns {HttpPromise}
@@ -120,7 +118,7 @@
     /**
      *
      *
-     * 鐐硅禐
+     * 閻愮绂     
      * @param requestJsondata
      * @returns {HttpPromise}
      */
@@ -131,8 +129,7 @@
       }
 
         /**
-         *  璇勮
-         * @param type
+         *  鐠囧嫯顔         * @param type
          * @param usercode
          * @param content
          * @param topicid
@@ -150,7 +147,7 @@
         }
     /**
      *
-     *  璇勮
+     *  鐠囧嫯顔     
      * @param requestJsondata
      * @returns {HttpPromise}
      */
@@ -161,8 +158,7 @@
       }
 
         /**
-         * 鍏虫敞
-         * @param by_attention_id
+         * 閸忚櫕鏁         * @param by_attention_id
          * @param usercode
          * @returns {HttpPromise}
          */
@@ -176,7 +172,8 @@
         }
 
       /**
-       * 鍒犻櫎涓婚鎴栬€呰瘎璁       * @param usercode
+       * 閸掔娀娅庢稉濠氼暯閹存牞鈧懓鐦庣拋      
+       * @param usercode
        * @param type
        * @param topicid
        * @returns {HttpPromise}
