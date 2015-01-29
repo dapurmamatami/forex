@@ -16,6 +16,7 @@ angular
 
 angular
     .module('tigerwitPersonalApp')
+
     
     .config(['$httpProvider', function ($httpProvider) {
         if (!$httpProvider.defaults.headers.get) {
