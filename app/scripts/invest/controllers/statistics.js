@@ -17,17 +17,12 @@
         }, function () {
             $scope.currentPeriod = '近 1 周 内';
             
-            stock.getEquityReport({
-                period: 7,
-                tiger_source: $scope.$parent.accountType.key
-            }).then(function (data) {
+            stock.getEquityReport(7, $scope.$parent.accountType.key).then(function (data) {
                 $scope.$broadcast('hideLoadingImg');
                 $scope.$broadcast('paintLineChart', data.data);    
             });
 
-            stock.getSummaryReport({
-                tiger_source: $scope.accountType.key
-            }).then(function (data) {
+            stock.getSummaryReport($scope.accountType.key).then(function (data) {
                 $scope.summary = data;
                 $scope.$broadcast('paintDonutChart', data);
             });   
@@ -36,10 +31,8 @@
         function repaintChart(number, currentPeriod) {
             $scope.currentPeriod = currentPeriod;
 
-            stock.getEquityReport({
-                period: number,
-                tiger_source: $scope.$parent.accountType.key
-            }).then(function (data) {     
+            stock.getEquityReport(number, $scope.$parent.accountType.key).
+                    then(function (data) {     
                 $scope.$broadcast('paintLineChart', data.data);
             });
         }      

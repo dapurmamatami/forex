@@ -1,7 +1,11 @@
-$min-page-width: 960px; 
+$bootstrap-sass-asset-helper: false !default;
+//
+// Variables
+// --------------------------------------------------
+
+
 
 //== Colors
-
 $gray-dark:              lighten(#000, 20%) !default;   // #333
 $gray-light:             #666 !default; 
 $gray-lighter:           #999 !default; 
@@ -16,10 +20,6 @@ $brand-green:           #3c9300 !default;
 
 $brand-border-color:    #ccc !default;
 
-
-
-
-
 $gray-darker:           lighten(#000, 13.5%) !default; // #222
 $gray:                  lighten(#000, 33.5%) !default; // #555
 $brand-success:         #5cb85c !default;
@@ -30,7 +30,9 @@ $brand-unactive:        #e6e6e6 !default;
 $brand-warning:         #cc3300 !default;
 $brand-danger:          #ef4d4d !default;
 
-
+//== Background image path
+$image_path:             '../images/';
+$forex_icon_path:        '../images/forex_icon/';
 
 
 //== Scaffolding

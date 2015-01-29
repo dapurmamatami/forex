@@ -1,36 +1,26 @@
 @include b(history_orders) {
     $history_orders: &;
-    min-height: 400px;
+    min-height: 600px;
 
-    @include e(nav) {
+    .nav-pills {
         padding: 10px 0;
-        text-align: right;
-        font-size: 0;
+        
+        >li {
+            float: right;
+        }
         a {
-            display: inline-block;
-            margin: 0 10px;
             padding: 6px 12px;
-            border-radius: 4px;
             font-size: 15px;
             font-weight: 700;
-            color: $brand-primary;
 
             &:hover,
             &:focus {
-                text-decoration: none;
                 color: $brand-dark;
-            }
-
-            &.active {
-                color: $brand-white;
-                background-color: $brand-primary;
-
-                &:hover {
-                    cursor: default;
-                }
+                background-color: $gray-lightest;
             }
         }
     }
+
 
     @include e(header) {
         border-bottom: 1px solid $brand-border-color;

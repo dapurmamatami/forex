@@ -1,0 +1,52 @@
+@include b(relationship_ctn) {
+    $relationship_ctn: &;
+
+    .nav-pills {
+        padding: 10px 0;
+        
+        >li {
+            float: right;
+        }
+        a {
+            padding: 6px 12px;
+            font-size: 15px;
+            font-weight: 700;
+
+            &:hover,
+            &:focus {
+                color: $brand-dark;
+                background-color: $gray-lightest;
+            }
+        }
+    }
+
+    @include e(tip) {
+        float: left;
+        margin-top: 10px;
+        font-size: 16px;
+    }
+    
+    @include e(header) {
+        border-bottom: 1px solid $brand-border-color;
+        line-height: 2.5;
+        text-align: center;
+        font-size: 16px;
+        font-weight: 700;
+    }
+
+    @include e(users) {
+        li {
+            padding: 15px;
+
+        }
+
+        @include e(photo, $relationship_ctn) {
+            width: 50px;
+            height: 50px;
+        }
+
+    }
+
+    
+
+}

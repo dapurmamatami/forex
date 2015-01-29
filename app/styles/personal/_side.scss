@@ -73,10 +73,11 @@
         $social_counter: &;
 
         font-size: 0;
+
         @include e(counter_itm) {
             display: inline-block;
             vertical-align: top;
-            width: 33%;
+            width: 50%;
             text-align: center;
             
             >h4 {

@@ -24,10 +24,13 @@
         }
 
         &.real {
-            background: url(../images/account_switch.png) no-repeat;
+            @include background_image_url('account_switch.png');
+            background-repeat: no-repeat;
         }
         &.demo {
-            background: url(../images/account_switch.png) no-repeat 0 -64px;
+            @include background_image_url('account_switch.png');
+            background-repeat: no-repeat;
+            background-position: 0 -64px;
         }
     }
     @include e(switch_tip) {
@@ -55,12 +58,13 @@
 
             &:hover,
             &:focus {
+                color: $brand-dark;
                 border: 1px solid transparent !important;
                 background-color: transparent !important;
             }
         }
         
-        &.active a{
+        &.active a {
             color: $gray-dark !important;
             border: 1px solid $brand-border-color !important;
             border-top: none !important;
@@ -76,8 +80,54 @@
                 background-color: $brand-white !important;
             }
         }
-
         
+        &:hover .invest_tab__icon-summary {
+            background-position: -5px;
+        }
+        &:hover .invest_tab__icon-statistics {
+           background-position: -45px; 
+        }
+        &:hover .invest_tab__icon-history {
+            background-position: -85px;
+        }
+        &:hover .invest_tab__icon-relationship {
+            background-position: -125px;
+        }
+
+        &.active .invest_tab__icon-summary {
+            background-position: -5px 0;
+        }
+        &.active .invest_tab__icon-statistics {
+            background-position: -45px 0;
+        }
+        &.active .invest_tab__icon-history {
+            background-position: -85px 0;
+        }   
+        &.active .invest_tab__icon-relationship {
+            background-position: -125px 0;
+        }
+    }
+
+    @include e(icon) {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        vertical-align: middle;
+        @include background_image_url('invest_switch.png');
+        background-repeat: no-repeat;
+
+        @include m(summary) {
+            background-position: -5px -60px;
+        }
+        @include m(statistics) {
+            background-position: -45px -60px;
+        }
+        @include m(history) {
+            background-position: -85px -60px;
+        }
+        @include m(relationship) {
+            background-position: -125px -60px;
+        }
     }
 }
 

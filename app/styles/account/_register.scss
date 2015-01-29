@@ -69,14 +69,14 @@
         display: inline-block;
         width: 250px;
         height: 150px;
-        background: url('../images/id-card-front.png') no-repeat 50%;
+        @include background_url('id_card-front.png');
     }
 
     @include e(back) {
         display: inline-block;
         width: 250px;
         height: 150px;
-        background: url('../images/id-card-back.png') no-repeat 50%;
+        @include background_url('id_card-back.png');
     }
 
     @include e(image) {

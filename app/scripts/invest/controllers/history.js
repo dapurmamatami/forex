@@ -14,7 +14,6 @@
         $scope.orderType = 'normal';       //value is 'normal' or 'not_copy' or 'only_copy'
         $scope.getMoreOrders = getMoreOrders;
         $scope.switchOrderType = switchOrderType;
-
         var lastId;
 
         $scope.$watch(function () {
@@ -24,26 +23,27 @@
             $scope.orderType = 'normal';
 
             stock.getHistory({
+                orderType: $scope.orderType,
                 count: $scope.count,
-                category: $scope.orderType,
-                tiger_source: $scope.$parent.accountType.key
+                type: $scope.accountType.key
             }).then(function (data) {
-                $scope.$broadcast('hideLoadingImg');
-
                 $scope.orders = data.data;
                 var dataLength = $scope.orders.length;
+                
                 if (dataLength) {
                     lastId = data.data[dataLength - 1].id;
                 }
+
+                $scope.$broadcast('hideLoadingImg');
             });
         }, true);      
 
         function getMoreOrders() {
             stock.getHistory({
+                orderType: $scope.orderType,
                 count: $scope.count,
-                after: lastId,
-                category: $scope.orderType,
-                tiger_source: $scope.$parent.accountType.key
+                lastId: lastId,
+                type: $scope.accountType.key
             }).then(function (data) {
                 var dataLength = data.data.length;
 
@@ -61,16 +61,18 @@
             $scope.orderType = type;
             
             stock.getHistory({
+                orderType: $scope.orderType,
                 count: $scope.count,
-                category: $scope.orderType,
-                tiger_source: $scope.$parent.accountType.key
+                type: $scope.accountType.key
             }).then(function (data) {
-                $scope.$broadcast('hideLoadingImg');
                 $scope.orders = data.data;
                 var dataLength = $scope.orders.length;
+                
                 if (dataLength) {
                     lastId = data.data[dataLength - 1].id;
                 }
+
+                $scope.$broadcast('hideLoadingImg');
             });
         }
 

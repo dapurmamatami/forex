@@ -17,8 +17,7 @@ angular
 angular
     .module('tigerwitPersonalApp')
 
-    // 在 IE 8 中请求会被缓存，通过下面来阻止缓存
-    .config(['$httpProvider', function ($httpProvider) {
+    // �IE 8 中请求会被缓存，通过下面来阻止缓�    .config(['$httpProvider', function ($httpProvider) {
         if (!$httpProvider.defaults.headers.get) {
             $httpProvider.defaults.headers.get = {};
         }
@@ -35,7 +34,7 @@ angular
                     configParam.timeout = config.httpTimeout;
                     if (!/^(http|https|ws)/.test(configParam.url) &&
                             !/\.html$/.test(configParam.url)) {
-
+                        
                         if (configParam.url === '/equity_report' ||
                                 configParam.url === '/summary_report' ||
                                 configParam.url === '/get_info_progress') {
@@ -61,8 +60,7 @@ angular
                     }
                 },
                 'responseError': function(response) {
-                    // 当修改密码成功时不自动跳转到登录页
-                    if (response.status === 401 && $rootScope.resetPassword) {
+                    // 当修改密码成功时不自动跳转到登录�                    if (response.status === 401 && $rootScope.resetPassword) {
                         //ga('send', 'event', '401', response.config.url);
                         $location.path('/login')
                         return $q.reject(response);
@@ -78,7 +76,7 @@ angular
     .module('tigerwitPersonalApp')
     .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$controllerProvider',
             function ($stateProvider, $urlRouterProvider, $httpProvider, $controllerProvider) {
-        $urlRouterProvider.otherwise('/personal/');
+        $urlRouterProvider.otherwise('/invest/summary');
 
         $stateProvider
             .state('personal', {
@@ -165,7 +163,7 @@ angular
                 views: {
                     '@invest': {
                         templateUrl: function ($stateParams) {
-                            $stateParams.subPage = $stateParams.subPage || 'statistics';
+                            $stateParams.subPage = $stateParams.subPage || 'summary';
                             var url = 'views/invest/' + $stateParams.subPage + '.html';
                             return 'views/invest/' + $stateParams.subPage + '.html';
                         },
@@ -173,7 +171,7 @@ angular
 
                             var ctrlPrefix = 'Invest';
                             var ctrlSuffix = 'Controller';
-                            var subPage = $stateParams.subPage || 'statistics';
+                            var subPage = $stateParams.subPage || 'summary';
                             var ctrlRoot = modifyCtrlName(subPage);
                             var ctrlName = ctrlPrefix + ctrlRoot + ctrlSuffix;
                             return ctrlName;

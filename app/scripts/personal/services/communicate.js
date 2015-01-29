@@ -23,9 +23,8 @@
       return service;
 
     /**
-     * 获取热门投资话题列表
-     * @param startindex  开始位置
-     * @returns {HttpPromise}
+     * 鑾峰彇鐑棬鎶曡祫璇濋鍒楄〃
+     * @param startindex  寮€濮嬩綅缃     * @returns {HttpPromise}
      */
       function hotInvester(startindex) {
 
@@ -40,7 +39,8 @@
 
 
     /**
-     * 发表话题
+     *
+     * 鍙戣〃璇濋
      * @param publish_id
      * @param content
      * @param bytramsmitid
@@ -58,7 +58,7 @@
       }
 
       /**
-       * 获取话题详情
+       * 鑾峰彇璇濋璇︽儏
        * @param topicid
        * @param commentstarindex
        * @returns {HttpPromise}
@@ -75,21 +75,19 @@
 
         /**
          *
-         * 获取关注和粉丝数据
-         * @param usercode
+         * 鑾峰彇鍏虫敞鍜岀矇涓濇暟鎹         * @param usercode
          * @returns {HttpPromise}
          */
         function attentionsFans(usercode){
-            return $http.get('/attentionsfans_p',
-                {
+        return $http.get('/attentionsfans_p',{
                     params:{
                         "usercode":usercode
                     }
-                });
+        });
         }
 
       /**
-       * 获取个人关联话题信息
+       * 鑾峰彇涓汉鍏宠仈璇濋淇℃伅
        * @param startindex
        * @param usercode
        * @returns {HttpPromise}
@@ -104,7 +102,7 @@
         }
 
       /**
-       *  点赞
+       *  鐐硅禐
        * @param type
        * @param usercode
        * @param topicid
@@ -119,9 +117,21 @@
                 }
             });
         }
+    /**
+     *
+     *
+     * 鐐硅禐
+     * @param requestJsondata
+     * @returns {HttpPromise}
+     */
+      function doSupportPoint(requestJsondata){
+        return  $http.get('/dosupportpoint_p',{
+          params:requestJsondata
+        });
+      }
 
         /**
-         *  评论
+         *  璇勮
          * @param type
          * @param usercode
          * @param content
@@ -138,9 +148,20 @@
                 }
             });
         }
+    /**
+     *
+     *  璇勮
+     * @param requestJsondata
+     * @returns {HttpPromise}
+     */
+      function doComment(requestJsondata){
+        return $http.get('/docomment_p',{
+          params:requestJsondata
+        });
+      }
 
         /**
-         * 关注
+         * 鍏虫敞
          * @param by_attention_id
          * @param usercode
          * @returns {HttpPromise}
@@ -155,8 +176,7 @@
         }
 
       /**
-       * 删除主题或者评论
-       * @param usercode
+       * 鍒犻櫎涓婚鎴栬€呰瘎璁       * @param usercode
        * @param type
        * @param topicid
        * @returns {HttpPromise}

@@ -53,12 +53,13 @@
 }
 .logo-color {
     @extend .logo;
-    @include wd-image('logo-color.png');
+    //@include wd-image('logo-color.png');
 }
 
 .logo-gray {
     @extend .logo;
-    @include wd-image('logo-gray.png');
+    @include background_image_url('logo-gray.png');
+    background-repeat: no-repeat;
 }
 
 .color-danger {
@@ -77,7 +78,7 @@
     margin-right: 30px;
 }
 
-.social-list {
+/* .social-list {
     > li {
         display: inline-block;
         .social-item {
@@ -109,7 +110,7 @@
             }
         }
     }
-}
+} */
 .close {
     float: right;
     font-size: 21px;

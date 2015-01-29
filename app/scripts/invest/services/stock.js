@@ -28,9 +28,12 @@
          *     is_succ: true / false
          * }
          */
-        function getEquityReport(opts) {
+        function getEquityReport(number, type) {
             return $http.get('/equity_report', {
-                params: opts
+                params: {
+                    period: number,
+                    tiger_source: type // 'demo' or 'real'
+                }
             });    
         }
 
@@ -53,9 +56,11 @@
          *   avg_deficit:       //平均亏损
          * }
          */
-        function getSummaryReport(opts) {
+        function getSummaryReport(type) {
             return $http.get('/summary_report', {
-                params: opts
+                params: {
+                    tiger_source: type
+                }
             });
         }
 
@@ -78,10 +83,34 @@
          *   cmd: //类型， 0是做多的平仓， 1是做空的平仓
          * }
          */
-         function getHistory(opts) {
+         function getHistory(argu) {
+            var newArgu = {};
+            
+            angular.forEach(argu, function (value, key) {
+                switch(key) {
+                    case 'orderType':
+                        this['category'] = value;
+                        break;
+                    case 'count':
+                        this['count'] = value;
+                        break;
+                    case 'lastId':
+                        this['after'] = value;
+                        break;
+                    case 'code':
+                        this['user_code'] = value;
+                        break;
+                    case 'type':
+                        this['tiger_source'] = value;
+                        break;
+                    default:
+                        break;
+                }
+            }, newArgu);
+
             return $http.get('/get_history', {
-                params: opts
-            })
+                params: newArgu
+            });
          }
     }
 })();

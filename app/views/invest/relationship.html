@@ -1,0 +1,64 @@
+<div class="relationship_ctn">
+    <span class="relationship_ctn__tip">
+        目前共**了 {{users.length}} 名高手
+    </span>
+    <ul class="nav nav-pills">
+        <li  ng-class="{active: relationType === 'fan'}" ng-click="getUsers('fan')">
+            <a href="">粉丝</a>
+        </li>
+        <li ng-class="{active: relationType === 'following'}" ng-click="getUsers('following')">
+            <a href="">关注</a>
+        </li>
+        <li ng-class="{active: relationType === 'copier'}" ng-click="getUsers('copier')">
+            <a href="">追随</a>
+        </li>
+        <li ng-class="{active: relationType === 'copiedTrader'}" ng-click="getUsers('copiedTrader')">
+            <a href="">复制</a>
+        </li>
+    </ul>
+
+    <div ng-if="users.length > 0">
+        <div class="relationship_ctn__header">
+            <div class="row">
+                <div class="col-xs-6">
+                </div>
+                <div class="col-xs-2">追随</div>
+                <div class="col-xs-2">粉丝</div>
+                <div class="col-xs-2">7 天盈利</div>
+            </div>
+        </div>
+
+        <ul class="relationship_ctn__users">
+            <li ng-repeat="user in users">
+                <div class="row">
+                    <div class="col-xs-2 text-center">
+                        <img class="relationship_ctn__photo" src="ngsrc/photo-man.png" alt="**">
+                    </div>
+                    <div class="col-xs-3">
+                        <p class="relationship_ctn__name">
+                            {{user.username}}
+                        </p>
+                        <p>
+                            中国，北京，朝阳区
+                        </p>
+                    </div>
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-2 text-center">
+                        {{user.copy_copiers_count}}
+                    </div>
+                    <div class="col-xs-2 text-center">
+                        {{user.fans_count}}
+                    </div>
+                    <div class="col-xs-2 text-center">
+                        {{user.total_profit_rate}}%
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+    </div>
+
+    <div ng-if="users.length <= 0">
+        <p class="text-center marketing-text">无数据！</p>
+    </div>
+</div>

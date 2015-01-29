@@ -5,24 +5,29 @@
         .module('tigerwitPersonalApp')
         .controller('InvestIndexController', InvestIndexController);
 
-    InvestIndexController.$inject = ['$scope', '$location'];
+    InvestIndexController.$inject = ['$rootScope', '$scope', '$location'];
 
-    function InvestIndexController($scope, $location) {
-        $scope.childState = '';               // tab 切换参数
+    function InvestIndexController($rootScope, $scope, $location) {
+        $scope.childState = '';         
         $scope.accountType = {
-            key: 'demo',
-            value: '模拟'
+            key: 'demo',      //'demo' or 'real'
+            value: '模拟',    // '模拟' or '真实'
+            visible: false    // 切换真实模拟账户按钮的可见性
         };
-        $scope.switchTab = switchTab;
         $scope.switchAccount = switchAccount;
 
-        var url = $location.path();
-        $scope.childState = url.split('/')[2];
-       
-        function switchTab(childState) {
-            $scope.childState = childState;
-            $scope.$broadcast('showLoadingImg');
-        }
+        $scope.$on('$viewContentLoaded', function () {
+            var url = $location.path();
+            $scope.childState = url.split('/')[2];
+
+            if ($scope.childState === 'relationship' || $scope.childState === 'summary') {
+                $scope.accountType.visible = false;
+            }
+
+            if ($scope.childState === 'statistics' || $scope.childState === 'history') {
+                $scope.accountType.visible = true;
+            } 
+        });
 
         function switchAccount() {
             $scope.$broadcast('showLoadingImg');

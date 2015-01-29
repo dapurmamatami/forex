@@ -1,16 +1,17 @@
 <div tw-loading-img></div>
 <div class="history_orders">
-    <div class="history_orders__nav">
-        <a href="" ng-class="{active: orderType === 'normal'}" ng-click="switchOrderType('normal')">
-            全部交易
-        </a>
-        <a href="" ng-class="{active: orderType === 'not_copy'}" ng-click="switchOrderType('not_copy')">
-            自主交易
-        </a>
-        <a href="" ng-class="{active: orderType === 'only_copy'}" ng-click="switchOrderType('only_copy')">
-            复制交易
-        </a>
-    </div>
+    <ul class="nav nav-pills">
+        <li ng-class="{active: orderType === 'only_copy'}" ng-click="switchOrderType('only_copy')">
+            <a href="">复制交易</a>
+        </li>
+        <li ng-class="{active: orderType === 'not_copy'}" ng-click="switchOrderType('not_copy')">
+            <a href="">自主交易</a>
+        </li>
+        <li ng-class="{active: orderType === 'normal'}" ng-click="switchOrderType('normal')">
+            <a href="">全部交易</a>
+        </li>
+    </ul>
+
     <div ng-if="orders.length > 0">
         <div class="history_orders__header">
             <div class="row">
@@ -21,12 +22,11 @@
                 <div class="col-xs-2">盈亏</div>
             </div>
         </div>
-
         <ul class="history_orders__pnl">
             <li ng-repeat="order in orders">
                 <div class="row">
                     <div class="col-xs-1">
-                        <img class="history_orders__logo" alt="**" src="images/test.png" >
+                        <span class="icon-forex-{{order.symbol.toLowerCase()}}"></span>
                     </div>
                     <div class="col-xs-2 history_orders__operate">
                         <p>
@@ -48,7 +48,7 @@
                     </div>
                     <div class="col-xs-3">
                         <span class="history_orders__duplicator">
-                            wodKKHLJa
+                            {{order.username}}
                         </span>
                     </div>
                     <div class="col-xs-2 history_orders__price">{{order.open_price}}</div>
