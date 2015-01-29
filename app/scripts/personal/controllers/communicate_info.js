@@ -5,9 +5,9 @@
     .module('tigerwitPersonalApp')
     .controller('PersonalCommunicateInfoController',PersonalCommunicateInfoController);
 
-  PersonalCommunicateInfoController.$inject = ['$rootScope','$timeout','$scope','communicate'];
+  PersonalCommunicateInfoController.$inject = ['$cookieStore','$rootScope','$timeout','$scope','communicate'];
 
-  function PersonalCommunicateInfoController($rootScope,$timeout,$scope,communicate) {
+  function PersonalCommunicateInfoController($cookieStore,$rootScope,$timeout,$scope,communicate) {
 
       /**
        *
@@ -15,6 +15,7 @@
        *
        * @type {boolean}
        */
+      $cookieStore.put('usercode',1120);
       $rootScope.usercode = 1120;
       $scope.showDropdown = false;
       $scope.showMenu = showMenu;
@@ -158,27 +159,31 @@
                       $scope.mData.comment_sum=$scope.mData.comment_sum+1;
                   }else{
                       $scope.toastMsg = "评论失败";
+                      $scope.inputContent = $scope.tempContent;
                   }
                       $scope.showOrNo = 'cm-enter';
                       $timeout(function(){
                          $scope.showOrNo = 'cm-leave';
                     },1000);
                   },
-                function(){});
+                function(data){
+                    $scope.toastMsg = "评论失败";
+                    $scope.inputContent = $scope.tempContent;
+                });
           $scope.tempContent =$scope.inputContent;
           $scope.inputContent = "";
           $scope.tRemainSum = 0;
         }
 
         function doSupport(){
-          communicate.doSupportPoint(
-              0,$rootScope.usercode,$scope.mData.topicid)
-              .then(function(data){
-                  if(data.statecode){
-                      $scope.mData.support_sum =  $scope.mData.support_sum+1;
-                          }
+            communicate.doSupportPoint(
+                0,$rootScope.usercode,$scope.mData.topicid)
+                .then(function(data){
+                    if(data.statecode){
+                        $scope.mData.support_sum =  $scope.mData.support_sum+1;
+                            }
 
-        },function(){});
+            },function(){});
         }
 
         function doTransmit(){

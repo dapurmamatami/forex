@@ -15,10 +15,11 @@
                 "</p>",
       replace: true,
       controller: function ($scope) {
-        $scope.contentArray = [];
+
 
         $scope.$watch('mData',function(newValue,oldValue,scope){
             if(!newValue) return;
+            $scope.contentArray = [];
             $scope.contentArray = getContentArray($scope.contentArray,$scope.mData['content']);
 
             function getContentArray(arrayContent, content) {

@@ -5,27 +5,27 @@
     <div class="topic">
 
         <div class="topic__content">
-          <span class = "focusname" >hello World!</span>
-          <contentshow></contentshow>
-          <div>
-              <span class = "ptime">{{mData['ptime'] | startNow }}前</span>
-              <div class = "topic__content__other">
-                  <span ng-click="doSupport()">赞({{mData['support_sum']}}) </span>|
-                  <span ng-="doTransmit()"> 转发({{mData['tramsmit_sum']}}) </span>|
-                  <span ng-clickclick="showDropComment()"> 评论({{mData['comment_sum']}}) </span>|
-              </div>
-          </div>
+            <span class = "focusname" >hello World!</span>
+            <contentshow></contentshow>
+            <div>
+                <span class = "ptime">{{mData['ptime'] | startNow }}前</span>
+                <div class = "topic__content__other">
+                    <span ng-click="doSupport()">赞({{mData['support_sum']}}) </span>|
+                    <span ng-="doTransmit()"> 转发({{mData['tramsmit_sum']}}) </span>|
+                    <span ng-clickclick="showDropComment()"> 评论({{mData['comment_sum']}}) </span>|
+                </div>
+            </div>
 
-          <div class="topic__comment">
-              <textarea ng-model="inputContent" ng-change="matchCommentContent()"></textarea>
-              <div class = "topicOrComment__doToast" ng-class="showOrNo">
-                  {{toastMsg}}
-              </div>
-              <div class = "topicOrComment__dostyl" >
-                  <span>剩余 {{tRemainSum}}/1024 字</span>
-                  <a ng-click="doComment()"> 回复我的评论 </a>
-              </div>
-          </div>
+            <div class="topic__comment">
+                <textarea ng-model="inputContent" ng-change="matchCommentContent()"></textarea>
+                <div class = "topicOrComment__doToast" ng-class="showOrNo">
+                    {{toastMsg}}
+                </div>
+                <div class = "topicOrComment__dostyl" >
+                    <span>剩余 {{tRemainSum}}/1024 字</span>
+                    <a ng-click="doComment()"> 回复我的评论 </a>
+                </div>
+            </div>
         </div>
 
         <div class = "comments__head">
@@ -38,9 +38,9 @@
         <hr/>
 
         <div>
-            <div class="comments" ng-repeat="aitem in mData['comment_list']">
+            <div class="comments" ng-repeat="aitem in mData['comment_list']" ng-controller="CommentsController"  >
                 <img src="/ngsrc/photo-man.png"/>
-                <div class = "comments__content" ng-init = "mData = aitem">
+                <div class = "comments__content" ng-init = "mData = aitem" >
                     <span class = "focusname" >{{aitem['publisher_name']}}</span>
                     <contentshow ></contentshow>
                     <div class = "comments__content__other">
@@ -51,33 +51,37 @@
                         </div>
                     </div>
 
-                    <div class = "comments__lists" ng-if="aitem['discuss_list']">
-                        <div class ="comments__lists__item" ng-repeat="bitem in aitem['discuss_list']">
-                            <img src="/ngsrc/photo-man.png"/>
-                            <div class = "ccContent" ng-init = "mData = aitem">
-                                <span class = "focusname" >{{bitem['publisher_name']}}</span>
-                                <contentshow ></contentshow>
-                                <div class = "ccContent__other">
-                                    <span class = "ptime">{{bitem['ptime'] | startNow }}前</span>
-                                    <div class = "other_info">
-                                       <span ng-click="doSupport()">赞({{bitem['support_sum']}}) </span>
+                    <div  class = "comments__lists" ng-controller="DiscussController" ng-show="showDiscuss">
+                        <div>
+                            <div class ="comments__lists__item" ng-repeat="bitem in aitem['discuss_list']">
+                                <img src="/ngsrc/photo-man.png"/>
+                                <div class = "ccContent" ng-init = "mData = bitem">
+                                    <span class = "focusname" >{{bitem['publisher_name']}}</span>
+                                    <contentshow></contentshow>
+                                    <div class = "ccContent__other">
+                                        <span class = "ptime">{{bitem['ptime'] | startNow }}前</span>
+                                        <div class = "other_info">
+                                           <span ng-click="doSupport()">赞({{bitem['support_sum']}}) </span>|
+                                          <span ng-click="showDropComment()">  回复 </span>
+                                        </div>
                                     </div>
                                 </div>
+                                <div style="clear:both">
+                                </div>
+                                <hr/>
                             </div>
-                            <div style="clear:both">
-                            </div>
-                            <hr/>
                         </div>
+
                         <div class = "reply">
                             <div>
                                 <span>点击查看全部回复</span>
                                 <span>我也说两句</span>
                             </div>
-                            <div class="reply__area">
-                                <textarea></textarea>
+                            <div class="reply__area" ng-show="showReply">
+                                <textarea ng-model="inputContent"></textarea>
                                 <div class = "topicOrComment__dostyl" >
                                     <span>剩余 {{tRemainSum}}/1024 字</span>
-                                    <a ng-click="doComment()"> 回复 </a>
+                                    <a ng-click="doComment()"> 发表 </a>
                                 </div>
                                 <div style="clear:both"></div>
                             </div>
@@ -86,6 +90,9 @@
                 </div>
                 <div style="clear:both"></div>
                 <hr/>
+            </div>
+            <div class="loadmore">
+              <a ng-click="loadmore()">点击加载更多...</a>
             </div>
         </div>
 

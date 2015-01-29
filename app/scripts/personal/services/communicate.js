@@ -120,12 +120,14 @@
             });
         }
 
-      /**
-       *
-       *  评论
-       * @param requestJsondata
-       * @returns {HttpPromise}
-       */
+        /**
+         *  评论
+         * @param type
+         * @param usercode
+         * @param content
+         * @param topicid
+         * @returns {HttpPromise}
+         */
         function doComment(type,usercode,content,topicid){
             return $http.get('/docomment_p',{
                 params:{
