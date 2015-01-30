@@ -17,7 +17,7 @@ angular
 angular
     .module('tigerwitPersonalApp')
 
-    
+
     .config(['$httpProvider', function ($httpProvider) {
         if (!$httpProvider.defaults.headers.get) {
             $httpProvider.defaults.headers.get = {};
@@ -35,7 +35,7 @@ angular
                     configParam.timeout = config.httpTimeout;
                     if (!/^(http|https|ws)/.test(configParam.url) &&
                             !/\.html$/.test(configParam.url)) {
-                        
+
                         if (configParam.url === '/equity_report' ||
                                 configParam.url === '/summary_report' ||
                                 configParam.url === '/get_info_progress') {
@@ -44,8 +44,7 @@ angular
                         }
 
                         //add by fwb
-                        if(/_p$/.test(configParam.url)) {
-                            configParam.url = config.personalUrl + configParam.url;
+                        if(/^\/communicate/.test(configParam.url)) {
                             return configParam;
                         }
                         configParam.url = config.apiUrl + configParam.url;
@@ -61,7 +60,7 @@ angular
                     }
                 },
                 'responseError': function(response) {
-            
+
                     if (response.status === 401 && $rootScope.resetPassword) {
                         //ga('send', 'event', '401', response.config.url);
                         $location.path('/login')

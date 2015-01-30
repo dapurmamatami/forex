@@ -15,7 +15,7 @@
        *
        * @type {boolean}
        */
-      $cookieStore.put('usercode',1120);
+      //$cookieStore.put('usercode',1120);
       $rootScope.usercode = 1120;
       $scope.showDropdown = false;
       $scope.showMenu = showMenu;

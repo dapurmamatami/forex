@@ -39,7 +39,7 @@
 
         function doSupport(){
             communicate.doSupportPoint(
-              0,$cookieStore.get('usercode'),$scope.mData.topicid)
+              0,$cookieStore.get('userCode'),$scope.mData.topicid)
                 .then(function(data){
                     if(data.statecode){
                         $scope.mData.support_sum =  $scope.mData.support_sum+1;
@@ -57,7 +57,7 @@
             }
 
             communicate.doComment(
-                0,$cookieStore.get('usercode'),$scope.inputContent,$scope.mData.topicid)
+                0,$cookieStore.get('userCode'),$scope.inputContent,$scope.mData.topicid)
                 .then(function(data){
                     if(data.statecode){
                         $scope.toastMsg = "评论成功！";

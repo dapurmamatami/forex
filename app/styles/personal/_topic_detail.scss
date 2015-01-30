@@ -116,6 +116,11 @@
                 @include e(area){
                     overflow: hidden;
                 }
+                .saysome{
+                    position:relative;
+                    left:140px;
+                    cursor:pointer;
+                }
             }
             @include e(item){
                 overflow: hidden;

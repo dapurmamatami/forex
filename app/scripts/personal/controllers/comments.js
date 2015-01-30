@@ -21,17 +21,21 @@
             $scope.showReply = ! $scope.showReply;
         }
 
-        function showDropComment(){
-            $scope.showReply = !$scope.showReply;
+        function showDropComment(publisher_name){
+            if(publisher_name){
+                $scope.inputContent= "@"+publisher_name+" ";
+            }
+
+            $scope.showReply =true;
             if($scope.hasDiscuss){
                 $scope.showDiscuss = true;
             }else{
-              $scope.showDiscuss = $scope.showReply;
+                $scope.showDiscuss = $scope.showReply;
             }
         }
         function doSupport(){
             communicate.doSupportPoint(
-                1,$cookieStore.get('usercode'),$scope.mData.comment_id)
+                1,$cookieStore.get('userCode'),$scope.mData.comment_id)
                 .then(function(data){
                     if(data.statecode){
                         $scope.mData.support_sum =  $scope.mData.support_sum+1;
@@ -39,9 +43,7 @@
 
                   },function(){});
         }
-
     }
-
 })();
 
 (function(){
@@ -51,9 +53,9 @@
       .module('tigerwitPersonalApp')
       .controller('DiscussController',DiscussController);
 
-    DiscussController.$inject = ['$scope','$cookieStore','communicate'];
+    DiscussController.$inject = ['$scope','$cookieStore','communicate','$timeout'];
 
-    function DiscussController($scope,$cookieStore,communicate){
+    function DiscussController($scope,$cookieStore,communicate,$timeout){
 
         $scope.matchCommentContent = matchCommentContent;
 
@@ -68,18 +70,20 @@
             }
         });
 
+
+
         function matchCommentContent(){
-          var contentLength = $scope.inputContent.length;
-          if(contentLength>1024){
-            $scope.inputContent = $scope.inputContent.substring(0,1024);
-            return;
-          }
-          $scope.tRemainSum =contentLength;
+            var contentLength = $scope.inputContent.length;
+            if(contentLength>1024){
+                $scope.inputContent = $scope.inputContent.substring(0,1024);
+                return;
+            }
+            $scope.tRemainSum =contentLength;
         }
 
         function doSupport(){
             communicate.doSupportPoint(
-                1,$cookieStore.get('usercode'),$scope.mData.comment_id)
+                1,$cookieStore.get('userCode'),$scope.mData.comment_id)
                     .then(function(data){
                           if(data.statecode){
                               $scope.mData.support_sum =  $scope.mData.support_sum+1;
@@ -88,36 +92,34 @@
                       },function(){});
         }
 
-      function doComment(){
-            if(!$scope.inputContent){
-              return;
-            }
-            if($.trim($scope.inputContent)==""){
-              return;
-            }
+        function doComment(){
+              if(!$scope.inputContent){
+                  return;
+              }
+              if($.trim($scope.inputContent)==""){
+                  return;
+              }
 
-            communicate.doComment(
-                0,$rootScope.usercode,$scope.inputContent,$scope.mData.topicid)
-                .then(function(data){
-                    if(data.statecode){
-                        $scope.toastMsg = "评论成功！";
-                        $scope.mData.comment_sum=$scope.mData.comment_sum+1;
-                    }else{
-                        $scope.toastMsg = "评论失败";
-                    }
-                    $scope.showOrNo = 'cm-enter';
-                    $timeout(function(){
-                        $scope.showOrNo = 'cm-leave';
-                    },1000);
-                },
-                function(){});
-              $scope.tempContent =$scope.inputContent;
-              $scope.inputContent = "";
-              $scope.tRemainSum = 0;
+              communicate.doComment(
+                  1,$cookieStore.get('userCode'),$scope.inputContent,$scope.mData.comment_id)
+                  .then(function(data){
+                      if(data.statecode){
+                          $scope.toastMsg = "评论成功！";
+                          $scope.mData.comment_sum=$scope.mData.comment_sum+1;
+                      }else{
+                          $scope.toastMsg = "评论失败";
+                      }
+                      $scope.showOrNo = 'cm-enter';
+                      $timeout(function(){
+                          $scope.showOrNo = 'cm-leave';
+                      },1000);
+                  },
+                  function(){});
+                $scope.tempContent =$scope.inputContent;
+                $scope.inputContent = "";
+                $scope.tRemainSum = 0;
         }
 
     }
-
-
 
 })();

@@ -6,9 +6,9 @@
         .controller('PersonalInfoController', PersonalInfoController);
 
     PersonalInfoController.$inject = ['$rootScope', '$scope','$state', '$timeout',
-            '$modal', 'account', 'money'];
+            '$modal', 'account', 'money','$cookieStore'];
 
-    function PersonalInfoController($rootScope, $scope, $state, $timeout, $modal, account, money) {
+    function PersonalInfoController($rootScope, $scope, $state, $timeout, $modal, account, money,$cookieStore) {
         $scope.profile = {};
         $scope.profileLoad = false;
         $scope.openModal = openModal;
@@ -16,7 +16,7 @@
         account.getInfo().then(function (data) {
             $scope.profileLoad = true;
             $scope.profile = data;
-
+            $cookieStore.put('userCode',data.user_code)
             if (data.verified) {
                 // 获取个人的 money
                 (function getEquity() {

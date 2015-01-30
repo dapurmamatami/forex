@@ -62,7 +62,7 @@
                                         <span class = "ptime">{{bitem['ptime'] | startNow }}前</span>
                                         <div class = "other_info">
                                            <span ng-click="doSupport()">赞({{bitem['support_sum']}}) </span>|
-                                          <span ng-click="showDropComment()">  回复 </span>
+                                          <span ng-click="showDropComment(bitem['publisher_name'])">  回复 </span>
                                         </div>
                                     </div>
                                 </div>
@@ -74,11 +74,14 @@
 
                         <div class = "reply">
                             <div>
-                                <span>点击查看全部回复</span>
-                                <span>我也说两句</span>
+                                <a>点击查看全部回复</a>
+                                <a class="saysome" ng-click="showDropComment()">我也说两句</a>
                             </div>
                             <div class="reply__area" ng-show="showReply">
-                                <textarea ng-model="inputContent"></textarea>
+                                <textarea ng-model="inputContent" ></textarea>
+                                <div class = "topicOrComment__doToast" ng-class="showOrNo">
+                                  {{toastMsg}}
+                                </div>
                                 <div class = "topicOrComment__dostyl" >
                                     <span>剩余 {{tRemainSum}}/1024 字</span>
                                     <a ng-click="doComment()"> 发表 </a>

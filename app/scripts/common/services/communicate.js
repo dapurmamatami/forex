@@ -5,9 +5,9 @@
         .module('tigerwitPersonalApp')
         .factory('communicate',communicate);
 
-      communicate.$inject = ['$http'];
+      communicate.$inject = ['topicHttp'];
 
-      function communicate($http) {
+      function communicate(topicHttp) {
 
           var service = {
               hotInvester: hotInvester,
@@ -29,13 +29,11 @@
          */
           function hotInvester(startindex) {
 
-              return $http.get('/hotinvester_p', {
-                  params: {
+              return topicHttp.get('/hotinvester',
+                  {
                      "startindex":startindex
                   }
-              },{
-                headers:{'Access-Control-Allow-Headers': 'If-Modified-Since'}
-              });
+              );
           }
 
 
@@ -48,13 +46,13 @@
          */
 
           function publishTopic(publish_id,content,bytramsmitid) {
-            return $http.get('/publishtopic_p', {
-              params: {
-                "publish_id":publish_id,
-                "content":content,
-                "bytramsmitid":bytramsmitid
-              }
-            });
+              return topicHttp.get('/publishtopic',
+                   {
+                    "publish_id":publish_id,
+                    "content":content,
+                    "bytramsmitid":bytramsmitid
+                  }
+              );
           }
 
           /**
@@ -64,13 +62,12 @@
            * @returns {HttpPromise}
            */
             function topicDetail(topicid,commentstarindex){
-              return $http.get('/topicdetail_p',
-                  {
-                      params:{
-                          "topic_id":topicid,
-                          "comment_startindex":commentstarindex
-                      }
-                  });
+              return topicHttp.get('/topicdetail',
+                    {
+                        "topic_id":topicid,
+                        "comment_startindex":commentstarindex
+                    }
+                  );
             }
 
             /**
@@ -79,12 +76,11 @@
              * @returns {HttpPromise}
              */
             function attentionsFans(usercode){
-                return $http.get('/attentionsfans_p',
-                    {
-                        params:{
-                            "usercode":usercode
-                        }
-                    });
+                return topicHttp.get('/attentionsfans',
+                      {
+                          "usercode":usercode
+                      }
+                    );
             }
 
           /**
@@ -94,12 +90,12 @@
            * @returns {HttpPromise}
            */
             function relationTopic(startindex,usercode){
-                return $http.get('/relationtopic_p',
-                  {
-                      params:{
+                return topicHttp.get('/relationtopic',
+
+                      {
                           "startindex":startindex,
                           "usercode":usercode
-                      }});
+                      });
             }
 
           /**
@@ -110,13 +106,13 @@
            * @returns {HttpPromise}
            */
             function doSupportPoint(type,usercode,topicid){
-                return  $http.get('/dosupportpoint_p',{
-                    params:{
+                return  topicHttp.get('/dosupportpoint',
+                    {
                         "type":type,
                         "usercode":usercode,
                         "topicid":topicid
                     }
-                });
+                );
             }
 
             /**
@@ -128,14 +124,14 @@
              * @returns {HttpPromise}
              */
             function doComment(type,usercode,content,topicid){
-                return $http.get('/docomment_p',{
-                    params:{
+                return topicHttp.get('/docomment',
+                    {
                         "type":type,
                         "usercode":usercode,
                         "content":content,
                         "topicid":topicid
                     }
-                });
+                );
             }
 
             /**
@@ -145,11 +141,9 @@
              * @returns {HttpPromise}
              */
             function doAttention(by_attention_id,usercode){
-                return  $http.get('/doattention_p', {
-                    params: {
-                        "by_attention_id": by_attention_id,
-                        "usercode": usercode
-                    }
+                return  topicHttp.get('/doattention', {
+                      "by_attention_id": by_attention_id,
+                      "usercode": usercode
                 });
             }
 
@@ -161,12 +155,10 @@
            * @returns {HttpPromise}
            */
             function deleteTopic(usercode,type,topicid){
-                return $http.get('/deletetopic_p',{
-                    params:{
-                        "usercode":usercode,
-                        "type":type,
-                        "topicid":topicid
-                    }
+                return topicHttp.get('/deletetopic',{
+                    "usercode":usercode,
+                    "type":type,
+                    "topicid":topicid
                 });
             }
       }
