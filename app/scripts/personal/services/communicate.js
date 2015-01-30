@@ -24,7 +24,7 @@
 
     /**
      * 閼惧嘲褰囬悜顓㈡，閹舵洝绁拠婵嬵暯閸掓銆     
-     * @param startindex  瀵偓婵缍呯純     
+     * @param startindex  瀵偓婵缍呯�    
      * @returns {HttpPromise}
      */
       function hotInvester(startindex) {
@@ -41,7 +41,7 @@
 
     /**
      *
-     * 閸欐垼銆冪拠婵嬵暯
+     * 閸欐垼銆冪拠婵嬵�     
      * @param publish_id
      * @param content
      * @param bytramsmitid
@@ -59,7 +59,7 @@
       }
 
       /**
-       * 閼惧嘲褰囩拠婵嬵暯鐠囷附鍎       * @param topicid
+       * 閼惧嘲褰囩拠婵嬵暯鐠囷附�      * @param topicid
        * @param commentstarindex
        * @returns {HttpPromise}
        */
@@ -75,11 +75,13 @@
 
         /**
          *
-         * 閼惧嘲褰囬崗铏暈閸滃瞼鐭囨稉婵囨殶閹        * @param usercode
+         * 鑾峰彇鍏虫敞鍜岀矇涓濇暟�        
+         * @param usercode
          * @returns {HttpPromise}
          */
-        function attentionsFans(usercode){        
-        return $http.get('/attentionsfans_p',{
+        function attentionsFans(usercode){
+            return $http.get('/attentionsfans_p',
+                {
                     params:{
                         "usercode":usercode
                     }
@@ -101,7 +103,8 @@
         }
 
       /**
-       *  閻愮绂       * @param type
+       *  閻愮绂       
+       * @param type
        * @param usercode
        * @param topicid
        * @returns {HttpPromise}
@@ -115,21 +118,27 @@
                 }
             });
         }
-    /**
-     *
-     *
-     * 閻愮绂     
-     * @param requestJsondata
-     * @returns {HttpPromise}
-     */
-      function doSupportPoint(requestJsondata){
-        return  $http.get('/dosupportpoint_p',{
-          params:requestJsondata
-        });
-      }
+     /**
+       *
+       *  鐐硅�       
+       * @param type
+       * @param usercode
+       * @param topicid
+       * @returns {HttpPromise}
+       */
+        function doSupportPoint(type,usercode,topicid){
+            return  $http.get('/dosupportpoint_p',{
+                params:{
+                    "type":type,
+                    "usercode":usercode,
+                    "topicid":topicid
+                }
+            });
+        }
 
         /**
-         *  鐠囧嫯顔         * @param type
+         *  鐠囧嫯顔         
+         * @param type
          * @param usercode
          * @param content
          * @param topicid
@@ -147,15 +156,24 @@
         }
     /**
      *
-     *  鐠囧嫯顔     
+     *  璇勮�    
      * @param requestJsondata
-     * @returns {HttpPromise}
-     */
-      function doComment(requestJsondata){
-        return $http.get('/docomment_p',{
-          params:requestJsondata
-        });
-      }
+         * @param type
+         * @param usercode
+         * @param content
+         * @param topicid
+         * @returns {HttpPromise}
+         */
+        function doComment(type,usercode,content,topicid){
+            return $http.get('/docomment_p',{
+                params:{
+                    "type":type,
+                    "usercode":usercode,
+                    "content":content,
+                    "topicid":topicid
+                }
+            });
+        }
 
         /**
          * 閸忚櫕鏁         * @param by_attention_id
@@ -172,7 +190,7 @@
         }
 
       /**
-       * 閸掔娀娅庢稉濠氼暯閹存牞鈧懓鐦庣拋      
+       * 鍒犻櫎涓婚鎴栬€呰瘎璁       
        * @param usercode
        * @param type
        * @param topicid
