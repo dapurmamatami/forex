@@ -211,3 +211,46 @@ input[type="button"] {
     width: 100%;
   }
 }
+
+// Loading button
+// ----------------------------------------------------
+@include b(btn-loading) {
+    display: block;
+    width: 480px;
+    height: 30px;
+    border: 1px solid $brand-border-light;
+    text-align: center;
+    line-height: 30px; 
+    font-size: 0;
+    background-color: $gray-lightest;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &.active {
+        .btn-loading__icon {
+            @include img-normal($image_path + 'ajax-loading-sm.gif');
+            background-repeat: no-repeat;
+            background-position: 50%;        
+        }
+    }
+
+    @include e(caption) {
+        display: inline-block;
+        line-height: 30px;
+        vertical-align: top;
+        font-size: 14px;
+        color: $brand-primary;
+    }
+
+    @include e(icon) {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        vertical-align: top;
+    }
+
+
+     
+}

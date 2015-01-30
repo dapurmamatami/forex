@@ -63,8 +63,11 @@
             </li>
         </ul>
 
-        <a class="history_orders__more" href="" ng-show="!noMoreOrders"  ng-click="getMoreOrders()">
-            点击加载更多...    
+        <a class="btn-loading" href="" ng-show="!noMoreOrders" ng-click="getMoreOrders()">
+            <span class="btn-loading__caption">
+                点击加载更多...    
+            </span>
+            <span class="btn-loading__icon"></span>
         </a>
     </div>
     <div ng-if="orders.length <= 0">

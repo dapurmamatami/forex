@@ -34,6 +34,10 @@
   }
 }
 
+@mixin img-normal($file) {
+    background-image: url("#{$file}");
+}
+
 // 可能用不到，都需要兼容 retina
 @mixin background_image_url($url) {
     background-image: url('../images/' + $url);

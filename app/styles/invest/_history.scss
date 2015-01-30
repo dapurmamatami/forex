@@ -111,20 +111,5 @@
             font-weight: 700;
             color: $brand-red;
         }
-        
-        @include e(more, $history_orders) {
-            display: block;
-            width: 480px;
-            margin: 15px auto 0;
-            border: 1px solid $brand-border-color;
-            text-align: center;
-            line-height: 25px; 
-            background-color: $gray-lightest;
-
-             &:hover,
-             &:focus {
-                text-decoration: none;
-             }
-        }
     }
 }
