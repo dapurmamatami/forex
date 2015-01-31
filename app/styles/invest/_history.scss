@@ -21,95 +21,97 @@
         }
     }
 
-
-    @include e(header) {
-        border-bottom: 1px solid $brand-border-color;
-        line-height: 2.5;
-        text-align: center;
-        font-size: 16px;
-        font-weight: 700;
+    .btn-loading {
+        margin: 15px auto 0;
     }
 
-    @include e(pnl) {
-        li {
-            padding: 15px;
-            text-align: center;
+    @include b(order_item) {
+        $order_item: &;
 
-            &:nth-child(even) {
-                background-color: $gray-lightest;
-            }
+        padding: 15px;
+        text-align: center;
 
-            .col-xs-1,
-            .col-xs-2,
-            .col-xs-3 {
-                padding: 0;
-                line-height: 60px;
-            }
-
-            .col-xs-2 {
-                &:first-child {
-                    text-align: left;
-                }
-            }
+        &:nth-child(even) {
+            background-color: $gray-lightest;
         }
 
-        @include e(logo, $history_orders) {
-            width: 35px;
-            height: 35px;
+        .col-xs-1,
+        .col-xs-2,
+        .col-xs-3 {
+            padding: 0;
+            line-height: 60px;
         }
-        
-        @include e(operate, $history_orders) {
+    
+        @include e(operate) {
             line-height: 30px !important;
 
             p {
                 margin: 0;
             }
+
+            @include e(exchange, $order_item) {
+                font-size: 16px;
+                font-weight: 700;
+            }
+
+            @include e(symbol, $order_item) {
+                font-size: 16px;
+                font-weight: 700;
+                color: $brand-primary;
+            }
+
+            @include e(way, $order_item) {
+                padding: 2px;
+                margin: 0 2px;
+                border-radius: 4px;
+                font-size: 12px;
+                background-color: #ebebea;
+            }
+
+            @include e(time, $order_item) {
+                color: $gray-lighter;
+            }
         }
 
-        @include e(exchange, $history_orders) {
-            font-size: 16px;
-            font-weight: 700;
-        }
-
-        @include e(symbol, $history_orders) {
-            font-size: 16px;
-            font-weight: 700;
-            color: $brand-primary;
-        }
-
-        @include e(way, $history_orders) {
-            padding: 2px;
-            margin: 0 2px;
-            border-radius: 4px;
-            font-size: 12px;
-            background-color: #ebebea;
-        }
-
-        @include e(time, $history_orders) {
-            color: $gray-lighter;
-        }
-
-        @include e(duplicator, $history_orders) {
+        @include e(copiedTrader) {
             font-size: 16px;
             font-weight: 700;
             color: $brand-primary;   
         }
 
-        @include e(price, $history_orders) {
+        @include e(price) {
             font-size: 16px;
             font-weight: 700;
         }
 
-        @include e(profit, $history_orders) {
+        @include e(profit) {
             font-size: 16px;
             font-weight: 700;
             color: $brand-green;
         }
 
-        @include e(deficit, $history_orders) {
+        @include e(deficit) {
             font-size: 16px;
             font-weight: 700;
             color: $brand-red;
         }
     }
+
+
+    
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+    
 }

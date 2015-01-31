@@ -3,10 +3,10 @@
     <div class="personal_info__panel basic_info">
         <div class="basic_info__photo_wrap">
             <a href="">
-                <img class="basic_info__photo" ng-show="profile.sex != undefined" ng-src="ngsrc/photo-{{ profile.sex ? 'man' : 'woman'}}.png" alt="thumbnail" >
+                <img class="basic_info__photo" ng-show="personal.sex != undefined" ng-src="ngsrc/photo-{{ personal.sex ? 'man' : 'woman'}}.png" alt="thumbnail" >
             </a>
         </div>
-        <h3 class="basic_info__name">{{profile.username}}</h3>
+        <h3 class="basic_info__name">{{personal.username}}</h3>
         <div class="basic_info__location">
             <p class="basic_info__region">北京市，朝阳区</p>
             <p class="basic_info__nation">
@@ -18,36 +18,36 @@
 
     <div class="personal_info__panel MT4">
         <h5 class="MT4__title">MT4 信息</h5>
-        <p class="MT4__detail" ng-show="profile.real_id">
+        <p class="MT4__detail" ng-show="personal.real_id">
             真实账号：
-            <span>{{profile.real_id}}</span>
+            <span>{{personal.real_id}}</span>
         </p>
-        <p class="MT4__detail" ng-show="profile.demo_id">
+        <p class="MT4__detail" ng-show="personal.demo_id">
             模拟账号：
-            <span>{{profile.demo_id}}</span>
+            <span>{{personal.demo_id}}</span>
         </p>
     </div>
    
    <div class="personal_info__panel social_counter">
         <div class="social_counter__counter_itm">
-            <h4>99999</h4>
+            <h4>{{personal.copiedTraderSum}}</h4>
             <p>复制</p>
         </div>
         <div class="social_counter__counter_itm">
-            <h4>99999</h4>
+            <h4>{{personal.copierSum}}</h4>
             <p>跟随</p>
         </div>
         <div class="social_counter__counter_itm">
-            <h4>9999</h4>
+            <h4>{{personal.followingSum}}</h4>
             <p>关注</p>
         </div>
          <div class="social_counter__counter_itm">
-            <h4>9999</h4>
+            <h4>{{personal.fanSum}}</h4>
             <p>粉丝</p>
         </div>
     </div>  
 
-    <div class="personal_info__panel real_account " ng-show="profile.real_id">
+    <div class="personal_info__panel real_account " ng-show="personal.real_id">
         <h5 class="real_account__title">开通真实账户进行交易</h5>
         <p class="real_account__percent">
             当前进度 

@@ -133,6 +133,7 @@
       &:focus {
         color: $nav-pills-active-link-hover-color;
         background-color: $nav-pills-active-link-hover-bg;
+        cursor: default !important;
       }
     }
   }

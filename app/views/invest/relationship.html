@@ -1,3 +1,4 @@
+<div tw-loading-img></div>
 <div class="relationship_ctn">
     <span class="relationship_ctn__tip" ng-show="relationType === 'copiedTrader'">
         目前共复制了 {{copiedTraderSum}} 名高手
@@ -13,22 +14,22 @@
     </span>
     
     <ul class="nav nav-pills">
-        <li  ng-class="{active: relationType === 'fan'}" ng-click="relationType === 'fan' || getUsers('fan')">
+        <li  ng-class="{active: relationType === 'fan'}" ng-click="relationType === 'fan' || getInvestors('fan')">
             <a href="">粉丝</a>
         </li>
-        <li ng-class="{active: relationType === 'following'}" ng-click="getUsers('following')">
+        <li ng-class="{active: relationType === 'following'}" ng-click="getInvestors('following')">
             <a href="">关注</a>
         </li>
-        <li ng-class="{active: relationType === 'copier'}" ng-click="relationType === 'copier' || getUsers('copier')">
+        <li ng-class="{active: relationType === 'copier'}" ng-click="relationType === 'copier' || getInvestors('copier')">
             <a href="">跟随</a>
         </li>
-        <li ng-class="{active: relationType === 'copiedTrader'}" ng-click="getUsers('copiedTrader')">
+        <li ng-class="{active: relationType === 'copiedTrader'}" ng-click="relationType === 'copiedTrader' || getInvestors('copiedTrader')">
             <a href="">复制</a>
         </li>
     </ul>
 
-    <div ng-if="users.length > 0">
-        <div class="relationship_ctn__header">
+    <div ng-if="investors.length > 0">
+        <div class="list_header">
             <div class="row">
                 <div class="col-xs-6">
                 </div>
@@ -38,40 +39,43 @@
             </div>
         </div>
 
-        <ul class="relationship_ctn__users">
-            <li ng-repeat="user in users">
+        <ul class="relationship_ctn__investors">
+            <li class="investor" ng-repeat="investor in investors">
                 <div class="row">
-                    <div class="col-xs-2 text-center">
-                        <img class="relationship_ctn__photo" src="ngsrc/photo-man.png" alt="**">
+                    <div class="col-xs-1">
+                        <img class="investor__photo" src="ngsrc/photo-man.png" alt="**">
                     </div>
-                    <div class="col-xs-3">
-                        <p class="relationship_ctn__name">
-                            {{user.username}}
+                    <div class="col-xs-3 investor__info">
+                        <p class="investor__name">
+                            {{investor.username}}
                         </p>
-                        <p>
+                        <p class="investor__location">
                             中国，北京，朝阳区
                         </p>
                     </div>
-                    <div class="col-xs-1"></div>
-                    <div class="col-xs-2 text-center">
-                        {{user.copy_copiers_count}}
+                    <div class="col-xs-2"></div>
+                    <div class="col-xs-2 investor__number">
+                        {{investor.copy_copiers_count}}
                     </div>
-                    <div class="col-xs-2 text-center">
-                        {{user.fans_count}}
+                    <div class="col-xs-2 investor__number">
+                        {{investor.fans_count}}
                     </div>
-                    <div class="col-xs-2 text-center">
-                        {{user.total_profit_rate}}%
+                    <div class="col-xs-2 investor__profit" ng-show="investor.total_profit_rate.indexOf('-') < 0">
+                        {{investor.total_profit_rate}}%
+                    </div>
+                    <div class="col-xs-2 investor__deficit" ng-show="investor.total_profit_rate.indexOf('-') >= 0">
+                        {{investor.total_profit_rate}}%
                     </div>
                 </div>
             </li>
         </ul>
-        <p class="btn-loading" ng-show="!noMoreUsers" ng-click="getMoreUsers()">
+        <p class="btn-loading" ng-show="!noMoreInvestors" ng-click="getMoreInvestors()" tw-loading-more>
             <span class="btn-loading__caption">点击加载更多...</span>
             <span class="btn-loading__icon"></span>
         </p>
     </div>
 
-    <div ng-if="users.length <= 0">
+    <div ng-if="investors.length <= 0">
         <p class="text-center marketing-text">无数据！</p>
     </div>
 </div>

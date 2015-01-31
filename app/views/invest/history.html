@@ -1,19 +1,19 @@
 <div tw-loading-img></div>
 <div class="history_orders">
     <ul class="nav nav-pills">
-        <li ng-class="{active: orderType === 'only_copy'}" ng-click="switchOrderType('only_copy')">
+        <li ng-class="{active: orderType === 'only_copy'}" ng-click="orderType === 'only_copy' || switchOrderType('only_copy')">
             <a href="">复制交易</a>
         </li>
-        <li ng-class="{active: orderType === 'not_copy'}" ng-click="switchOrderType('not_copy')">
+        <li ng-class="{active: orderType === 'not_copy'}" ng-click="orderType === 'not_copy' || switchOrderType('not_copy')">
             <a href="">自主交易</a>
         </li>
-        <li ng-class="{active: orderType === 'normal'}" ng-click="switchOrderType('normal')">
+        <li ng-class="{active: orderType === 'normal'}" ng-click="orderType === 'normal' || switchOrderType('normal')">
             <a href="">全部交易</a>
         </li>
     </ul>
 
     <div ng-if="orders.length > 0">
-        <div class="history_orders__header">
+        <div class="list_header">
             <div class="row">
                 <div class="col-xs-3">操作</div>
                 <div class="col-xs-3">复制者</div>
@@ -22,48 +22,49 @@
                 <div class="col-xs-2">盈亏</div>
             </div>
         </div>
-        <ul class="history_orders__pnl">
-            <li ng-repeat="order in orders">
+
+        <ul>
+            <li class="order_item" ng-repeat="order in orders">
                 <div class="row">
-                    <div class="col-xs-1">
+                    <div class="col-xs-1 text-right">
                         <span class="icon-forex-{{order.symbol.toLowerCase()}}"></span>
                     </div>
-                    <div class="col-xs-2 history_orders__operate">
+                    <div class="col-xs-2 order_item__operate">
                         <p>
-                            <span class="history_orders__exchange">
+                            <span class="order_item__exchange">
                                 {{order.cmd ? '卖出' : '买入'}}
                             </span>
-                            <span class="history_orders__symbol">
+                            <span class="order_item__symbol">
                                 {{order.symbol | symbolBeauty}}
                             </span>
                         </p>
                         <p>
-                            <span class="history_orders__way">
+                            <span class="order_item__way">
                                 {{['手动', '止损', '止盈', '强制'][order.liquidation_type] + '平仓'}}
                             </span>
-                            <span class="history_orders__time">
+                            <span class="order_item__time">
                                 {{order.bp | startNow}}前
                             </span>
                         </p>
                     </div>
                     <div class="col-xs-3">
-                        <span class="history_orders__duplicator">
+                        <span class="order_item__copiedTrader">
                             {{order.username}}
                         </span>
                     </div>
-                    <div class="col-xs-2 history_orders__price">{{order.open_price}}</div>
-                    <div class="col-xs-2 history_orders__price">{{order.close_price}}</div>
-                    <div class="col-xs-2 history_orders__profit" ng-show="order.sum.indexOf('-') < 0">
+                    <div class="col-xs-2 order_item__price">{{order.open_price}}</div>
+                    <div class="col-xs-2 order_item__price">{{order.close_price}}</div>
+                    <div class="col-xs-2 order_item__profit" ng-show="order.sum.indexOf('-') < 0">
                         {{order.sum}}
                     </div>
-                    <div class="col-xs-2 history_orders__deficit" ng-show="order.sum.indexOf('-') >= 0">
+                    <div class="col-xs-2 order_item__deficit" ng-show="order.sum.indexOf('-') >= 0">
                         {{order.sum}}
                     </div>
                 </div>
             </li>
         </ul>
 
-        <a class="btn-loading" href="" ng-show="!noMoreOrders" ng-click="getMoreOrders()">
+        <a class="btn-loading" href="" ng-show="!noMoreOrders" ng-click="getMoreOrders()" tw-loading-more>
             <span class="btn-loading__caption">
                 点击加载更多...    
             </span>

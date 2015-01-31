@@ -9,7 +9,7 @@
 
     function InvestHistoryController($scope, stock) {    
         $scope.orders = [];                //交易历史订单
-        $scope.count = 3;                  //单页订单数 
+        $scope.count = 10;                 //单页订单数 
         $scope.noMoreOrders = false;
         $scope.orderType = 'normal';       //value is 'normal' or 'not_copy' or 'only_copy'
         $scope.getMoreOrders = getMoreOrders;
@@ -53,11 +53,14 @@
                 } else {
                     $scope.noMoreOrders = true;
                 }
+
+                $scope.$broadcast('stopLoadingMore');
             });
         }
 
         function switchOrderType(type) {
             $scope.$broadcast('showLoadingImg');
+            $scope.noMoreOrders = false;
             $scope.orderType = type;
             
             stock.getHistory({

@@ -28,14 +28,15 @@
             });
         }
 
+        
+
         function getFanSum(userCodes) {
             var codesStr = JSON.stringify(userCodes);
-            //return topicHttp.get('/fanssum_p', userCodes);
-            return $http.get('/fanssum_p', {
-                params: {
-                    usercodes: codesStr
-                }
+            return topicHttp.get('/fanssum', {
+                usercodes:codesStr
             });
         }
+
+        
     }
 })();

@@ -1,5 +1,6 @@
 @include b(relationship_ctn) {
     $relationship_ctn: &;
+    min-height: 600px;
 
     .nav-pills {
         padding: 10px 0;
@@ -20,33 +21,83 @@
         }
     }
 
+    .btn-loading {
+        margin: 15px auto 0;
+    }
+
+    @include b(list_header) {
+        padding:  15px;
+        border-bottom: 1px solid $brand-border-color;
+        text-align: center;
+        font-size: 16px;
+        font-weight: 700;
+    }
+    
     @include e(tip) {
         float: left;
         margin-top: 10px;
         font-size: 16px;
     }
-    
-    @include e(header) {
-        border-bottom: 1px solid $brand-border-color;
-        line-height: 2.5;
-        text-align: center;
-        font-size: 16px;
-        font-weight: 700;
-    }
 
-    @include e(users) {
-        li {
+    @include e(investors) {
+        
+        @include b(investor) {
+            $investor: &;
+
             padding: 15px;
 
-        }
+            &:nth-child(even) {
+                background-color: $gray-lightest;
+            }
 
-        @include e(photo, $relationship_ctn) {
-            width: 50px;
-            height: 50px;
+            .col-xs-1 {
+                padding: 0;
+                line-height: 60px;
+                text-align: right;
+            }
+
+            .col-xs-2 {
+                line-height: 60px;
+                text-align: center;
+                font-size: 16px;
+                font-weight: 700;
+            }
+
+            @include e(photo) {
+                width: 50px;
+                height: 50px;
+            }
+
+            @include e(info) {
+                line-height: 30px ;
+
+                p {
+                    margin: 0;
+                }
+
+                @include e(name, $investor) {
+                    font-size: 16px;
+                    font-weight: 700;
+                    color: $brand-primary;
+                }
+
+                @include e(location, $investor) {
+                    color: $gray-light;
+                }
+            }
+
+            @include e(number) {
+            }
+
+            @include e(profit) {
+                color: $brand-green;
+            }
+
+            @include e(deficit) {
+                color: $brand-red;
+            }
         }
 
     }
-
-    
 
 }

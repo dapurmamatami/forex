@@ -8,50 +8,52 @@
     InvestRelationshipController.$inject = ['$scope', 'relationship'];
 
     function InvestRelationshipController($scope, relationship) {
-        $scope.users = [];
+        $scope.investors = [];
         $scope.relationType = '';   // 'copiedTrader', 'copier', 'following', 'fan'
-        $scope.noMoreUsers = false;
+        $scope.noMoreInvestors = false;
         $scope.copiedTraderSum = 0;
         $scope.copierSum = 0;
         $scope.followingSum = 0;
         $scope.fanSum = 0;             
-        $scope.getUsers = getUsers;
-        $scope.getMoreUsers = getMoreUsers;
+        $scope.getInvestors = getInvestors;
+        $scope.getMoreInvestors = getMoreInvestors;
         var lastId = -1;
         var count = 1;              //单页 user 数
-        getUsers('copiedTrader');
+        getInvestors('copiedTrader');
     
         
         /*
-         * 根据 relationType 获取用户列表（data.data）赋值给 $scope.users
+         * 根据 relationType 获取用户列表（data.data）赋值给 $scope.investors
          */
-        function getUsers(relationType) {
+        function getInvestors(relationType) {
+            $scope.$broadcast('showLoadingImg');
             $scope.relationType = relationType;
-            $scope.noMoreUsers = false;
+            $scope.noMoreInvestors = false;
             var tmp;
             
             switch (relationType) {
                 case 'copiedTrader':
                     relationship.getCopiedTraders().then(function (data) {
-                        $scope.users = data.data;
-                        $scope.copiedTraderSum = data.count;
-                        $scope.noMoreUsers = !hasMoreUsers($scope.copiedTraderSum);
+                        $scope.investors = data.data;
+                        $scope.copiedTraderSum = data.total;
+                        var length = $scope.investors.length;
+                        $scope.noMoreInvestors = !hasMoreInvestors($scope.copiedTraderSum, length);
 
-                        if ($scope.users.length > 0) {
-                            getFanSum($scope.users);
+                        if (length > 0) {
+                            getFanSum($scope, $scope.investors, relationship);
                         }
-                        
                     });
                     break;
                 case 'copier':
                      relationship.getCopiers(-1, count).then(function (data){
-                        $scope.users = data.data;
-                        $scope.copierSum = data.count;
-                        $scope.noMoreUsers = !hasMoreUsers($scope.copierSum);
+                        $scope.investors = data.data;
+                        $scope.copierSum = data.total;
+                        var length = $scope.investors.length;
+                        $scope.noMoreInvestors = !hasMoreInvestors($scope.copierSum, length);
 
-                        if ($scope.users.length > 0) {
+                        if (length > 0) {
                             lastId = data.data[data.data.length-1].id;
-                            getFanSum($scope.users);
+                            getFanSum($scope, $scope.investors, relationship);
                         }
 
                      });
@@ -68,7 +70,7 @@
             
         }
 
-        function getMoreUsers() {
+        function getMoreInvestors() {
             switch ($scope.relationType) {
                 case 'copier':
                     relationship.getCopiers(lastId, count).then(function (data) {
@@ -77,10 +79,10 @@
                             return;
                         }
                         lastId = data.data[data.data.length-1].id;
-                        getFanSum(data.data);
-                        $scope.users = $scope.users.concat(data.data);
-                        $scope.noMoreUsers = !hasMoreUsers($scope.copierSum);
-
+                        getFanSum($scope, data.data, relationship);
+                        $scope.investors = $scope.investors.concat(data.data);
+                        $scope.noMoreInvestors = !hasMoreInvestors($scope.copierSum,
+                                $scope.investors.length);
                     });
                     break;
                 case 'following':
@@ -98,8 +100,8 @@
         /*
          * 是否有更多的 copiers 或者 fans 等，sum 为 copierSum 或者 fanSum 等
          */
-        function hasMoreUsers(sum) {
-            if (sum === $scope.users.length) {
+        function hasMoreInvestors(sum, currentSum) {
+            if (sum === currentSum) {
                 return false;
             } else {
                 return true;
@@ -110,30 +112,32 @@
          * 取到一组用户（用户属性包括 username，copiers 总数和 7 天盈利等）之后
          * 然后调用该方法获取每个用户的 fans 数
          */
-        function getFanSum(users) {
+        function getFanSum(scope, investors, service) {
 
-            if (users.length <= 0) {
+            if (investors.length <= 0) {
                 return;
             }
 
             // 需要提交的一组 usercode
             var userCodes = [];
             
-            angular.forEach(users, function (user) {
-                this.push(user.user_code);
+            angular.forEach(investors, function (investor) {
+                this.push(investor.user_code);
             }, userCodes);
             
-            relationship.getFanSum(userCodes).then(function (data) {   
+            service.getFanSum(userCodes).then(function (data) {   
                 angular.forEach(data.data, function (item) {
                     
-                    angular.forEach(users, function (user) {
+                    angular.forEach(investors, function (investor) {
 
-                        if (user.user_code === item.user_code) {
-                            user.fans_count = item.fans_count;
+                        if (investor.user_code === item.user_code) {
+                            investor.fans_count = item.fans_count;
                         }
-                    });       
-
+                    });
                 });
+
+                scope.$broadcast('hideLoadingImg');
+                scope.$broadcast('stopLoadingMore');
             });
         }
 
