@@ -18,7 +18,8 @@
               doSupportPoint: doSupportPoint,
               doComment: doComment,
               doAttention: doAttention,
-              deleteTopic: deleteTopic
+              deleteTopic: deleteTopic,
+              getRemainDiscuss:getRemainDiscuss
           };
           return service;
 
@@ -29,9 +30,8 @@
          */
           function hotInvester(startindex) {
 
-              return topicHttp.get('/hotinvester',
-                  {
-                     "startindex":startindex
+              return topicHttp.get('/hotinvester', {
+                     startindex:startindex
                   }
               );
           }
@@ -46,11 +46,10 @@
          */
 
           function publishTopic(publish_id,content,bytramsmitid) {
-              return topicHttp.get('/publishtopic',
-                   {
-                    "publish_id":publish_id,
-                    "content":content,
-                    "bytramsmitid":bytramsmitid
+              return topicHttp.get('/publishtopic', {
+                    publish_id:publish_id,
+                    content:content,
+                    bytramsmitid:bytramsmitid
                   }
               );
           }
@@ -62,12 +61,11 @@
            * @returns {HttpPromise}
            */
             function topicDetail(topicid,commentstarindex){
-              return topicHttp.get('/topicdetail',
-                    {
-                        "topic_id":topicid,
-                        "comment_startindex":commentstarindex
-                    }
-                  );
+                return topicHttp.get('/topicdetail', {
+                          topic_id:topicid,
+                          comment_startindex:commentstarindex
+                      }
+                    );
             }
 
             /**
@@ -76,9 +74,8 @@
              * @returns {HttpPromise}
              */
             function attentionsFans(usercode){
-                return topicHttp.get('/attentionsfans',
-                      {
-                          "usercode":usercode
+                return topicHttp.get('/attentionsfans', {
+                          usercode:usercode
                       }
                     );
             }
@@ -90,11 +87,9 @@
            * @returns {HttpPromise}
            */
             function relationTopic(startindex,usercode){
-                return topicHttp.get('/relationtopic',
-
-                      {
-                          "startindex":startindex,
-                          "usercode":usercode
+                return topicHttp.get('/relationtopic', {
+                          startindex:startindex,
+                          usercode:usercode
                       });
             }
 
@@ -108,9 +103,9 @@
             function doSupportPoint(type,usercode,topicid){
                 return  topicHttp.get('/dosupportpoint',
                     {
-                        "type":type,
-                        "usercode":usercode,
-                        "topicid":topicid
+                        type:type,
+                        usercode:usercode,
+                        topicid:topicid
                     }
                 );
             }
@@ -126,10 +121,10 @@
             function doComment(type,usercode,content,topicid){
                 return topicHttp.get('/docomment',
                     {
-                        "type":type,
-                        "usercode":usercode,
-                        "content":content,
-                        "topicid":topicid
+                        type:type,
+                        usercode:usercode,
+                        content:content,
+                        topicid:topicid
                     }
                 );
             }
@@ -142,8 +137,8 @@
              */
             function doAttention(by_attention_id,usercode){
                 return  topicHttp.get('/doattention', {
-                      "by_attention_id": by_attention_id,
-                      "usercode": usercode
+                      by_attention_id: by_attention_id,
+                      usercode: usercode
                 });
             }
 
@@ -156,10 +151,24 @@
            */
             function deleteTopic(usercode,type,topicid){
                 return topicHttp.get('/deletetopic',{
-                    "usercode":usercode,
-                    "type":type,
-                    "topicid":topicid
+                    usercode:usercode,
+                    type:type,
+                    topicid:topicid
                 });
+            }
+
+            /**
+             * 获取剩余所有的二级评论
+             * @param by_comment_id
+             * @param startindex
+             * @returns {*}
+             */
+            function getRemainDiscuss(by_comment_id,start_id){
+                return topicHttp.get('/getremaindiscuss',{
+                    by_comment_id:by_comment_id,
+                  start_id:start_id
+                });
+
             }
       }
 })();

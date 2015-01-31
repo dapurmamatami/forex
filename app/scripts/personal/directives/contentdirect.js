@@ -17,10 +17,10 @@
       controller: function ($scope) {
 
 
-        $scope.$watch('mData',function(newValue,oldValue,scope){
+        $scope.$watch('pContent',function(newValue,oldValue,scope){
             if(!newValue) return;
             $scope.contentArray = [];
-            $scope.contentArray = getContentArray($scope.contentArray,$scope.mData['content']);
+            $scope.contentArray = getContentArray($scope.contentArray,$scope.pContent);
 
             function getContentArray(arrayContent, content) {
 

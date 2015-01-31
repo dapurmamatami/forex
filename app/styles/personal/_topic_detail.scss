@@ -116,10 +116,12 @@
                 @include e(area){
                     overflow: hidden;
                 }
+                a{
+                  cursor:pointer;
+                }
                 .saysome{
                     position:relative;
                     left:140px;
-                    cursor:pointer;
                 }
             }
             @include e(item){
