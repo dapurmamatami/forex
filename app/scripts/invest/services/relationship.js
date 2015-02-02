@@ -11,7 +11,10 @@
         var service = {
             getCopiedTraders: getCopiedTraders,
             getCopiers: getCopiers,
-            getFanSum: getFanSum
+            getFollowings: getFollowings,
+            getFans: getFans,
+            getFanSum: getFanSum,
+            getOtherParams: getOtherParams
         };
         return service;
 
@@ -28,12 +31,38 @@
             });
         }
 
+        function getFollowings(userCode, lastId, count) {
+            return topicHttp.get('/fflist', {
+                userCode: userCode,
+                startIndex: lastId,
+                offset: count,
+                type: 0
+            });
+        }
+
+        function getFans(userCode, lastId, count) {
+            return topicHttp.get('/fflist', {
+                userCode: userCode,
+                startIndex: lastId,
+                offset: count,
+                type: 1 
+            });
+        }
         
 
         function getFanSum(userCodes) {
             var codesStr = JSON.stringify(userCodes);
             return topicHttp.get('/fanssum', {
                 usercodes:codesStr
+            });
+        }
+
+        function getOtherParams(userCodes) {
+            var codeStr = JSON.stringify(userCodes);
+            return $http.get('/extend_list', {
+                params: {
+                    user_codes: codeStr
+                }
             });
         }
 

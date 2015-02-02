@@ -1,12 +1,12 @@
 <div class="real_demo">
     <div class="row">
         <div class="col-xs-9">
-            <h3 class="real_demo__name">{{profile.username}}</h3>
+            <h3 class="real_demo__name">{{personal.username}}</h3>
             <p>
                 今天没有被逼出来的只有两类人：一类是来不及跑的韭菜，另一类是经验丰富的老江湖。
             </p>
         </div>
-        <div class="col-xs-3" ng-show="profile.real_id && accountType.visible">
+        <div class="col-xs-3" ng-show="personal.real_id && accountType.visible">
             <div class="real_demo__switch" ng-class="{real: accountType.key === 'real', demo: accountType.key === 'demo'}" ng-click="switchAccount()">
                 {{accountType.value}}账户数据
             </div>
@@ -17,7 +17,7 @@
                 点击切换到虚拟账户
             </p>
         </div>
-        <div class="col-xs-3" ng-show="!profile.real_id && accountType.visible">
+        <div class="col-xs-3" ng-show="!personal.real_id && accountType.visible">
             <div class="real_demo__switch demo">
                 模拟账户数据
             </div>
