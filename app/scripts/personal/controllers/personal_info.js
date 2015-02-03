@@ -6,22 +6,22 @@
         .controller('PersonalInfoController', PersonalInfoController);
 
     PersonalInfoController.$inject = ['$location','$scope', '$timeout',
-            '$modal', '$cookieStore', 'account', 'money', 'personal'];
+            '$modal', '$cookieStore', 'account', 'money', 'communicate', 'copy'];
 
-    function PersonalInfoController($location,$scope, $timeout, $modal, $cookieStore, account, money, personal) {
+    function PersonalInfoController($scope, $timeout, $modal, $cookieStore, account, money, communicate, copy) {
         //$scope.profile = {};
         $scope.personal = {};
 
         $scope.openModal = openModal;
 
-        account.getInfo().then(function (data) {
+        account.getPersonalInfo().then(function (data) {
             $scope.personal = data;
             $cookieStore.put('userCode',data.user_code);
 
-            getSocialSum($scope.personal, personal);
+            getSocialSum($scope.personal, communicate, copy);
 
             if (data.verified) {
-                // 获取个人的 money
+                // 获取个人�money
                 (function getEquity() {
                     money.getLastEquity().then(function (data) {
                         $scope.equityInfo = data;
@@ -32,11 +32,11 @@
             }
         });
 
-        function getSocialSum(personal, service) {
-            service.getCCSum().then(function (data) {
+        function getSocialSum(personal, service1, service2) {
+            service2.getCCSum().then(function (data) {
                 personal.copiedTraderSum = data.mycopy_count;
                 personal.copierSum = data.copy_count;
-                service.getFFSum().then(function (data) {
+                service1.getFFSum().then(function (data) {
                     personal.followingSum = data.data.attention_sum;
                     personal.fanSum = data.data.fans_sum;
                 });

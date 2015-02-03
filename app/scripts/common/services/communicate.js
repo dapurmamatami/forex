@@ -19,7 +19,8 @@
               doComment: doComment,
               doAttention: doAttention,
               deleteTopic: deleteTopic,
-              getRemainDiscuss:getRemainDiscuss
+              getRemainDiscuss:getRemainDiscuss,
+              getFFSum: getFFSum
           };
           return service;
 
@@ -170,5 +171,13 @@
                 });
 
             }
+
+            /**
+             * 获取 following、fan 总数 
+             */
+            function getFFSum() {
+                return topicHttp.get('/attentionsfans');
+            }
+
       }
 })();

@@ -1,20 +1,136 @@
-.hd{
-    .navbar {
-        .nav {
-            >li {
-                margin: 0 10px;
+.dropdown.open {
+    a.nav_personal {
+        background-color: $brand-white !important;
+        color: $gray-dark !important;
+    }
+}
 
-                >a {
-                    padding-bottom: 10px;
-                    font-size: 16px;
-                    font-weight: 700;
-                }
-            }
+@include b(nav_personal) {
+    width: 170px;
+    text-align: right;
 
-            >.dropdown .dropdown-menu {
-                display: block;
-            }
+    @include e(photo) {
+        width: 20px;
+        height: 20px;
+    }
+    @include e(name) {
+        display: inline-block;
+        vertical-align: top;
+        max-width: 110px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        font-size: 14px;
+        font-weight: 700;
+        overflow: hidden;
+    }
+}
 
+@include b(nav_personal_detail) {
+    top: 48px !important;
+    left: -79px !important;
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+
+    .row {
+        margin-left: -5px;
+        margin-right: -5px;
+
+        .col-xs-4,
+        .col-xs-8 {
+            padding-left: 5px;
+            padding-right: 5px;
         }
+    }
+    
+    @include e(basic) {
+        padding:5px;
+    }
+
+    @include e(photo) {
+        width: 70px;
+        height: 70px;
+    }
+
+    @include e(name) {
+        margin-bottom: 6px;
+        font-size: 18px;
+        font-weight: 700;
+        color: $brand-primary;
+    }
+
+    @include e(id) {
+        color: $gray-light;
+    }
+
+}
+
+@include b(nav_deposit) {
+    border-top: 1px solid $brand-border-color;
+    padding: 10px;
+
+    @include e(title) {
+        margin: 0;
+        line-height: 30px;
+    }
+
+    @include e(number) {
+        float: right;
+        margin-bottom: 0;
+        font-size: 20px;
+        font-weight: 700;
+    }
+
+    @include e(time) {
+        text-align: center;
+        color: $gray-lighter;
+    }
+}
+
+@include b(money_transfer) {
+    font-size: 0;
+
+    @include e(deposit) {
+        display: inline-block;
+        vertical-align: top;
+        width: 50%;
+        line-height: 35px;
+        text-align: center;
+        font-size: 14px;
+        font-weight: 700;
+        color: $gray-dark;
+        border-top: 1px solid $brand-border-color;
+        border-bottom: 1px solid $brand-border-color;
+        &:first-child {
+            border-right: 1px solid $brand-border-color;
+        }
+
+        &:hover {
+            color: $brand-white;
+            background-color: $brand-red;
+        }
+    }
+
+    @include e(withdraw) {
+        @extend .money_transfer__deposit;
+        
+        &:hover {
+            background-color: $brand-green;
+        }
+
+    }
+}
+
+@include b(nav_logout) {
+    display: block;
+    line-height: 35px;
+    text-align: center;
+    font-weight: 700;
+    color: $gray-dark;
+    background-color: $gray-lightest;
+
+    &:hover {
+
     }
 }

@@ -75,6 +75,7 @@
         font-size: 0;
 
         @include e(counter_itm) {
+            position: relative;
             display: inline-block;
             vertical-align: top;
             width: 50%;
@@ -88,6 +89,16 @@
                 font-size: 14px;
                 color: $gray-lighter;
             }
+        }
+
+        @include e(divider) {
+            position: absolute;
+            top: 10px;
+            left: 0;
+            display: block;
+            width: 1px;
+            height: 50px;
+            background-color: $brand-border-color;
         }
     }
 

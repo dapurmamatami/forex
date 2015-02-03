@@ -5,28 +5,22 @@
         .module('tigerwitPersonalApp')
         .controller('NavbarController', NavbarController);
 
-    NavbarController.$inject = ['$scope', '$state', '$timeout', 'account', 'storage', 'validator'];
+    NavbarController.$inject = ['$scope', '$state'];
 
-    function NavbarController($scope, $state, $timeout, account, storage, validator) {
-        var stateUrl = $state.current.url;
-        var stateUrlList = stateUrl.split('/');
-        $scope.parentState = stateUrlList[1];
-
-        $scope.login = {
-            phone: '',
-            password: '',
-            uiLoginError: ''
-        };
-
-        //cookie 是否过期
-        $scope.login.expires = 'checked';
-        $scope.loginFun = loginFun;
-        $scope.signOut = signOut;
-
+    function NavbarController($scope, $state) {
+        $scope.parentState = '';
         $scope.infoShow = false;
-        //var hideTimerPromise;
         $scope.showInfo = showInfo;
         $scope.hideInfo =hideInfo;
+
+
+
+        var stateUrl = $state.current.url;
+        var stateUrlList = stateUrl.split('/');
+        console.info(stateUrl);
+        $scope.parentState = stateUrlList[1];
+
+        
         
         function loginFun() {
 

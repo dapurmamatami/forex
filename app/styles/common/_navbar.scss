@@ -262,23 +262,6 @@
   }
 }
 
-/* // 登录
-.navbar-login {
-  line-height: $line-height-computed;
-}
-
-.navbar-lang {
-    > a {
-        &:hover {
-            text-decoration: none;
-        }
-    }
-    .dropdown-menu {
-        z-index: $zindex-popover;
-        top: 20px;
-    }
-}
- */
 // Navbar toggle
 //
 // Custom button for toggling the `.navbar-collapse`, powered by the collapse
@@ -531,26 +514,3 @@
     }
   }
 }
-
-/* .navbar-personal .navbar-brand {
-    margin-top: 15px;
-}
-.navbar-light {
-    background-color: #eaeff5;
-    margin: 0;
-    height: 100%;
-    > li {
-        > a {
-                padding: 20px 0 20px 30px;
-                border-radius: 0;
-                color: $text-title-color;
-                &.active,
-                &:hover {
-                    color: $brand-info;
-                    background-color: #fff;
-                }
-
-        }
-    }
-}
- */
