@@ -1,0 +1,27 @@
+@include b(content){
+    border: 1px solid $brand-border-color;
+    background-color: $gray-lightest;
+    @include e(content) {
+        @extend .col-lg-6;
+        width: 520px;
+        padding: 0;
+    }
+
+    @include e(sidebar-ad) {
+        @extend .col-lg-3;
+        width: 248px;
+        padding: 0;
+    }
+
+    @include m(detail){
+        @extend .col-lg-6;
+        width: 600px;
+        padding: 0;
+    }
+    @include m(share){
+        @extend .col-lg-3;
+        width:168px;
+        padding: 0;
+    }
+}
+

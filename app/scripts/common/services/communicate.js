@@ -39,15 +39,15 @@
 
         /**
          * 发表话题
-         * @param publish_id
+         * @param publisher_id
          * @param content
          * @param bytramsmitid
          * @returns {HttpPromise}
          */
 
-          function publishTopic(publish_id,content,bytramsmitid) {
+          function publishTopic(publisher_id,content,bytramsmitid) {
               return topicHttp.get('/publishtopic', {
-                    publish_id:publish_id,
+                    publisher_id:publisher_id,
                     content:content,
                     bytramsmitid:bytramsmitid
                   }
@@ -82,11 +82,11 @@
 
           /**
            * 获取个人关联话题信息
-           * @param startindex
            * @param usercode
+           * @param startindex
            * @returns {HttpPromise}
            */
-            function relationTopic(startindex,usercode){
+            function relationTopic(usercode,startindex){
                 return topicHttp.get('/relationtopic', {
                           startindex:startindex,
                           usercode:usercode

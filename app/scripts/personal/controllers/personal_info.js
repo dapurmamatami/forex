@@ -5,26 +5,27 @@
         .module('tigerwitPersonalApp')
         .controller('PersonalInfoController', PersonalInfoController);
 
-    PersonalInfoController.$inject = ['$scope', '$timeout',
+    PersonalInfoController.$inject = ['$location','$scope', '$timeout',
             '$modal', '$cookieStore', 'account', 'money', 'personal'];
 
-    function PersonalInfoController($scope, $timeout, $modal, $cookieStore, account, money, personal) {
+    function PersonalInfoController($location,$scope, $timeout, $modal, $cookieStore, account, money, personal) {
         //$scope.profile = {};
         $scope.personal = {};
-       
+
         $scope.openModal = openModal;
 
         account.getInfo().then(function (data) {
             $scope.personal = data;
             $cookieStore.put('userCode',data.user_code);
- 
+
             getSocialSum($scope.personal, personal);
-            
+
             if (data.verified) {
                 // 获取个人的 money
                 (function getEquity() {
                     money.getLastEquity().then(function (data) {
                         $scope.equityInfo = data;
+                        $scope.$broadcast('equity',data);
                         $timeout(getEquity, 5 * 1000);
                     });
                 })();
@@ -58,6 +59,16 @@
                 size: size
             });
         }
+        function switchLayout(){
+            if($location.$$url == 'topic_detail'){
+                $scope.layoutContent= 'content__detail';
+                $scope.layoutSide = 'content__share';
+            }else{
+                $scope.layoutContent= 'content__content';
+                $scope.layoutSide = 'content__sidebar-ad';
+            }
+        }
+        switchLayout();
     }
 
 })();

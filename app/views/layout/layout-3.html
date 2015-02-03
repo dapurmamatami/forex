@@ -1,17 +1,19 @@
-<div class="layout-3" ng-attr-id="{{moduleId}}">
-    <div class="hd" ui-view="hd" >
+<div class="layout-2" ng-attr-id="{{moduleId}}">
+  <div class="hd" ui-view="hd" >
 
-    </div>
-    <div class="bd_col_3">
-        <div class="row">
-            <div class="bd_col_3__sidebar" ui-view="sidebar">
-            </div>
-            <div class="bd_col_3__content" ui-view="content">
-            </div>
-            <div class="bd_col_3__sidebar-ad" ui-view="sidebar-ad">
-            </div>
+  </div>
+  <div class="bd_col_2">
+    <div class="row">
+      <div class="bd_col_2__sidebar" ui-view="sidebar">
+      </div>
+      <div class="bd_col_2__content content">
+        <div ng-class="layoutContent" ui-view="content">
+      </div>
+        <div ng-class="layoutSide" ui-view="sidebar-ad">
         </div>
+      </div>
     </div>
-    <div class="ft" ui-view="ft">
-    </div>
+  </div>
+  <div class="ft" ui-view="ft">
+  </div>
 </div>

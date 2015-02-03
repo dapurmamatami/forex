@@ -81,6 +81,7 @@ angular
 
         $stateProvider
             .state('personal', {
+                abstract:true,
                 views: {
                     '': {
                         templateUrl: 'views/layout/layout-3.html',
@@ -93,9 +94,9 @@ angular
                     'sidebar@personal': {
                         templateUrl: 'views/personal/info_side.html'
                     },
-                    'sidebar-ad@personal': {
-                        templateUrl: 'views/personal/ad_side.html'
-                    },
+                    //'sidebar-ad@personal': {
+                    //    templateUrl: 'views/personal/ad_side.html'
+                    //},
                     'ft@personal': {
                         templateUrl: 'views/layout/footer.html'
                     }
@@ -133,6 +134,23 @@ angular
                                 return newName;
                             }
                         }
+                    },
+                    'sidebar-ad@personal':{
+                        templateUrl:function($stateParams){
+                           if($stateParams.subPage=='topic_detail'){
+                              return 'views/personal/share_side.html'
+                           }else{
+                              return 'views/personal/ad_side.html';
+                           }
+
+                        },
+                        controllerProvider:function($stateParams){
+                            if($stateParams.subPage=='topic_detail'){
+                              return ''
+                            }else{
+                              return 'AdSideController';
+                            }
+                        }
                     }
                 }
             })
@@ -159,44 +177,64 @@ angular
                     }
                 }
             })
-            .state('invest.subPage', {
-                url: '/invest/:subPage',
-                views: {
-                    '@invest': {
-                        templateUrl: function ($stateParams) {
-                            $stateParams.subPage = $stateParams.subPage || 'summary';
-                            var url = 'views/invest/' + $stateParams.subPage + '.html';
-                            return 'views/invest/' + $stateParams.subPage + '.html';
-                        },
-                        controllerProvider: function($stateParams) {
-
-                            var ctrlPrefix = 'Invest';
-                            var ctrlSuffix = 'Controller';
-                            var subPage = $stateParams.subPage || 'summary';
-                            var ctrlRoot = modifyCtrlName(subPage);
-                            var ctrlName = ctrlPrefix + ctrlRoot + ctrlSuffix;
-                            return ctrlName;
-
-                            function modifyCtrlName(name) {
-                               var strArray = name.split(/[-_]/i);
-
-                               var i,
-                                    length = strArray.length,
-                                    tmpStr = '',
-                                    newName = '';
-
-                                for (i = 0;i < length;i++) {
-                                    tmpStr = strArray[i].charAt(0).toUpperCase() +
-                                            strArray[i].substring(1);
-                                    newName += tmpStr;
-                                }
-
-                                return newName;
-                            }
-                        }
+            .state('invest.summary',{
+                url:'/invest/summary',
+                views:{
+                    '@invest':{
+                        templateUrl: 'views/invest/summary.html',
+                        controller: 'InvestSummaryController'
+                    },
+                    'content@invest.summary':{
+                      templateUrl: 'views/personal/communicate_info.html',
+                      controller: 'PersonalCommunicateInfoController'
+                    },
+                    'sidebar-ad@invest.summary':{
+                      //templateUrl: 'views/invest/summary_side.html',
+                      templateUrl: 'views/personal/share_side.html',
+                      controller: ''
                     }
                 }
-            });
+            })
+            .state('invest.subPage', {
+                  url: '/invest/:subPage',
+                  views: {
+                      '@invest': {
+                          templateUrl: function ($stateParams) {
+                              $stateParams.subPage = $stateParams.subPage || 'summary';
+                              var url = 'views/invest/' + $stateParams.subPage + '.html';
+                              return 'views/invest/' + $stateParams.subPage + '.html';
+                          },
+                          controllerProvider: function($stateParams) {
+
+                              var ctrlPrefix = 'Invest';
+                              var ctrlSuffix = 'Controller';
+                              var subPage = $stateParams.subPage || 'summary';
+                              var ctrlRoot = modifyCtrlName(subPage);
+                              var ctrlName = ctrlPrefix + ctrlRoot + ctrlSuffix;
+                              return ctrlName;
+
+                              function modifyCtrlName(name) {
+                                 var strArray = name.split(/[-_]/i);
+
+                                 var i,
+                                      length = strArray.length,
+                                      tmpStr = '',
+                                      newName = '';
+
+                                  for (i = 0;i < length;i++) {
+                                      tmpStr = strArray[i].charAt(0).toUpperCase() +
+                                              strArray[i].substring(1);
+                                      newName += tmpStr;
+                                  }
+
+                                  return newName;
+                              }
+                          }
+                      }
+                  },
+
+              })
+              ;
     }]);
 
 

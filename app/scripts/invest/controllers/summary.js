@@ -5,10 +5,12 @@
         .module('tigerwitPersonalApp')
         .controller('InvestSummaryController', InvestSummaryController);
 
-    InvestSummaryController.$inject = ['$scope'];
+    InvestSummaryController.$inject = ['$scope','$location'];
 
-    function InvestSummaryController() {
+    function InvestSummaryController($scope,$location) {
         console.info('Summary Page');
+
+
     }
 
 })();

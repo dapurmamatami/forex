@@ -10,10 +10,10 @@
     color:$gray-lighter
 }
 @include b(communicateinfo){
-    min-height: 700px;
+    min-height: 800px;
     padding: 18px;
-    border: 1px solid #ddd;
     background-color: $brand-white;
+    border-right: 1px solid $brand-border-color;;
     hr {
         border: 0 ;
         background-color:$brand-border-color;
@@ -22,223 +22,227 @@
         clear:both;
     }
 
-  img{
-      height:48px;
-      width:48px;
-      float:left;
-      border: 1px solid transparent;
-      border-color:$brand-border-color;
+    img{
+        height:48px;
+        width:48px;
+        float:left;
+        border: 1px solid transparent;
+        border-color:$brand-border-color;
 
-  }
-  @include e(head){
-      witdh : 480;
-      margin-top: 10px;
-      @include e(title){
-          font-weight: 500;
-          font-size: 25px;
-          letter-spacing:4px;
-          font-color:$gray-dark;
-      };
+    }
+    @include e(head){
+        witdh : 480;
+        margin-top: 10px;
+        @include e(title){
+            font-weight: 500;
+            font-size: 25px;
+            letter-spacing:4px;
+            font-color:$gray-dark;
+        };
 
-      @include e(menu){
-          float:right;
-          position:relative;
-          height:34px;
-          button {
-              @extend .btn;
-              @extend .btn-default;
-              font-weight:600;
-              position:relative;
-              left:0;
-              top:0;
-              border-color:$brand-border-color;
-              color:#999999;
-              cursor:pointer;
-              &:hover{
-                background-color: #fff;
-                border-color: $brand-border-color;
-              }
-          }
-          ul {
-              @extend .dropdown-menu;
-              min-width:124px;
-              display: block;
-              top:85%;
-          }
-      }
-
-
-      hr{
-          margin-top: 30px;
-      }
-  }
-
-  @include b(topicOrComment){
-      float:right;
-      min-height:88px;
-      width:415px;
-      position:relative;
-      textarea {
-          width:415px;
-          max-width:415px;
-          min-height:50px ;
-          max-height:70px;
-          margin-top: 10px;
-      }
-      @include e(doToast){
-          position: absolute;
-          left:150px;
-          top:50px;
-          opacity:0;
-      }
-
-      @include e(dostyl){
-          margin-top: 10px;
-          span{
-              color:$gray-lighter;
-          }
-          a{
-              @extend .btn;
-              @extend .btn-default;
-              float:right;
-              border-color:$brand-border-color;
-              color:#999999;
-              color: #606060;
-              border: solid 1px #b7b7b7;
-              -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
-              -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
-              box-shadow: 0 1px 2px rgba(0,0,0,.2);
-              &:hover{
+        @include e(menu){
+            float:right;
+            position:relative;
+            height:34px;
+            button {
+                @extend .btn;
+                @extend .btn-default;
+                font-weight:600;
+                position:relative;
+                left:0;
+                top:0;
+                border-color:$brand-border-color;
+                color:#999999;
+                cursor:pointer;
+                &:hover{
                   background-color: #fff;
                   border-color: $brand-border-color;
-              }
-          }
-      }
-  }
 
-  @include b(publisharea){
-      min-height: 88px;
-      _height:88px;
-      overflow:hidden;
-      textarea{
-         margin-top: 0px;
-      }
-  }
-////////////////////////////////////////////////////////////////////////////
-  @include b(communicatelist){
-
-      @include b(communicate) {
-          height:100%;
-          overflow:hidden;
-          .other_info{
-              float: right;
-              font-weight: 600;
-              color: $brand-primary;
-              font-size:15px;
-              clear:both;
-              span{
-                  cursor:pointer;
-                  &:hover{
-                     color:$brand-border-color;
-                  }
-              }
-          }
-
-          @include e(contenttext) {
-              float:right;
-              width:415px;
-          }
-          @include e(contentout){
-              float:right;
-              width:415px;
-
-              @include e(outinfo){
-                  border: 1px solid transparent;
-                  border-color:$brand-border-color;
-                  height:76px;
-                  margin-bottom: 18px;
-              }
-              img{
-                  width:118px;
-                  height:76px;
-                  border:0;
-                  display:inline;
-              }
-              .leftc{
-                  min-height:76px;
-                  min-width:140px;
-                  float:left;
-              }
-              .leftc p{
-                  margin:12px 12px;
-                  width:140px;
-              }
-              .leftc p:first-child{
-                  font-size:18px;
-                  font-weight:600;
-                  color:$brand-primary;
-              }
-              .profit{
-                  float:right;
-                  height:76px;
-                  font-size:20px;
-                  margin-top:24px;
-                  margin-right: 20px;
-                  font-weight: 600;
-                  color:$brand-green;
-              }
-          }
-
-          @include b(loadmore){
-              text-align:center;
-              margin-left: auto;
-              margin-right:auto;
-              background: $gray-lightest;
-              height: 30px;
-              line-height: 30px;
-              a{
-                  cursor:pointer;
-                  text-align:center;
-                  margin-top: auto;
-                  margin-bottom:auto;
-              }
-          }
-      }
+                }
+            }
+            ul {
+                @extend .dropdown-menu;
+                min-width:124px;
+                display: block;
+                top:85%;
+            }
+            li a{
+                cursor:pointer;
+            }
+        }
 
 
-      @include b(communicatecopy) {
-          height:100%;
-          overflow:hidden;
-          @include e(content) {
-              float: right;
-              width: 415px;
-              height: 164px;
+        hr{
+            margin-top: 30px;
+        }
+    }
 
-              @include e(info) {
-                  position: relative;
-                  border: 1px solid transparent;
-                  border-color:$brand-border-color;
-                  overflow:hidden;
-                  img {
-                      height: 103px;
-                      width: 103px;
-                  }
-                  .leftc {
-                      padding: 10px 10px;
-                      width: 160px;
-                      float: left;
-                  }
-                  .docopy {
-                      @extend .btn;
-                      @extend .btn-primary;
-                      width:74px;
-                      position: absolute;
-                      right: 10px;
-                      top: 60px;
-                  }
-              }
-          }
-      }
-  }
+    @include b(topicOrComment){
+        float:right;
+        min-height:88px;
+        width:415px;
+        position:relative;
+        textarea {
+            width:415px;
+            max-width:415px;
+            min-height:50px ;
+            max-height:70px;
+            margin-top: 10px;
+        }
+        @include e(doToast){
+            position: absolute;
+            left:150px;
+            top:50px;
+            opacity:0;
+        }
+
+        @include e(dostyl){
+            margin-top: 10px;
+            span{
+                color:$gray-lighter;
+            }
+            a{
+                @extend .btn;
+                @extend .btn-default;
+                float:right;
+                border-color:$brand-border-color;
+                color:#999999;
+                color: #606060;
+                border: solid 1px #b7b7b7;
+                -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+                -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+                box-shadow: 0 1px 2px rgba(0,0,0,.2);
+                &:hover{
+                    background-color: #fff;
+                    border-color: $brand-border-color;
+                }
+            }
+        }
+    }
+
+    @include b(publisharea){
+        min-height: 88px;
+        _height:88px;
+        overflow:hidden;
+        textarea{
+           margin-top: 0px;
+        }
+    }
+  ////////////////////////////////////////////////////////////////////////////
+    @include b(communicatelist){
+
+        @include b(communicate) {
+            height:100%;
+            overflow:hidden;
+            .other_info{
+                float: right;
+                font-weight: 600;
+                color: $brand-primary;
+                font-size:15px;
+                clear:both;
+                span{
+                    cursor:pointer;
+                    &:hover{
+                       color:$brand-border-color;
+                    }
+                }
+            }
+
+            @include e(contenttext) {
+                float:right;
+                width:415px;
+            }
+            @include e(contentout){
+                float:right;
+                width:415px;
+
+                @include e(outinfo){
+                    border: 1px solid transparent;
+                    border-color:$brand-border-color;
+                    height:76px;
+                    margin-bottom: 18px;
+                }
+                img{
+                    width:118px;
+                    height:76px;
+                    border:0;
+                    display:inline;
+                }
+                .leftc{
+                    min-height:76px;
+                    min-width:140px;
+                    float:left;
+                }
+                .leftc p{
+                    margin:12px 12px;
+                    width:140px;
+                }
+                .leftc p:first-child{
+                    font-size:18px;
+                    font-weight:600;
+                    color:$brand-primary;
+                }
+                .profit{
+                    float:right;
+                    height:76px;
+                    font-size:20px;
+                    margin-top:24px;
+                    margin-right: 20px;
+                    font-weight: 600;
+                    color:$brand-green;
+                }
+            }
+
+            @include b(loadmore){
+                text-align:center;
+                margin-left: auto;
+                margin-right:auto;
+                background: $gray-lightest;
+                height: 30px;
+                line-height: 30px;
+                a{
+                    cursor:pointer;
+                    text-align:center;
+                    margin-top: auto;
+                    margin-bottom:auto;
+                }
+            }
+        }
+
+
+        @include b(communicatecopy) {
+            height:100%;
+            overflow:hidden;
+            @include e(content) {
+                float: right;
+                width: 415px;
+                height: 164px;
+
+                @include e(info) {
+                    position: relative;
+                    border: 1px solid transparent;
+                    border-color:$brand-border-color;
+                    overflow:hidden;
+                    img {
+                        height: 103px;
+                        width: 103px;
+                    }
+                    .leftc {
+                        padding: 10px 10px;
+                        width: 160px;
+                        float: left;
+                    }
+                    .docopy {
+                        @extend .btn;
+                        @extend .btn-primary;
+                        width:74px;
+                        position: absolute;
+                        right: 10px;
+                        top: 60px;
+                    }
+                }
+            }
+        }
+    }
 }
 

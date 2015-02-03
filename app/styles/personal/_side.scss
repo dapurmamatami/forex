@@ -1,6 +1,6 @@
 @include b(personal_info) {
     margin-right: 5px;
-    
+
     @include e(panel) {
         padding: 15px;
         border-bottom: 1px solid $brand-border-color;
@@ -9,7 +9,7 @@
             border-bottom: none;
         }
     }
-    
+
     @include b(basic_info) {
         $basic_info: &;
 
@@ -18,7 +18,7 @@
             height: 150px;
             margin: -11px auto 0;
             @include box-shadow($brand-primary 0 0 0 4px);
-            
+
             &:hover {
                 @include box-shadow($brand-primary 0 0 10px 4px);
             }
@@ -34,7 +34,7 @@
             text-overflow: ellipsis;
             font-size: 30px;
             overflow:hidden;
-           
+
         }
 
         @include e(location) {
@@ -49,7 +49,7 @@
                     }
                 }
             }
-        }    
+        }
     }
 
     @include b(MT4) {
@@ -79,7 +79,7 @@
             vertical-align: top;
             width: 50%;
             text-align: center;
-            
+
             >h4 {
                 font-weight: 700;
                 color: $brand-primary;
@@ -93,10 +93,10 @@
 
     @include b(real_account) {
         $real_account: &;
-        
+
         @include e(title) {
         }
-        
+
         @include e(percent) {
             //font-size: 16px;
             //color: $gray-light;
@@ -112,18 +112,16 @@
             margin: 20px 0;
             font-size: 16px;
         }
-         
-    }  
+
+    }
 }
 
 @include b(personal_ad) {
-    border: 1px solid $brand-border-color;
-    border-left: none;
-    background-color: $gray-lightest;
+
     @include b(deposit_pnl) {
         margin-bottom:18px;
         padding:15px;
-        
+
         @include e(title) {
             margin-top: 0;
             padding-bottom: 15px;
@@ -149,7 +147,7 @@
         @include e(to_detail) {
             font-size: 16px;
         }
-    
+
     }
 
     @include e(ad_pnl) {
@@ -189,5 +187,5 @@
             margin:0 12px;
         }
     }
-    
+
 }

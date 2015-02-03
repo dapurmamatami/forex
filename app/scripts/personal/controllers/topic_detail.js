@@ -5,20 +5,20 @@
       .module('tigerwitPersonalApp')
       .controller('PersonalTopicDetailController',PersonalTopicDetailController);
 
-    PersonalTopicDetailController.$inject = ["$timeout","$rootScope","$scope",'communicate','$cookieStore'];
-    function PersonalTopicDetailController($timeout,$rootScope,$scope,communicate,$cookieStore){
+    PersonalTopicDetailController.$inject = ['$location','$state',"$timeout","$rootScope","$scope",'communicate','$cookieStore'];
+    function PersonalTopicDetailController($location,$state,$timeout,$rootScope,$scope,communicate,$cookieStore){
 
 
         $scope.matchCommentContent = matchCommentContent;
         $scope.tRemainSum = 0;
-
+        $scope.mTopicId = $location.search().topicid;
         $scope.doComment = doComment;
         $scope.doSupport = doSupport;
         $scope.loadMore = loadMore;
         function getTopicInfo(commentLength){
 
 
-            communicate.topicDetail($cookieStore.get("mDetailTopicId"),commentLength)
+            communicate.topicDetail($scope.mTopicId ,commentLength)
                 .then(function(data){
                     console.info(data)
                     if(data.statecode){
@@ -29,6 +29,7 @@
                        }else{
                           $scope.commentList = $scope.commentList.concat(data.data);
                        }
+                       $scope.$broadcast('stopLoadingMore');
 
                     }
             },function(data){
