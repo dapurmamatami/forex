@@ -1,16 +1,16 @@
 <div tw-loading-img></div>
 <div class="relationship_ctn">
     <span class="relationship_ctn__tip" ng-show="relationType === 'copiedTrader'">
-        目前共复制了 {{copiedTraderSum}} 名高手
+        目前共复制了 {{investorSum}} 名高手
     </span>
     <span class="relationship_ctn__tip" ng-show="relationType === 'copier'">
-        目前共 {{copierSum}} 名投资者复制我的订单
+        目前共 {{investorSum}} 名投资者复制我的订单
     </span>
     <span class="relationship_ctn__tip" ng-show="relationType === 'following'">
-        目前共关注了 {{followingSum}} 名投资者
+        目前共关注了 {{investorSum}} 名投资者
     </span>
     <span class="relationship_ctn__tip" ng-show="relationType === 'fan'">
-        目前共 {{fanSum}} 名投资者关注我
+        目前共 {{investorSum}} 名投资者关注我
     </span>
     
     <ul class="nav nav-pills">
@@ -47,7 +47,7 @@
                     </div>
                     <div class="col-xs-3 investor__info">
                         <p class="investor__name">
-                            {{investor.username}}
+                            {{investor.userName}}
                         </p>
                         <p class="investor__location">
                             中国，北京，朝阳区
@@ -55,16 +55,16 @@
                     </div>
                     <div class="col-xs-2"></div>
                     <div class="col-xs-2 investor__number">
-                        {{investor.copy_copiers_count}}
+                        {{investor.copierSum}}
                     </div>
                     <div class="col-xs-2 investor__number">
-                        {{investor.fans_count}}
+                        {{investor.fanSum}}
                     </div>
-                    <div class="col-xs-2 investor__profit" ng-show="investor.total_profit_rate.indexOf('-') < 0">
-                        {{investor.total_profit_rate}}%
+                    <div class="col-xs-2 investor__profit" ng-show="investor.rate.indexOf('-') < 0">
+                        {{investor.rate}}%
                     </div>
-                    <div class="col-xs-2 investor__deficit" ng-show="investor.total_profit_rate.indexOf('-') >= 0">
-                        {{investor.total_profit_rate}}%
+                    <div class="col-xs-2 investor__deficit" ng-show="investor.rate.indexOf('-') >= 0">
+                        {{investor.rate}}%
                     </div>
                 </div>
             </li>
