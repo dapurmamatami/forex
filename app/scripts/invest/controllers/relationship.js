@@ -41,6 +41,8 @@
 
                         if (length > 0) {
                             getFanSum($scope, $scope.investors, relationship);
+                        } else {
+                            $scope.$broadcast('hideLoadingImg');
                         }
                     });
                     break;
@@ -58,6 +60,8 @@
                         if (length > 0) {
                             lastId = $scope.investors[length - 1].id;
                             getFanSum($scope, $scope.investors, relationship);
+                        } else {
+                            $scope.$broadcast('hideLoadingImg');
                         }
 
                      });
@@ -94,6 +98,8 @@
                     if(length > 0) {
                         lastId = lastId + count;
                         getOtherParams($scope, $scope.investors, relationship);
+                    } else {
+                        $scope.$broadcast('hideLoadingImg');
                     }
                 });
             }
