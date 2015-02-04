@@ -5,9 +5,9 @@
         .module('tigerwitPersonalApp')
         .controller('InvestIndexController', InvestIndexController);
 
-    InvestIndexController.$inject = ['$rootScope', '$scope', '$state'];
+    InvestIndexController.$inject = ['$location', '$rootScope', '$scope', '$state'];
 
-    function InvestIndexController($rootScope, $scope, $state) {
+    function InvestIndexController($location, $rootScope, $scope, $state) {
         $scope.childState = '';
         $scope.accountType = {
             key: 'demo',      //'demo' or 'real'

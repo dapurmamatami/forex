@@ -8,11 +8,11 @@
     PersonalInfoController.$inject = ['$location','$scope', '$timeout',
             '$modal', '$cookieStore', '$state', 'account', 'money', 'communicate', 'copy'];
 
-    function PersonalInfoController($scope, $timeout, $modal, $cookieStore, $state,
+    function PersonalInfoController($location, $scope, $timeout, $modal, $cookieStore, $state,
             account, money, communicate, copy) {
         $scope.userType = {
             code:'',         //  code      
-            isPersonal:true  // 是自己还是别人，默认�true
+            isPersonal:true  // æ˜¯è‡ªå·±è¿˜æ˜¯åˆ«äººï¼Œé»˜è®¤æ˜true
         };
         $scope.personal = {};
         $scope.equityInfo = {};  // personal money info
@@ -26,7 +26,7 @@
             getSocialSum($scope.personal, communicate, copy);
 
             if (data.verified) {
-                // 获取个人�money
+                // èŽ·å–ä¸ªäººçšmoney
                 (function getEquity() {
                     money.getLastEquity().then(function (data) {
                         $scope.equityInfo = data;
