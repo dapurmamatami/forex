@@ -146,9 +146,9 @@ angular
                         },
                         controllerProvider:function($stateParams){
                             if($stateParams.subPage=='topic_detail'){
-                              return ''
+                                return ''
                             }else{
-                              return 'AdSideController';
+                                return 'AdSideController';
                             }
                         }
                     }
@@ -231,8 +231,7 @@ angular
                               }
                           }
                       }
-                  },
-
+                  }
               })
               ;
     }]);

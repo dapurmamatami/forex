@@ -18,5 +18,4 @@
             $location.path('/invest/summary');
         }
     }
-
 })();
