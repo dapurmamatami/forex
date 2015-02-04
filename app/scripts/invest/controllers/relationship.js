@@ -17,7 +17,12 @@
         var lastId;
         var count = 1;              //单页 investor 数
         
-        getInvestors('copiedTrader');
+        if ($scope.userType.isPersonal) {
+            getInvestors('copiedTrader', $scope.userType.code);
+        } else {
+            getInvestors('copier', $scope.userType.code);
+        }
+        
     
         /*
          * 根据 relationType 获取用户列表（data.data）赋值给 $scope.investors
@@ -48,12 +53,12 @@
                     break;
                 case 'copier':
                     lastId = -1;
-                    relationship.getCopiers(lastId, count).then(function (data){
+                    relationship.getCopiers($scope.userType.code, lastId, count).then(function (data){
                         if (Object.prototype.toString.call(data.data) !== '[object Array]') {
                             return;
                         }
                         $scope.investors = modifyPropertyName(data.data);
-                        $scope.investSum = data.total;
+                        $scope.investorSum = data.total;
                         var length = $scope.investors.length;
                         $scope.noMoreInvestors = !hasMoreInvestors($scope.investSum, length);
 
@@ -68,11 +73,11 @@
                     break;
                 case 'following':
                     lastId = 0;
-                    tmp = relationship.getFollowings($scope.personal.user_code, lastId, count);
+                    tmp = relationship.getFollowings($scope.userType.code, lastId, count);
                     break;
                 case 'fan':
                     lastId = 0;
-                    tmp = relationship.getFans($scope.personal.user_code, lastId, count);
+                    tmp = relationship.getFans($scope.userType.code, lastId, count);
                     break;
                 default:
                     break;
@@ -110,7 +115,7 @@
             var tmp;
             switch ($scope.relationType) {
                 case 'copier':
-                    relationship.getCopiers(lastId, count).then(function (data) {
+                    relationship.getCopiers($scope.userType.code, lastId, count).then(function (data) {
                         var newList = modifyPropertyName(data.data);
 
                         if (newList.length <= 0) {
@@ -124,10 +129,10 @@
                     });
                     break;
                 case 'following':
-                    tmp = relationship.getFollowings($scope.personal.user_code, lastId, count);
+                    tmp = relationship.getFollowings($scope.userType.code, lastId, count);
                     break;
                 case 'fan':
-                    tmp = relationship.getFans($scope.personal.user_code, lastId, count);
+                    tmp = relationship.getFans($scope.userType.code, lastId, count);
                     break;
                 default:
                     break;

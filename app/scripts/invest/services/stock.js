@@ -20,7 +20,9 @@
          *
          * @method getEquityReport
          * @param {Object} {
-         *     period: //  距离当前的天数
+         *     period:       // 距离当前的天数
+         *     tiger_source: // 'demo' or 'real'
+         *     cros_user:    // 别人的 user code
          * }
          * @return {Object} {
          *     data: [[ //timestamp / 1000, // 金额]],
@@ -28,11 +30,12 @@
          *     is_succ: true / false
          * }
          */
-        function getEquityReport(number, type) {
+        function getEquityReport(number, type, userCode) {
             return $http.get('/equity_report', {
                 params: {
-                    period: number,
-                    tiger_source: type // 'demo' or 'real'
+                    period: number,       
+                    tiger_source: type,   
+                    cros_user: userCode   
                 }
             });    
         }
@@ -41,6 +44,10 @@
          * 投资详情（Invest） - 账户概况
          *
          * @method getSummaryReport
+         * @param {Object} {
+         *     tiger_source: // 'demo' or 'real'
+         *     cros_user:    // 别人的 user code
+         * }
          * @return {Object} {
          *   total_profit_rate: // 盈利率,
          *   total_volume:      // 总交易手数,
@@ -56,10 +63,11 @@
          *   avg_deficit:       //平均亏损
          * }
          */
-        function getSummaryReport(type) {
+        function getSummaryReport(type, userCode) {
             return $http.get('/summary_report', {
                 params: {
-                    tiger_source: type
+                    tiger_source: type,
+                    cros_user: userCode
                 }
             });
         }
@@ -103,6 +111,8 @@
                     case 'type':
                         this['tiger_source'] = value;
                         break;
+                    case 'userCode':
+                        this['cros_user'] = value;
                     default:
                         break;
                 }

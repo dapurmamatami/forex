@@ -4,26 +4,26 @@
         目前共复制了 {{investorSum}} 名高手
     </span>
     <span class="relationship_ctn__tip" ng-show="relationType === 'copier'">
-        目前共 {{investorSum}} 名投资者复制我的订单
+        目前共有 {{investorSum}} 名跟随者
     </span>
     <span class="relationship_ctn__tip" ng-show="relationType === 'following'">
         目前共关注了 {{investorSum}} 名投资者
     </span>
     <span class="relationship_ctn__tip" ng-show="relationType === 'fan'">
-        目前共 {{investorSum}} 名投资者关注我
+        目前共有 {{investorSum}} 名粉丝
     </span>
     
     <ul class="nav nav-pills">
-        <li  ng-class="{active: relationType === 'fan'}" ng-click="relationType === 'fan' || getInvestors('fan')">
+        <li ng-class="{active: relationType === 'fan'}" ng-click="relationType === 'fan' || getInvestors('fan')">
             <a href="">粉丝</a>
         </li>
-        <li ng-class="{active: relationType === 'following'}" ng-click="getInvestors('following')">
+        <li ng-show="userType.isPersonal" ng-class="{active: relationType === 'following'}" ng-click="getInvestors('following')">
             <a href="">关注</a>
         </li>
         <li ng-class="{active: relationType === 'copier'}" ng-click="relationType === 'copier' || getInvestors('copier')">
             <a href="">跟随</a>
         </li>
-        <li ng-class="{active: relationType === 'copiedTrader'}" ng-click="relationType === 'copiedTrader' || getInvestors('copiedTrader')">
+        <li ng-show="userType.isPersonal" ng-class="{active: relationType === 'copiedTrader'}" ng-click="relationType === 'copiedTrader' || getInvestors('copiedTrader')">
             <a href="">复制</a>
         </li>
     </ul>

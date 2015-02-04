@@ -17,7 +17,6 @@
 
         var stateUrl = $state.current.url;
         var stateUrlList = stateUrl.split('/');
-        console.info(stateUrl);
         $scope.parentState = stateUrlList[1];
 
         

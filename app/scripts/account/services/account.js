@@ -28,8 +28,12 @@
         }
 
         // 获取 user 信息
-        function getUserInfo() {
-            return $http.get();
+        function getUserInfo(userCode) {
+            return $http.get('/get_user_info', {
+                params: {
+                    cros_user: userCode
+                }
+            });
         }
 
         // 注册时提交的真实姓名和身份证号

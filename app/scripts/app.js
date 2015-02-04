@@ -77,7 +77,7 @@ angular
     .module('tigerwitPersonalApp')
     .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$controllerProvider',
             function ($stateProvider, $urlRouterProvider, $httpProvider, $controllerProvider) {
-        $urlRouterProvider.otherwise('/invest/summary');
+        $urlRouterProvider.otherwise('/personal/communicate_info');
 
         $stateProvider
             .state('personal', {
@@ -154,7 +154,7 @@ angular
                     }
                 }
             })
-
+            
             .state('invest', {
                 views: {
                     '@': {
@@ -196,7 +196,7 @@ angular
                 }
             })
             .state('invest.subPage', {
-                  url: '/invest/:subPage',
+                url: '/invest/:subPage/:userCode',
                   views: {
                       '@invest': {
                           templateUrl: function ($stateParams) {

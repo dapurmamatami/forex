@@ -22,9 +22,10 @@
             return $http.get('/copiedtraders_list');
         }
 
-        function getCopiers(lastId, count) {
+        function getCopiers(userCode, lastId, count) {
             return $http.get('/copiers_list', {
                 params: {
+                    cros_user: userCode,
                     after: lastId,
                     count: count
                 }

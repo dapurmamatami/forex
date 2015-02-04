@@ -5,9 +5,9 @@
         .module('tigerwitPersonalApp')
         .controller('InvestIndexController', InvestIndexController);
 
-    InvestIndexController.$inject = ['$rootScope', '$scope', '$location'];
+    InvestIndexController.$inject = ['$rootScope', '$scope', '$state'];
 
-    function InvestIndexController($rootScope, $scope, $location) {
+    function InvestIndexController($rootScope, $scope, $state) {
         $scope.childState = '';
         $scope.accountType = {
             key: 'demo',      //'demo' or 'real'
@@ -17,17 +17,23 @@
         $scope.switchAccount = switchAccount;
         $scope.touchCode = $location.search().touchCode;
         $scope.$on('$viewContentLoaded', function () {
-            var url = $location.path();
-            $scope.childState = url.split('/')[2];
+            $scope.childState = $state.params.subPage;
 
-            if ($scope.childState === 'relationship' || $scope.childState === 'summary') {
+            if (!$scope.userType.isPersonal) {
                 $scope.accountType.visible = false;
-            }
+            } else {
 
-            if ($scope.childState === 'statistics' || $scope.childState === 'history') {
-                $scope.accountType.visible = true;
+                if ($scope.childState === 'relationship' || $scope.childState === 'summary') {
+                    $scope.accountType.visible = false;
+                }
+
+                if ($scope.childState === 'statistics' || $scope.childState === 'history') {
+                    $scope.accountType.visible = true;
+                } 
             }
         });
+
+        
 
         function switchAccount() {
             $scope.$broadcast('showLoadingImg');

@@ -1,6 +1,6 @@
 <div tw-loading-img></div>
 <div class="history_orders">
-    <ul class="nav nav-pills">
+    <ul class="nav nav-pills" ng-show="userType.isPersonal">
         <li ng-class="{active: orderType === 'only_copy'}" ng-click="orderType === 'only_copy' || switchOrderType('only_copy')">
             <a href="">复制交易</a>
         </li>

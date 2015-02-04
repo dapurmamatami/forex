@@ -1,4 +1,4 @@
-<div class="personal_info">
+<div class="personal_info" ng-show="userType.isPersonal">
 
     <div class="personal_info__panel basic_info">
         <div class="basic_info__photo_wrap">
@@ -59,3 +59,21 @@
     </div>
 </div>
 
+<div class="user_info" ng-show="!userType.isPersonal">
+    <div class="user_info__panel basic_info">
+        <div class="basic_info__photo_wrap">
+            <a href="">
+                <img class="basic_info__photo" ng-src="ngsrc/photo-{{ user.sex ? 'man' : 'woman'}}.png" alt="**" >
+            </a>
+        </div>
+        <h3 class="basic_info__name">{{user.username}}</h3>
+        <div class="basic_info__location">
+            <p class="basic_info__region">北京市，朝阳区</p>
+            <p class="basic_info__nation">
+                <i class="fa fa-location-arrow"></i>
+                中国
+            </p>              
+        </div>
+    </div>
+
+</div>
