@@ -189,8 +189,8 @@ angular
                       controller: 'PersonalCommunicateInfoController'
                     },
                     'sidebar-ad@invest.summary':{
-                      //templateUrl: 'views/invest/summary_side.html',
-                      templateUrl: 'views/personal/share_side.html',
+                      templateUrl: 'views/invest/summary_side.html',
+                      //templateUrl: 'views/personal/share_side.html',
                       controller: ''
                     }
                 }
