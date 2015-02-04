@@ -147,14 +147,12 @@ angular
                         controllerProvider:function($stateParams){
                             if($stateParams.subPage=='topic_detail'){
                                 return ''
-                            }else{
-                                return 'AdSideController';
                             }
                         }
                     }
                 }
             })
-            
+
             .state('invest', {
                 views: {
                     '@': {

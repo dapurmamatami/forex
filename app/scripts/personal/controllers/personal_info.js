@@ -11,8 +11,8 @@
     function PersonalInfoController($scope, $timeout, $modal, $cookieStore, $state,
             account, money, communicate, copy) {
         $scope.userType = {
-            code:'',         //  code      
-            isPersonal:true  // 是自己还是别人，默认�true
+            code:'',         //  code
+            isPersonal:true  // 是自己还是别人，默认�true
         };
         $scope.personal = {};
         $scope.equityInfo = {};  // personal money info
@@ -26,7 +26,7 @@
             getSocialSum($scope.personal, communicate, copy);
 
             if (data.verified) {
-                // 获取个人�money
+                // 获取个人money
                 (function getEquity() {
                     money.getLastEquity().then(function (data) {
                         $scope.equityInfo = data;
@@ -41,13 +41,13 @@
 
         if ($scope.userType.code && $cookieStore.get('userCode') &&
                 $scope.userType.code !== $cookieStore.get('userCode')) {
-            
+
             $scope.userType.isPersonal = false;
-            
+
             account.getUserInfo($scope.userType.code).then(function (data) {
                 $scope.user = data;
             });
-        } 
+        }
 
         function getSocialSum(personal, service1, service2) {
             service2.getCCSum().then(function (data) {
