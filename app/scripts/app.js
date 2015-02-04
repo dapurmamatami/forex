@@ -175,24 +175,7 @@ angular
                     }
                 }
             })
-            .state('invest.summary',{
-                url:'/invest/summary',
-                views:{
-                    '@invest':{
-                        templateUrl: 'views/invest/summary.html',
-                        controller: 'InvestSummaryController'
-                    },
-                    'content@invest.summary':{
-                      templateUrl: 'views/personal/communicate_info.html',
-                      controller: 'PersonalCommunicateInfoController'
-                    },
-                    'sidebar-ad@invest.summary':{
-                      templateUrl: 'views/invest/summary_side.html',
-                      //templateUrl: 'views/personal/share_side.html',
-                      controller: ''
-                    }
-                }
-            })
+
             .state('invest.subPage', {
                 url: '/invest/:subPage/:userCode',
                   views: {
@@ -228,7 +211,16 @@ angular
                                   return newName;
                               }
                           }
-                      }
+                      },
+                    'content@invest.subPage':{
+                      templateUrl: 'views/personal/communicate_info.html',
+                      controller: 'PersonalCommunicateInfoController'
+                    },
+                    'sidebar-ad@invest.subPage':{
+                      templateUrl: 'views/invest/summary_side.html',
+                      //templateUrl: 'views/personal/share_side.html',
+                      controller: ''
+                    }
                   }
               })
               ;

@@ -9,9 +9,10 @@
   '$cookieStore',
   '$scope',
   'communicate',
-  '$location'];
+  '$location',
+  '$state'];
 
-  function PersonalCommunicateInfoController($cookieStore,$scope,communicate,$location) {
+  function PersonalCommunicateInfoController($cookieStore,$scope,communicate,$location,$state) {
 
       /**
        *
@@ -102,20 +103,20 @@
                   $scope.$broadcast('stopLoadingMore');
           });
       }
-    (function init(){
-        if(/summary$/.test($location.path())){
-            $scope.userCode = $location.search().touchCode;
-            $scope.communicate_identify = summary_state;
-            $scope.title_name = '近期投资动态';
-            $scope.isSummary = true;
-        }else{
-            $scope.userCode = $cookieStore.get('userCode');
-            $scope.communicate_identify = hot_state;
-        }
+      (function init(){
+          if(/summary/.test($location.path())){
+              $scope.userCode = $state.params.userCode;
+              $scope.communicate_identify = summary_state;
+              $scope.title_name = '近期投资动态';
+              $scope.isSummary = true;
+          }else{
+              $scope.userCode = $cookieStore.get('userCode');
+              $scope.communicate_identify = hot_state;
+          }
 
-        getCommunicateInfo();
+          getCommunicateInfo();
 
-    })();
+      })();
 
   }
 
@@ -264,9 +265,8 @@
                 $location.search('topicid',$scope.mData['topicid']+"");
                 $location.path('/personal/topic_detail');
             }
-            function skipToSummary(){
-                $location.search('touchCode',$scope.mData.publisher_id+"");
-                $location.path('/invest/summary');
+            function skipToSummary(touchId){
+                $location.path('/invest/summary/'+touchId);
             }
         }
 })();

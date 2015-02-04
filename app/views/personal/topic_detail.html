@@ -2,33 +2,33 @@
     <img src="/ngsrc/photo-man.png"/>
 
 
-    <div class="topic">
+    <div class="topic-info">
 
-        <div class="topic__content"">
+        <div class="topic-content"">
             <span class = "focusname" >{{title}}</span>
             <contentshow></contentshow>
             <div>
-                <span class = "ptime">{{topicDetailData['ptime'] | startNow }}前</span>
-                <div class = "topic__content__other">
+                <span class = "communicateinfo__ptime">{{topicDetailData['ptime'] | startNow }}前</span>
+                <div class = "topic-other-info">
                     <span ng-click="doSupport()">赞({{topicDetailData['support_sum']}}) </span>|
                     <span ng-="doTransmit()"> 转发({{topicDetailData['tramsmit_sum']}}) </span>|
                     <span ng-clickclick="showDropComment()"> 评论({{topicDetailData['comment_sum']}}) </span>|
                 </div>
             </div>
 
-            <div class="topic__comment">
+            <div class="topicOrComment">
                 <textarea ng-model="inputContent" ng-change="matchCommentContent()"></textarea>
                 <div class = "topicOrComment__doToast" ng-class="showOrNo">
                     {{toastMsg}}
                 </div>
-                <div class = "topicOrComment__dostyl" >
+                <div class = "do_style" >
                     <span>剩余 {{tRemainSum}}/1024 字</span>
-                    <a ng-click="doComment()"> 回复我的评论 </a>
+                    <a class="do_style__publish" ng-click="doComment()"> 回复我的评论 </a>
                 </div>
             </div>
         </div>
 
-        <div class = "comments__head">
+        <div class = "comments-head">
             <span>全部评论</span>
             <span>排序</span>
             <a >最近</a>
@@ -40,26 +40,26 @@
         <div>
             <div class="comments" ng-repeat="aitem in commentList" ng-controller="CommentsController">
                 <img src="/ngsrc/photo-man.png"/>
-                <div class = "comments__content" >
-                    <span class = "focusname" ng-bind="aitem['publisher_name']"></span>
+                <div class = "comment-info" >
+                    <span class = "communicateinfo__focusname" ng-bind="aitem['publisher_name']" ng-click="skipToSummary(aitem.comment_publisherid)"></span>
                     <contentshow></contentshow>
-                    <div class = "comments__content__other">
-                        <span class = "ptime">{{aitem['ptime'] | startNow }}前</span>
+                    <div class = "comment-info-other">
+                        <span class = "communicateinfo__ptime">{{aitem['ptime'] | startNow }}前</span>
                         <div class = "other_info">
                             <span ng-click="doSupport()">赞({{aitem['support_sum']}}) </span>|
                             <span ng-click="showDoComment()"> 回复({{aitem['comment_sum']}}) </span>
                         </div>
                     </div>
 
-                    <div  class = "comments__lists"  ng-show="showDiscuss" ng-controller="DiscussListController">
+                    <div  class = "comment-lists"  ng-show="showDiscuss" ng-controller="DiscussListController">
                         <div>
-                            <div class ="comments__lists__item" ng-repeat="bitem in discussList" ng-controller = "OneDiscussController" >
+                            <div class ="comment-item" ng-repeat="bitem in discussList" ng-controller = "OneDiscussController" >
                                 <img src="/ngsrc/photo-man.png"/>
                                 <div class = "ccContent">
-                                    <span class = "focusname" ng-bind="bitem['publisher_name']"></span>
+                                    <span class = "communicateinfo__focusname" ng-click="skipToSummary(bitem.comment_publisherid)" ng-bind="bitem['publisher_name']"></span>
                                     <contentshow ng-init="pContent=bitem['content']"></contentshow>
-                                    <div class = "ccContent__other">
-                                        <span class = "ptime">{{bitem['ptime'] | startNow }}前</span>
+                                    <div class = "ccContent-other">
+                                        <span class = "communicateinfo__ptime">{{bitem['ptime'] | startNow }}前</span>
                                         <div class = "other_info">
                                            <span ng-click="doSupport(bitem['comment_id'])">赞({{bitem['support_sum']}}) </span>|
                                           <span ng-click="showDoCommentAndAt(bitem['publisher_name'])">  回复 </span>
@@ -75,7 +75,7 @@
                         <div class = "reply">
                             <div>
                                 <a ng-click = "loadAll()">点击查看全部回复</a>
-                                <a class="saysome" ng-click="showDoCommentAndAt()">我也说两句</a>
+                                <a class="reply__saysome" ng-click="showDoCommentAndAt()">我也说两句</a>
                             </div>
                             <div class="reply__area" ng-show="showReply">
                                 <textarea ng-model="inputContent" ng-change="matchCommentContent()"></textarea>
@@ -84,7 +84,7 @@
                                 </div>
                                 <div class = "topicOrComment__dostyl" >
                                     <span>剩余 {{tRemainSum}}/1024 字</span>
-                                    <a ng-click="doComment()"> 发表 </a>
+                                    <a class = "do_style__publish" ng-click="doComment()"> 发表 </a>
                                 </div>
                                 <div style="clear:both"></div>
                             </div>

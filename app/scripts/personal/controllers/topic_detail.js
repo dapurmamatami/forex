@@ -15,6 +15,7 @@
         $scope.doComment = doComment;
         $scope.doSupport = doSupport;
         $scope.loadMore = loadMore;
+        $scope.skipToSummary = skipToSummary;
         function getTopicInfo(commentLength){
 
 
@@ -87,12 +88,14 @@
               $scope.tempContent =$scope.inputContent;
               $scope.inputContent = "";
               $scope.tRemainSum = 0;
-          }
-
-          function loadMore(){
-              var commentLength = $scope.commentList.length;
-              getTopicInfo(commentLength);
-          }
+        }
+        function skipToSummary(touchId){
+          $location.path('/invest/summary/'+touchId);
+        }
+        function loadMore(){
+            var commentLength = $scope.commentList.length;
+            getTopicInfo(commentLength);
+        }
 
         getTopicInfo(0);
     }

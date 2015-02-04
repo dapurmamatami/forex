@@ -1,24 +1,24 @@
 <div class="communicateinfo">
-    <div class = "communicateinfo__head">
-        <span class = "communicateinfo__head__title">{{title_name}}</span>
+    <div class = "head">
+        <span class = "head__title">{{title_name}}</span>
 
-        <div class = "communicateinfo__head__menu" ng-show="!isSummary" ng-mouseover="showMenu()" ng-mouseleave="backMenu()">
-            <button>{{title_name}}
+        <div class = "head_menu" ng-show="!isSummary" ng-mouseover="showMenu()" ng-mouseleave="backMenu()">
+            <button class="head_menu__btn">{{title_name}}
               <span class="caret"></span>
             </button>
-                <ul  ng-show="showDropdown">
-                    <li>
-                        <a ng-click="switchIdentify('rel')">与我相关的</a>
-                    </li>
-                    <li>
-                        <a ng-click="switchIdentify('hot')">热门投资动态</a>
-                    </li>
-                </ul>
+            <ul  class="head_menu__drop" ng-show="showDropdown">
+                <li>
+                    <a ng-click="switchIdentify('rel')">与我相关的</a>
+                </li>
+                <li>
+                    <a ng-click="switchIdentify('hot')">热门投资动态</a>
+                </li>
+            </ul>
         </div>
     </div>
     <hr />
     <div class = "publisharea" ng-controller="PersonalTopicPublishController">
-        <img class="usericon" src="/ngsrc/photo-man.png"></img>
+        <img class="communicateinfo__user-icon" src="/ngsrc/photo-man.png"></img>
         <div class="topicOrComment">
             <textarea name="inputContent" ng-model="inputContent" ng-change="matchTopicContent()" prompt-special-input></textarea>
             <div class = "topicOrComment__doToast" ng-class="showOrNo" >
@@ -26,25 +26,24 @@
             </div>
             <div >
             </div>
-            <div class = "topicOrComment__dostyl" >
-                <span>剩余 {{tRemainSum}}/1024 字</span>
-                <a ng-click="publishTopic()">发表我的看法 </a>
+            <div class = "do_style" >
+                <span class="do_style__remain">剩余 {{tRemainSum}}/1024 字</span>
+                <a class="do_style__publish" ng-click="publishTopic()">发表我的看法 </a>
             </div>
            </div>
-
     </div>
 
     <hr />
     <div class = "communicatelist" ng-repeat="item in mCdata">
         <div ng-if = "item['topic_type']==0" ng-controller="PersonalCommunicateDoController">
             <div class="communicate" ng-init="mData = item">
-                <img class = "usericon" src="/ngsrc/photo-woman.png"></img>
-                <div class="communicate__contenttext">
-                    <span class = "focusname" ng-click="skipToSummary()">{{mData['title']}}</span>
+                <img class = "communicateinfo__user-icon" src="/ngsrc/photo-woman.png"></img>
+                <div class="communicate-text">
+                    <span class = "communicateinfo__focusname" ng-click="skipToSummary(mData.publisher_id)">{{mData['title']}}</span>
                     <contentshow ng-init="pContent = mData['content']"></contentshow>
                     <div>
-                        <span class = "ptime">{{mData['ptime'] | startNow }}前</span>
-                        <div class = "other_info">
+                        <span class = "communicateinfo__ptime">{{mData['ptime'] | startNow }}前</span>
+                        <div class = "communicateinfo__other_info">
                             <span ng-click="doSupport()">赞({{mData['support_sum']}}) </span>|
                             <span ng-click="doTransmit()"> 转发({{mData['tramsmit_sum']}}) </span>|
                             <span ng-click="showDropComment()"> 评论({{mData['comment_sum']}}) </span>|
@@ -59,34 +58,34 @@
                         </div>
                         <div class = "topicOrComment__dostyl" >
                             <span>剩余 {{tRemainSum}}/1024 字</span>
-                            <a ng-click="doComment()"> 评论 </a>
+                            <a  class="do_style__publish" ng-click="doComment()"> 评论 </a>
                         </div>
                     </div>
                 </div>
             </div>
-            <hr/>
+            <hr />
         </div>
 
 
         <div ng-if = "item['topic_type']==1" ng-controller="PersonalCommunicateDoController">
             <div class="communicate" ng-init="mData = item">
-                <img class = "usericon" src="/ngsrc/photo-woman.png"></img>
-                <div class="communicate__contentout">
+                <img class = "communicateinfo__user-icon" src="/ngsrc/photo-woman.png"></img>
+                <div class="communicate-out">
                     <div>
-                        <span class="focusname">{{mData['content']['username']}}</span>
+                        <span class="communicateinfo__focusname"  ng-click="skipToSummary(mData.publisher_id)">{{mData['content']['username']}}</span>
                         <span> 手动平仓 </span>
-                        <span class="focusname">{{mData['content']['out_type']}}</span>
-                        <p class = "ptime">{{mData['ptime'] | startNow}}</p>
+                        <span class="communicateinfo__focusname">{{mData['content']['out_type']}}</span>
+                        <p class = "communicateinfo__ptime">{{mData['ptime'] | startNow}}</p>
                     </div>
-                    <div class = "communicate__contentout__outinfo">
-                        <img class = "outTypepIcon"></img>
-                        <div class = "leftc">
-                            <p class="outType">{{mData['content']['out_type']}}</p>
-                            <p class="ptime">持仓7小时23分钟</p>
+                    <div class = "outinfo">
+                        <img class = "outinfo__icon"></img>
+                        <div class = "base_info">
+                            <p class="base_info__name">{{mData['content']['out_type']}}</p>
+                            <p class="communicateinfo__ptime base_info__htime">持仓7小时23分钟</p>
                         </div>
-                        <span class = "profit" >{{mData['content']['profit_point']}}%</span>
+                        <span class = "outinfo__profit" >{{mData['content']['profit_point']}}%</span>
                     </div>
-                    <div class = "other_info">
+                    <div class = "communicateinfo__other_info">
                         <span ng-click="doSupport()">赞({{mData['support_sum']}}) </span>|
                         <span ng-click="showDropComment()"> 评论({{mData['comment_sum']}}) </span>|
                         <span ng-click="skipDetail()"> 详情</span>
@@ -108,20 +107,20 @@
         </div>
 
 
-        <div ng-if="item['topic_type']==2">
-            <div class="communicatecopy" ng-init="mData = item">
-                <img class = "usericon" src="/ngsrc/photo-woman.png"></img>
-                <div class="communicatecopy__content">
+        <div ng-if="item['topic_type']==2" ng-controller="PersonalCommunicateDoController">
+            <div class="communicate" ng-init="mData = item">
+                <img class = "communicateinfo__user-icon" src="/ngsrc/photo-woman.png"></img>
+                <div class="communicate-copy">
                     <div>
-                        <span class="focusname">{{mData['mData']['bename']}}</span>
+                        <span class="communicateinfo__focusname" ng-click="skipToSummary(mData.content.be_follow_id)">{{mData['content']['bename']}}</span>
                         <span> 开始复制 </span>
-                        <span class="focusname">{{mData['content']['byname']}}</span>
-                        <p class = "ptime">{{mData['ptime']| startNow}}</p>
+                        <span class="communicateinfo__focusname"  ng-click="skipToSummary(mData.content.by_follow_id)">{{mData['content']['byname']}}</span>
+                        <p class = "communicateinfo__ptime">{{mData['ptime']| startNow}}</p>
                     </div>
-                    <div class = "communicatecopy__content__info">
-                        <img></img>
-                        <div class = "leftc">
-                            <p class="focusname">{{mData['content']['byname']}}</p>
+                    <div class = "copy_info">
+                        <img class="copy_info__icon"></img>
+                        <div class = "copy_base_info">
+                            <p class="communicateinfo__focusname" ng-click="skipToSummary(mData.content.by_follow_id)" >{{mData['content']['byname']}}</p>
                             <p class="bcount">目前共 <strong>{{mData['content']['be_follow_sum']}}</strong> 名复制者</p>
                         </div>
                         <button class = "docopy">复制</button>

@@ -1,14 +1,4 @@
 
-.focusname{
-    font-weight: 600;
-    color: $brand-primary;
-    font-size:17px;
-    cursor:pointer;
-}
-.ptime{
-    font-size:12px;
-    color:$gray-lighter
-}
 @include b(communicateinfo){
     min-height: 800px;
     padding: 18px;
@@ -22,15 +12,37 @@
         clear:both;
     }
 
-    img{
+    @include e(focusname){
+        font-weight: 600;
+        color: $brand-primary;
+        font-size:17px;
+        cursor:pointer;
+    }
+    @include e(ptime){
+        font-size:12px;
+        color:$gray-lighter
+    }
+    @include e(user-icon){
         height:48px;
         width:48px;
         float:left;
         border: 1px solid transparent;
         border-color:$brand-border-color;
-
     }
-    @include e(head){
+    @include e(other_info){
+        float: right;
+        font-weight: 600;
+        color: $brand-primary;
+        font-size:15px;
+        clear:both;
+        span{
+            cursor:pointer;
+            &:hover{
+              color:$brand-border-color;
+            }
+        }
+    }
+    @include b(head){
         witdh : 480;
         margin-top: 10px;
         @include e(title){
@@ -38,13 +50,13 @@
             font-size: 25px;
             letter-spacing:4px;
             font-color:$gray-dark;
-        };
+        }
 
-        @include e(menu){
+        @include b(head_menu){
             float:right;
             position:relative;
             height:34px;
-            button {
+            @include e(btn) {
                 @extend .btn;
                 @extend .btn-default;
                 font-weight:600;
@@ -57,182 +69,151 @@
                 &:hover{
                   background-color: #fff;
                   border-color: $brand-border-color;
-
                 }
             }
-            ul {
+            @include e(drop) {
                 @extend .dropdown-menu;
                 min-width:124px;
                 display: block;
                 top:85%;
-            }
-            li a{
-                cursor:pointer;
-            }
-        }
 
+                li a{
+                  cursor:pointer;
+                }
+            }
+
+        }
 
         hr{
             margin-top: 30px;
         }
     }
-
-    @include b(topicOrComment){
-        float:right;
-        min-height:88px;
-        width:415px;
-        position:relative;
-        textarea {
-            width:415px;
-            max-width:415px;
-            min-height:50px ;
-            max-height:70px;
-            margin-top: 10px;
-        }
-        @include e(doToast){
-            position: absolute;
-            left:150px;
-            top:50px;
-            opacity:0;
-        }
-
-        @include e(dostyl){
-            margin-top: 10px;
-            span{
-                color:$gray-lighter;
-            }
-            a{
-                @extend .btn;
-                @extend .btn-default;
-                float:right;
-                border-color:$brand-border-color;
-                color:#999999;
-                color: #606060;
-                border: solid 1px #b7b7b7;
-                -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
-                -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
-                box-shadow: 0 1px 2px rgba(0,0,0,.2);
-                &:hover{
-                    background-color: #fff;
-                    border-color: $brand-border-color;
-                }
-            }
-        }
-    }
-
     @include b(publisharea){
         min-height: 88px;
         _height:88px;
         overflow:hidden;
         textarea{
-           margin-top: 0px;
+            margin-top: 0px;
         }
+        @include b(topicOrComment){
+            float:right;
+            min-height:88px;
+            width:415px;
+            position:relative;
+            textarea {
+               width:415px;
+               max-width:415px;
+               min-height:50px ;
+               max-height:70px;
+               margin-top: 10px;
+            }
+            @include e(doToast){
+             position: absolute;
+             left:150px;
+             top:50px;
+             opacity:0;
+            }
+
+            @include b(do_style){
+                margin-top: 10px;
+                @include e(remain){
+                    color:$gray-lighter;
+                }
+                @include e(publish){
+                    @extend .btn;
+                    @extend .btn-default;
+                    float:right;
+                    border-color:$brand-border-color;
+                    color:#999999;
+                    color: #606060;
+                    border: solid 1px #b7b7b7;
+                    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+                    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+                    box-shadow: 0 1px 2px rgba(0,0,0,.2);
+                    &:hover{
+                       background-color: #fff;
+                       border-color: $brand-border-color;
+                    }
+                }
+            }
+        }
+
     }
-  ////////////////////////////////////////////////////////////////////////////
+
+
+
     @include b(communicatelist){
 
         @include b(communicate) {
             height:100%;
             overflow:hidden;
-            .other_info{
-                float: right;
-                font-weight: 600;
-                color: $brand-primary;
-                font-size:15px;
-                clear:both;
-                span{
-                    cursor:pointer;
-                    &:hover{
-                       color:$brand-border-color;
-                    }
-                }
+            @include m(text) {
+              float:right;
+              width:415px;
             }
 
-            @include e(contenttext) {
-                float:right;
-                width:415px;
-            }
-            @include e(contentout){
+            @include m(out){
                 float:right;
                 width:415px;
 
-                @include e(outinfo){
+                @include b(outinfo){
                     border: 1px solid transparent;
                     border-color:$brand-border-color;
                     height:76px;
                     margin-bottom: 18px;
-                }
-                img{
-                    width:118px;
-                    height:76px;
-                    border:0;
-                    display:inline;
-                }
-                .leftc{
-                    min-height:76px;
-                    min-width:140px;
-                    float:left;
-                }
-                .leftc p{
-                    margin:12px 12px;
-                    width:140px;
-                }
-                .leftc p:first-child{
-                    font-size:18px;
-                    font-weight:600;
-                    color:$brand-primary;
-                }
-                .profit{
-                    float:right;
-                    height:76px;
-                    font-size:20px;
-                    margin-top:24px;
-                    margin-right: 20px;
-                    font-weight: 600;
-                    color:$brand-green;
-                }
-            }
-
-            @include b(loadmore){
-                text-align:center;
-                margin-left: auto;
-                margin-right:auto;
-                background: $gray-lightest;
-                height: 30px;
-                line-height: 30px;
-                a{
-                    cursor:pointer;
-                    text-align:center;
-                    margin-top: auto;
-                    margin-bottom:auto;
+                    @include e(icon){
+                        width:118px;
+                        height:76px;
+                        border:0;
+                        display:inline;
+                        float:left
+                    }
+                    @include b(base_info){
+                        min-height:76px;
+                        min-width:140px;
+                        float:left;
+                        @include e(name){
+                            margin:12px 12px;
+                            width:140px;
+                            font-size:18px;
+                            font-weight:600;
+                            color:$brand-primary;
+                        }
+                        @include e(htime){
+                          margin:12px 12px;
+                        }
+                    }
+                    @include e(profit){
+                        float:right;
+                        height:76px;
+                        font-size:20px;
+                        margin-top:24px;
+                        margin-right: 20px;
+                        font-weight: 600;
+                        color:$brand-green;
+                    }
                 }
             }
-        }
-
-
-        @include b(communicatecopy) {
-            height:100%;
-            overflow:hidden;
-            @include e(content) {
+            @include m(copy){
                 float: right;
                 width: 415px;
                 height: 164px;
-
-                @include e(info) {
+                @include b(copy_info){
                     position: relative;
                     border: 1px solid transparent;
                     border-color:$brand-border-color;
                     overflow:hidden;
-                    img {
+                    @include e(icon){
                         height: 103px;
                         width: 103px;
+                        float:left;
                     }
-                    .leftc {
+                    @include b(copy_base_info){
                         padding: 10px 10px;
                         width: 160px;
                         float: left;
                     }
-                    .docopy {
+                    @include b(docopy){
                         @extend .btn;
                         @extend .btn-primary;
                         width:74px;
@@ -241,7 +222,22 @@
                         top: 60px;
                     }
                 }
+
             }
+        }
+    }
+    @include b(loadmore){
+        text-align:center;
+        margin-left: auto;
+        margin-right:auto;
+        background: $gray-lightest;
+        height: 30px;
+        line-height: 30px;
+        a{
+            cursor:pointer;
+            text-align:center;
+            margin-top: auto;
+            margin-bottom:auto;
         }
     }
 }

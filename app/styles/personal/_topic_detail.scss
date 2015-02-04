@@ -21,14 +21,12 @@
         border-color:$brand-border-color;
     }
 
-    @include b(topic){
+    @include b(topic-info){
         float:right;
         width:415px;
-
-
-        @include e(content){
+        @include b(topic-content){
             overflow:hidden;
-            @include e(other){
+            @include b(topic-other-info){
                 float:right;
                 font-weight: 600;
                 color: $brand-primary;
@@ -43,7 +41,7 @@
             }
         }
 
-        @include e(comment){
+        @include b(topic-comment){
             float:right;
             min-height:88px;
             width:415px;
@@ -62,16 +60,13 @@
 
         width:415px;
         overflow:hidden;
-        @include e(content){
+        @include b(comment-info){
             float:right;
             width:357px;
-//            overflow:hidden;
-//            height:94px;
-            @include e(other){
+            @include b(comment-info-other){
                 overflow:hidden;
                 .ptime{
                     float:left;
-
                 }
                 .other_info{
                     float:right;
@@ -81,13 +76,13 @@
                     span{
                         cursor:pointer;
                         &:hover{
-                          color:$brand-border-color;
+                            color:$brand-border-color;
                         }
                     }
                 }
             }
         }
-        @include e(lists){
+        @include b(comment-lists){
             background-color: #eff9fd;
             border: 1px solid transparent;
             border-color:#9ddbf1;
@@ -116,15 +111,13 @@
                 @include e(area){
                     overflow: hidden;
                 }
-                a{
-                  cursor:pointer;
-                }
-                .saysome{
-                    position:relative;
-                    left:140px;
-                }
+            @include e(saysome){
+                position:relative;
+                left:140px;
             }
-            @include e(item){
+
+            }
+            @include b(comment-item){
                 overflow: hidden;
                 margin-left: 10px;
                 margin-top: 10px;
@@ -132,7 +125,7 @@
                 @include b(ccContent){
                     width:285px;
                     float:right;
-                    @include e(other){
+                    @include b(ccContent-other){
                         overflow:hidden;
                         .ptime{
                           float:left;
@@ -146,7 +139,7 @@
                             span{
                                 cursor:pointer;
                                 &:hover{
-                                  color:$brand-border-color;
+                                    color:$brand-border-color;
                                 }
                             }
                         }

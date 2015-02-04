@@ -8,11 +8,11 @@
     PersonalInfoController.$inject = ['$location','$scope', '$timeout',
             '$modal', '$cookieStore', '$state', 'account', 'money', 'communicate', 'copy'];
 
-    function PersonalInfoController($scope, $timeout, $modal, $cookieStore, $state,
+    function PersonalInfoController($location, $scope, $timeout, $modal, $cookieStore, $state,
             account, money, communicate, copy) {
         $scope.userType = {
             code:'',         //  code
-            isPersonal:true  // 是自己还是别人，默认�true
+            isPersonal:true  // 是自己还是别人，默认true
         };
         $scope.personal = {};
         $scope.equityInfo = {};  // personal money info
