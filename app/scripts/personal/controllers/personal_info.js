@@ -11,8 +11,8 @@
     function PersonalInfoController($location, $scope, $timeout, $modal, $cookieStore, $state,
             account, money, communicate, copy) {
         $scope.userType = {
-            code:'',         //  code
-            isPersonal:true  // 是自己还是别人，默认true
+            code:'',             
+            isPersonal:true  
         };
         $scope.personal = {};
         $scope.equityInfo = {};  // personal money info
@@ -49,6 +49,8 @@
             });
         }
 
+        switchLayout();
+
         function getSocialSum(personal, service1, service2) {
             service2.getCCSum().then(function (data) {
                 personal.copiedTraderSum = data.mycopy_count;
@@ -59,16 +61,10 @@
                 });
             });
         }
-        /*personal.getCCSum().then(function (data) {
-            $scope.personal.copiedTraderSum = data.mycopy_count;
-            $scope.personal.copierSum = data.copy_count;
-        });
+        
 
-        personal.getFFSum().then(function (data) {
-            $scope.personal.followingSum = data.data.attention_sum;
-            $scope.personal.fanSum = data.data.fans_sum;
-        });
-*/
+
+     
         function openModal(size) {
               $modal.open({
                 templateUrl: '/views/account/register.html',
@@ -76,6 +72,7 @@
                 size: size
             });
         }
+
         function switchLayout(){
             if($location.$$url == 'topic_detail'){
                 $scope.layoutContent= 'content__detail';

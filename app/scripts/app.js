@@ -175,42 +175,42 @@ angular
                     }
                 }
             })
-
+                
+      
             .state('invest.subPage', {
                 url: '/invest/:subPage/:userCode',
                   views: {
-                      '@invest': {
-                          templateUrl: function ($stateParams) {
-                              $stateParams.subPage = $stateParams.subPage || 'summary';
-                              var url = 'views/invest/' + $stateParams.subPage + '.html';
-                              return 'views/invest/' + $stateParams.subPage + '.html';
-                          },
-                          controllerProvider: function($stateParams) {
+                    '@invest': {
+                        templateUrl: function ($stateParams) {
+                            $stateParams.subPage = $stateParams.subPage || 'summary';
+                            var url = 'views/invest/' + $stateParams.subPage + '.html';
+                            return 'views/invest/' + $stateParams.subPage + '.html';
+                        },
+                        controllerProvider: function($stateParams) {
+                            var ctrlPrefix = 'Invest';
+                            var ctrlSuffix = 'Controller';
+                            var subPage = $stateParams.subPage || 'summary';
+                            var ctrlRoot = modifyCtrlName(subPage);
+                            var ctrlName = ctrlPrefix + ctrlRoot + ctrlSuffix;
+                            return ctrlName;
 
-                              var ctrlPrefix = 'Invest';
-                              var ctrlSuffix = 'Controller';
-                              var subPage = $stateParams.subPage || 'summary';
-                              var ctrlRoot = modifyCtrlName(subPage);
-                              var ctrlName = ctrlPrefix + ctrlRoot + ctrlSuffix;
-                              return ctrlName;
+                            function modifyCtrlName(name) {
+                                var strArray = name.split(/[-_]/i);
 
-                              function modifyCtrlName(name) {
-                                 var strArray = name.split(/[-_]/i);
+                                var i,
+                                    length = strArray.length,
+                                    tmpStr = '',
+                                    newName = '';
 
-                                 var i,
-                                      length = strArray.length,
-                                      tmpStr = '',
-                                      newName = '';
+                                for (i = 0;i < length;i++) {
+                                    tmpStr = strArray[i].charAt(0).toUpperCase() +
+                                            strArray[i].substring(1);
+                                    newName += tmpStr;
+                                }
 
-                                  for (i = 0;i < length;i++) {
-                                      tmpStr = strArray[i].charAt(0).toUpperCase() +
-                                              strArray[i].substring(1);
-                                      newName += tmpStr;
-                                  }
-
-                                  return newName;
-                              }
-                          }
+                                return newName;
+                            }
+                        }
                       },
                     'content@invest.subPage':{
                       templateUrl: 'views/personal/communicate_info.html',
@@ -221,9 +221,8 @@ angular
                       //templateUrl: 'views/personal/share_side.html',
                       controller: ''
                     }
-                  }
-              })
-              ;
+                }
+            });
     }]);
 
 
