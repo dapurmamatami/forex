@@ -82,5 +82,88 @@
     </div>
     <div ng-show="orders.length <= 0">
         <p class="text-center marketing-text">您暂时没有交易历史，赶快去交易一笔试试！</p>
+    <div ng-if="copiedTraders.length > 0 && orderType === 'only_copy'">
+        <div class="list_header">
+            <div class="row">
+                <div class="col-xs-3">操作</div>
+                <div class="col-xs-3">
+                </div>
+                <div class="col-xs-2">开仓价</div>
+                <div class="col-xs-2">平仓价</div>
+                <div class="col-xs-2">盈亏</div>
+            </div>
+        </div>
+        <ul>
+            <li class="order_item bg-white" ng-repeat="copiedTrader in copiedTraders">
+                <div class="row copied_trader_item">
+                    <div class="col-xs-1">
+                        <img src="ngsrc/man.png" alt="**" style="width:50px;height:50px;">
+                    </div>
+                    <div class="col-xs-5 order_item__display_switch">
+                        <h4> {{copiedTrader.username}}</h4>
+                        <p class="fold_btn" tw-fold>折叠</p>
+                       
+                    </div>
+                    <div class="col-xs-2">
+                    </div>
+                    <div class="col-xs-2">
+                    </div>
+                    <div class="col-xs-2 order_item__profit" ng-show="copiedTrader.profit_rate.indexOf('-') < 0">
+                        {{copiedTrader.profit_rate}}
+                    </div>
+                    <div class="col-xs-2 order_item__deficit" ng-show="copiedTrader.profit_rate.indexOf('-') >= 0">
+                        {{copiedTrader.profit_rate}}
+                    </div>
+                </div>
+                <ul class="copied_trader_orders">
+                    <div class="copied_trader_orders__trunk"></div>
+                    <li class="order_item" ng-repeat="order in copiedTrader.data">
+                        <div class="row">
+                            <div class="col-xs-1">
+                                <div class="copied_trader_orders__branch"></div>
+                            </div>
+                            <div class="col-xs-1 text-right">
+                                <span class="icon-forex-{{order.symbol.toLowerCase()}}"></span>
+                            </div>
+                            <div class="col-xs-2 order_item__operate">
+                                <p>
+                                    <span class="order_item__exchange">
+                                        {{order.cmd ? '卖出' : '买入'}}
+                                    </span>
+                                    <span class="order_item__symbol">
+                                        {{order.symbol}}
+                                    </span>
+                                </p>
+                                <p>
+                                    <span class="order_item__way">
+                                        {{['手动', '止损', '止盈', '强制'][order.liquidation_type] + '平仓'}}
+                                    </span>
+                                    <span class="order_item__time">
+                                        {{order.bp | startNow}}前
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="col-xs-2"></div>
+                            <div class="col-xs-2 order_item__price">
+                                {{order.open_price}}
+                            </div>
+                            <div class="col-xs-2 order_item__price">
+                                {{order.close_price}}
+                            </div>
+                            <div class="col-xs-2 order_item__profit" ng-show="order.sum.indexOf('-') < 0">
+                                {{order.sum}}
+                            </div>
+                            <div class="col-xs-2 order_item__deficit" ng-show="order.sum.indexOf('-') >= 0">
+                                {{order.sum}}
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        
+    </div>
+    <div ng-show="orders.length <= 0 || copiedTraders.length <= 0">
+        <p class="text-center marketing-text">无数据！</p>
     </div>
 </div>

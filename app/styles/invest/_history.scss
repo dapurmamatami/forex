@@ -31,6 +31,9 @@
         padding: 15px;
         text-align: center;
 
+        &:nth-child(odd) {
+            background-color: $gray-lightest;
+        }
         &:nth-child(even) {
             background-color: $gray-lightest;
         }
@@ -114,4 +117,60 @@
 
         
     
+
+        @include e(display_switch) {
+            
+            h4,
+            p {
+                margin-bottom: 0;
+                line-height: 30px;
+                text-align: left;
+                font-weight: 700;
+                color: $brand-primary;    
+            }
+            h4 {
+                margin-top: 0;
+                font-size: 16px;
+            } 
+        }
+    }
+
+    @include b(copied_trader_orders) {
+        position: relative;
+        
+        @include e(trunk) {
+            position: absolute;
+            top: -45px;
+            left: 18px;
+            width: 1px;
+            height: 100%;
+            background-color: $brand-border-color;
+        }
+
+        @include e(branch) {
+            position: absolute;
+            top: 30px;
+            left: 19px;
+            width: 30px;
+            height: 1px;
+            background-color: $brand-border-color;
+        }
+    }
+
+    @include b(copied_trader_item) {
+        position: relative;
+        z-index: 1;
+        padding: 15px;
+        background-color: $gray-lightest !important;
+    }
+
+    @include b(fold_btn) {
+        display: inline-block;
+        margin: 0;
+        padding: 6px 12px;
+        font-size: 14px;
+        font-weight: 700;
+        color: $brand-primary;
+        cursor: pointer;
+    }    
 }
