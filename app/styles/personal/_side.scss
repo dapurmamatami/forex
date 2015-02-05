@@ -129,9 +129,6 @@
 
 @include b(personal_ad) {
 
-    border: 1px solid $brand-border-color;
-    border-left: none;
-    background-color: $gray-lightest;
     @include b(deposit_pnl) {
         margin-bottom:18px;
         padding:15px;
@@ -207,4 +204,41 @@
     @include e(panel) {
         @extend .personal_info__panel;
     }
+
+    @include b(social_pnl) {
+        padding: 10px 0;
+        font-size: 0;
+        
+        @include e(counter) {
+            display: inline-block;
+            vertical-align: top;
+            width: 40%;
+
+            h3 {
+                margin-top: 0;
+                font-weight: 700;
+                color: $brand-light;
+            }
+            span {
+                font-size: 13px;
+                color: $gray-lighter;
+            }
+
+        }
+
+        @include e(copy) {
+            display: inline-block;
+            vertical-align: top;
+            width: 60%;
+            line-height: 55px;
+            text-align: center;
+        }
+
+        @include e(follow) {
+            @extend .social_pnl__copy;
+        }
+
+
+    }
+
 }

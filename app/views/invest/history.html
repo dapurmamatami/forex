@@ -1,22 +1,24 @@
 <div tw-loading-img></div>
 <div class="history_orders">
     <ul class="nav nav-pills" ng-show="userType.isPersonal">
-        <li ng-class="{active: orderType === 'only_copy'}" ng-click="orderType === 'only_copy' || switchOrderType('only_copy')">
+        <li ng-class="{active: orderType === 'only_copy'}" ng-click="orderType === 'only_copy' || getOrders('only_copy', accountType.key)">
             <a href="">复制交易</a>
         </li>
-        <li ng-class="{active: orderType === 'not_copy'}" ng-click="orderType === 'not_copy' || switchOrderType('not_copy')">
+        <li ng-class="{active: orderType === 'not_copy'}" ng-click="orderType === 'not_copy' || getOrders('not_copy', accountType.key)">
             <a href="">自主交易</a>
         </li>
-        <li ng-class="{active: orderType === 'normal'}" ng-click="orderType === 'normal' || switchOrderType('normal')">
+        <li ng-class="{active: orderType === 'normal'}" ng-click="orderType === 'normal' || getOrders('normal', accountType.key)">
             <a href="">全部交易</a>
         </li>
     </ul>
 
-    <div ng-if="orders.length > 0">
+    <div ng-if="orders.length > 0 && (orderType === 'normal' || orderType === 'not_copy')">
         <div class="list_header">
             <div class="row">
                 <div class="col-xs-3">操作</div>
-                <div class="col-xs-3">复制者</div>
+                <div class="col-xs-3">
+                    {{orderType === 'normal'? '复制者': '持仓时间'}}
+                </div>
                 <div class="col-xs-2">开仓价</div>
                 <div class="col-xs-2">平仓价</div>
                 <div class="col-xs-2">盈亏</div>
@@ -35,7 +37,7 @@
                                 {{order.cmd ? '卖出' : '买入'}}
                             </span>
                             <span class="order_item__symbol">
-                                {{order.symbol | symbolBeauty}}
+                                {{order.symbol}}
                             </span>
                         </p>
                         <p>
@@ -48,12 +50,19 @@
                         </p>
                     </div>
                     <div class="col-xs-3">
-                        <span class="order_item__copiedTrader">
+                        <span class="order_item__copiedTrader" ng-if="orderType === 'normal'">
                             {{order.username}}
                         </span>
+                        <span class="order_item__copiedTrader" ng-if="orderType === 'not_copy'">
+                            {{order.time_delta | startNow}}
+                        </span>
                     </div>
-                    <div class="col-xs-2 order_item__price">{{order.open_price}}</div>
-                    <div class="col-xs-2 order_item__price">{{order.close_price}}</div>
+                    <div class="col-xs-2 order_item__price">
+                        {{order.open_price}}
+                    </div>
+                    <div class="col-xs-2 order_item__price">
+                        {{order.close_price}}
+                    </div>
                     <div class="col-xs-2 order_item__profit" ng-show="order.sum.indexOf('-') < 0">
                         {{order.sum}}
                     </div>
@@ -71,7 +80,7 @@
             <span class="btn-loading__icon"></span>
         </a>
     </div>
-    <div ng-if="orders.length <= 0">
+    <div ng-show="orders.length <= 0">
         <p class="text-center marketing-text">您暂时没有交易历史，赶快去交易一笔试试！</p>
     </div>
 </div>

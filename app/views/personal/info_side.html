@@ -1,4 +1,4 @@
-<div class="personal_info" ng-show="userType.isPersonal">
+<div class="personal_info" ng-if="userType.isPersonal">
 
     <div class="personal_info__panel basic_info">
         <div class="basic_info__photo_wrap">
@@ -47,7 +47,7 @@
         </div>
     </div>  
 
-    <div class="personal_info__panel real_account " ng-show="personal.real_id">
+    <div class="personal_info__panel real_account " ng-if="personal.real_id">
         <h5 class="real_account__title">开通真实账户进行交易</h5>
         <p class="real_account__percent">
             当前进度 
@@ -59,7 +59,7 @@
     </div>
 </div>
 
-<div class="user_info" ng-show="!userType.isPersonal">
+<div class="user_info" ng-if="!userType.isPersonal">
     <div class="user_info__panel basic_info">
         <div class="basic_info__photo_wrap">
             <a href="">
@@ -75,5 +75,24 @@
             </p>              
         </div>
     </div>
-
+    <div class="user_info__panel">
+        <div class="social_pnl">
+            <div class="social_pnl__counter">
+                <h3>9999</h3>
+                <span>跟随</span>
+            </div>
+            <div class="social_pnl__copy">
+                <button class="btn btn-primary">复制</button>
+            </div>
+        </div>
+        <div class="social_pnl">
+            <div class="social_pnl__counter">
+                <h3>9999</h3>
+                <span>粉丝</span>
+            </div>
+            <div class="social_pnl__follow">
+                <button class="btn btn-primary">关注</button>
+            </div>
+        </div>
+    </div>
 </div>

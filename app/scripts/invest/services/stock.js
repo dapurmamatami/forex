@@ -30,11 +30,11 @@
          *     is_succ: true / false
          * }
          */
-        function getEquityReport(number, type, userCode) {
+        function getEquityReport(number, accountType, userCode) {
             return $http.get('/equity_report', {
                 params: {
                     period: number,       
-                    tiger_source: type,   
+                    tiger_source: accountType,   
                     cros_user: userCode   
                 }
             });    
@@ -63,10 +63,10 @@
          *   avg_deficit:       //平均亏损
          * }
          */
-        function getSummaryReport(type, userCode) {
+        function getSummaryReport(accountType, userCode) {
             return $http.get('/summary_report', {
                 params: {
-                    tiger_source: type,
+                    tiger_source: accountType,
                     cros_user: userCode
                 }
             });
@@ -108,7 +108,7 @@
                     case 'code':
                         this['user_code'] = value;
                         break;
-                    case 'type':
+                    case 'accountType':
                         this['tiger_source'] = value;
                         break;
                     case 'userCode':

@@ -7,14 +7,16 @@
 
     function symbolBeauty() {
         var notBeautyList = ['sliver', 'gold', 'wtoli'];
-
         return function (input) {
-            var tmpInput = input.toLowerCase();
+            
+            if (input) {
+                 var tmpInput = input.toLowerCase();
 
-            if (notBeautyList.indexOf(tmpInput) < 0 && tmpInput.length === 6) {
-                return input.substring(0, 3) + '/' + input.substring(3, 6);
-            } else {
-                return input;
+                if (notBeautyList.indexOf(tmpInput) < 0 && tmpInput.length === 6) {
+                    return input.substring(0, 3) + '/' + input.substring(3, 6);
+                } else {
+                    return input;
+                }
             }
         }
     }
