@@ -3,14 +3,15 @@
 
   angular
     .module('tigerwitPersonalApp')
-    .directive('promptSpecialInput',promptSpecialInput);
+    .directive('bsPopup',bsPopup);
 
 
-  promptSpecialInput.$inject = [];
-  function promptSpecialInput(){
+  bsPopup.$inject = [];
+  function bsPopup(){
     return {
       restrict:'A',
-      link:function(scope,element,attrs){
+      require:'ngModel',
+      link:function(scope,element,attrs,ctrl){
         element.bind('keyup',function(event){
           console.info(scope.inputContent);
 

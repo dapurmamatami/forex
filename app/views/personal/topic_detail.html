@@ -6,13 +6,14 @@
 
         <div class="topic-content"">
             <span class = "focusname" >{{title}}</span>
-            <contentshow></contentshow>
+            <tw-content-show></tw-content-show>
             <div>
                 <span class = "communicateinfo__ptime">{{topicDetailData['ptime'] | startNow }}前</span>
                 <div class = "topic-other-info">
+                    <span ng-show="isMy"  ng-click="openConfirmDeleteC(topicDetailData.topicid)">删除 |</span>
                     <span ng-click="doSupport()">赞({{topicDetailData['support_sum']}}) </span>|
                     <span ng-="doTransmit()"> 转发({{topicDetailData['tramsmit_sum']}}) </span>|
-                    <span ng-clickclick="showDropComment()"> 评论({{topicDetailData['comment_sum']}}) </span>|
+                    <span ng-clickclick="showDropComment()"> 评论({{topicDetailData['comment_sum']}}) </span>
                 </div>
             </div>
 
@@ -27,7 +28,6 @@
                 </div>
             </div>
         </div>
-
         <div class = "comments-head">
             <span>全部评论</span>
             <span>排序</span>
@@ -42,10 +42,11 @@
                 <img src="/ngsrc/photo-man.png"/>
                 <div class = "comment-info" >
                     <span class = "communicateinfo__focusname" ng-bind="aitem['publisher_name']" ng-click="skipToSummary(aitem.comment_publisherid)"></span>
-                    <contentshow></contentshow>
+                    <tw-content-show></tw-content-show>
                     <div class = "comment-info-other">
                         <span class = "communicateinfo__ptime">{{aitem['ptime'] | startNow }}前</span>
                         <div class = "other_info">
+                           <span ng-show="isMy"  ng-click="openConfirmDeleteC(aitem.comment_id,$index)">删除 |</span>
                             <span ng-click="doSupport()">赞({{aitem['support_sum']}}) </span>|
                             <span ng-click="showDoComment()"> 回复({{aitem['comment_sum']}}) </span>
                         </div>
@@ -57,10 +58,11 @@
                                 <img src="/ngsrc/photo-man.png"/>
                                 <div class = "ccContent">
                                     <span class = "communicateinfo__focusname" ng-click="skipToSummary(bitem.comment_publisherid)" ng-bind="bitem['publisher_name']"></span>
-                                    <contentshow ng-init="pContent=bitem['content']"></contentshow>
+                                    <tw-content-show ng-init="pContent=bitem['content']"></tw-content-show>
                                     <div class = "ccContent-other">
                                         <span class = "communicateinfo__ptime">{{bitem['ptime'] | startNow }}前</span>
                                         <div class = "other_info">
+                                           <span ng-show="isMy"  ng-click="openConfirmDeleteD(bitem.comment_id,$index)">删除 |</span>
                                            <span ng-click="doSupport(bitem['comment_id'])">赞({{bitem['support_sum']}}) </span>|
                                           <span ng-click="showDoCommentAndAt(bitem['publisher_name'])">  回复 </span>
                                         </div>
@@ -105,3 +107,4 @@
     </div>
 
 </div>
+

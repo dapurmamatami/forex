@@ -173,11 +173,25 @@
             }
 
             /**
-             * 获取 following、fan 总数 
+             * 获取 following、fan 总数
              */
             function getFFSum() {
                 return topicHttp.get('/attentionsfans');
             }
 
+            /**
+             * 删除话题或者评论
+             * @param usercode
+             * @param type
+             * @param topicid
+             * @returns {*}
+             */
+            function deleteTopic(usercode,type,topicid){
+                return topicHttp.get('/deletetopic',{
+                    usercode:usercode,
+                    type:type,
+                    topicid:topicid
+                })
+            }
       }
 })();

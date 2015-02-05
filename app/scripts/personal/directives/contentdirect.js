@@ -3,8 +3,8 @@
 
   angular
     .module('tigerwitPersonalApp')
-    .directive('contentshow',contentshow);
-  function contentshow() {
+    .directive('twContentShow',twContentShow);
+  function twContentShow() {
     return {
       restrict: 'E',
       template: "<p>" +

@@ -124,7 +124,7 @@
     .module('tigerwitPersonalApp')
     .controller('PersonalTopicPublishController',PersonalTopicPublishController);
 
-  PersonalTopicPublishController.$inject = ['$scope','$rootScope','$timeout','communicate'];
+  PersonalTopicPublishController.$inject = ['$scope','$timeout','communicate'];
 
   function PersonalTopicPublishController($scope,$timeout,communicate){
 
@@ -268,6 +268,7 @@
             function skipToSummary(touchId){
                 $location.path('/invest/summary/'+touchId);
             }
+
         }
 })();
 

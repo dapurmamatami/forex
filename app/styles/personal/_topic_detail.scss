@@ -20,7 +20,14 @@
         border: 1px solid transparent;
         border-color:$brand-border-color;
     }
-
+    @include b(delete-topic-confirm){
+        @extend .alert-success;
+        position: absolute;
+        z-index: 99;
+        text-align: center;
+        margin:0 auto;
+        widht: 300px
+    }
     @include b(topic-info){
         float:right;
         width:415px;
@@ -149,5 +156,14 @@
         }
     }
 
-
+    @include b(modal-confirm){
+        position: relative;
+        right:20px;
+        margin-bottom: 10px;
+        overflow: hidden;
+        >button{
+            float:right;
+            margin-left: 10px;
+        }
+    }
 }

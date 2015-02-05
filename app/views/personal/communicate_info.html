@@ -40,7 +40,7 @@
                 <img class = "communicateinfo__user-icon" src="/ngsrc/photo-woman.png"></img>
                 <div class="communicate-text">
                     <span class = "communicateinfo__focusname" ng-click="skipToSummary(mData.publisher_id)">{{mData['title']}}</span>
-                    <contentshow ng-init="pContent = mData['content']"></contentshow>
+                    <tw-content-show ng-init="pContent = mData['content']"></tw-content-show>
                     <div>
                         <span class = "communicateinfo__ptime">{{mData['ptime'] | startNow }}前</span>
                         <div class = "communicateinfo__other_info">

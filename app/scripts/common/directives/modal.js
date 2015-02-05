@@ -74,7 +74,7 @@ angular
         $timeout(function () {
           scope.animate = true;
         });
-      }
+    }
     };
   }])
 

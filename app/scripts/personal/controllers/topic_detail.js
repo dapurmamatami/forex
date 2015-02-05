@@ -5,20 +5,21 @@
       .module('tigerwitPersonalApp')
       .controller('PersonalTopicDetailController',PersonalTopicDetailController);
 
-    PersonalTopicDetailController.$inject = ['$location','$state',"$timeout","$rootScope","$scope",'communicate','$cookieStore'];
-    function PersonalTopicDetailController($location,$state,$timeout,$rootScope,$scope,communicate,$cookieStore){
+    PersonalTopicDetailController.$inject = ["$modal",'$location',"$timeout","$scope",'communicate','$cookieStore'];
+    function PersonalTopicDetailController($modal,$location,$timeout,$scope,communicate,$cookieStore){
 
+        $scope.tRemainSum = 0;
+        $scope.isMy = true;
+        $scope.mTopicId = $location.search().topicid;
 
         $scope.matchCommentContent = matchCommentContent;
-        $scope.tRemainSum = 0;
-        $scope.mTopicId = $location.search().topicid;
         $scope.doComment = doComment;
         $scope.doSupport = doSupport;
         $scope.loadMore = loadMore;
         $scope.skipToSummary = skipToSummary;
+        $scope.openConfirmDeleteC = openConfirmDeleteC;
+
         function getTopicInfo(commentLength){
-
-
             communicate.topicDetail($scope.mTopicId ,commentLength)
                 .then(function(data){
                     console.info(data)
@@ -27,6 +28,8 @@
                           $scope.topicDetailData = data.data;
                           $scope.commentList = $scope.topicDetailData.comment_list;
                           $scope.pContent = data.data.content;
+                          $scope.isMy = (data.data.publisher_id == $scope.personal.user_code);
+                          console.info("isMy:"+$scope.isMy);
                        }else{
                           $scope.commentList = $scope.commentList.concat(data.data);
                        }
@@ -38,6 +41,32 @@
             });
         }
 
+        function openConfirmDeleteC(topicid,index){
+            var modalInstance = $modal.open({
+                templateUrl:'/views/personal/delete_model.html',
+                controller:'DeleteModal',
+                size: 'sm'
+            });
+            modalInstance.result.then(function(result) {
+              if (result) {
+                  deleteTopic(topicid, index);
+              }
+            });
+        }
+
+
+        function deleteTopic(topicId,index){
+            var type = 1;
+            if(typeof(index) =='undefined') type = 0;
+            communicate.deleteTopic($scope.personal.user_code,type,topicId)
+                .then(function(){
+                    if(type==1){
+                        $scope.commentList.splice(index,1);
+                    }else{
+                        history.back();
+                    }
+                });
+        }
 
         function matchCommentContent(){
             var contentLength = $scope.inputContent.length;

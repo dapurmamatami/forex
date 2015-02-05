@@ -5,17 +5,19 @@
       .module('tigerwitPersonalApp')
       .controller('CommentsController',CommentsController);
 
-    CommentsController.$inject = ['$cookieStore','$scope','communicate'];
-    function CommentsController($cookieStore,$scope,communicate){
+    CommentsController.$inject = ['$modal','$cookieStore','$scope','communicate'];
+    function CommentsController($modal,$cookieStore,$scope,communicate){
 
         $scope.hasDiscuss = false;   //标识是否有讨论信息
         $scope.showDiscuss = false;  //显示讨论信息的开关
         $scope.showReply = false;    //显示回复的开关
+        $scope.isMy = ($scope.aitem.comment_publisherid == $scope.personal.user_code);      ///显示删除按钮  如果是自己的则可以删除
         $scope.discussList = $scope.aitem.discuss_list;
         $scope.pContent = $scope.aitem.content;
         $scope.matchCommentContent= matchCommentContent;
         $scope.doSupport = doSupport;
         $scope.showDoComment = showDoComment;
+        $scope.openConfirmDeleteD= openConfirmDeleteD;
         if($scope.discussList.length>0){
             $scope.hasDiscuss = true;
             $scope.showDiscuss = true;
@@ -44,6 +46,26 @@
 
                   },function(){});
         }
+        function openConfirmDeleteD(topicid,index){
+            var modalInstance = $modal.open({
+              templateUrl:'/views/personal/delete_model.html',
+              controller:'DeleteModal',
+              size: 'sm'
+            });
+            modalInstance.result.then(function(result) {
+                if (result) {
+                    deleteTopic(topicid, index);
+                }
+            });
+        }
+        function deleteTopic(topicId,index){
+            communicate.deleteTopic($scope.personal.user_codes,1,topicId)
+            .then(function(data){
+                if(data.statecode){
+                   $scope.discussList.splice(index,1);
+                }
+            });
+        }
     }
 })();
 
@@ -54,11 +76,11 @@
       .module('tigerwitPersonalApp')
       .controller('DiscussListController',DiscussListController);
 
-  DiscussListController.$inject = ['$scope','$cookieStore','communicate','$timeout'];
+  DiscussListController.$inject = ['$modal','$scope','$cookieStore','communicate','$timeout'];
 
-      function DiscussListController($scope,$cookieStore,communicate,$timeout){
+      function DiscussListController($modal,$scope,$cookieStore,communicate,$timeout){
 
-
+             ///显示删除按钮  如果是自己的则可以删除
           $scope.doComment = doComment;
           $scope.loadAll = loadAll;
           $scope.discussList = $scope.aitem.discuss_list;
@@ -66,7 +88,6 @@
 
           $scope.matchCommentContent = matchCommentContent;
           $scope.showDoCommentAndAt = showDoCommentAndAt;
-
           function matchCommentContent(){
               var contentLength = $scope.inputContent.length;
               if(contentLength>1024){
@@ -141,16 +162,17 @@
     OneDiscussController.$inject = ['$scope','communicate','$cookieStore'];
 
     function  OneDiscussController($scope,communicate,$cookieStore){
+        $scope.isMy = ($scope.bitem.comment_publisherid == $scope.personal.user_code);
         $scope.doSupport = doSupport;
-        function doSupport(commentId){
-            communicate.doSupportPoint(
-                1,$cookieStore.get('userCode'),commentId)
-                    .then(function(data){
-                        if(data.statecode){
-                            $scope.bitem.support_sum =  $scope.bitem.support_sum+1;
-                        }
+            function doSupport(commentId){
+                communicate.doSupportPoint(
+                    1,$cookieStore.get('userCode'),commentId)
+                        .then(function(data){
+                            if(data.statecode){
+                                $scope.bitem.support_sum =  $scope.bitem.support_sum+1;
+                            }
 
-                },function(){});
-        }
+                    },function(){});
+            }
     }
 })();
