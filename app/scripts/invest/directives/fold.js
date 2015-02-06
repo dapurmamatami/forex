@@ -12,26 +12,19 @@
             restrict: 'A',
             link: function (scope, element, attrs) {
                 element.on('click', function () {
-                    var string = $(this).text();
                     var ul = $(this).parents('li').find('ul');
-                    
-                    if (string === '折叠') {
-                        $(this).html('显示全部');
-                    } else {
-                        $(this).html('折叠');
-                    }
+
+                    $(this).toggleClass('closed');
                     
                     if (ul.css('display') === 'block') {
-                        ul.animate({
+                        /*ul.animate({
                             opacity: 0
                         }, 500, function () {
                             $(this).css('display','none');
-                        });
+                        });*/
+                        ul.css('display', 'none');
                     } else {
-                        ul.css({
-                            display: 'block',
-                            opacity: 1
-                        });
+                        ul.css('display', 'block');
                     }
                 });
             }

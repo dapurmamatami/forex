@@ -8,7 +8,7 @@
     function symbolBeauty() {
         var notBeautyList = ['sliver', 'gold', 'wtoli'];
         return function (input) {
-            
+
             if (input) {
                  var tmpInput = input.toLowerCase();
 
@@ -31,11 +31,14 @@
 
     function startNow() {
         return function (timeStamp) {
+            if (typeof timeStamp === 'undefined') {
+                return;
+            }
 
             if (timeStamp < 60) {
                 return timeStamp + '秒';
             }
-            
+
             if (timeStamp < 60 * 60) {
                 return Math.round((timeStamp / 60)) + '分钟';
             }
