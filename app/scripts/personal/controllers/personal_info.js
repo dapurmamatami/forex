@@ -17,7 +17,8 @@
         $scope.personal = {};
         $scope.equityInfo = {};  // personal money info
         $scope.user = {};
-        $scope.openModal = openModal;
+        $scope.openRegisterModal = openRegisterModal;
+        $scope.openCopyModal = openCopyModal;
 
         account.getPersonalInfo().then(function (data) {
             $scope.personal = data;
@@ -46,6 +47,7 @@
 
             account.getUserInfo($scope.userType.code).then(function (data) {
                 $scope.user = data;
+                getSocialSum($scope.user, communicate, copy);
             });
         }
 
@@ -70,6 +72,23 @@
                 templateUrl: '/views/account/register.html',
                 controller: 'AccountRegisterController',
                 size: size
+            });
+        }
+
+        function openCopyModal(size) {
+            $modal.open({
+                templateUrl: '/views/invest/copy.html',
+                controller: 'InvestCopyController',
+                size: size,
+                resolve: {
+                    passedScope: function () {
+                        return {
+                            user: $scope.user,
+                            personal: $scope.personal,
+                            balance: $scope.equityInfo.balance
+                        }
+                    }
+                }
             });
         }
 

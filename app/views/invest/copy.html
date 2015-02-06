@@ -1,0 +1,66 @@
+<div class="copy_modal">
+    <div class="row">
+        <div class="col-xs-4">
+            <img class="copy_modal__photo-man" src="ngsrc/man.png" ng-show="true">
+            <img class="copy_modal__photo-woman" src="ngsrc/woman.png"  ng-show="false">
+        </div>
+        <div class="col-xs-8">
+            <button class="close">X</button>
+            <h4 class="copy_modal__name">
+                {{user.username}}
+            </h4>
+            <span class="copy_modal__switch">
+                换用真实账户复制
+            </span>
+        </div>
+    </div>
+    <div class="copy_modal__content">
+        <div class="copy_modal__money">
+            <form name="copyForm" novalidate>
+                <div class="form-group">
+                    <label>复制金额</label>
+                    <div class="copy_modal__group">
+                        <button class="btn">-</button>
+                        <input class="form-control" 
+                               name="copyNumber"
+                               type="text"
+                               required
+                               ng-model="copyNumber"
+                               ng-pattern="/^(?!0+(?:\.0+)?$)(?:[1-9]\d*|0)(?:\.\d{1,2})?$/">
+                        <button class="btn">+</button>
+                    </div>
+                    <div ng-show="copyForm.copyNumber.$dirty">
+                        <p class="alert alert-danger" ng-show="copyForm.copyNumber.$error.required">
+                            请填写复制金额
+                        </p>
+                        <p class="alert alert-danger" ng-show="copyForm.copyNumber.$error.pattern">
+                            格式错误，最多包含 2 位小数
+                        </p>
+                        <p class="alert alert-danger" ng-show="minError">
+                            {{minError}}
+                        </p>
+                        <p class="alert alert-danger" ng-show="maxError">
+                            {{maxError}}
+                        </p>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <p class="copy_modal__rate">
+            复制金所占比例：<span>{{copyRate}}%</span>
+        </p>
+        <p class="copy_modal__useable">
+            当前可用复制金：<span>${{balance}}</span>
+        </p>
+        <p class="copy_modal__cancel">
+            取消复制
+        </p>
+    </div>
+    <a class="copy_modal__help">
+        查看详细规则
+    </a>
+    <p class=""></p>
+    <button class="btn btn-primary">
+        复制交易
+    </button>
+</div>
