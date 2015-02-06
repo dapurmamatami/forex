@@ -27,10 +27,8 @@
       var summary_state = 'summary';
 
       $scope.showDropdown = false;
-      $scope.communicate_identify = "hot";
-
+      $scope.communicate_identify = "hot"; //标识现在状态
       $scope.isSummary = false;
-      $scope.title_name = "热门投资动态";//'近期投资动态'
 
       $scope.showMenu = showMenu;
       $scope.backMenu = backMenu;
@@ -49,13 +47,13 @@
           getCommunicateInfo();
       }
       function switchIdentify(identify){
+          $scope.showDropdown = false;
           $scope.communicate_identify = identify;
           if(identify==hot_state){
               $scope.title_name = "热门投资动态";
           }else if(identify==rel_state){
               $scope.title_name = "与我相关的";
           }
-
 
           $scope.mCdata = [];
           getCommunicateInfo ();
@@ -90,7 +88,7 @@
       }
       function getRelationCommunicateInfo(){
           if(!$scope.mCdata){
-            $scope.mCdata = [];
+             $scope.mCdata = [];
           }
           var startIndex = $scope.mCdata.length;
           communicate.relationTopic($scope.userCode,startIndex)
@@ -112,6 +110,7 @@
           }else{
               $scope.userCode = $cookieStore.get('userCode');
               $scope.communicate_identify = hot_state;
+              $scope.title_name = "热门投资动态";
           }
 
           getCommunicateInfo();
@@ -171,105 +170,105 @@
   }
 
   angular
-    .module('tigerwitPersonalApp')
-    .controller('PersonalCommunicateDoController',PersonalCommunicateDoController);
+      .module('tigerwitPersonalApp')
+      .controller('PersonalCommunicateDoController',PersonalCommunicateDoController);
 
-        PersonalCommunicateDoController.$inject=['$timeout',"$scope",'communicate','$location','$cookieStore'];
+          PersonalCommunicateDoController.$inject=['$timeout',"$scope",'communicate','$location','$cookieStore'];
 
-        function PersonalCommunicateDoController($timeout, $scope,communicate,$location,$cookieStore){
-          /**
-           * 控制每一条话题的
-           * @type {boolean}
-           */
+          function PersonalCommunicateDoController($timeout, $scope,communicate,$location,$cookieStore){
+            /**
+             * 控制每一条话题的
+             * @type {boolean}
+             */
 
-            $scope.commentShowToggle = false;
-            $scope.tRemainSum=0;
-            $scope.showDropComment = showDropComment;
+              $scope.commentShowToggle = false;
+              $scope.tRemainSum=0;
+              $scope.showDropComment = showDropComment;
 
-            $scope.doComment = doComment;
-            $scope.doSupport = doSupport;
-            $scope.doTransmit = doTransmit;
-            $scope.matchCommentContent = matchCommentContent;
-            $scope.skipDetail = skipDetail;
-            $scope.skipToSummary = skipToSummary;
+              $scope.doComment = doComment;
+              $scope.doSupport = doSupport;
+              $scope.doTransmit = doTransmit;
+              $scope.matchCommentContent = matchCommentContent;
+              $scope.skipDetail = skipDetail;
+              $scope.skipToSummary = skipToSummary;
 
-            function showDropComment(){
-                $scope.commentShowToggle = !$scope.commentShowToggle;
-            }
+              function showDropComment(){
+                  $scope.commentShowToggle = !$scope.commentShowToggle;
+              }
 
-            function matchCommentContent(){
-                var contentLength = $scope.inputContent.length;
-                if(contentLength>1024){
-                    $scope.inputContent = $scope.inputContent.substring(0,1024);
-                    return;
-                }
-                $scope.tRemainSum =contentLength;
-            }
+              function matchCommentContent(){
+                  var contentLength = $scope.inputContent.length;
+                  if(contentLength>1024){
+                      $scope.inputContent = $scope.inputContent.substring(0,1024);
+                      return;
+                  }
+                  $scope.tRemainSum =contentLength;
+              }
 
 
-            function doComment(){
-                if(!$scope.inputContent){
-                    return;
-                }
-                if($.trim($scope.inputContent)==""){
-                    return;
-                }
+              function doComment(){
+                  if(!$scope.inputContent){
+                      return;
+                  }
+                  if($.trim($scope.inputContent)==""){
+                      return;
+                  }
 
-                communicate.doComment(
-                    0,$cookieStore.get('userCode'),$scope.inputContent,$scope.mData.topicid)
-                    .then(function(data){
-                        if(data.statecode){
-                            $scope.toastMsg = "评论成功！";
-                            $scope.mData.comment_sum=$scope.mData.comment_sum+1;
-                        }else{
+                  communicate.doComment(
+                      0,$cookieStore.get('userCode'),$scope.inputContent,$scope.mData.topicid)
+                      .then(function(data){
+                          if(data.statecode){
+                              $scope.toastMsg = "评论成功！";
+                              $scope.mData.comment_sum=$scope.mData.comment_sum+1;
+                          }else{
+                              $scope.toastMsg = "评论失败";
+                              $scope.inputContent = $scope.tempContent;
+                          }
+                              $scope.showOrNo = 'cm-enter';
+                              $timeout(function(){
+                                 $scope.showOrNo = 'cm-leave';
+                            },1000);
+                          },
+                        function(data){
                             $scope.toastMsg = "评论失败";
                             $scope.inputContent = $scope.tempContent;
-                        }
-                            $scope.showOrNo = 'cm-enter';
-                            $timeout(function(){
-                               $scope.showOrNo = 'cm-leave';
-                          },1000);
-                        },
-                      function(data){
-                          $scope.toastMsg = "评论失败";
-                          $scope.inputContent = $scope.tempContent;
-                      });
-                $scope.tempContent =$scope.inputContent;
-                $scope.inputContent = "";
-                $scope.tRemainSum = 0;
-            }
+                        });
+                  $scope.tempContent =$scope.inputContent;
+                  $scope.inputContent = "";
+                  $scope.tRemainSum = 0;
+              }
 
-            function doSupport(){
-                communicate.doSupportPoint(
-                    0,$cookieStore.get('userCode'),$scope.mData.topicid)
-                    .then(function(data){
-                        if(data.statecode){
-                            $scope.mData.support_sum =  $scope.mData.support_sum+1;
-                                }
+              function doSupport(){
+                  communicate.doSupportPoint(
+                      0,$cookieStore.get('userCode'),$scope.mData.topicid)
+                      .then(function(data){
+                          if(data.statecode){
+                              $scope.mData.support_sum =  $scope.mData.support_sum+1;
+                                  }
 
-                },function(){});
-            }
+                  },function(){});
+              }
 
-            function doTransmit(){
-                communicate.publishTopic(
-                    $cookieStore.get('userCode'),$scope.mData.content,$scope.mData.topicid)
-                        .then(function(data){
-                            if(data.statecode){
-                                $scope.mData.tramsmit_sum =  $scope.mData.tramsmit_sum+1;
-                            }
-                          },function(){
+              function doTransmit(){
+                  communicate.publishTopic(
+                      $cookieStore.get('userCode'),$scope.mData.content,$scope.mData.topicid)
+                          .then(function(data){
+                              if(data.statecode){
+                                  $scope.mData.tramsmit_sum =  $scope.mData.tramsmit_sum+1;
+                              }
+                            },function(){
 
-                          });
-            }
-            function skipDetail(){
-                $location.search('topicid',$scope.mData['topicid']+"");
-                $location.path('/personal/topic_detail');
-            }
-            function skipToSummary(touchId){
-                $location.path('/invest/summary/'+touchId);
-            }
+                            });
+              }
+              function skipDetail(){
+                  $location.search('topicid',$scope.mData['topicid']+"");
+                  $location.path('/personal/topic_detail');
+              }
+              function skipToSummary(touchId){
+                  $location.path('/invest/summary/'+touchId);
+              }
 
-        }
+          }
 })();
 
 

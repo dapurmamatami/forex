@@ -1,0 +1,72 @@
+
+
+@include b(layout-msg) {
+
+    @include b(msg_menu) {
+        @extend .col-lg-3;
+        width: 230px;
+        padding: 0;
+    }
+
+    @include b(msg_content) {
+        @extend .col-lg-9;
+        width: 730px;
+        padding: 0;
+        padding: 18px;
+        background-color: $brand-white;
+        border: 1px solid $brand-border-color;
+    }
+    hr {
+        border: 0 ;
+        background-color:$brand-border-color;
+        height:1px;
+        margin-top: 20px;
+        margin-left: 10px;
+        margin-right: 10px;
+        clear:both;
+    }
+
+}
+
+@include b(msg_head){
+    margin-top: 30px;
+    margin-left: 10px;
+    overflow: hidden;
+
+    @include e(title){
+        float:left;
+        width:100px;
+        display: inline;
+    }
+    @include e(sum){
+        margin-top: 30px;
+        float: right;
+    }
+}
+@include b(msg_main){
+    overflow: hidden;
+    margin-top: 30px;
+    @include e(icon){
+        float:left
+    }
+    @include b(msg_main_content){
+        float:right;
+        margin-left:20px;
+        width:620px;
+        @include e(tip){
+            color:#f8bc37;
+        }
+        @include e(de){
+
+        }
+   }
+}
+@include b(msg_other){
+    margin-top: 10px;
+    @include e(ctime){
+        float:left;
+    }
+    @include e(del){
+        float:right;
+    }
+}

@@ -1,0 +1,21 @@
+@include b(message_side){
+
+
+    @include e(title){
+        margin-left: 10px;
+        font-weight: 600;
+        font-size: 15px;
+    }
+    @include e(tips){
+        margin-left: 10px;
+    }
+    @include b(message_menu){
+        margin-right:20px;
+        margin-left: 10px;
+        margin-top: 20px;
+        @include e(item){
+            height:40px;
+            width:200px;
+        }
+    }
+}

@@ -152,7 +152,29 @@ angular
                     }
                 }
             })
-
+            .state('message',{
+                url:'/message',
+                views:{
+                    '@':{
+                        templateUrl:'views/layout/layout-msg.html',
+                    },
+                    'hd@message': {
+                        templateUrl: 'views/navbar/navbar-logined.html',
+                        controller: 'NavbarController'
+                    },
+                    'sidebar@message':{
+                        templateUrl: 'views/message/ad_side.html',
+                        controller:''
+                    },
+                    'content@message':{
+                        templateUrl: 'views/message/message.html',
+                        controller: ''
+                    },
+                    'ft@personal': {
+                      templateUrl: 'views/layout/footer.html'
+                    }
+                }
+            })
             .state('invest', {
                 views: {
                     '@': {
@@ -175,8 +197,8 @@ angular
                     }
                 }
             })
-                
-      
+
+
             .state('invest.subPage', {
                 url: '/invest/:subPage/:userCode',
                   views: {
