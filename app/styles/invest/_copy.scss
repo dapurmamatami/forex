@@ -8,16 +8,31 @@
         width: 50px;
         height: 50px;
         margin: 0 auto;
-       
-        @include m(man) {
-            @extend .copy_modal__photo;
-            //@include img-retina($image_path + 'man.png', $image_path + 'man@2x.png', 50px, 50px);
+    }
+
+    @include e(copy_type) {
+        position: absolute;
+        top: -20px;
+        left: -10px;
+        width: 66px;
+        height: 67px;
+        background-repeat: no-repeat;
+        background-position: 50%;
+
+        &.real {
+            @include img-normal($image_path + 'copy-real.png');
         }
+        &.demo {
+            @include img-normal($image_path + 'copy-demo.png');
+        }
+    }
 
-        @include m(woman) {
-            @extend .copy_modal__photo;
-            //@include img-retina($image_path + 'woman.png', $image_path + 'woman@2x.png', 50px, 50px);
+    @include e(copy_type-switch) {
+        color: $brand-primary;
 
+        &:hover {
+            text-decoration: underline;
+            cursor: pointer;
         }
     }
 
@@ -43,9 +58,9 @@
         }    
 
         @include e(group, $copy_modal) {
-            float: right;
-            width: 165px;
-            
+            display:inline-block;
+            vertical-align: top;
+
             &:after {
                 display: block;
                 content: '';
@@ -60,7 +75,7 @@
                 position: relative;
                 float: left;
                 display: inline-block;
-                width: 100px;
+                width: 96px;
                 margin-left: -2px;
                 margin-right: -2px;
                 border-radius: 0;

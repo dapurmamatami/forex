@@ -1,66 +1,121 @@
 <div class="copy_modal">
     <div class="row">
+
         <div class="col-xs-4">
-            <img class="copy_modal__photo-man" src="ngsrc/man.png" ng-show="true">
-            <img class="copy_modal__photo-woman" src="ngsrc/woman.png"  ng-show="false">
+            <img class="copy_modal__photo" ng-src="ngsrc/{{copiedTrader.sex ? 'man' : 'woman'}}.png">
+            <div class="copy_modal__copy_type" ng-class="{demo: copyType === 'demo', real: copyType === 'real'}"> 
+            </div>
         </div>
+
         <div class="col-xs-8">
             <button class="close">X</button>
             <h4 class="copy_modal__name">
-                {{user.username}}
+                {{copiedTrader.username}}
             </h4>
-            <span class="copy_modal__switch">
-                换用真实账户复制
+            <span class="copy_modal__copy_type-switch" ng-click="switchCopyType()">
+                <span ng-show="copyType === 'demo'">换用真实账户复制</span>
+                <span ng-show="copyType === 'real'">换用模拟账户复制</span>
             </span>
         </div>
+
     </div>
+
     <div class="copy_modal__content">
         <div class="copy_modal__money">
+            
             <form name="copyForm" novalidate>
-                <div class="form-group">
-                    <label>复制金额</label>
+                
+                <div class="form-group" ng-if="copyType === 'demo'">
+                    <label>模拟复制金额</label>
+
                     <div class="copy_modal__group">
                         <button class="btn">-</button>
                         <input class="form-control" 
-                               name="copyNumber"
+                               name="copyAmount"
                                type="text"
                                required
-                               ng-model="copyNumber"
-                               ng-pattern="/^(?!0+(?:\.0+)?$)(?:[1-9]\d*|0)(?:\.\d{1,2})?$/">
+                               ng-model="demoCopy.amount"
+                               ng-pattern="/^(?!0+(?:\.0+)?$)(?:[1-9]\d*|0)(?:\.\d{1,2})?$/">       
                         <button class="btn">+</button>
                     </div>
-                    <div ng-show="copyForm.copyNumber.$dirty">
-                        <p class="alert alert-danger" ng-show="copyForm.copyNumber.$error.required">
+
+                    <div ng-show="copyForm.copyAmount.$dirty">
+                        <p class="alert alert-danger" ng-show="copyForm.copyAmount.$error.required">
                             请填写复制金额
                         </p>
-                        <p class="alert alert-danger" ng-show="copyForm.copyNumber.$error.pattern">
-                            格式错误，最多包含 2 位小数
-                        </p>
-                        <p class="alert alert-danger" ng-show="minError">
-                            {{minError}}
-                        </p>
-                        <p class="alert alert-danger" ng-show="maxError">
-                            {{maxError}}
+                        <p class="alert alert-danger" ng-show="copyForm.copyAmount.$error.pattern">
+                            填写金额无效（若含小数最多 2 位）
                         </p>
                     </div>
+                    <p class="alert alert-danger" ng-show="demoCopy.minError">
+                        {{demoCopy.minError}}
+                    </p>
+                    <p class="alert alert-danger" ng-show="demoCopy.maxError">
+                        {{demoCopy.maxError}}
+                    </p>
+
                 </div>
+
+                <div class="form-group" ng-if="copyType === 'real'">
+                    <label>真实复制金额</label>
+
+                    <div class="copy_modal__group">
+                        <button class="btn">-</button>
+                        <input class="form-control" 
+                               name="copyAmount"
+                               type="text"
+                               required
+                               ng-model="realCopy.amount"
+                               ng-pattern="/^(?!0+(?:\.0+)?$)(?:[1-9]\d*|0)(?:\.\d{1,2})?$/">       
+                        <button class="btn">+</button>
+                    </div>
+
+                    <div ng-show="copyForm.copyAmount.$dirty">
+                        <p class="alert alert-danger" ng-show="copyForm.copyAmount.$error.required">
+                            请填写复制金额
+                        </p>
+                        <p class="alert alert-danger" ng-show="copyForm.copyAmount.$error.pattern">
+                            填写金额无效（若含小数最多 2 位）
+                        </p>
+                    </div>
+                    <p class="alert alert-danger" ng-show="realCopy.minError">
+                        {{realCopy.minError}}
+                    </p>
+                    <p class="alert alert-danger" ng-show="realCopy.maxError">
+                        {{realCopy.maxError}}
+                    </p>
+
+                </div>
+
             </form>
+
         </div>
+
         <p class="copy_modal__rate">
-            复制金所占比例：<span>{{copyRate}}%</span>
+            复制金额所占比例：
+            <span>
+                {{copyType ==='demo' ? demoCopy.percent : realCopy.percent}}%
+            </span>
         </p>
         <p class="copy_modal__useable">
-            当前可用复制金：<span>${{balance}}</span>
+            当前可用复制金额：
+            <span>${{copyType === 'demo' ? demoCopy.balance : realCopy.balance}}</span>
         </p>
+
         <p class="copy_modal__cancel">
             取消复制
         </p>
+
     </div>
-    <a class="copy_modal__help">
+
+    <a class="copy_modal__help" href="">
         查看详细规则
     </a>
-    <p class=""></p>
-    <button class="btn btn-primary">
-        复制交易
+    <br>
+    <button class="btn btn-primary" ng-show="copyType === 'demo'" ng-disabled="copyForm.$invalid || demoCopy.minError || demoCopy.maxError" ng-click="submitCopyForm()">
+        模拟复制交易
+    </button>
+    <button class="btn btn-primary" ng-show="copyType === 'real'" ng-disabled="copyForm.$invalid || realCopy.minError || realCopy.maxError" ng-click="submitCopyForm()">
+        真实复制交易
     </button>
 </div>

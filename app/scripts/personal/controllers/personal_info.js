@@ -15,7 +15,8 @@
             isPersonal:true  
         };
         $scope.personal = {};
-        $scope.equityInfo = {};  // personal money info
+        $scope.realEquityInfo = {}; // 真实账户资产信息
+        $scope.demoEquityInfo = {}; // 模拟账户资产信息
         $scope.user = {};
         $scope.openRegisterModal = openRegisterModal;
         $scope.openCopyModal = openCopyModal;
@@ -27,14 +28,19 @@
             getSocialSum($scope.personal, communicate, copy);
 
             if (data.verified) {
-                // 获取个人money
+                // 获取真实账户的 money
                 (function getEquity() {
                     money.getLastEquity().then(function (data) {
-                        $scope.equityInfo = data;
+                        $scope.realEquityInfo = data;
                         $scope.$broadcast('equity',data);
                         $timeout(getEquity, 5 * 1000);
                     });
                 })();
+
+                // 获取模拟账户的 money，传递给 copy modal
+                money.getLastEquity('demo').then(function (data) {
+                    $scope.demoEquityInfo = data;
+                });
             }
         });
 
@@ -85,7 +91,8 @@
                         return {
                             user: $scope.user,
                             personal: $scope.personal,
-                            balance: $scope.equityInfo.balance
+                            realBalance: $scope.realEquityInfo.balance,
+                            demoBalance: $scope.demoEquityInfo.balance
                         }
                     }
                 }
