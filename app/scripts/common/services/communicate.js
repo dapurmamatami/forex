@@ -175,8 +175,8 @@
             /**
              * 获取 following、fan 总数
              */
-            function getFFSum() {
-                return topicHttp.get('/attentionsfans');
+            function getFFSum(userCode) {
+                return topicHttp.get('/attentionsfans', userCode);
             }
 
             /**

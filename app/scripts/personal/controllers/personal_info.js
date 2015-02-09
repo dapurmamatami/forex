@@ -25,7 +25,7 @@
             $scope.personal = data;
             $cookieStore.put('userCode',data.user_code);
 
-            getSocialSum($scope.personal, communicate, copy);
+            getSocialSum($scope.personal, $scope.personal.user_code, copy, communicate);
 
             if (data.verified) {
                 // 获取真实账户的 money
@@ -53,26 +53,25 @@
 
             account.getUserInfo($scope.userType.code).then(function (data) {
                 $scope.user = data;
-                getSocialSum($scope.user, communicate, copy);
+                $scope.user.userCode = $scope.userType.code;
+                getSocialSum($scope.user, $scope.user.userCode, copy, communicate);
             });
         }
 
         switchLayout();
 
-        function getSocialSum(personal, service1, service2) {
-            service2.getCCSum().then(function (data) {
-                personal.copiedTraderSum = data.mycopy_count;
-                personal.copierSum = data.copy_count;
-                service1.getFFSum().then(function (data) {
-                    personal.followingSum = data.data.attention_sum;
-                    personal.fanSum = data.data.fans_sum;
+        // 获取 copier sum、copied trader sum、fan sum、following sum
+        function getSocialSum(user, userCode, service1, service2) {
+            service1.getCCSum(userCode).then(function (data) {
+                user.copiedTraderSum = data.mycopy_count;
+                user.copierSum = data.copy_count;
+                service2.getFFSum(userCode).then(function (data) {
+                    user.followingSum = data.data.attention_sum;
+                    user.fanSum = data.data.fans_sum;
                 });
             });
         }
         
-
-
-     
         function openRegisterModal(size) {
               $modal.open({
                 templateUrl: '/views/account/register.html',
@@ -108,7 +107,6 @@
                 $scope.layoutSide = 'content__sidebar-ad';
             }
         }
-        switchLayout();
     }
 
 })();

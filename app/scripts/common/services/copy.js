@@ -15,16 +15,23 @@
         return service;
 
         /**
-         * Copy Service 获取 personal 的 copied trader 和 copier 总数
+         * Copy Service 获取用户的 copied trader 和 copier 总数
          *
          * @method getCCSum
+         * @param {Object} {
+         *   cros_user:  // user code
+         * }
          * @return {Object} {
          *   copy_count:    // copier sum
          *   mycopy_count:  // copied trader sum
          * }
          */
-        function getCCSum() {
-            return $http.get('/get_user_info');
+        function getCCSum(userCode) {
+            return $http.get('/get_user_info', {
+                params: {
+                    cros_user: userCode
+                }
+            });
         }
 
         /**
