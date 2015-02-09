@@ -10,7 +10,9 @@
     function copy($http) {
         var service = {
             getCCSum: getCCSum,
-            copy: copy
+            copy: copy,
+            getCopiedTraderInfo: getCopiedTraderInfo,
+            cancelCopy: cancelCopy
         };
         return service;
 
@@ -70,6 +72,21 @@
                 user_code: userCode,   
                 to: copyType,          
                 amount: copyAmount     
+            });
+        }
+
+        /**
+         * Copy Service 取消 copy 某人
+         * @method cancelCopy
+         * @param {Object} {
+         *   auto_delete:  // 是否平仓 
+         * }
+         */
+        function cancelCopy(userCode, isCloseOut, copyType) {
+            return $http.post('/uncopy', {
+                user_code: userCode,
+                auto_delete: true,
+                to: copyType
             });
         }
 

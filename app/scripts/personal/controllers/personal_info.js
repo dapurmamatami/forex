@@ -51,16 +51,33 @@
 
             $scope.userType.isPersonal = false;
 
+            // 获取别人的信息
             account.getUserInfo($scope.userType.code).then(function (data) {
-                $scope.user = data;
-                $scope.user.userCode = $scope.userType.code;
-                getSocialSum($scope.user, $scope.user.userCode, copy, communicate);
+                
+                if (!data.is_succ) {
+                    return;
+                }
+                $scope.user = {
+                    userCode: $scope.userType.code,
+                    userName: data.username,
+                    sex: data.sex,
+                    copiedTraderSum: data.mycopy_count,
+                    copierSum: data.copy_count,
+                    demoCopyAmount: data.copy_demo,
+                    realCopyAmount: data.copy_real 
+                };
+               
+                // 获取 fan sum、following sum
+                communicate.getFFSum($scope.user.userCode).then(function (data) {
+                    $scope.user.followingSum = data.data.attention_sum;
+                    $scope.user.fanSum = data.data.fans_sum;
+                });
             });
         }
 
         switchLayout();
 
-        // 获取 copier sum、copied trader sum、fan sum、following sum
+        // 获取 copier sum、copied trader sum、fan sum、following sum！！ 以后修改
         function getSocialSum(user, userCode, service1, service2) {
             service1.getCCSum(userCode).then(function (data) {
                 user.copiedTraderSum = data.mycopy_count;

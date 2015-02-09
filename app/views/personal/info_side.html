@@ -66,7 +66,7 @@
                 <img class="basic_info__photo" ng-src="ngsrc/photo-{{ user.sex ? 'man' : 'woman'}}.png" alt="**" >
             </a>
         </div>
-        <h3 class="basic_info__name">{{user.username}}</h3>
+        <h3 class="basic_info__name">{{user.userName}}</h3>
         <div class="basic_info__location">
             <p class="basic_info__region">北京市，朝阳区</p>
             <p class="basic_info__nation">
@@ -82,7 +82,7 @@
                 <span>跟随</span>
             </div>
             <div class="social_pnl__copy">
-                <button class="btn btn-primary">复制</button>
+                <button class="btn btn-primary" ng-click="openCopyModal('sm')">复制</button>
             </div>
         </div>
         <div class="social_pnl">
