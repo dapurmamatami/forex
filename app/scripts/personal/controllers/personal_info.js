@@ -20,6 +20,7 @@
         $scope.user = {};
         $scope.openRegisterModal = openRegisterModal;
         $scope.openCopyModal = openCopyModal;
+        $scope.follow = follow;
 
         account.getPersonalInfo().then(function (data) {
             $scope.personal = data;
@@ -75,6 +76,7 @@
 
                 // 获取 fan sum、following sum
                 communicate.getFFSum($scope.user.userCode).then(function (data) {
+                    console.info(data);
                     $scope.user.followingSum = data.data.attention_sum;
                     $scope.user.fanSum = data.data.fans_sum;
                 });
@@ -96,7 +98,7 @@
         }
         
         function openRegisterModal(size) {
-              $modal.open({
+            $modal.open({
                 templateUrl: '/views/account/register.html',
                 controller: 'AccountRegisterController',
                 size: size
@@ -117,6 +119,14 @@
                             demoBalance: $scope.demoEquityInfo.balance
                         }
                     }
+                }
+            });
+        }
+
+        function follow() {
+            communicate.doAttention($scope.user.userCode, $scope.personal.userCode).then(function (data) {
+                if (data.statecode) {
+                    $scope.user.isFollow = true;
                 }
             });
         }
