@@ -109,17 +109,18 @@
             查看详细规则
         </a>
         <br>
-        <button class="btn btn-primary" ng-show="copyType === 'demo'" ng-disabled="copyForm.$invalid || demoCopy.minError || demoCopy.maxError" ng-click="submitCopyForm('demoCopy')">
-            确定模拟复制
-        </button>
-        <button class="btn btn-primary" ng-show="copyType === 'real'" ng-disabled="copyForm.$invalid || realCopy.minError || realCopy.maxError" ng-click="submitCopyForm('realCopy')">
-            确定真实复制
-        </button>
+        <div class="text-center mg-tp-15">
+            <button class="btn btn-primary" ng-show="copyType === 'demo'" ng-disabled="copyForm.$invalid || demoCopy.minError || demoCopy.maxError" ng-click="submitCopyForm('demoCopy')">
+                确定模拟复制
+            </button>
+            <button class="btn btn-primary" ng-show="copyType === 'real'" ng-disabled="copyForm.$invalid || realCopy.minError || realCopy.maxError" ng-click="submitCopyForm('realCopy')">
+                确定真实复制
+            </button>
+        </div>
     </div>
     
     <div ng-show="isCancel">
         <div class="copy_modal__content">
-            {{demoCopy.isCloseOut}}
              <form name="cancelCopyForm" novalidate >
                 <div ng-if="copyType ==='demo'">    
                     <div class="radio">
@@ -142,18 +143,21 @@
                             仅取消模拟复制
                         </label>
                     </div>
-                    <button class="btn btn-primary" ng-disabled="cancelCopyForm.$invalid" ng-click="submitCancelForm('demoCopy')">
-                        确定
-                    </button>
+                    <div class="text-center pd-tp-15">
+                        <button class="btn btn-primary" ng-disabled="cancelCopyForm.$invalid" ng-click="submitCancelForm('demoCopy')">
+                            确定
+                        </button>
+                    </div>
                 </div>
+
                 <div ng-if="copyType === 'real'">
                     <div class="radio">
                         <label>
                             <input name="closeOut"
                                    type="radio"
-                                   value="true"
                                    required
-                                   ng-model="closeOut">
+                                   ng-value="true"
+                                   ng-model="realCopy.isCloseOut">
                             取消模拟复制并平仓
                         </label>
                     </div>
@@ -161,15 +165,17 @@
                         <label>
                             <input name="closeOut"
                                    type="radio"
-                                   value="false"
                                    required
-                                   ng-model="closeOut">
+                                   ng-value="false"
+                                   ng-model="realCopy.isCloseOut">
                             仅取消模拟复制
                         </label>
                     </div>
-                    <button class="btn btn-primary">
-                        确定
-                    </button>
+                    <div class="text-center pd-tp-15">
+                        <button class="btn btn-primary" ng-disabled="cancelCopyForm.$invalid" ng-click="submitCancelForm('realCopy')">
+                            确定
+                        </button>
+                    </div>
                 </div>
             </form>
         </div>
