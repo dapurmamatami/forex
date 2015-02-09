@@ -100,41 +100,6 @@
         }
     }
 
-
-    
-        
-        
-
-        
-
-        
-
-        
-
-        
-
-        
-
-        
-    
-
-        @include e(display_switch) {
-            
-            h4,
-            p {
-                margin-bottom: 0;
-                line-height: 30px;
-                text-align: left;
-                font-weight: 700;
-                color: $brand-primary;    
-            }
-            h4 {
-                margin-top: 0;
-                font-size: 16px;
-            } 
-        }
-    }
-
     @include b(copied_trader_info) {
         padding: 15px;
         background-color: $gray-lightest !important;
@@ -213,8 +178,5 @@
                 display: block;
             }
         }
-
-        
-
     }    
 }

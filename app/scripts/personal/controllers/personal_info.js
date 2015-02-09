@@ -73,7 +73,7 @@
 
 
      
-        function openModal(size) {
+        function openRegisterModal(size) {
               $modal.open({
                 templateUrl: '/views/account/register.html',
                 controller: 'AccountRegisterController',
