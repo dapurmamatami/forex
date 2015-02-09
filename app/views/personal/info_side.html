@@ -82,7 +82,14 @@
                 <span>跟随</span>
             </div>
             <div class="social_pnl__copy">
-                <button class="btn btn-primary" ng-click="openCopyModal('sm')">复制</button>
+                <button class="copy_btn btn btn-primary" ng-show="!user.isCopy" ng-click="openCopyModal('sm')">
+                    <i class="copy_btn__icon"></i>
+                    复制
+                </button>
+                 <button class="copied_btn btn btn-primary" ng-show="user.isCopy" ng-click="openCopyModal('sm')">
+                    <i class="copied_btn__icon"></i>
+                    已复制
+                </button>
             </div>
         </div>
         <div class="social_pnl">
@@ -91,7 +98,12 @@
                 <span>粉丝</span>
             </div>
             <div class="social_pnl__follow">
-                <button class="btn btn-primary">关注</button>
+                <button class="follow_btn btn btn-default" ng-show="true">
+                    <i class="follow_btn__icon"></i>关注
+                </button>
+                <button class="followed_btn btn btn-default" ng-show="false">
+                    <i class="followed_btn__icon"></i>已关注
+                </button>
             </div>
         </div>
     </div>

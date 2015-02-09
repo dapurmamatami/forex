@@ -66,7 +66,13 @@
                     demoCopyAmount: data.copy_demo,
                     realCopyAmount: data.copy_real 
                 };
-               
+                
+                if (data.copy_demo || data.copy_real) {
+                    $scope.user.isCopy = true;
+                } else {
+                    $scope.user.isCopy = false;
+                }
+
                 // 获取 fan sum、following sum
                 communicate.getFFSum($scope.user.userCode).then(function (data) {
                     $scope.user.followingSum = data.data.attention_sum;
