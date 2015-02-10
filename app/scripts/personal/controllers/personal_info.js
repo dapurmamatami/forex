@@ -14,19 +14,19 @@
             code:'',             
             isPersonal:true  
         };
-        $scope.personal = {};
+        $scope.personal = {};       // personal（自己）
         $scope.realEquityInfo = {}; // 真实账户资产信息
         $scope.demoEquityInfo = {}; // 模拟账户资产信息
-        $scope.user = {};
+        $scope.user = {};           // user（别人）
         $scope.openRegisterModal = openRegisterModal;
         $scope.openCopyModal = openCopyModal;
         $scope.follow = follow;
         $scope.cancelFollow = cancelFollow;
 
+        // 获取 personal 的信息
         account.getPersonalInfo().then(function (data) {
             $scope.personal = data;
             $cookieStore.put('userCode',parseInt(data.user_code));
-
             getSocialSum($scope.personal, $scope.personal.user_code, copy, communicate);
 
             if (data.verified) {
@@ -46,59 +46,61 @@
             }
         });
 
+        
+        // 取到 url 中的 user code
         $scope.userType.code = $state.params.userCode;
 
         if ($scope.userType.code && $cookieStore.get('userCode') &&
                 $scope.userType.code !== $cookieStore.get('userCode').toString()) {
 
+            // 确定了是 user（别人）的信息页面
             $scope.userType.isPersonal = false;
 
-            // 获取别人的信息
+            // 获取 user（别人） 的信息
             account.getUserInfo($scope.userType.code).then(function (data) {
                 
                 if (!data.is_succ) {
                     return;
                 }
-                $scope.user = {
-                    userCode: $scope.userType.code,
-                    userName: data.username,
-                    sex: data.sex,
-                    copiedTraderSum: data.mycopy_count,
-                    copierSum: data.copy_count,
-                    demoCopyAmount: data.copy_demo,
-                    realCopyAmount: data.copy_real 
-                };
-                
+                $scope.user.userCode = $scope.userType.code;
+                $scope.user.userName = data.username;
+                $scope.user.sex = data.sex;
+                $scope.user.copiedTraderSum = data.mycopy_count;
+                $scope.user.copierSum = data.copy_count;
+                $scope.demoCopyAmount = data.copy_demo;
+                $scope.realCopyAmount = data.copy_real;
+
                 if (data.copy_demo || data.copy_real) {
                     $scope.user.isCopy = true;
                 } else {
                     $scope.user.isCopy = false;
                 }
-                getFFSum($scope.user, communicate);
             });
+            // 获取别人的 fan sum
+            getFanSum($scope.user, $scope.userType.code, communicate);
         }
 
         switchLayout();
 
         // 获取 personal 的 copier sum、copied trader sum 和 fan sum、following sum
-        function getSocialSum(user, userCode, service1, service2) {
+        function getSocialSum(personal, userCode, service1, service2) {
             service1.getCCSum(userCode).then(function (data) {
-                user.copiedTraderSum = data.mycopy_count;
-                user.copierSum = data.copy_count;
+                personal.copiedTraderSum = data.mycopy_count;
+                personal.copierSum = data.copy_count;
                 service2.getFFSum(userCode).then(function (data) {
-                    user.followingSum = data.data.attention_sum;
-                    user.fanSum = data.data.fans_sum;
+                    personal.followingSum = data.data.attention_sum;
+                    personal.fanSum = data.data.fans_sum;
                 });
             });
         }
         
-        // 获取 following sum、fan sum
-        function getFFSum(user, service) {
-            service.getFFSum(user.userCode).then(function (data) {
+        // 获取 user 的 fan sum，同时确定 personal 与 user 的关注关系
+        function getFanSum(user, userCode, service) {
+            service.getFFSum(userCode).then(function (data) {
                 if (!data.statecode) {
                     return;
                 }
-                user.followingSum = data.data.attention_sum;
+                //user.followingSum = data.data.attention_sum;
                 user.fanSum = data.data.fans_sum;
 
                 if (data.data.is_by_attention) {
@@ -136,15 +138,19 @@
         }
 
         function follow() {
-            communicate.doAttention($scope.user.userCode, $scope.personal.userCode).then(function (data) {
+            communicate.doAttention($scope.user.userCode, $scope.personal.userCode, 1).then(function (data) {
                 if (data.statecode) {
-                    getFFSum($scope.user.userCode, communicate);
+                    getFanSum($scope.user, $scope.user.userCode, communicate);
                 }
             });
         }
 
         function cancelFollow() {
-
+            communicate.doAttention($scope.user.userCode, $scope.personal.user_code, 0).then(function (data) {
+                if (data.statecode) {
+                    getFanSum($scope.user, $scope.user.userCode, communicate);
+                }
+            });
         }
 
         function switchLayout(){

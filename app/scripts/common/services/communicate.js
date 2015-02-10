@@ -136,10 +136,11 @@
              * @param usercode
              * @returns {HttpPromise}
              */
-            function doAttention(by_attention_id,usercode){
+            function doAttention(by_attention_id, usercode, action){
                 return  topicHttp.get('/doattention', {
                       by_attention_id: by_attention_id,
-                      usercode: usercode
+                      usercode: usercode,
+                      action: action
                 });
             }
 
