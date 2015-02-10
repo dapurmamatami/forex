@@ -105,7 +105,7 @@
                     case 'lastId':
                         this['after'] = value;
                         break;
-                    case 'code':
+                    case 'copiedTraderUserCode':
                         this['user_code'] = value;
                         break;
                     case 'accountType':

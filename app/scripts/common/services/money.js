@@ -34,8 +34,12 @@
                 }
             }*/
 
-            function getLastEquity() {
-                return $http.get('/equity/last');
+            function getLastEquity(type) {
+                return $http.get('/equity/last', {
+                    params: {
+                        tiger_source: type
+                    }
+                });
             }
 
            /* function pay() {

@@ -12,10 +12,11 @@
     }
 
     @include e(switch) {
-        width: 184px;
-        height: 64px;
-        margin-left: 6px;
-        padding-top: 10px;
+        width: 175px;
+        height: 43px;
+        margin-left: 10px;
+        padding-top: 3px;
+        line-height: 40px;
         font-size: 18px;
         color: $brand-white;
 
@@ -24,18 +25,18 @@
         }
 
         &.real {
-            @include background_image_url('account_switch.png');
+            @include img-retina($image_path + 'account_switch.png', $image_path + 'account_switch@2x.png', 175px, 43px);
             background-repeat: no-repeat;
+            background-position: 0px -46px;
         }
         &.demo {
-            @include background_image_url('account_switch.png');
+            @include img-retina($image_path + 'account_switch.png', $image_path + 'account_switch@2x.png', 175px, 43px);
             background-repeat: no-repeat;
-            background-position: 0 -64px;
         }
     }
     @include e(switch_tip) {
-        margin-top: -15px;
-        margin-left: 30px;
+        margin-bottom: 0;
+        margin-left: 45px;
         font-size: 13px;
         color: $brand-red;
     }

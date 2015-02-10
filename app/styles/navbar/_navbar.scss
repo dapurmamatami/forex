@@ -66,6 +66,8 @@
 
 @include b(nav_personal) {
     text-align: right;
+    border-bottom: none !important;
+
     @include e(photo) {
         width: 20px;
         height: 20px;
@@ -80,11 +82,16 @@
         font-weight: 700;
         overflow: hidden;
     }
+
+    /* &:hover,
+    &:focus {
+        border-bottom-color: transparent !important;
+    } */
 }
 
 @include b(nav_personal_detail) {
-    top: 48px !important;
-//    left: -92px !important;
+    left: auto !important;
+    right: -1px;
     width: 250px;
     margin: 0;
     padding: 0;

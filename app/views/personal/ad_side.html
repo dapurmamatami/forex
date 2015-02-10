@@ -3,14 +3,14 @@
     <div class="deposit_pnl text-center">
         <h5 class="deposit_pnl__title">当前净值</h5>
         <p class="deposit_pnl__number">
-            ${{equityInfo.equity || 0}}
+            ${{realEquityInfo.equity || 0}}
         </p>
         <p class="deposit_pnl__time">
             数据更新于
             <span>2014/12/08 13:34</span>
             GMT
         </p>
-        <a class="deposit_pnl__to_detail btn btn-primary" href="#/invest/summary/{{userType.code}}">
+        <a class="deposit_pnl__to_detail btn btn-primary" href="#/invest/summary/{{personal.user_code}}">
             查看投资详情
             <i class="fa fa-angle-right"></i>
         </a>

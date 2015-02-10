@@ -1,0 +1,101 @@
+@include b(copy_modal) {
+    $copy_modal: &;
+
+    padding: 15px;
+    
+    @include e(photo) {
+        display: block;
+        width: 50px;
+        height: 50px;
+        margin: 0 auto;
+    }
+
+    @include e(copy_type) {
+        position: absolute;
+        top: -20px;
+        left: -10px;
+        width: 66px;
+        height: 67px;
+        background-repeat: no-repeat;
+        background-position: 50%;
+
+        &.real {
+            @include img-normal($image_path + 'copy-real.png');
+        }
+        &.demo {
+            @include img-normal($image_path + 'copy-demo.png');
+        }
+    }
+
+    @include e(copy_type-switch) {
+        color: $brand-primary;
+
+        &:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    }
+
+    @include e(name) {
+        margin-top: 0;
+        font-weight: 700;
+    }
+
+    @include e(content) {
+        margin: 15px auto;
+        padding: 15px 10px; 
+        border: 1px solid $brand-border-color;
+        background-color: $gray-lightest;
+    }
+
+    @include e(money) {
+        padding: 10px 0;
+        line-height: 35px;
+        
+        .alert.alert-danger {
+            padding: 5px;
+            margin: 0px;
+        }    
+
+        @include e(group, $copy_modal) {
+            display:inline-block;
+            vertical-align: top;
+
+            &:after {
+                display: block;
+                content: '';
+                clear: both;
+            }
+            
+            .btn {
+                float: left;
+            }
+            
+            .form-control {
+                position: relative;
+                float: left;
+                display: inline-block;
+                width: 96px;
+                margin-left: -2px;
+                margin-right: -2px;
+                border-radius: 0;
+            }
+        }
+    }
+
+    @include e(rate) {
+        span {
+            font-weight: 700;
+        }
+    }
+
+    @include e(useable) {
+        @extend .copy_modal__rate;
+    }
+
+    @include e(cancel) {
+        margin-bottom: 0;
+        text-align: right;
+        color: $brand-primary;
+    }
+}

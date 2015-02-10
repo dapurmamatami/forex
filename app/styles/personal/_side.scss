@@ -237,8 +237,61 @@
         @include e(follow) {
             @extend .social_pnl__copy;
         }
+    }
 
+    @include b(copy_btn) {
+        width: 90px;
+        padding: 3px;
+        border: none;
+        @include img-normal($image_path + 'copy-bg.png');
 
+        &:hover {
+            background: $brand-dark;
+        }
+
+        @include e(icon) {
+            display: inline-block;
+            vertical-align: middle;
+            width: 32px;
+            height: 26px;
+            @include img-normal($image_path + 'copy_follow.png');
+            background-position: 0 0;
+        }
+    }
+
+    @include b(copied_btn) {
+        @extend .copy_btn;
+
+        @include e(icon) {
+            @extend .copy_btn__icon;
+
+            background-position: -32px 0;
+        }
+    }
+
+    @include b(follow_btn) {
+        @extend .copy_btn;
+        border: none;
+        @include img-normal($image_path + 'follow-bg.png');
+        background-position: -1px;
+        
+        &:hover {
+            background: #ddd;
+        }
+
+        @include e(icon) {
+           @extend .copy_btn__icon;
+           background-position: 0 -26px; 
+        }
+    }
+
+    @include b(followed_btn) {
+        @extend .follow_btn;
+
+        @include e(icon) {
+            @extend .follow_btn__icon;
+            background-position: -32px -26px;
+        }
     }
 
 }

@@ -1,0 +1,184 @@
+<div class="copy_modal">
+    <div class="row">
+
+        <div class="col-xs-4">
+            <img class="copy_modal__photo" ng-src="ngsrc/{{copiedTrader.sex ? 'man' : 'woman'}}.png">
+            <div class="copy_modal__copy_type" ng-class="{demo: copyType === 'demo', real: copyType === 'real'}"> 
+            </div>
+        </div>
+
+        <div class="col-xs-8">
+            <button class="close" ng-click="closeModal()">X</button>
+            <h4 class="copy_modal__name">
+                {{copiedTrader.userName}}
+            </h4>
+            <span class="copy_modal__copy_type-switch" ng-show="!isCancel" ng-click="switchCopyType()">
+                <span ng-show="copyType === 'demo'">换用真实账户复制</span>
+                <span ng-show="copyType === 'real'">换用模拟账户复制</span>
+            </span>
+        </div>
+
+    </div>
+
+    <div ng-show="!isCancel">
+        <div class="copy_modal__content">
+            <div class="copy_modal__money">
+                
+                <form name="copyForm" novalidate>
+                    
+                    <div class="form-group" ng-if="copyType === 'demo'">
+                        <label>模拟复制金额</label>
+
+                        <div class="copy_modal__group">
+                            <button class="btn">-</button>
+                            <input class="form-control" 
+                                   name="copyAmount"
+                                   type="text"
+                                   required
+                                   ng-model="demoCopy.amount"
+                                   ng-pattern="/^(?!0+(?:\.0+)?$)(?:[1-9]\d*|0)(?:\.\d{1,2})?$/">       
+                            <button class="btn">+</button>
+                        </div>
+
+                        <div ng-show="copyForm.copyAmount.$dirty">
+                            <p class="alert alert-danger" ng-show="copyForm.copyAmount.$error.required">
+                                请填写复制金额
+                            </p>
+                            <p class="alert alert-danger" ng-show="copyForm.copyAmount.$error.pattern">
+                                填写金额无效（若含小数最多 2 位）
+                            </p>
+                        </div>
+                        <p class="alert alert-danger" ng-show="demoCopy.minError">
+                            {{demoCopy.minError}}
+                        </p>
+                        <p class="alert alert-danger" ng-show="demoCopy.maxError">
+                            {{demoCopy.maxError}}
+                        </p>
+                    </div>
+
+                    <div class="form-group" ng-if="copyType === 'real'">
+                        <label>真实复制金额</label>
+
+                        <div class="copy_modal__group">
+                            <button class="btn">-</button>
+                            <input class="form-control" 
+                                   name="copyAmount"
+                                   type="text"
+                                   required
+                                   ng-model="realCopy.amount"
+                                   ng-pattern="/^(?!0+(?:\.0+)?$)(?:[1-9]\d*|0)(?:\.\d{1,2})?$/">       
+                            <button class="btn">+</button>
+                        </div>
+
+                        <div ng-show="copyForm.copyAmount.$dirty">
+                            <p class="alert alert-danger" ng-show="copyForm.copyAmount.$error.required">
+                                请填写复制金额
+                            </p>
+                            <p class="alert alert-danger" ng-show="copyForm.copyAmount.$error.pattern">
+                                填写金额无效（若含小数最多 2 位）
+                            </p>
+                        </div>
+                        <p class="alert alert-danger" ng-show="realCopy.minError">
+                            {{realCopy.minError}}
+                        </p>
+                        <p class="alert alert-danger" ng-show="realCopy.maxError">
+                            {{realCopy.maxError}}
+                        </p>
+                    </div>
+                </form>
+            </div>
+
+            <p class="copy_modal__rate">
+                复制金额所占比例：
+                <span>
+                    {{copyType ==='demo' ? demoCopy.percent : realCopy.percent}}%
+                </span>
+            </p>
+            <p class="copy_modal__useable">
+                当前可用复制金额：
+                <span>${{copyType === 'demo' ? demoCopy.balance : realCopy.balance}}</span>
+            </p>
+
+            <p class="copy_modal__cancel">
+                <p ng-show="copyType === 'demo' && demoCopy.isCopy" ng-click="cancelCopy()">取消模拟复制</p>
+                <p ng-show="copyType === 'real' && realCopy.isCopy">取消真实复制</p>
+            </p>
+        </div>
+
+        <a class="copy_modal__help" href="">
+            查看详细规则
+        </a>
+        <br>
+        <div class="text-center mg-tp-15">
+            <button class="btn btn-primary" ng-show="copyType === 'demo'" ng-disabled="copyForm.$invalid || demoCopy.minError || demoCopy.maxError" ng-click="submitCopyForm('demoCopy')">
+                确定模拟复制
+            </button>
+            <button class="btn btn-primary" ng-show="copyType === 'real'" ng-disabled="copyForm.$invalid || realCopy.minError || realCopy.maxError" ng-click="submitCopyForm('realCopy')">
+                确定真实复制
+            </button>
+        </div>
+    </div>
+    
+    <div ng-show="isCancel">
+        <div class="copy_modal__content">
+             <form name="cancelCopyForm" novalidate >
+                <div ng-if="copyType ==='demo'">    
+                    <div class="radio">
+                        <label>
+                            <input name="closeOut"
+                                   type="radio"
+                                   required
+                                   ng-value="true"
+                                   ng-model="demoCopy.isCloseOut">
+                            取消模拟复制并平仓
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input name="closeOut"
+                                   type="radio"
+                                   required
+                                   ng-value="false"
+                                   ng-model="demoCopy.isCloseOut">
+                            仅取消模拟复制
+                        </label>
+                    </div>
+                    <div class="text-center pd-tp-15">
+                        <button class="btn btn-primary" ng-disabled="cancelCopyForm.$invalid" ng-click="submitCancelForm('demoCopy')">
+                            确定
+                        </button>
+                    </div>
+                </div>
+
+                <div ng-if="copyType === 'real'">
+                    <div class="radio">
+                        <label>
+                            <input name="closeOut"
+                                   type="radio"
+                                   required
+                                   ng-value="true"
+                                   ng-model="realCopy.isCloseOut">
+                            取消模拟复制并平仓
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input name="closeOut"
+                                   type="radio"
+                                   required
+                                   ng-value="false"
+                                   ng-model="realCopy.isCloseOut">
+                            仅取消模拟复制
+                        </label>
+                    </div>
+                    <div class="text-center pd-tp-15">
+                        <button class="btn btn-primary" ng-disabled="cancelCopyForm.$invalid" ng-click="submitCancelForm('realCopy')">
+                            确定
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

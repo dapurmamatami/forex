@@ -31,8 +31,11 @@
         padding: 15px;
         text-align: center;
 
-        &:nth-child(even) {
+        &:nth-child(odd) {
             background-color: $gray-lightest;
+        }
+        &:nth-child(even) {
+            background-color: $brand-white;
         }
 
         .col-xs-1,
@@ -50,7 +53,7 @@
             }
 
             @include e(exchange, $order_item) {
-                font-size: 16px;
+                font-size: 15px;
                 font-weight: 700;
             }
 
@@ -74,13 +77,13 @@
         }
 
         @include e(copiedTrader) {
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 700;
             color: $brand-primary;   
         }
 
         @include e(price) {
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 700;
         }
 
@@ -97,21 +100,83 @@
         }
     }
 
+    @include b(copied_trader_info) {
+        padding: 15px;
+        background-color: $gray-lightest !important;
 
-    
-        
-        
+        @include e(photo) {
+            position: relative;
+            z-index: 1;
+            width: 50px;
+            height: 50px;
+            background-color: #fff;
+        }
 
-        
+        @include e(name) {
+            margin: 0;
+            line-height: 30px;
+            text-align: left;
+            font-size: 15px;
+            font-weight: 700;
+            color: $brand-primary;    
+        }
+    }
 
-        
+    @include b(copy_orders) {
+        position: relative;
 
-        
+        @include e(trunk) {
+            position: absolute;
+            top: -45px;
+            left: 28px;
+            width: 1px;
+            height: 100%;
+            background-color: $brand-border-color;
+        }
 
-        
+        @include e(branch) {
+            position: absolute;
+            top: 30px;
+            left: 28px;
+            width: 30px;
+            height: 1px;
+            background-color: $brand-border-color;
+        }
+    }
 
-        
+    @include b(fold_btn) {
+        display: inline-block;
+        margin: 0;
+        padding: 6px 12px;
+        font-size: 14px;
+        font-weight: 700;
+        color: $brand-primary;
+        cursor: pointer;
 
-        
-    
+        @include e(close) { 
+        }
+
+        @include e(open) {
+        }
+
+        & {
+            .fold_btn__close {
+                display: block;
+            }
+
+            .fold_btn__open {
+                display: none;
+            }
+        }
+
+        &.closed {
+            .fold_btn__close {
+                display: none;
+            }
+
+            .fold_btn__open {
+                display: block;
+            }
+        }
+    }    
 }
