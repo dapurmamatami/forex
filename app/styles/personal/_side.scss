@@ -241,7 +241,13 @@
 
     @include b(copy_btn) {
         width: 90px;
-        padding: 5px;
+        padding: 3px;
+        border: none;
+        @include img-normal($image_path + 'copy-bg.png');
+
+        &:hover {
+            background: $brand-dark;
+        }
 
         @include e(icon) {
             display: inline-block;
@@ -265,11 +271,12 @@
 
     @include b(follow_btn) {
         @extend .copy_btn;
-        border-color: $brand-border-color;
-
-        &:hover,
-        &:focus {
-            border-color: $brand-border-color;
+        border: none;
+        @include img-normal($image_path + 'follow-bg.png');
+        background-position: -1px;
+        
+        &:hover {
+            background: #ddd;
         }
 
         @include e(icon) {

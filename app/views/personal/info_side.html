@@ -53,7 +53,7 @@
             当前进度 
             <span>20%</span>
         </p>
-        <a class="real_account__open_btn btn btn-md btn-primary" href="" ng-click="openModal()">
+        <a class="real_account__open_btn btn btn-md btn-primary" href="" ng-click="openRegisterModal()">
             开通真实账户
         </a>  
     </div>
@@ -82,11 +82,11 @@
                 <span>跟随</span>
             </div>
             <div class="social_pnl__copy">
-                <button class="copy_btn btn btn-primary" ng-show="!user.isCopy" ng-click="openCopyModal('sm')">
+                <button class="copy_btn btn btn-primary" ng-show="user.isCopy" ng-click="openCopyModal('sm')">
                     <i class="copy_btn__icon"></i>
                     复制
                 </button>
-                 <button class="copied_btn btn btn-primary" ng-show="user.isCopy" ng-click="openCopyModal('sm')">
+                 <button class="copied_btn btn btn-primary" ng-show="!user.isCopy" ng-click="openCopyModal('sm')">
                     <i class="copied_btn__icon"></i>
                     已复制
                 </button>
