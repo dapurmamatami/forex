@@ -1,14 +1,14 @@
 <div class="message_side">
     <p class="message_side__title">消息中心</p>
-    <p class="message_side__tips">您一共有2条未读的信息</p>
-    <hr/>
+    <p class="message_side__tips">您一共有<span class="message_side__sum"> {{unvisit_total_sum}} </span>条未读的信息</p>
+    <hr class = "hr_stl"/>
     <div>
         <div class="message_menu">
-            <button class="btn btn-primary message_menu__item">我的消息</button>
+            <a class="message_menu__item" ng-class="{menu_item_selected:self_msg_selected}" ng-click="switchMessageData('user')">我的消息</a>
         </div>
         <div class="message_menu">
-            <button class="btn btn-primary message_menu__item">系统消息</button>
+            <a class="message_menu__item" ng-class="{menu_item_selected:sys_msg_selected}" ng-click="switchMessageData('sys')">系统消息</a>
         </div>
     </div>
-    <hr/>
+    <hr class="hr_stl"/>
 </div>

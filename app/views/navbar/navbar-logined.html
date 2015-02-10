@@ -187,12 +187,11 @@
                     </a>
                     <div class="dropdown-menu nav_drop_msg">
                       <ul>
-                        <li class="nav_drop_msg__item" ng-click="select()">
-                          <span>查看我的消息</span>
-                          <hr/>
+                        <li class="nav_drop_msg__item" ng-click="select('user')">
+                          <span>查看我的消息</span><span ng-if="user_unvisited_sum">({{user_unvisited_sum}})</span>
                         </li>
-                        <li class="nav_drop_msg__item" ng-click="select()">
-                          <span>查看系统消息</span>
+                        <li class="nav_drop_msg__item" ng-click="select('sys')">
+                          <span>查看系统消息</span><span ng-if="sys_unvisited_sum">({{sys_unvisited_sum}})</span>
                         </li>
                       </ul>
 

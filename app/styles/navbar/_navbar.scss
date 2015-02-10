@@ -40,6 +40,8 @@
 
     @include e(item){
         line-height: 50px;
+        border-bottom: 1px solid transparent;
+        border-color:$brand-border-color;
         &:hover{
             background-color: #0066bb;
             cursor:pointer;

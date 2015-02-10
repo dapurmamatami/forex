@@ -20,7 +20,12 @@
               doAttention: doAttention,
               deleteTopic: deleteTopic,
               getRemainDiscuss:getRemainDiscuss,
-              getFFSum: getFFSum
+              getFFSum: getFFSum,
+              unvisitedMessage: unvisitedMessage,
+              getMessageInfo: getMessageInfo,
+              visitedMessage: visitedMessage,
+              delMessage: delMessage,
+              loadMoreMessage:loadMoreMessage
           };
           return service;
 
@@ -38,13 +43,13 @@
           }
 
 
-        /**
-         * 发表话题
-         * @param publisher_id
-         * @param content
-         * @param bytramsmitid
-         * @returns {HttpPromise}
-         */
+          /**
+           * 发表话题
+           * @param publisher_id
+           * @param content
+           * @param bytramsmitid
+           * @returns {HttpPromise}
+           */
 
           function publishTopic(publisher_id,content,bytramsmitid) {
               return topicHttp.get('/publishtopic', {
@@ -69,11 +74,11 @@
                     );
             }
 
-            /**
-             * 获取关注和粉丝数据
-             * @param usercode
-             * @returns {HttpPromise}
-             */
+          /**
+           * 获取关注和粉丝数据
+           * @param usercode
+           * @returns {HttpPromise}
+           */
             function attentionsFans(usercode){
                 return topicHttp.get('/attentionsfans', {
                           usercode:usercode
@@ -111,14 +116,14 @@
                 );
             }
 
-            /**
-             *  评论
-             * @param type
-             * @param usercode
-             * @param content
-             * @param topicid
-             * @returns {HttpPromise}
-             */
+          /**
+           *  评论
+           * @param type
+           * @param usercode
+           * @param content
+           * @param topicid
+           * @returns {HttpPromise}
+           */
             function doComment(type,usercode,content,topicid){
                 return topicHttp.get('/docomment',
                     {
@@ -130,16 +135,17 @@
                 );
             }
 
-            /**
-             * 关注
-             * @param by_attention_id
-             * @param usercode
-             * @returns {HttpPromise}
+          /**
+           * 关注
+           * @param by_attention_id
+           * @param usercode
+           * @returns {HttpPromise}
              */
-            function doAttention(by_attention_id,usercode){
+            function doAttention(by_attention_id,usercode,action){
                 return  topicHttp.get('/doattention', {
                       by_attention_id: by_attention_id,
-                      usercode: usercode
+                      usercode: usercode,
+                      action:action
                 });
             }
 
@@ -158,12 +164,12 @@
                 });
             }
 
-            /**
-             * 获取剩余所有的二级评论
-             * @param by_comment_id
-             * @param startindex
-             * @returns {*}
-             */
+          /**
+           * 获取剩余所有的二级评论
+           * @param by_comment_id
+           * @param startindex
+           * @returns {*}
+           */
             function getRemainDiscuss(by_comment_id,start_id){
                 return topicHttp.get('/getremaindiscuss',{
                     by_comment_id:by_comment_id,
@@ -172,20 +178,22 @@
 
             }
 
-            /**
-             * 获取 following、fan 总数
-             */
-            function getFFSum() {
-                return topicHttp.get('/attentionsfans');
+          /**
+           * 获取 following、fan 总数
+           */
+            function getFFSum(userCode) {
+                return topicHttp.get('/attentionsfans', {
+                    usercode: userCode
+                });
             }
 
-            /**
-             * 删除话题或者评论
-             * @param usercode
-             * @param type
-             * @param topicid
-             * @returns {*}
-             */
+          /**
+           * 删除话题或者评论
+           * @param usercode
+           * @param type
+           * @param topicid
+           * @returns {*}
+           */
             function deleteTopic(usercode,type,topicid){
                 return topicHttp.get('/deletetopic',{
                     usercode:usercode,
@@ -193,5 +201,76 @@
                     topicid:topicid
                 })
             }
+
+            function unvisitedMessage(user_code){
+                return topicHttp.post('message',{
+                    protocal:'unvisited',
+                    arguments:{
+                        user_code:user_code
+                    }
+                })
+
+            }
+
+          /**
+           * 获取Message详细信息
+           * @param user_code
+           * @param start_index
+           * @param offset
+           * @returns {*|HttpPromise}
+           */
+            function getMessageInfo(start_index,offset){
+                return topicHttp.post('/message',{
+                    protocal:'messageInfo',
+                    arguments:{
+                      start_index:start_index,
+                      offset:offset
+                  }})
+            }
+
+          /**
+           * 处理更新message信息
+           * @param user_code
+           * @param type
+           * @param message_ids
+           * @returns {*|HttpPromise}
+           */
+            function visitedMessage(type,message_ids){
+                return topicHttp.post('/message',{
+                    protocal:'visitedMessage',
+                    arguments:{
+                        type:type,
+                        message_ids:message_ids
+                    }
+                })
+            }
+
+          /**
+           * 删除消息
+           * @param user_code
+           * @param type
+           * @param message_id
+           * @returns {*|HttpPromise}
+           */
+            function delMessage(type,message_id){
+                return topicHttp.post('/message',{
+                    protocal:'delMessage',
+                    arguments:{
+                        type:type,
+                        message_id:message_id
+                    }
+                })
+            }
+            function loadMoreMessage(startIndex,type,offset){
+                return topicHttp.post('/message',{
+                    protocal:'loadMore',
+                    arguments:{
+                        start_index:startIndex,
+                        type:type,
+                        offset:offset
+                    }
+                });
+            }
+
       }
 })();

@@ -9,7 +9,7 @@
             restrict:'A',
             link:function(scope, element, attrs){
                 var ewidth = element.context.offsetWidth;
-                $(".dropdown-menu").css("left",ewidth-250-26);
+                $(".dropdown-menu").css("left",ewidth-250-25.5);
             }
         }
     }

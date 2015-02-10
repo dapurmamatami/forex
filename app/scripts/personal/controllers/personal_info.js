@@ -11,8 +11,8 @@
     function PersonalInfoController($location, $scope, $timeout, $modal, $cookieStore, $state,
             account, money, communicate, copy) {
         $scope.userType = {
-            code:'',             
-            isPersonal:true  
+            code:'',
+            isPersonal:true
         };
         $scope.personal = {};
         $scope.equityInfo = {};  // personal money info
@@ -21,9 +21,11 @@
 
         account.getPersonalInfo().then(function (data) {
             $scope.personal = data;
-            $cookieStore.put('userCode',data.user_code);
+            console.info(data)
+            $cookieStore.put('userCode',parseInt(data.user_code));
 
-            getSocialSum($scope.personal, communicate, copy);
+            //getSocialSum($scope.personal, communicate, copy);
+            communicate.getFFSum(data.user_code);
 
             if (data.verified) {
                 // 获取个人money
@@ -61,10 +63,10 @@
                 });
             });
         }
-        
 
 
-     
+
+
         function openModal(size) {
               $modal.open({
                 templateUrl: '/views/account/register.html',

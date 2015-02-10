@@ -1,28 +1,23 @@
   <div class="msg_head">
-      <h3 class="msg_head__title">系统消息</h3>
-      <span class="msg_head__sum">您有2条未读信息</span>
+      <h3 class="msg_head__title">{{message_title_tip}}</h3>
+      <span class="msg_head__sum">您有<span class="message_side__sum"> {{unvisit_item_sum}} </span>条未读信息</span>
   </div>
-  <hr/>
-  <div class="msg_main">
-      <img ng-src="ngsrc/u61.png" class="msg_main__icon">
+  <hr class ="hr_stl"/>
+  <div class="msg_main" ng-repeat="item in message_show_data">
+      <img ng-src="ngsrc/u61.png" class="msg_main__icon" ng-if="!item['visited']">
+      <img ng-src="ngsrc/u59.png" class=" msg_main__icon" ng-if="item['visited']">
       <div class="msg_main_content">
-          <span class="msg_main_content__tip">[新消息]</span>
-          <span class="msg_main_content__de">亲爱的用户，你已成功入金 $500.00。 请在交易页并切换到真实帐户，或登录MT4终端查看你的入金情况。Formax衷心祝福你取得辉煌的投资胜绩。</span>
+          <span class="msg_main_content__tip" ng-show="!item['visited']">[新消息]</span>
+          <span class="msg_main_content__de" ng-class="content_visited:!item['visited']">{{item.content}}</span>
           <div class="msg_other">
-              <span class="msg_other__ctime">2014-12-12</span>
-              <a class="msg_other__del">删除</a>
+              <a class="msg_other__del" ng-click="deleteMessage($index,item.id)">删除</a>
+              <span class="msg_other__ctime">{{item.ctime}}</span>
           </div>
       </div>
   </div>
-
-  <div class="msg_main">
-    <img ng-src="ngsrc/u61.png" class="msg_main__icon">
-    <div class="msg_main_content">
-      <span class="msg_main_content__tip">[新消息]</span>
-      <span class="msg_main_content__de">亲爱的用户，你已成功入金 $500.00。 请在交易页并切换到真实帐户，或登录MT4终端查看你的入金情况。Formax衷心祝福你取得辉煌的投资胜绩。</span>
-      <div class="msg_other">
-        <span class="msg_other__ctime">2014-12-12</span>
-        <a class="msg_other__del">删除</a>
-      </div>
-    </div>
+  <div class="btn-loading mg-loading" ng-click="loadMore()" tw-loading-more>
+                <span class="btn-loading__caption">
+                    点击加载更多...
+                </span>
+    <span class="btn-loading__icon"></span>
   </div>

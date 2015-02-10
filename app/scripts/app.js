@@ -157,6 +157,7 @@ angular
                 views:{
                     '@':{
                         templateUrl:'views/layout/layout-msg.html',
+                        controller:'MessageController'
                     },
                     'hd@message': {
                         templateUrl: 'views/navbar/navbar-logined.html',
@@ -164,14 +165,13 @@ angular
                     },
                     'sidebar@message':{
                         templateUrl: 'views/message/ad_side.html',
-                        controller:''
+                        controller:'MsgSideController'
                     },
                     'content@message':{
-                        templateUrl: 'views/message/message.html',
-                        controller: ''
+                        templateUrl: 'views/message/message.html'
                     },
                     'ft@personal': {
-                      templateUrl: 'views/layout/footer.html'
+                        templateUrl: 'views/layout/footer.html'
                     }
                 }
             })

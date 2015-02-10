@@ -1,5 +1,5 @@
 /*
- * 请求 fwb 数据都需要通过该服务封装 http 请求    
+ * 请求 fwb 数据都需要通过该服务封装 http 请求
  */
 (function () {
     'use strict';
@@ -12,7 +12,8 @@
 
     function topicHttp($http) {
         var service = {
-            get: get
+            get: get,
+            post:post
         };
         return service;
 
@@ -20,6 +21,9 @@
             return $http.get('/communicate/api' + url, {
                 params: argu
             });
+        }
+        function post(url,argu){
+            return $http.post('/communicate/api' + url, argu);
         }
     }
 })();

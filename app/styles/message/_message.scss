@@ -16,16 +16,16 @@
         background-color: $brand-white;
         border: 1px solid $brand-border-color;
     }
-    hr {
-        border: 0 ;
-        background-color:$brand-border-color;
-        height:1px;
-        margin-top: 20px;
-        margin-left: 10px;
-        margin-right: 10px;
-        clear:both;
-    }
+}
 
+@include b(hr_stl){
+  border: 0 ;
+  background-color:$brand-border-color;
+  height:1px;
+  margin-top: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+  clear:both;
 }
 
 @include b(msg_head){
@@ -56,17 +56,28 @@
         @include e(tip){
             color:#f8bc37;
         }
-        @include e(de){
-
-        }
-   }
+    }
+    @include b(content_visited){
+      font-weight: 600;
+    }
 }
 @include b(msg_other){
     margin-top: 10px;
     @include e(ctime){
-        float:left;
+        color: $gray-lighter;
     }
     @include e(del){
         float:right;
+        &:hover{
+            cursor: pointer;
+            text-decoration: none;
+        }
     }
+}
+@include b(mg-loading){
+    margin-top: 20px;
+    width:600px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }
