@@ -167,9 +167,9 @@
                             </div>
                         </div>
                     </li>
-                    <p class="btn-loading" ng-show="!copiedTrader.noMoreOrders" ng-click="getMoreCopyOrders(copiedTrader, copiedTrader.user_code)" tw-loading-more>
+                    <p class="btn-loading" ng-show="copiedTrader.more" ng-click="getAllCopyOrders(copiedTrader, copiedTrader.user_code)" tw-loading-more>
                         <span class="btn-loading__caption">
-                            点击加载更多复制订单...    
+                            点击加载所有复制订单...    
                         </span>
                         <span class="btn-loading__icon"></span>
                     </p>
@@ -178,7 +178,7 @@
         </ul>
         <p class="btn-loading" ng-show="!noMoreOrders" ng-click="getMoreOrders()" tw-loading-more>
             <span class="btn-loading__caption">
-                点击加载更多...    
+                点击加载更多复制者...    
             </span>
             <span class="btn-loading__icon"></span>
         </p>

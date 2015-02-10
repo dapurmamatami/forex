@@ -13,10 +13,10 @@
         $scope.copiedTraders = [];   // 复制交易中的 copied traders         
         $scope.orderType = 'normal'; // 'normal'、'not_copy'、'only_copy'、'copy_detail'
         $scope.getOrders = getOrders; // 可获取三种订单
-        $scope.getMoreOrders = getMoreOrders; //获取更多订单（全部和自主交易）
-        $scope.getMoreCopyOrders = getMoreCopyOrders; //获取更多复制交易订单
+        $scope.getMoreOrders = getMoreOrders; // 获取更多三种订单
+        $scope.getAllCopyOrders = getAllCopyOrders; // 获取所有的复制交易订单
         var lastId,
-            count = 1;   //单页订单(全部和自主交易)数 
+            count = 10;   // 单页订单(全部和自主交易)数 
 
         if (!$scope.userType.isPersonal) {
             $scope.orderType = 'not_copy';
@@ -30,7 +30,11 @@
             }, true);
         }
 
-        // 只 personal 可以切换账户类型（demo、real）和订单类型（三种）
+        /* 
+         * 只 personal 可以切换账户类型（demo、real）和订单类型（三种）
+         * 全部（normal）和自主（not_copy）返回 orders，复制（only_copy）
+         * 返回的是 copied traders
+         */
         function getOrders(orderType, accountType, userCode) {
             $scope.$broadcast('showLoadingImg');
             $scope.orderType = orderType;
@@ -42,33 +46,25 @@
                 accountType: accountType,
                 userCode: userCode
             }).then(function (data) {
-                var dataLength = data.data.length;
-
-                if (dataLength <= 0) {
-                    $scope.noMoreOrders = true;
-                    $scope.$broadcast('hideLoadingImg');
+                if (!data.is_succ) {
                     return;
                 }
 
                 if (orderType === 'only_copy') {
                     $scope.copiedTraders = data.data;
-                    angular.forEach($scope.copiedTraders, function (copiedTrader) {
-                        copiedTrader.noMoreOrders = false;
-                    });
-                $scope.orders = data.data;
-                var dataLength = $scope.orders.length;
                 } else {
                     $scope.orders = data.data;
                 }
-                
-                
-                lastId = data.data[dataLength - 1].id;
-               
+                var dataLength = data.data.length;
+
+                if (dataLength <= 0) {
+                    $scope.noMoreOrders = true;
+                } else {
+                    lastId = data.data[dataLength - 1].id;
+                }
                 $scope.$broadcast('hideLoadingImg');
-                
             });
         }
-
 
         function getMoreOrders() {
             stock.getHistory({
@@ -78,6 +74,10 @@
                 accountType: $scope.accountType.key,
                 userCode: $scope.userType.code
             }).then(function (data) {
+                
+                if (!data.is_succ) {
+                    return;
+                }
                 var dataLength = data.data.length;
 
                 if (dataLength <= 0) {
@@ -85,33 +85,30 @@
                     $scope.$broadcast('stopLoadingMore');
                     return;
                 }
-
-                if ($scope.orderType === 'noly_copy') {
+       
+                if ($scope.orderType === 'only_copy') {
                     $scope.copiedTraders = $scope.copiedTraders.concat(data.data);
                 } else {
                     $scope.orders = $scope.orders.concat(data.data);
                 }
-     
                 lastId = data.data[dataLength - 1].id;
 
                 $scope.$broadcast('stopLoadingMore');
             });
         }
 
-        function getMoreCopyOrders(copiedTrader, copiedTraderUserCode) {
+        /*
+         * 复制交易包括两种类型：only_copy 和 copy_detail
+         * only_copy 对应 copied traders，copy_detail 对应复制交易订单
+         */
+        function getAllCopyOrders(copiedTrader, copiedTraderUserCode) {
             stock.getHistory({
                 orderType: 'copy_detail',
                 accountType: $scope.accountType.key,
                 copiedTraderUserCode: copiedTraderUserCode
             }).then(function (data) {
-                var dataLength = data.data.length;
-
-                if (dataLength) {
-                    copiedTrader.data = copiedTrader.data.concat(data.data);
-                } else {
-                    copiedTrader.noMoreOrders = true;
-                }
-
+                copiedTrader.data = data.data;
+                copiedTrader.more = false;
                 $scope.$broadcast('stopLoadingMore');
             });
         }

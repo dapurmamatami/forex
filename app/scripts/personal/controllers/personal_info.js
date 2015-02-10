@@ -21,10 +21,11 @@
         $scope.openRegisterModal = openRegisterModal;
         $scope.openCopyModal = openCopyModal;
         $scope.follow = follow;
+        $scope.cancelFollow = cancelFollow;
 
         account.getPersonalInfo().then(function (data) {
             $scope.personal = data;
-            $cookieStore.put('userCode',data.user_code);
+            $cookieStore.put('userCode',parseInt(data.user_code));
 
             getSocialSum($scope.personal, $scope.personal.user_code, copy, communicate);
 
@@ -48,7 +49,7 @@
         $scope.userType.code = $state.params.userCode;
 
         if ($scope.userType.code && $cookieStore.get('userCode') &&
-                $scope.userType.code !== $cookieStore.get('userCode')) {
+                $scope.userType.code !== $cookieStore.get('userCode').toString()) {
 
             $scope.userType.isPersonal = false;
 
@@ -73,19 +74,13 @@
                 } else {
                     $scope.user.isCopy = false;
                 }
-
-                // 获取 fan sum、following sum
-                communicate.getFFSum($scope.user.userCode).then(function (data) {
-                    console.info(data);
-                    $scope.user.followingSum = data.data.attention_sum;
-                    $scope.user.fanSum = data.data.fans_sum;
-                });
+                getFFSum($scope.user, communicate);
             });
         }
 
         switchLayout();
 
-        // 获取 copier sum、copied trader sum、fan sum、following sum！！ 以后修改
+        // 获取 personal 的 copier sum、copied trader sum 和 fan sum、following sum
         function getSocialSum(user, userCode, service1, service2) {
             service1.getCCSum(userCode).then(function (data) {
                 user.copiedTraderSum = data.mycopy_count;
@@ -97,6 +92,23 @@
             });
         }
         
+        // 获取 following sum、fan sum
+        function getFFSum(user, service) {
+            service.getFFSum(user.userCode).then(function (data) {
+                if (!data.statecode) {
+                    return;
+                }
+                user.followingSum = data.data.attention_sum;
+                user.fanSum = data.data.fans_sum;
+
+                if (data.data.is_by_attention) {
+                    user.isFollow = true;
+                } else {
+                    user.isFollow = false;
+                }
+            });
+        }
+
         function openRegisterModal(size) {
             $modal.open({
                 templateUrl: '/views/account/register.html',
@@ -126,9 +138,13 @@
         function follow() {
             communicate.doAttention($scope.user.userCode, $scope.personal.userCode).then(function (data) {
                 if (data.statecode) {
-                    $scope.user.isFollow = true;
+                    getFFSum($scope.user.userCode, communicate);
                 }
             });
+        }
+
+        function cancelFollow() {
+
         }
 
         function switchLayout(){
