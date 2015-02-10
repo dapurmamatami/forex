@@ -8,9 +8,6 @@
     InvestSummaryController.$inject = ['$scope','$location'];
 
     function InvestSummaryController($scope,$location) {
-        console.info('Summary Page');
-
-
     }
 
 })();

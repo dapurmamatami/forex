@@ -68,8 +68,8 @@
                 $scope.user.sex = data.sex;
                 $scope.user.copiedTraderSum = data.mycopy_count;
                 $scope.user.copierSum = data.copy_count;
-                $scope.demoCopyAmount = data.copy_demo;
-                $scope.realCopyAmount = data.copy_real;
+                $scope.user.demoCopyAmount = data.copy_demo;
+                $scope.user.realCopyAmount = data.copy_real;
 
                 if (data.copy_demo || data.copy_real) {
                     $scope.user.isCopy = true;
@@ -140,7 +140,7 @@
         }
 
         function follow() {
-            communicate.doAttention($scope.user.userCode, $scope.personal.userCode, 1).then(function (data) {
+            communicate.doAttention($scope.user.userCode, $scope.personal.user_code, 1).then(function (data) {
                 if (data.statecode) {
                     getFanSum($scope.user, $scope.user.userCode, communicate);
                 }

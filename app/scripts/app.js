@@ -152,29 +152,32 @@ angular
                     }
                 }
             })
-            .state('message',{
-                url:'/message',
-                views:{
-                    '@':{
-                        templateUrl:'views/layout/layout-msg.html',
+
+            .state('message', {
+                url: '/message',
+                views: {
+                    '@': {
+                        templateUrl: 'views/layout/layout-msg.html',
                         controller:'MessageController'
                     },
                     'hd@message': {
                         templateUrl: 'views/navbar/navbar-logined.html',
                         controller: 'NavbarController'
                     },
-                    'sidebar@message':{
+                    'sidebar@message': {
                         templateUrl: 'views/message/ad_side.html',
                         controller:'MsgSideController'
                     },
-                    'content@message':{
-                        templateUrl: 'views/message/message.html'
+                    'content@message': {
+                        templateUrl: 'views/message/message.html',
+                        controller: ''
                     },
                     'ft@personal': {
                         templateUrl: 'views/layout/footer.html'
                     }
                 }
             })
+
             .state('invest', {
                 views: {
                     '@': {

@@ -97,5 +97,10 @@
         margin-bottom: 0;
         text-align: right;
         color: $brand-primary;
+        cursor: pointer;
+
+        &:hover {
+            text-decoration: underline;
+        }
     }
 }

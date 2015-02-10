@@ -42,11 +42,7 @@
         $scope.cancelCopy = cancelCopy;
         $scope.submitCancelForm = submitCancelForm;
         $scope.closeModal = closeModal;
-        var COPY_MAX_PERCENT = 0.5;
-
-        
-        
-        
+        var COPY_MAX_PERCENT = 0.5;    
 
         $scope.$watch('demoCopy.amount', function (amount) {
             validateAmount('demoCopy', amount);
@@ -72,6 +68,7 @@
         function submitCopyForm(propName) {
             copy.copy($scope.copiedTrader.userCode, $scope.copyType, 
                     $scope[propName].amount).then(function (data) {
+                
                 if (!data.is_succ) {
                     return;
                 }
@@ -87,6 +84,10 @@
         function submitCancelForm(propName) {
             copy.cancelCopy($scope.copiedTrader.userCode, $scope[propName].isCloseOut,
                     $scope.copyType).then(function (data) {
+                
+                if (!data.is_succ) {
+                    return;
+                }
                 updateCopiedTraderInfo($scope.copiedTrader, propName, copy);
            });
         }
@@ -144,11 +145,19 @@
             service.getCopiedTraderInfo(copiedTrader.userCode).then(function (data) {
                 copiedTrader.copierSum = data.copy_count;
                 
-               /* if (propName === 'demoCopy') {
+                if (propName === 'demoCopy') {
                     copiedTrader.demoCopyAmount = data.copy_demo;
                 } else {
                     copiedTrader.realCopyAmount = data.copy_real;
-                }*/
+                }
+
+                if (data.copy_demo === null && data.copy_real === null) {
+                    $scope.copiedTrader.isCopy = false;
+                } else {
+                    $scope.copiedTrader.isCopy = true;
+                }
+
+
                $modalInstance.close();
             });
         }
