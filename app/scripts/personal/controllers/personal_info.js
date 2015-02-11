@@ -26,9 +26,8 @@
         // 获取 personal 的信息
         account.getPersonalInfo().then(function (data) {
             $scope.personal = data;
-            $cookieStore.put('userCode',data.user_code);
-
-            getSocialSum($scope.personal, communicate, copy);
+            $cookieStore.put('userCode',parseInt(data.user_code));
+            getSocialSum($scope.personal, $scope.personal.user_code, copy, communicate);
 
             if (data.verified) {
                 // 获取真实账户的 money
@@ -115,7 +114,7 @@
 
         function openModal(size) {
               $modal.open({
-                templateUrl: '/views/account/register.html',
+                templateUrl: 'views/account/register.html',
                 controller: 'AccountRegisterController',
                 size: size
             });
@@ -123,7 +122,7 @@
 
         function openCopyModal(size) {
             $modal.open({
-                templateUrl: '/views/invest/copy.html',
+                templateUrl: 'views/invest/copy.html',
                 controller: 'InvestCopyController',
                 size: size,
                 resolve: {
