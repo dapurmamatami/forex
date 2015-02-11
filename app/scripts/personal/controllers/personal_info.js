@@ -27,8 +27,9 @@
         account.getPersonalInfo().then(function (data) {
             $scope.personal = data;
             $cookieStore.put('userCode',parseInt(data.user_code));
-            getSocialSum($scope.personal, $scope.personal.user_code, copy, communicate);
-
+            getAdditionalInfo($scope.personal, $scope.personal.user_code, account, communicate);
+            
+            // 是否注册真实账户
             if (data.verified) {
                 // 获取真实账户的 money
                 (function getEquity() {
@@ -69,6 +70,7 @@
                 $scope.user.copierSum = data.copy_count;
                 $scope.user.demoCopyAmount = data.copy_demo;
                 $scope.user.realCopyAmount = data.copy_real;
+                $scope.user.region = data.region;
 
                 if (data.copy_demo || data.copy_real) {
                     $scope.user.isCopy = true;
@@ -82,19 +84,23 @@
 
         switchLayout();
 
-        // 获取 personal 的 copier sum、copied trader sum 和 fan sum、following sum
-        function getSocialSum(personal, userCode, service1, service2) {
-            service1.getCCSum(userCode).then(function (data) {
+        /* 
+         * 获取 personal 的其他的信息，包括 copier sum、
+         * copied trader sum、fan sum、following sum、region
+         */
+        function getAdditionalInfo(personal, userCode, accountService, communicateService) {
+            accountService.getUserInfo(userCode).then(function (data) {
                 personal.copiedTraderSum = data.mycopy_count;
                 personal.copierSum = data.copy_count;
-                service2.getFFSum(userCode).then(function (data) {
-                    personal.followingSum = data.data.attention_sum;
-                    personal.fanSum = data.data.fans_sum;
-                });
+                personal.region = data.region;
             });
-        }
-
-        // 获取 user 的 fan sum，同时确定 personal 与 user 的关注关系
+            communicateService.getFFSum(userCode).then(function (data) {
+                personal.followingSum = data.data.attention_sum;
+                personal.fanSum = data.data.fans_sum;
+            });
+        } 
+        
+        // 获取 user（别人）的 fan sum，同时确定 personal 与 user 的关注关系
         function getFanSum(user, userCode, service) {
             service.getFFSum(userCode).then(function (data) {
                 if (!data.statecode) {
@@ -112,7 +118,7 @@
         }
 
 
-        function openModal(size) {
+        function openRegisterModal(size) {
               $modal.open({
                 templateUrl: 'views/account/register.html',
                 controller: 'AccountRegisterController',

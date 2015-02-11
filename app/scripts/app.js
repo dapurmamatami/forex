@@ -94,9 +94,6 @@ angular
                     'sidebar@personal': {
                         templateUrl: 'views/personal/info_side.html'
                     },
-                    //'sidebar-ad@personal': {
-                    //    templateUrl: 'views/personal/ad_side.html'
-                    //},
                     'ft@personal': {
                         templateUrl: 'views/layout/footer.html'
                     }
@@ -117,22 +114,6 @@ angular
                             var ctrlRoot = modifyCtrlName(subPage);
                             var ctrlName = ctrlPrefix + ctrlRoot + ctrlSuffix;
                             return ctrlName;
-
-                            function modifyCtrlName(name) {
-                               var strArray = name.split(/[-_]/i);
-
-                               var i,
-                                    length = strArray.length,
-                                    tmpStr = '',
-                                    newName = '';
-
-                                for (i = 0;i < length;i++) {
-                                    tmpStr = strArray[i].charAt(0).toUpperCase() +
-                                            strArray[i].substring(1);
-                                    newName += tmpStr;
-                                }
-                                return newName;
-                            }
                         }
                     },
                     'sidebar-ad@personal':{
@@ -200,8 +181,6 @@ angular
                     }
                 }
             })
-
-
             .state('invest.subPage', {
                 url: '/invest/:subPage/:userCode',
                   views: {
@@ -211,30 +190,13 @@ angular
                             var url = 'views/invest/' + $stateParams.subPage + '.html';
                             return 'views/invest/' + $stateParams.subPage + '.html';
                         },
-                        controllerProvider: function($stateParams) {
+                        controllerProvider: function ($stateParams) {
                             var ctrlPrefix = 'Invest';
                             var ctrlSuffix = 'Controller';
                             var subPage = $stateParams.subPage || 'summary';
                             var ctrlRoot = modifyCtrlName(subPage);
                             var ctrlName = ctrlPrefix + ctrlRoot + ctrlSuffix;
                             return ctrlName;
-
-                            function modifyCtrlName(name) {
-                                var strArray = name.split(/[-_]/i);
-
-                                var i,
-                                    length = strArray.length,
-                                    tmpStr = '',
-                                    newName = '';
-
-                                for (i = 0;i < length;i++) {
-                                    tmpStr = strArray[i].charAt(0).toUpperCase() +
-                                            strArray[i].substring(1);
-                                    newName += tmpStr;
-                                }
-
-                                return newName;
-                            }
                         }
                       },
                     'content@invest.subPage':{
@@ -243,11 +205,66 @@ angular
                     },
                     'sidebar-ad@invest.subPage':{
                       templateUrl: 'views/invest/summary_side.html',
-                      //templateUrl: 'views/personal/share_side.html',
                       controller: ''
                     }
                 }
+            })
+            
+            .state('setting', {
+                views: {
+                    '@': {
+                        templateUrl: 'views/layout/layout-2-sm.html',
+                        controller: 'PersonalInfoController'
+                    },
+                    'hd@setting': {
+                        templateUrl: 'views/navbar/navbar-logined.html',
+                        controller: 'NavbarController'
+                    },
+                    'sidebar@setting': {
+                        templateUrl: 'views/setting/sidebar.html',
+                        controller: 'SettingSidebarController'
+                    },
+                    'ft@setting': {
+                        templateUrl: 'views/layout/footer.html'
+                    }
+                }
+            })
+            .state('setting.subPage', {
+                url: '/setting/:subPage',
+                views: {
+                    'content@setting': {
+                        templateUrl: function ($stateParams) {
+                            $stateParams.subPage = $stateParams.subPage || 'basic';
+                            return 'views/setting/' + $stateParams.subPage + '.html';
+                        },
+                        controllerProvider: function ($stateParams) {
+                            var ctrlPrefix = 'Setting';
+                            var ctrlSuffix = 'Controller';
+                            var subPage = $stateParams.subPage || 'basic';
+                            var ctrlRoot = modifyCtrlName(subPage);
+                            var ctrlName = ctrlPrefix + ctrlRoot + ctrlSuffix;
+                            return ctrlName;
+                        }
+                    }
+                }
             });
+
+            function modifyCtrlName(name) {
+                var strArray = name.split(/[-_]/i);
+
+                var i,
+                    length = strArray.length,
+                    tmpStr = '',
+                    newName = '';
+
+                for (i = 0;i < length;i++) {
+                    tmpStr = strArray[i].charAt(0).toUpperCase() +
+                            strArray[i].substring(1);
+                    newName += tmpStr;
+                }
+
+                return newName;
+            }
     }]);
 
 

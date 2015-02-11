@@ -1,0 +1,67 @@
+<div class="setting_content">
+    <div class="basic_setting">
+        <h3 class="basic_setting__title">个人信息</h3>
+        <div class="row">
+            <div class="col-xs-4">
+                <div class="upload_portrait">
+                    <img class="upload_portrait__img" ng-src="ngsrc/man.png">
+                    <button class="btn btn-primary">
+                        修改头像
+                    </button>
+                </div>
+            </div>
+            <div class="col-xs-8">
+                <form name="basicInfoForm" novalidate>
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <label>昵称</label>
+                        </div>
+                        <div class="col-xs-9">
+                            {{personal.username}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-3">
+                            国家/地区
+                        </div>
+                        <div class="col-xs-9">
+                            <select class="form-control" name="country">
+                                <option value="">请选择</option>
+                                <option ng-repeat="(index, country) in countries" value="index">
+                                    {{country}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-3">
+                            省/州
+                        </div>
+                        <div class="col-xs-9">
+                            <select class="form-control" name="country">
+                                <option value="">请选择</option>
+                                <option ng-repeat="(index, country) in countries" value="index">
+                                    {{country}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-3">
+                            市/区
+                        </div>
+                        <div class="col-xs-9">
+                           <select class="form-control" name="country">
+                                <option value="">请选择</option>
+                                <option ng-repeat="(index, country) in countries" value="index">
+                                    {{country}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+                
+        </div>
+    </div>
+</div>

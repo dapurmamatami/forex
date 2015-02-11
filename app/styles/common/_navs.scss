@@ -243,3 +243,29 @@
   // Remove the top rounded corners here since there is a hard edge above the menu
   @include border-top-radius(0);
 }
+
+
+
+// Sidebar nav
+// -------------------------------------------
+
+.sidebar_nav {
+    @extend .nav;
+    @extend .nav-pills;
+    @extend .nav-stacked;
+    margin: 20px 0;
+    padding: 20px 0;
+    border-top: 1px solid $brand-border-color;
+    border-bottom: 1px solid $brand-border-color;
+
+    li + li {
+        margin-top: 20px;
+    }
+
+    a {
+        padding: 8px !important;
+        text-align: center;
+        font-size: 16px;
+        font-weight: 700;
+    }
+}

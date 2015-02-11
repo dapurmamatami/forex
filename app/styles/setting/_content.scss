@@ -1,0 +1,6 @@
+@include b(setting_content) {
+    min-height: 600px;
+    padding: 0 30px;
+    border: 1px solid $brand-border-color;
+    background-color: $brand-white;
+}

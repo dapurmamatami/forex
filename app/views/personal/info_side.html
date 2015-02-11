@@ -8,10 +8,13 @@
         </div>
         <h3 class="basic_info__name">{{personal.username}}</h3>
         <div class="basic_info__location">
-            <p class="basic_info__region">北京市，朝阳区</p>
+            <p class="basic_info__region">
+                {{personal.region.state_name}}，
+                {{personal.region.city_name}}
+            </p>
             <p class="basic_info__nation">
                 <i class="fa fa-location-arrow"></i>
-                中国
+                {{personal.region.world_name}}
             </p>              
         </div>
     </div>
@@ -47,7 +50,7 @@
         </div>
     </div>  
 
-    <div class="personal_info__panel real_account " ng-if="personal.real_id">
+    <div class="personal_info__panel real_account " ng-if="personal.verified">
         <h5 class="real_account__title">开通真实账户进行交易</h5>
         <p class="real_account__percent">
             当前进度 
@@ -68,10 +71,13 @@
         </div>
         <h3 class="basic_info__name">{{user.userName}}</h3>
         <div class="basic_info__location">
-            <p class="basic_info__region">北京市，朝阳区</p>
+            <p class="basic_info__region">
+                {{user.region.state_name}}，
+                {{user.region.city_name}}
+            </p>
             <p class="basic_info__nation">
                 <i class="fa fa-location-arrow"></i>
-                中国
+                {{user.region.world_name}}
             </p>              
         </div>
     </div>
