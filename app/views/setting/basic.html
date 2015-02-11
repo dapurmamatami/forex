@@ -25,10 +25,15 @@
                             国家/地区
                         </div>
                         <div class="col-xs-9">
-                            <select class="form-control" name="country">
-                                <option value="">请选择</option>
-                                <option ng-repeat="(index, country) in countries" value="index">
-                                    {{country}}
+                            <select class="form-control" 
+                                    name="country"
+                                    ng-model="region.countryCode"
+                                    required>
+                                <option value="{{region.countryCode}}">
+                                    {{region.countryNameCN || '请选择'}}
+                                </option>
+                                <option ng-repeat="country in countries" value="{{country.code}}">
+                                    {{country.name_cn}}
                                 </option>
                             </select>
                         </div>

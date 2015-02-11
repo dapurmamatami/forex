@@ -39,16 +39,6 @@
 
         @include e(location) {
 
-            @include e(region, $basic_info) {
-            }
-
-            @include e(nation, $basic_info) {
-                i {
-                    &:hover {
-                        color: $brand-primary;
-                    }
-                }
-            }
         }
     }
 

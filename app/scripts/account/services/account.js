@@ -15,6 +15,7 @@
             setInfo: setInfo,
             checkNumberExistence: checkNumberExistence,
             submitQuestionnaire: submitQuestionnaire,
+            getRegionInfo: getRegionInfo,
             getCountries: getCountries
         };
         return service;
@@ -112,8 +113,29 @@
             });
         }
 
+        /**
+         * Account Service 获取国家列表
+         */
         function getCountries() {
             return $http.get('/worldcode_list');
         }
+
+        /**
+         * Account Service 获取地址信息（包括所有 code）
+         * 
+         * @method getRegionInfo
+         * return {Object} {
+         *   username:
+         *   world_code:
+         *   world_name:
+         *   state_code:
+         *   state_name:
+         *   city_code:
+         *   city_name:
+         * }    
+         */
+        function getRegionInfo() {
+            return $http.get('/basic_settings');
+        } 
     }
 })();

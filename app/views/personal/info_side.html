@@ -8,12 +8,12 @@
         </div>
         <h3 class="basic_info__name">{{personal.username}}</h3>
         <div class="basic_info__location">
-            <p class="basic_info__region">
+            <p>
                 {{personal.region.state_name}}，
                 {{personal.region.city_name}}
             </p>
-            <p class="basic_info__nation">
-                <i class="fa fa-location-arrow"></i>
+            <p>
+                <i class="icon-flag-{{personal.region.world_code.toLowerCase()}}"></i>
                 {{personal.region.world_name}}
             </p>              
         </div>

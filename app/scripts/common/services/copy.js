@@ -17,7 +17,7 @@
         return service;
 
         /**
-         * Copy Service 获取用户的 copied trader 和 copier 总数
+         * Copy Service 获取用户的 copied trader 和 copier 总数！要删除
          *
          * @method getCCSum
          * @param {Object} {
