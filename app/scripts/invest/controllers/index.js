@@ -15,7 +15,6 @@
             visible: false    // 切换真实模拟账户按钮的可见性
         };
         $scope.switchAccount = switchAccount;
-        $scope.touchCode = $location.search().touchCode;
         $scope.$on('$viewContentLoaded', function () {
             $scope.childState = $state.params.subPage;
 

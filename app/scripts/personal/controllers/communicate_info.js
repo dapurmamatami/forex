@@ -75,6 +75,7 @@
           var startIndex = $scope.mCdata.length;
           communicate.hotInvester(startIndex)
               .then(function(data){
+                  console.log(data);
                   if(data.statecode){
                      $scope.mCdata = $scope.mCdata.concat(data.data);
                   }else{
@@ -101,6 +102,8 @@
                   $scope.$broadcast('stopLoadingMore');
           });
       }
+
+
       (function init(){
           if(/summary/.test($location.path())){
               $scope.userCode = $state.params.userCode;
@@ -173,9 +176,9 @@
       .module('tigerwitPersonalApp')
       .controller('PersonalCommunicateDoController',PersonalCommunicateDoController);
 
-          PersonalCommunicateDoController.$inject=['$timeout',"$scope",'communicate','$location','$cookieStore'];
+          PersonalCommunicateDoController.$inject=['$timeout',"$scope",'$location','$cookieStore','$modal','communicate'];
 
-          function PersonalCommunicateDoController($timeout, $scope,communicate,$location,$cookieStore){
+          function PersonalCommunicateDoController($timeout, $scope,$location,$cookieStore,$modal,communicate){
             /**
              * 控制每一条话题的
              * @type {boolean}
@@ -189,7 +192,7 @@
               $scope.doSupport = doSupport;
               $scope.doTransmit = doTransmit;
               $scope.matchCommentContent = matchCommentContent;
-              $scope.skipDetail = skipDetail;
+
               $scope.skipToSummary = skipToSummary;
 
               function showDropComment(){
@@ -238,32 +241,40 @@
                   $scope.tRemainSum = 0;
               }
 
-              function doSupport(){
+              function doSupport(dataObj){
                   communicate.doSupportPoint(
-                      0,$cookieStore.get('userCode'),$scope.mData.topicid)
+                      0,$cookieStore.get('userCode'),dataObj.topicid)
                       .then(function(data){
                           if(data.statecode){
-                              $scope.mData.support_sum =  $scope.mData.support_sum+1;
-                                  }
+                              dataObj.support_sum =  dataObj.support_sum+1;
+                          }
 
                   },function(){});
               }
 
-              function doTransmit(){
-                  communicate.publishTopic(
-                      $cookieStore.get('userCode'),$scope.mData.content,$scope.mData.topicid)
-                          .then(function(data){
-                              if(data.statecode){
-                                  $scope.mData.tramsmit_sum =  $scope.mData.tramsmit_sum+1;
-                              }
-                            },function(){
+              function doTransmit(mData){
+                  var modalInstance = $modal.open({
+                      templateUrl:'/views/personal/tramsmit_model.html',
+                      controller:'TramsmitController',
+                      resolve:{
+                          mData:function(){
+                            return mData;
+                          }
+                      }
+                  });
+                  modalInstance.result.then(function(result) {
 
-                            });
+                      communicate.publishTopic(
+                          $cookieStore.get('userCode'),result,mData.topicid)
+                              .then(function(data){
+                                  if(data.statecode){
+                                      mData.tramsmit_sum =  mData.tramsmit_sum+1;
+                                  }
+                          },function(){});
+
+                  });
               }
-              function skipDetail(){
-                  $location.search('topicid',$scope.mData['topicid']+"");
-                  $location.path('/personal/topic_detail');
-              }
+
               function skipToSummary(touchId){
                   $location.path('/invest/summary/'+touchId);
               }

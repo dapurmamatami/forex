@@ -1,3 +1,50 @@
+@include b(modal_comments_area) {
+    textarea{
+        width: 100%;
+        margin-top: 10px;
+    }
+}
+@include b(focus_name){
+    font-weight: 600;
+    color: $brand-primary;
+    font-size:17px;
+    cursor:pointer;
+}
+
+@include b(tramsmit){
+    background-color: #f2f2f5 !important;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    @include e(focus_name){
+        color: $brand-primary;
+        font-size:15px;
+        cursor:pointer;
+    }
+    @include e(ptime){
+        font-size:10px;
+        color:$gray-lighter
+    }
+    @include  e(content){
+        font-size:12px;
+        span.focus_name{
+          font-size:15px !important;
+        }
+
+    }
+    @include b(tramsmit_other_info){
+        float: right;
+        color: $brand-primary;
+        font-size:13px;
+        clear:both;
+        span{
+          cursor:pointer;
+          &:hover{
+            color:$brand-border-color;
+          }
+        }
+    }
+}
 
 @include b(communicateinfo){
     min-height: 800px;
@@ -11,16 +58,10 @@
         margin-top: 20px;
         clear:both;
     }
-
-    @include e(focusname){
-        font-weight: 600;
-        color: $brand-primary;
-        font-size:17px;
-        cursor:pointer;
-    }
     @include e(ptime){
         font-size:12px;
-        color:$gray-lighter
+        color:$gray-lighter;
+        margin-top:5px
     }
     @include e(user-icon){
         height:48px;
@@ -101,8 +142,7 @@
             width:415px;
             position:relative;
             textarea {
-               width:415px;
-               max-width:415px;
+               width:100%;
                min-height:50px ;
                max-height:70px;
                margin-top: 10px;

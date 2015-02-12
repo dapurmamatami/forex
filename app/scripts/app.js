@@ -81,7 +81,6 @@ angular
 
         $stateProvider
             .state('personal', {
-                abstract:true,
                 views: {
                     '': {
                         templateUrl: 'views/layout/layout-3.html',
@@ -94,61 +93,36 @@ angular
                     'sidebar@personal': {
                         templateUrl: 'views/personal/info_side.html'
                     },
-                    //'sidebar-ad@personal': {
-                    //    templateUrl: 'views/personal/ad_side.html'
-                    //},
                     'ft@personal': {
                         templateUrl: 'views/layout/footer.html'
                     }
                 }
             })
-            .state('personal.subPage', {
-                url: '/personal/:subPage',
+            .state('personal.communicate_info', {
+                url: '/personal/communicate_info',
+                views: {
+
+                    'content@personal': {
+                        templateUrl:  'views/personal/communicate_info.html',
+                        controller:'PersonalCommunicateInfoController'
+                        },
+
+                    'sidebar-ad@personal': {
+                        templateUrl:'views/personal/ad_side.html',
+                        controller:''
+                    }
+                }
+            })
+            .state('personal.topic_detail', {
+                url: '/personal/topic_detail/:topicId',
                 views: {
                     'content@personal': {
-                        templateUrl: function ($stateParams) {
-                            $stateParams.subPage = $stateParams.subPage || 'communicate_info';
-                            return 'views/personal/' + $stateParams.subPage + '.html';
-                        },
-                        controllerProvider: function ($stateParams) {
-                            var ctrlPrefix = 'Personal';
-                            var ctrlSuffix = 'Controller';
-                            var subPage = $stateParams.subPage || 'communicate_info';
-                            var ctrlRoot = modifyCtrlName(subPage);
-                            var ctrlName = ctrlPrefix + ctrlRoot + ctrlSuffix;
-                            return ctrlName;
-
-                            function modifyCtrlName(name) {
-                               var strArray = name.split(/[-_]/i);
-
-                               var i,
-                                    length = strArray.length,
-                                    tmpStr = '',
-                                    newName = '';
-
-                                for (i = 0;i < length;i++) {
-                                    tmpStr = strArray[i].charAt(0).toUpperCase() +
-                                            strArray[i].substring(1);
-                                    newName += tmpStr;
-                                }
-                                return newName;
-                            }
-                        }
+                        templateUrl:  'views/personal/topic_detail.html',
+                        controller:'PersonalTopicDetailController'
                     },
-                    'sidebar-ad@personal':{
-                        templateUrl:function($stateParams){
-                           if($stateParams.subPage=='topic_detail'){
-                              return 'views/personal/share_side.html'
-                           }else{
-                              return 'views/personal/ad_side.html';
-                           }
 
-                        },
-                        controllerProvider:function($stateParams){
-                            if($stateParams.subPage=='topic_detail'){
-                                return ''
-                            }
-                        }
+                    'sidebar-ad@personal':{
+                        templateUrl: 'views/personal/share_side.html'
                     }
                 }
             })

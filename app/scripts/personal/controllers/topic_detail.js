@@ -5,12 +5,12 @@
       .module('tigerwitPersonalApp')
       .controller('PersonalTopicDetailController',PersonalTopicDetailController);
 
-    PersonalTopicDetailController.$inject = ["$modal",'$location',"$timeout","$scope",'communicate','$cookieStore'];
-    function PersonalTopicDetailController($modal,$location,$timeout,$scope,communicate,$cookieStore){
+    PersonalTopicDetailController.$inject = ["$state","$modal","$timeout","$scope",'communicate','$cookieStore'];
+    function PersonalTopicDetailController($state,$modal,$timeout,$scope,communicate,$cookieStore){
 
         $scope.tRemainSum = 0;
         $scope.isMy = true;
-        $scope.mTopicId = $location.search().topicid;
+        $scope.mTopicId = $state.params.topicId;
 
         $scope.matchCommentContent = matchCommentContent;
         $scope.doComment = doComment;
@@ -18,6 +18,7 @@
         $scope.loadMore = loadMore;
         $scope.skipToSummary = skipToSummary;
         $scope.openConfirmDeleteC = openConfirmDeleteC;
+        $scope.topicDetailData = {publisher_name:'helloworld'};
 
         function getTopicInfo(commentLength){
             communicate.topicDetail($scope.mTopicId ,commentLength)
@@ -26,8 +27,8 @@
                     if(data.statecode){
                        if(!commentLength){
                           $scope.topicDetailData = data.data;
+                          $scope.content = data.data.content;
                           $scope.commentList = $scope.topicDetailData.comment_list;
-                          $scope.pContent = data.data.content;
                           $scope.isMy = (data.data.publisher_id == $scope.personal.user_code);
                           console.info("isMy:"+$scope.isMy);
                        }else{
@@ -44,8 +45,7 @@
         function openConfirmDeleteC(topicid,index){
             var modalInstance = $modal.open({
                 templateUrl:'/views/personal/delete_model.html',
-                controller:'DeleteModal',
-                size: 'sm'
+                controller:'DeleteModal'
             });
             modalInstance.result.then(function(result) {
               if (result) {
@@ -119,7 +119,7 @@
               $scope.tRemainSum = 0;
         }
         function skipToSummary(touchId){
-          $location.path('/invest/summary/'+touchId);
+          $state.go('/invest/summary/'+touchId);
         }
         function loadMore(){
             var commentLength = $scope.commentList.length;

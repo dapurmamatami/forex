@@ -5,10 +5,10 @@
         .module('tigerwitPersonalApp')
         .controller('PersonalInfoController', PersonalInfoController);
 
-    PersonalInfoController.$inject = ['$location','$scope', '$timeout',
+    PersonalInfoController.$inject = ['$window','$location','$scope', '$timeout',
             '$modal', '$cookieStore', '$state', 'account', 'money', 'communicate', 'copy'];
 
-    function PersonalInfoController($location, $scope, $timeout, $modal, $cookieStore, $state,
+    function PersonalInfoController($window,$location, $scope, $timeout, $modal, $cookieStore, $state,
             account, money, communicate, copy) {
         $scope.userType = {
             code:'',
@@ -22,13 +22,13 @@
         $scope.openCopyModal = openCopyModal;
         $scope.follow = follow;
         $scope.cancelFollow = cancelFollow;
-
+        $scope.skipDetail = skipDetail;
         // 获取 personal 的信息
         account.getPersonalInfo().then(function (data) {
             $scope.personal = data;
-            $cookieStore.put('userCode',data.user_code);
+            $cookieStore.put('userCode',parseInt(data.user_code));
 
-            getSocialSum($scope.personal, communicate, copy);
+            getSocialSum($scope.personal, $scope.personal.user_code, copy, communicate);
 
             if (data.verified) {
                 // 获取真实账户的 money
@@ -111,14 +111,12 @@
                 }
             });
         }
-
-
-        function openModal(size) {
-              $modal.open({
-                templateUrl: '/views/account/register.html',
-                controller: 'AccountRegisterController',
-                size: size
-            });
+        function openRegisterModal(size) {
+          $modal.open({
+            templateUrl: '/views/account/register.html',
+            controller: 'AccountRegisterController',
+            size: size
+          });
         }
 
         function openCopyModal(size) {
@@ -164,7 +162,12 @@
                 $scope.layoutSide = 'content__sidebar-ad';
             }
         }
-        switchLayout();
+        //跳转到指定详情界面
+        function skipDetail(topicId){
+            $state.go('personal.topic_detail',{topicId:topicId});
+        }
+
+      switchLayout();
     }
 
 })();

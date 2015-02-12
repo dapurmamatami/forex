@@ -4,9 +4,23 @@
 
     <div class="topic-info">
 
-        <div class="topic-content"">
-            <span class = "focusname" >{{title}}</span>
-            <tw-content-show></tw-content-show>
+        <div class="topic-content">
+            <span class = "focus_name" >{{topicDetailData.publisher_name}}</span>
+            <tw-content-show ng-show="content"  info="content"></tw-content-show>
+            <div class="tramsmit" ng-if="topicDetailData.topic_type==3">
+                <span class = "tramsmit__focus_name">{{topicDetailData['relation']['publisher_name']}}</span>
+                <tw-content-show class = "tramsmit__content" info="topicDetailData['relation']['content']"></tw-content-show>
+                <div>
+                    <span class = "tramsmit__ptime">{{topicDetailData['relation']['ptime'] | startNow }}前</span>
+                    <div class = "tramsmit_other_info">
+                      <span>赞({{topicDetailData['relation']['support_sum']}}) </span>|
+                      <span> 转发({{topicDetailData['relation']['tramsmit_sum']}}) </span>|
+                      <span> 评论({{topicDetailData['relation']['comment_sum']}}) </span>|
+                      <span ng-click="skipDetail(topicDetailData.relation.topicid)"> 详情</span>
+                    </div>
+                </div>
+            </div>
+
             <div>
                 <span class = "communicateinfo__ptime">{{topicDetailData['ptime'] | startNow }}前</span>
                 <div class = "topic-other-info">
@@ -16,6 +30,9 @@
                     <span ng-clickclick="showDropComment()"> 评论({{topicDetailData['comment_sum']}}) </span>
                 </div>
             </div>
+
+
+
 
             <div class="topicOrComment">
                 <textarea ng-model="inputContent" ng-change="matchCommentContent()"></textarea>
@@ -28,6 +45,11 @@
                 </div>
             </div>
         </div>
+
+
+
+
+
         <div class = "comments-head">
             <span>全部评论</span>
             <span>排序</span>
@@ -41,8 +63,8 @@
             <div class="comments" ng-repeat="aitem in commentList" ng-controller="CommentsController">
                 <img src="/ngsrc/photo-man.png"/>
                 <div class = "comment-info" >
-                    <span class = "communicateinfo__focusname" ng-bind="aitem['publisher_name']" ng-click="skipToSummary(aitem.comment_publisherid)"></span>
-                    <tw-content-show></tw-content-show>
+                    <span class = "focus_name" ng-bind="aitem['publisher_name']" ng-click="skipToSummary(aitem.comment_publisherid)"></span>
+                    <tw-content-show info="aitem.content"></tw-content-show>
                     <div class = "comment-info-other">
                         <span class = "communicateinfo__ptime">{{aitem['ptime'] | startNow }}前</span>
                         <div class = "other_info">
@@ -57,14 +79,14 @@
                             <div class ="comment-item" ng-repeat="bitem in discussList" ng-controller = "OneDiscussController" >
                                 <img src="/ngsrc/photo-man.png"/>
                                 <div class = "ccContent">
-                                    <span class = "communicateinfo__focusname" ng-click="skipToSummary(bitem.comment_publisherid)" ng-bind="bitem['publisher_name']"></span>
-                                    <tw-content-show ng-init="pContent=bitem['content']"></tw-content-show>
+                                    <span class = "focus_name" ng-click="skipToSummary(bitem.comment_publisherid)" ng-bind="bitem['publisher_name']"></span>
+                                    <tw-content-show info="bitem['content']"></tw-content-show>
                                     <div class = "ccContent-other">
                                         <span class = "communicateinfo__ptime">{{bitem['ptime'] | startNow }}前</span>
                                         <div class = "other_info">
-                                           <span ng-show="isMy"  ng-click="openConfirmDeleteD(bitem.comment_id,$index)">删除 |</span>
-                                           <span ng-click="doSupport(bitem['comment_id'])">赞({{bitem['support_sum']}}) </span>|
-                                          <span ng-click="showDoCommentAndAt(bitem['publisher_name'])">  回复 </span>
+                                            <span ng-show="isMy"  ng-click="openConfirmDeleteD(bitem.comment_id,$index)">删除 |</span>
+                                            <span ng-click="doSupport(bitem['comment_id'])">赞({{bitem['support_sum']}}) </span>|
+                                            <span ng-click="showDoCommentAndAt(bitem['publisher_name'])">  回复 </span>
                                         </div>
                                     </div>
                                 </div>
