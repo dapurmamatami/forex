@@ -1,0 +1,102 @@
+<div class="setting_content">
+    <div class="basic_setting">
+        <h3 class="basic_setting__title">个人信息</h3>
+        <div class="row">
+            <div class="col-xs-4">
+                <div class="upload_portrait">
+                    <img class="upload_portrait__img" ng-src="ngsrc/man.png">
+                    <button class="btn btn-primary">
+                        修改头像
+                    </button>
+                </div>
+            </div>
+            <div class="col-xs-8">
+                <form name="basicInfoForm" novalidate>
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <label>昵称</label>
+                        </div>
+                        <div class="col-xs-9">
+                            {{personal.username}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <label>性别</label>
+                        </div>
+                        <div class="col-xs-9">
+                            <select class="form-control" 
+                                    name="sex"
+                                    required
+                                    ng-model="sex"
+                                    ng-options="sex.nameCN for sex in sexes">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-3">
+                            国家/地区
+                        </div>
+                        <div class="col-xs-9">
+                            <select class="form-control" 
+                                    name="country"
+                                    required
+                                    ng-model="location.country"
+                                    ng-options="country.name_cn for country in countries"
+                                    ng-change="select('country')">
+                                <option value="">请选择</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-3">
+                            省/州
+                        </div>
+                        <div class="col-xs-9">
+                            <select class="form-control" 
+                                    name="state"
+                                    required
+                                    ng-if="!noSelect"
+                                    ng-model="location.state"
+                                    ng-options="state.name_cn for state in states">
+                                <option value="">请选择</option>
+                            </select>
+                            <input class="form-control" 
+                                   name="state"
+                                   type="text"
+                                   required
+                                   ng-if="noSelect"
+                                   ng-model="inputRegion.stateName">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-3">
+                            市/区
+                        </div>
+                        <div class="col-xs-9">
+                           <select class="form-control" 
+                                   name="city"
+                                   required
+                                   ng-if="!noSelect"
+                                   ng-model="location.city"
+                                   ng-options="city.name_cn for city in cities">
+                                <option value="">请选择</option>
+                            </select>
+                            <input class="form-control" 
+                                   name="city"
+                                   type="text"
+                                   required
+                                   ng-if="noSelect"
+                                   ng-model="inputRegion.cityName">
+                            
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" ng-disabled="basicInfoForm.$invalid" ng-click="submitForm()">
+                        保存
+                    </button>
+                </form>
+            </div>
+                
+        </div>
+    </div>
+</div>

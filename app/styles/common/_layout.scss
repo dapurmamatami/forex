@@ -188,12 +188,22 @@
             @extend .col-lg-3;
             width: 190px;
             padding: 0;
+
+            @include m(lg) {
+                @extend .bd_col_2__sidebar;
+                width: 230px;
+            }
         }
 
         @include e(content) {
             @extend .col-lg-9;
             width: 770px;
             padding: 0;
+
+            @include m(sm) {
+                @extend .bd_col_2__content;
+                width: 730px;
+            }
         }
     }
 }

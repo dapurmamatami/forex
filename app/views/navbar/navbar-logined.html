@@ -9,22 +9,24 @@
 
             <ul class="nav navbar-nav">
                 <li>
-                    <a ui-sref="personal.subPage" ng-class="{'active':  parentState === 'personal' || parentState === 'invest'}">
+                    <a ui-sref="personal.subPage" ng-class="{'active':  prefix === '/personal/' || prefix === '/invest/'}">
                         个人中心
                     </a>
                 </li>
                 <li>
-                    <a href="#/master" ng-class="{'active':  parentState === 'master'}">
+                    <a href="#/master" ng-class="{'active':  prefix === '/master/'}">
                         交易高手
                     </a>
                 </li>
                 <li>
-                    <a href="#/guides" ng-class="{'active':  parentState === 'guides'}">
+                    <a href="#/guides" ng-class="{'active':  prefix === '/guides/'}">
                         新手指南
                     </a>
                 </li>
                 <li>
-                    <a href="#/setting" ng-class="{'active':  parentState === 'setting'}">设置</a>
+                    <a ui-sref="setting.subPage" ng-class="{'active':  prefix === '/setting/'}">
+                        设置
+                    </a>
                 </li>
             </ul>
 
@@ -76,7 +78,7 @@
                         </div>
                         <div class="nav_deposit">
                             <p class="nav_deposit__number">
-                                ${{equityInfo.equity || 0}}
+                                ${{realEquityInfo.equity || 0}}
                             </p>
                             <h5 class="nav_deposit__title">当前净值：</h5>
                             <p class="nav_deposit__time">

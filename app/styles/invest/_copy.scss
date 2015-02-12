@@ -12,18 +12,18 @@
 
     @include e(copy_type) {
         position: absolute;
-        top: -20px;
-        left: -10px;
-        width: 66px;
-        height: 67px;
+        top: -17px;
+        left: -2px;
+        width: 64px;
+        height: 64px;
         background-repeat: no-repeat;
-        background-position: 50%;
 
         &.real {
-            @include img-normal($image_path + 'copy-real.png');
+            @include img-retina($image_path + 'copy_trade.png', $image_path + 'copy_trade@2x.png', 64px, 64px);
         }
         &.demo {
-            @include img-normal($image_path + 'copy-demo.png');
+            @include img-retina($image_path + 'copy_trade.png', $image_path + 'copy_trade@2x.png', 64px, 64px);           
+            background-position: -64px; 
         }
     }
 
@@ -97,5 +97,10 @@
         margin-bottom: 0;
         text-align: right;
         color: $brand-primary;
+        cursor: pointer;
+
+        &:hover {
+            text-decoration: underline;
+        }
     }
 }

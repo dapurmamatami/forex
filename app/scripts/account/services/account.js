@@ -14,11 +14,33 @@
             getStepInfo: getStepInfo,
             setInfo: setInfo,
             checkNumberExistence: checkNumberExistence,
-            submitQuestionnaire: submitQuestionnaire
+            submitQuestionnaire: submitQuestionnaire,
+            getLocationInfo: getLocationInfo,
+            getCountries: getCountries,
+            getStates: getStates,
+            getCities: getCities
         };
         return service;
 
-        // 获取 personal 信息
+        /**
+         * Account Service 获取 personal（本人）信息
+         * 
+         * @method getPersonalInfo
+         * @param {Object} {
+         *   type: // 不设置 or ID or Profile 
+         * }
+         * @return {Object} {
+         *   is_succ:
+         *   err_msg:
+         *   user_code:       // 用户的邀请码
+         *   username:        // 用户昵称
+         *   demo_id:         // 模拟 id
+         *   real_id:         // 真实 id
+         *   verified:        // 是否是真实用户
+         *   realname:        // 真实名称
+         *   sex:             // 性别 1 男 0 女，模拟账户都是1
+         * }   
+         */ 
         function getPersonalInfo(type) {
             return $http.get('/get_info', {
                 params: {
@@ -27,7 +49,30 @@
             });
         }
 
-        // 获取 user 信息
+        /**
+         * Account Service 获取 user（包括 personal）信息
+         * 
+         * @method getUserInfo
+         * @param {Object} {
+         *   cros_user:     // 获取谁信息传谁的 user code
+         * }
+         * @return {Object} {
+         *   is_succ:
+         *   err_msg:
+         *   username:        // 用户昵称
+         *   copy_count:      // copier sum
+         *   mycopy_count:    // copied trader sum
+         *   copy_demo:       // personal 的模拟账户复制该账户的金额
+         *   copy_real:       // personal 的真实账户复制该账户的金额
+         *   sex:             // 性别 1 男 0 女，模拟账户都是1
+         *   region: {
+         *     world_name:    // 国家名字
+         *     world_code:    // 国家编码
+         *     state_name:    // 省、州名字
+         *     city_name:     // 城市、区名字 
+         *   }
+         * }   
+         */ 
         function getUserInfo(userCode) {
             return $http.get('/get_user_info', {
                 params: {
@@ -53,6 +98,7 @@
             });
         }
 
+        // 获取注册第几步
         function getStepInfo(type) {
             return $http.get('/get_info_progress', {
                 params: {
@@ -68,5 +114,46 @@
                 investing_experience: experience
             });
         }
+
+        /**
+         * Account Service 获取国家列表
+         */
+        function getCountries() {
+            return $http.get('/worldcode_list');
+        }
+
+        /**
+         * Account Service 获取地址信息（包括所有 code）
+         * 
+         * @method getLocationInfo
+         * return {Object} {
+         *   username:
+         *   world_code:
+         *   world_name:
+         *   state_code:
+         *   state_name:
+         *   city_code:
+         *   city_name:
+         * }    
+         */
+        function getLocationInfo() {
+            return $http.get('/basic_settings');
+        }
+
+        function getStates(countryCode) {
+            return $http.get('/statecode_list', {
+                params: {
+                    world_code: countryCode
+                }
+            });
+        }
+
+        function getCities(stateCode) {
+            return $http.get('/citycode_list', {
+                params: {
+                    parent_code: stateCode
+                }
+            });
+        }  
     }
 })();

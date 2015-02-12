@@ -1,0 +1,7 @@
+@include b(basic_setting) {
+    @include e(title) {
+        margin: 50px 0px 30px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid $brand-border-color;
+    }
+}

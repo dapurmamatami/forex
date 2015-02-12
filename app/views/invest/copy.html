@@ -100,8 +100,12 @@
             </p>
 
             <p class="copy_modal__cancel">
-                <p ng-show="copyType === 'demo' && demoCopy.isCopy" ng-click="cancelCopy()">取消模拟复制</p>
-                <p ng-show="copyType === 'real' && realCopy.isCopy">取消真实复制</p>
+                <span ng-show="copyType === 'demo' && demoCopy.isCopy" ng-click="cancelCopy()">
+                    取消模拟复制
+                </span>
+                <span ng-show="copyType === 'real' && realCopy.isCopy" ng-click="cancelCopy()">
+                    取消真实复制
+                </span>
             </p>
         </div>
 

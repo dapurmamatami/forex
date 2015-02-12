@@ -34,7 +34,7 @@ $brand-danger:          #ef4d4d !default;
 //== Background image path
 $image_path:             '../images/';
 $forex_icon_path:        '../images/forex_icon/';
-
+$flag_icon_path:         '../images/flag_icon/';  
 
 //== Scaffolding
 //
@@ -321,7 +321,7 @@ $thumbnail-caption-padding:   9px !default;
 //##
 //=== Shared nav styles
 $nav-link-padding:                          10px 15px !default;
-$nav-link-hover-bg:                         $gray-lighter !default;
+$nav-link-hover-bg:                         #e8e8e8 !default;
 
 $nav-disabled-link-color:                   $gray-light !default;
 $nav-disabled-link-hover-color:             $gray-light !default;
@@ -331,7 +331,7 @@ $nav-open-link-hover-color:                 #fff !default;
 //== Tabs
 $nav-tabs-border-color:                     #ddd !default;
 
-$nav-tabs-link-hover-border-color:          $gray-lighter !default;
+$nav-tabs-link-hover-border-color:          #e8e8e8 !default;
 
 $nav-tabs-active-link-hover-bg:             $body-bg !default;
 $nav-tabs-active-link-hover-color:          $gray !default;
