@@ -160,6 +160,7 @@ angular
             })
 
             .state('invest', {
+                url: '/invest/:userCode',   
                 views: {
                     '@': {
                         templateUrl: 'views/layout/layout-2.html',
@@ -182,12 +183,11 @@ angular
                 }
             })
             .state('invest.subPage', {
-                url: '/invest/:subPage/:userCode',
-                  views: {
+                url: '/:subPage',
+                views: {
                     '@invest': {
                         templateUrl: function ($stateParams) {
                             $stateParams.subPage = $stateParams.subPage || 'summary';
-                            var url = 'views/invest/' + $stateParams.subPage + '.html';
                             return 'views/invest/' + $stateParams.subPage + '.html';
                         },
                         controllerProvider: function ($stateParams) {

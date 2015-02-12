@@ -17,12 +17,8 @@
         $scope.select = select;
         $scope.sys_unvisited_sum = $cookieStore.get('sys_unvisited_sum');
         $scope.user_unvisited_sum =  $cookieStore.get('user_unvisited_sum');
-
-        var stateUrl = $state.current.url;
-        var stateUrlList = stateUrl.split('/');
-        $scope.parentState = stateUrlList[1];
-
-
+ 
+        $scope.prefix = $state.$current.url.prefix;
 
         function loginFun() {
 
