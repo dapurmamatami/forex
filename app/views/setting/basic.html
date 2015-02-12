@@ -22,19 +22,29 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-3">
+                            <label>性别</label>
+                        </div>
+                        <div class="col-xs-9">
+                            <select class="form-control" 
+                                    name="sex"
+                                    required
+                                    ng-model="sex"
+                                    ng-options="sex.nameCN for sex in sexes">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-3">
                             国家/地区
                         </div>
                         <div class="col-xs-9">
                             <select class="form-control" 
                                     name="country"
-                                    ng-model="region.countryCode"
-                                    required>
-                                <option value="{{region.countryCode}}">
-                                    {{region.countryNameCN || '请选择'}}
-                                </option>
-                                <option ng-repeat="country in countries" value="{{country.code}}">
-                                    {{country.name_cn}}
-                                </option>
+                                    required
+                                    ng-model="location.country"
+                                    ng-options="country.name_cn for country in countries"
+                                    ng-change="select('country')">
+                                <option value="">请选择</option>
                             </select>
                         </div>
                     </div>
@@ -43,12 +53,20 @@
                             省/州
                         </div>
                         <div class="col-xs-9">
-                            <select class="form-control" name="country">
+                            <select class="form-control" 
+                                    name="state"
+                                    required
+                                    ng-if="!noSelect"
+                                    ng-model="location.state"
+                                    ng-options="state.name_cn for state in states">
                                 <option value="">请选择</option>
-                                <option ng-repeat="(index, country) in countries" value="index">
-                                    {{country}}
-                                </option>
                             </select>
+                            <input class="form-control" 
+                                   name="state"
+                                   type="text"
+                                   required
+                                   ng-if="noSelect"
+                                   ng-model="inputRegion.stateName">
                         </div>
                     </div>
                     <div class="row">
@@ -56,14 +74,26 @@
                             市/区
                         </div>
                         <div class="col-xs-9">
-                           <select class="form-control" name="country">
+                           <select class="form-control" 
+                                   name="city"
+                                   required
+                                   ng-if="!noSelect"
+                                   ng-model="location.city"
+                                   ng-options="city.name_cn for city in cities">
                                 <option value="">请选择</option>
-                                <option ng-repeat="(index, country) in countries" value="index">
-                                    {{country}}
-                                </option>
                             </select>
+                            <input class="form-control" 
+                                   name="city"
+                                   type="text"
+                                   required
+                                   ng-if="noSelect"
+                                   ng-model="inputRegion.cityName">
+                            
                         </div>
                     </div>
+                    <button class="btn btn-primary" ng-disabled="basicInfoForm.$invalid" ng-click="submitForm()">
+                        保存
+                    </button>
                 </form>
             </div>
                 

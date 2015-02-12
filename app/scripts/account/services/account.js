@@ -15,8 +15,10 @@
             setInfo: setInfo,
             checkNumberExistence: checkNumberExistence,
             submitQuestionnaire: submitQuestionnaire,
-            getRegionInfo: getRegionInfo,
-            getCountries: getCountries
+            getLocationInfo: getLocationInfo,
+            getCountries: getCountries,
+            getStates: getStates,
+            getCities: getCities
         };
         return service;
 
@@ -123,7 +125,7 @@
         /**
          * Account Service 获取地址信息（包括所有 code）
          * 
-         * @method getRegionInfo
+         * @method getLocationInfo
          * return {Object} {
          *   username:
          *   world_code:
@@ -134,8 +136,24 @@
          *   city_name:
          * }    
          */
-        function getRegionInfo() {
+        function getLocationInfo() {
             return $http.get('/basic_settings');
-        } 
+        }
+
+        function getStates(countryCode) {
+            return $http.get('/statecode_list', {
+                params: {
+                    world_code: countryCode
+                }
+            });
+        }
+
+        function getCities(stateCode) {
+            return $http.get('/citycode_list', {
+                params: {
+                    parent_code: stateCode
+                }
+            });
+        }  
     }
 })();
