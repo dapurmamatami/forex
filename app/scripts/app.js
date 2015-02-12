@@ -171,7 +171,8 @@ angular
                         controller: 'NavbarController'
                     },
                     'sidebar@invest': {
-                        templateUrl: 'views/personal/info_side.html'
+                        templateUrl: 'views/personal/info_side.html',
+                        controller: 'UserInfoController'
                     },
                     'content@invest': {
                         templateUrl: 'views/invest/index.html',
