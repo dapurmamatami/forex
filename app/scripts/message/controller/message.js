@@ -4,16 +4,16 @@
       .module('tigerwitPersonalApp')
       .controller('MessageController',MessageController);
 
-    MessageController.$inject=['$scope','$location','$cookieStore','communicate'];
+    MessageController.$inject=['$scope','$state','$cookieStore','communicate'];
 
 
-    function MessageController($scope,$location,$cookieStore,communicate){
+    function MessageController($scope,$state,$cookieStore,communicate){
 
         $scope.switchMessageData = switchMessageData;
         $scope.loadMore = loadMore;
         $scope.deleteMessage = deleteMessage;
         $scope.unvisit_total_sum =$cookieStore.get('sys_unvisited_sum') + $cookieStore.get('user_unvisited_sum');
-        $scope.msg_type = $location.search().msgType;
+        $scope.msg_type = $state.params.type_message;
 
         function switchMessageData(type){
             if(type == 'sys'){

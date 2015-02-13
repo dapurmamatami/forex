@@ -1,6 +1,8 @@
 
 @include b(topicDetail){
-
+    .btn-loading{
+        width:100%;
+    }
     overflow:hidden;
     width:520px;
     background-color: $brand-white;

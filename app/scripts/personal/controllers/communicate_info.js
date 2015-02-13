@@ -176,9 +176,9 @@
       .module('tigerwitPersonalApp')
       .controller('PersonalCommunicateDoController',PersonalCommunicateDoController);
 
-          PersonalCommunicateDoController.$inject=['$timeout',"$scope",'$location','$cookieStore','$modal','communicate'];
+          PersonalCommunicateDoController.$inject=['$state','$timeout',"$scope",'$cookieStore','$modal','communicate'];
 
-          function PersonalCommunicateDoController($timeout, $scope,$location,$cookieStore,$modal,communicate){
+          function PersonalCommunicateDoController($state,$timeout, $scope,$cookieStore,$modal,communicate){
             /**
              * 控制每一条话题的
              * @type {boolean}
@@ -276,7 +276,7 @@
               }
 
               function skipToSummary(touchId){
-                  $location.path('/invest/summary/'+touchId);
+                  $state.go('invest.subPage',{userCode:touchId,subPage:'summary'});
               }
 
           }

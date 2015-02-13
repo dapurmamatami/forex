@@ -127,7 +127,7 @@ angular
                 }
             })
             .state('message',{
-                url:'/message',
+                url:'/message/:type_message',
                 views:{
                     '@':{
                         templateUrl:'views/layout/layout-msg.html',

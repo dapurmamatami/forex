@@ -5,9 +5,9 @@
         .module('tigerwitPersonalApp')
         .controller('NavbarController', NavbarController);
 
-    NavbarController.$inject = ['$scope', '$state',"$location","$cookieStore"];
+    NavbarController.$inject = ['$scope', '$state',"$cookieStore"];
 
-    function NavbarController($scope, $state,$location,$cookieStore) {
+    function NavbarController($scope, $state,$cookieStore) {
         $scope.parentState = '';
         $scope.infoShow = false;
         $scope.showInfo = showInfo;
@@ -17,7 +17,7 @@
         $scope.select = select;
         $scope.sys_unvisited_sum = $cookieStore.get('sys_unvisited_sum');
         $scope.user_unvisited_sum =  $cookieStore.get('user_unvisited_sum');
- 
+
         $scope.prefix = $state.$current.url.prefix;
 
         function loginFun() {
@@ -45,8 +45,10 @@
           $scope.msg_show = false;
         }
         function select(type){
-          $location.search('msgType',type.toString());
-          $location.path('/message');
+          //$location.search('msgType',type.toString());
+          //$location.path('/message');
+
+            $state.go('message',{type_message:type})
         }
 
     }

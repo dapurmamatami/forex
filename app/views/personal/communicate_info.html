@@ -52,7 +52,7 @@
                     </div>
 
                     <div class="topicOrComment" ng-show="commentShowToggle">
-                        <textarea tw-auto-focus ng-model="inputContent" ng-change="matchCommentContent()"></textarea>
+                        <textarea ng-model="inputContent" ng-change="matchCommentContent()"></textarea>
                         <div class = "topicOrComment__doToast" ng-class="showOrNo">
                             {{toastMsg}}
                         </div>
@@ -93,7 +93,7 @@
                 </div>
 
                 <div class="topicOrComment" ng-show="commentShowToggle">
-                    <textarea tw-auto-focus ng-model="inputContent"></textarea>
+                    <textarea ng-model="inputContent"></textarea>
                     <div class = "topicOrComment__doToast" ng-class = "showOrNo">
                         {{toastMsg}}
                     </div>
@@ -139,7 +139,7 @@
                     <p class = "communicateinfo__ptime">{{mData['ptime'] | startNow}}前</p>
                     <tw-content-show info = "mData['content']"></tw-content-show>
                     <div class="tramsmit">
-                        <span class = "tramsmit__focus_name">{{mData['relation']['publisher_name']}}</span>
+                        <span class = "tramsmit__focus_name" ng-click="skipToSummary(mData.relation.publisher_id)">{{mData['relation']['publisher_name']}}</span>
                         <tw-content-show class = "tramsmit__content" info="mData['relation']['content']"></tw-content-show>
                         <div>
                             <span class = "tramsmit__ptime">{{mData['relation']['ptime'] | startNow }}前</span>

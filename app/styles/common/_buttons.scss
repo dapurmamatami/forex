@@ -220,7 +220,7 @@ input[type="button"] {
     height: 30px;
     border: 1px solid $brand-border-light;
     text-align: center;
-    line-height: 30px; 
+    line-height: 30px;
     font-size: 0;
     background-color: $gray-lightest;
 
@@ -232,7 +232,7 @@ input[type="button"] {
         .btn-loading__icon {
             @include img-normal($image_path + 'ajax-loading-sm.gif');
             background-repeat: no-repeat;
-            background-position: 50%;        
+            background-position: 50%;
         }
     }
 
@@ -252,5 +252,5 @@ input[type="button"] {
     }
 
 
-     
+
 }

@@ -1,14 +1,27 @@
-<div class="message_side">
-    <p class="message_side__title">消息中心</p>
-    <p class="message_side__tips">您一共有<span class="message_side__sum"> {{unvisit_total_sum}} </span>条未读的信息</p>
-    <hr class = "hr_stl"/>
-    <div>
-        <div class="message_menu">
-            <a class="message_menu__item" ng-class="{menu_item_selected:self_msg_selected}" ng-click="switchMessageData('user')">我的消息</a>
-        </div>
-        <div class="message_menu">
-            <a class="message_menu__item" ng-class="{menu_item_selected:sys_msg_selected}" ng-click="switchMessageData('sys')">系统消息</a>
-        </div>
-    </div>
-    <hr class="hr_stl"/>
+<!--<div class="message_side">-->
+    <!--<p class="message_side__title">消息中心</p>-->
+    <!--<p class="message_side__tips">您一共有<span class="message_side__sum"> {{unvisit_total_sum}} </span>条未读的信息</p>-->
+    <!--<hr class = "hr_stl"/>-->
+    <!--<div>-->
+        <!--<div class="message_menu">-->
+            <!--<a class="message_menu__item" ng-class="{menu_item_selected:self_msg_selected}" ng-click="switchMessageData('user')">我的消息</a>-->
+        <!--</div>-->
+        <!--<div class="message_menu">-->
+            <!--<a class="message_menu__item" ng-class="{menu_item_selected:sys_msg_selected}" ng-click="switchMessageData('sys')">系统消息</a>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<hr class="hr_stl"/>-->
+<!--</div>-->
+
+<div class="setting_nav">
+  <h4 class="setting_nav__title">消息中心</h4>
+  <p class="message_side__tips">您一共有<span class="message_side__sum"> {{unvisit_total_sum}} </span>条未读的信息</p>
+  <ul class="sidebar_nav">
+    <li ng-class="{active: self_msg_selected}" ng-click="switchMessageData('user')">
+      <a ng-href="#/message/user">我的消息</a>
+    </li>
+    <li ng-class="{active: sys_msg_selected }" ng-click="switchMessageData('sys')">
+      <a ng-href="#/message/sys">系统消息</a>
+    </li>
+  </ul>
 </div>
