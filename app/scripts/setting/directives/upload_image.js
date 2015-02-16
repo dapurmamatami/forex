@@ -14,7 +14,7 @@
             link: function (scope, element, attrs) {
                 var fileUpload = $(element);
                 fileUpload.fileupload({
-                    url: config.apiUrl + '/upload_avatar'
+                    url: config.apiUrl + '/upload'
                 });
             }
         };

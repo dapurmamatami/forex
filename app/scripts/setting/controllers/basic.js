@@ -32,7 +32,6 @@
         $scope.select = select;
         $scope.openPortraitModal = openPortraitModal;
         $scope.submitForm = submitForm;
-        $scope.uploadImage = uploadImage;
 
         // 设置性别
         $scope.$watch('personal.sex', function (value) {
@@ -70,11 +69,7 @@
                 $scope.noSelect = true;
             }
         });
-
-       /* $scope.$on('croppingFinished' ,function (event, data) {
-            portraitData = data.dataURL;
-        });*/
-
+        
         // 根据 region code，将 location 的region 对应到获取到的 regions 中
         function confirmRegion(region, regions, regionCode, upperRegionCode) {
             var tmp;
@@ -166,16 +161,6 @@
                     }
                 }
             });
-        }
-
-        function uploadImage() {
-            /*if (portraitData) {
-                account.uploadImage(portraitData).then(function (data) {
-                    console.info(data);
-                });
-            }*/
-            console.info(imageForm);
-            imageForm.submit();
         }
     }
 })();

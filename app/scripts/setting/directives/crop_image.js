@@ -1,3 +1,4 @@
+;
 (function () {
     'use strict';
 
@@ -11,11 +12,11 @@
             link: function (scope, element, attrs) {
                 
                 scope.$watch('personal', function (newVal, oldVal) {
+                    
                     if (!newVal) {
                         return;
                     }
                     var image = $(element).find('.upload_portrait__image');
-
                     image.cropper({
                         aspectRatio: 1,
                         data: {
@@ -27,7 +28,7 @@
                         dragCrop: false,
                         preview: '.upload_portrait__preview',
                         done: function(data) {
-                            //console.info(image.cropper('getData', true));
+                            console.info(image.cropper('getData', true));
                         }
                     });
                 }, true);
