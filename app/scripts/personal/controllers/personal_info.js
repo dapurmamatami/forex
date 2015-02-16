@@ -17,7 +17,7 @@
         $scope.personal = {};       // personal（自己）
         $scope.realEquityInfo = {}; // 真实账户资产信息
         $scope.demoEquityInfo = {}; // 模拟账户资产信息
-
+        $scope.openRegisterModal = openRegisterModal;
         $scope.skipDetail = skipDetail;
 
         // 获取 personal 的信息
@@ -72,6 +72,14 @@
             });
         }
 
+        function openRegisterModal(size) {
+            $modal.open({
+                templateUrl: 'views/account/register.html',
+                controller: 'AccountRegisterController',
+                size: size
+            });
+        }
+
         function switchLayout(){
             if($location.$$url == 'topic_detail'){
                 $scope.layoutContent= 'content__detail';
@@ -81,6 +89,7 @@
                 $scope.layoutSide = 'content__sidebar-ad';
             }
         }
+        
         //跳转到指定详情界面
         function skipDetail(topicId){
             $state.go('personal.topic_detail',{topicId:topicId});

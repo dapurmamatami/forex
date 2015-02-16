@@ -4,4 +4,33 @@
         padding-bottom: 15px;
         border-bottom: 1px solid $brand-border-color;
     }
+
+    @include e(portrait) {
+        width: 150px;
+        height: 150px;
+        padding: 5px;
+        border: 1px solid $brand-border-color;
+    }
+
+    @include e(change) {
+        width: 150px;
+        margin-top: 10px;
+        font-size: 16px;
+        font-weight: 700;
+
+    }
+}
+
+@include b(upload_portrait) {
+    @include e(container) {
+        width: 550px;
+        height: 350px;
+        margin: 10px auto;
+    }
+
+    @include e(preview) {
+        width: 150px;
+        height: 150px;
+        overflow: hidden;
+    }
 }

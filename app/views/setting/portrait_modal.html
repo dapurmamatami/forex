@@ -1,0 +1,24 @@
+<div class="upload_portrait" tw-crop-image>
+    <div class="row">
+        <div class="col-xs-4">
+            <div class="upload_portrait__preview">
+            </div>
+        </div>
+        <div class="col-xs-8">
+            <h3>上传头像 {{personal.username}}</h3>
+            <p>
+                只支持 png，jpg，gif 的图片格式，大小控制在 2MB 以内。
+            </p>
+            <label class="btn btn-primary" for="input">
+                <input id="input" class="upload_portrait__input" type="file" accept="image/jpeg, image/png, image/gif" tw-upload-image>
+                选择图片
+            </label>
+        </div>
+    </div>
+    <div class="upload_portrait__container" >
+        <img class="upload_portrait__image" ng-src="/avatar/{{personal.user_code}}_150.jpg">
+    </div>
+    <button class="btn btn-primary" ng-click="uploadPortrait()">
+        保存
+    </button>
+</div>

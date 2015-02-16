@@ -10,7 +10,7 @@
     function UserInfoController($location, $scope, $timeout, $modal, $cookieStore, $state,
             account, money, communicate, copy) {
         $scope.user = {};           // user（别人）
-        $scope.openRegisterModal = openRegisterModal;
+        
         $scope.openCopyModal = openCopyModal;
         $scope.follow = follow;
         $scope.cancelFollow = cancelFollow;
@@ -63,15 +63,6 @@
                 } else {
                     user.isFollow = false;
                 }
-            });
-        }
-
-
-        function openRegisterModal(size) {
-            $modal.open({
-                templateUrl: 'views/account/register.html',
-                controller: 'AccountRegisterController',
-                size: size
             });
         }
 

@@ -5,9 +5,9 @@
         .module('tigerwitPersonalApp')
         .controller('SettingBasicController', SettingBasicController);
 
-    SettingBasicController.$inject = ['$scope', 'account'];
+    SettingBasicController.$inject = ['$scope', '$modal', 'account'];
 
-    function SettingBasicController($scope, account) {
+    function SettingBasicController($scope, $modal, account) {
         $scope.sexes = [{
             nameCN: '男',
             code: 1
@@ -30,7 +30,9 @@
         };
         $scope.noSelect = false;  // 是否显示省、市的 select 元素
         $scope.select = select;
+        $scope.openPortraitModal = openPortraitModal;
         $scope.submitForm = submitForm;
+        $scope.uploadImage = uploadImage;
 
         // 设置性别
         $scope.$watch('personal.sex', function (value) {
@@ -69,19 +71,9 @@
             }
         });
 
-       /* $scope.$watch('location.country', function (newVal, oldVal) {
-            if (newVal === oldVal) {
-                return;
-            }
-
-            if (newVal.code === 'CN') {
-                account.getStates(newVal.code).then(function (data) {
-                    $scope.location.states = data.data;
-                });
-            } else {
-                $scope.loca
-            }
-        }, true);*/
+       /* $scope.$on('croppingFinished' ,function (event, data) {
+            portraitData = data.dataURL;
+        });*/
 
         // 根据 region code，将 location 的region 对应到获取到的 regions 中
         function confirmRegion(region, regions, regionCode, upperRegionCode) {
@@ -131,9 +123,22 @@
                                 $scope.states = data.data;
                             }
                         });
+                        $scope.cities = [];
                     } else {
                         $scope.noSelect = true;
                     }
+                    break;
+                case 'state':
+                    if (!$scope.location.state) {
+                        $scope.cities = [];
+                        return;
+                    }
+                    account.getCities($scope.location.state.code).then(function (data) {
+                        if (data.is_succ) {
+                            $scope.cities = data.data;
+                        }
+                    });
+
                     break;
                 default:
                     break;
@@ -142,6 +147,35 @@
 
         function submitForm() {
             console.info($scope.inputRegion);
+            console.info($scope.location);
+            if ($scope.location.country.code === 'CN') {
+                var submitData = {};
+            } else {
+                submitData = {};
+            }
+        }
+
+        function openPortraitModal(size) {
+            $modal.open({
+                templateUrl: 'views/setting/portrait_modal.html',
+                controller: 'SettingPortraitController',
+                size: size,
+                resolve: {
+                    personal: function () {
+                        return $scope.personal;
+                    }
+                }
+            });
+        }
+
+        function uploadImage() {
+            /*if (portraitData) {
+                account.uploadImage(portraitData).then(function (data) {
+                    console.info(data);
+                });
+            }*/
+            console.info(imageForm);
+            imageForm.submit();
         }
     }
 })();

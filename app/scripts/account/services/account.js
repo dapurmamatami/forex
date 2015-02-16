@@ -18,7 +18,8 @@
             getLocationInfo: getLocationInfo,
             getCountries: getCountries,
             getStates: getStates,
-            getCities: getCities
+            getCities: getCities,
+            uploadImage: uploadImage
         };
         return service;
 
@@ -153,6 +154,12 @@
                 params: {
                     parent_code: stateCode
                 }
+            });
+        }
+
+        function uploadImage(file) {
+            return $http.post('/upload', {
+                file: file
             });
         }  
     }
