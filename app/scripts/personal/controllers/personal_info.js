@@ -43,17 +43,8 @@
                 });
             }
         });
-
-
-        $scope.userType.code = $state.params.userCode;
-
-        if ($scope.userType.code && $cookieStore.get('userCode') &&
-                $scope.userType.code !== $cookieStore.get('userCode').toString()) {
-
-            // 确定了是 user（别人）的信息页面
-            $scope.userType.isPersonal = false;
-        }
-
+        
+        //
         switchLayout();
 
         /*
