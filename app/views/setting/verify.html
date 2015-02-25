@@ -1,0 +1,105 @@
+<div class="setting_content">
+    <h4 class="setting_content__verified" ng-if="!personal.verified">
+        已认证
+    </h4>
+    <h4 class="setting_content__unverified" ng-if="personal.verified">
+        审核未通过
+    </h4>
+    <h3 class="setting_content__title">实名认证</h3>
+    <div class="verify" ng-if="personal.verified">
+        <form name="verifyForm">
+            <div class="row">
+                <div class="col-xs-3">
+                    <label>姓名</label>
+                </div>
+                <div class="col-xs-6">
+                    <input class="form-control"
+                           name="name"
+                           type="text"
+                           required
+                           ng-model="realInfo.name"
+                           ng-pattern="/^[\u4e00-\u9fa5\.]{2,20}$/">
+                    <div ng-show="verifyForm.name.$dirty">
+                        <p class="alert alert-danger" ng-show="verifyForm.name.$error.required">
+                            请填写姓名
+                        </p>
+                        <p class="alert alert-danger" ng-show="verifyForm.name.$error.pattern">
+                            名字为 2-20 个汉字以及 . 号
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3">
+                    <label>身份证号</label>
+                </div>
+                <div class="col-xs-6">
+                    <input class="form-control" 
+                           name="idNumber"
+                           type="text"
+                           required 
+                           ng-model="realInfo.idNumber"
+                           ng-pattern="/(^\d{15}$)|(^\d{17}([0-9]|X)$)/"
+                           ng-focus="eliminateError()">
+                    <div ng-show="verifyForm.idNumber.$dirty">
+                        <p class="alert alert-danger" ng-show="verifyForm.idNumber.$error.required">
+                            请填写身份证号
+                        </p>
+                        <p class="alert alert-danger" ng-show="verifyForm.idNumber.$error.pattern">
+                            15 或 18 位数字，最后一位为字母时用大写 X
+                        </p>
+                        <p class="alert alert-danger" ng-show="idNumberCheck.existence">
+                            该身份证号已经注册！
+                        </p>
+                        <p class="alert alert-danger" ng-show="idNumberCheck.invalid">
+                            该身份证号无效！
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <div class="upload_form">
+                <div class="col-xs-6 text-center">
+                    <div class="upload_form__front" data-face="front" tw-upload-form >
+                    </div>
+                </div>
+                <div class="col-xs-6 text-center">
+                    <div class="upload_form__back" data-face="back" tw-upload-form >
+                    </div> 
+                </div>
+                <div class="col-xs-6 text-center">
+                    <div class="upload-tip">
+                        <p class="alert alert-warning" ng-if="idImage.frontStatus === 1">
+                            {{idImage.frontMessage}}
+                        </p>
+                        <p class="alert alert-success" ng-if="idImage.frontStatus === 2">
+                            {{idImage.frontMessage}}
+                        </p>
+                        <p class="alert alert-danger" ng-if="idImage.frontStatus === 3">
+                            {{idImage.frontMessage}}
+                        </p>
+                    </div>
+                </div>
+                <div class="col-xs-6 text-center">
+                    <div class="upload-tip">
+                        <p class="alert alert-warning" ng-if="idImage.backStatus === 1">
+                            {{idImage.backMessage}}
+                        </p>
+                        <p class="alert alert-success" ng-if="idImage.backStatus === 2">
+                            {{idImage.backMessage}}
+                        </p>
+                        <p class="alert alert-danger" ng-if="idImage.backStatus === 3">
+                            {{idImage.backMessage}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center">
+            <button class="btn btn-primary" ng-disabled="verifyForm.$invalid" ng-click="submitVerifyForm()">
+                确定提交
+            </button>
+        </div>
+    </div>
+</div>

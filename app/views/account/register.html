@@ -41,7 +41,7 @@
                                    required 
                                    ng-model="idNumber"
                                    ng-pattern="/(^\d{15}$)|(^\d{17}([0-9]|X)$)/"
-                                   ng-focus="validate()">
+                                   ng-focus="eliminateError()">
                             <div ng-show="formStep1.idNumber.$dirty">
                                 <p class="alert alert-danger" ng-show="formStep1.idNumber.$error.required">
                                     请填写身份证号

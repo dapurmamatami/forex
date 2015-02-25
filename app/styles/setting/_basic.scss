@@ -1,9 +1,4 @@
 @include b(basic_setting) {
-    @include e(title) {
-        margin: 50px 0px 30px;
-        padding-bottom: 15px;
-        border-bottom: 1px solid $brand-border-color;
-    }
 
     @include e(portrait) {
         width: 150px;
@@ -32,5 +27,31 @@
         width: 150px;
         height: 150px;
         overflow: hidden;
+    }
+}
+
+@include b(basic_info_form) {
+    .row {
+        margin-bottom: 20px;
+    }
+
+    h4 {
+        margin: 0;
+        font-size: 16px;
+        font-weight: 700;
+        color: $gray-light;
+    }
+
+    label {
+        font-size: 16px;
+        font-weight: 700;
+        color: $gray-light;
+        line-height: 34px;
+    }
+
+    .btn-primary {
+        float: right;
+        font-size: 16px;
+        font-weight: 700;
     }
 }

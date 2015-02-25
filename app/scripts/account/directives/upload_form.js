@@ -34,14 +34,15 @@
                     });
                 });
 
-                uploader.on('uploadSuccess', function (data,response) {
+                uploader.on('uploadSuccess', function (data, response) {
                     var imagePath = response.path;
 
                     if ($('.upload_form__image', element).length === 1) {
                         $('.upload_form__image', element).remove();
                     }
-                    element.append('<img class="upload_form__image" src="' + imagePath + 
-                            '?timestamp=' + new Date() + '">');
+                    element.append('<img class="upload_form__image" src="' + 
+                            imagePath + '">');
+                    
                     scope.$emit('uploadFormSuccess', {
                         face: attrs.face
                     });

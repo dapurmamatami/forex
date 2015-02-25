@@ -191,6 +191,8 @@
 }
 
 @include b(user_info) {
+    margin-right: 5px;
+    
     @include e(panel) {
         @extend .personal_info__panel;
     }
@@ -202,7 +204,7 @@
         @include e(counter) {
             display: inline-block;
             vertical-align: top;
-            width: 40%;
+            width: 35%;
 
             h3 {
                 margin-top: 0;
@@ -219,7 +221,7 @@
         @include e(copy) {
             display: inline-block;
             vertical-align: top;
-            width: 60%;
+            width: 65%;
             line-height: 55px;
             text-align: center;
         }
@@ -230,7 +232,7 @@
     }
 
     @include b(copy_btn) {
-        width: 90px;
+        width: 100px;
         padding: 3px;
         border: none;
         @include img-normal($image_path + 'copy-bg.png');
@@ -263,7 +265,6 @@
         @extend .copy_btn;
         border: none;
         @include img-normal($image_path + 'follow-bg.png');
-        background-position: -1px;
         
         &:hover {
             background: #ddd;

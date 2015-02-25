@@ -20,7 +20,7 @@
             }
         });*/
 
-        $scope.step = 2;
+        $scope.step = 1;
 
         /*
          * 第一步的数据模型
@@ -34,7 +34,7 @@
         }; 
         $scope.forkCode = null;
         $scope.submitFormStep1 = submitFormStep1;
-        $scope.validate = validate;
+        $scope.eliminateError = eliminateError;
 
         /*
          * 第二步的数据模型以及业务逻辑
@@ -157,7 +157,7 @@
             });
         }
 
-        function validate() {
+        function eliminateError() {
            $scope.idNumberCheck.valid = true;
            $scope.idNumberCheck.existence = false;
         }

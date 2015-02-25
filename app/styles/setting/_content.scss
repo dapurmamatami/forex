@@ -3,4 +3,21 @@
     padding: 0 30px;
     border: 1px solid $brand-border-color;
     background-color: $brand-white;
+
+    @include e(title) {
+        margin: 50px 0px 30px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid $brand-border-color;
+    }
+
+    @include e(verified) {
+        float: right;
+        margin-top: 60px;
+        color: $brand-primary;
+    }
+
+    @include e(unverified) {
+        @extend .setting_content__verified;
+        color: $brand-red;
+    }
 }
