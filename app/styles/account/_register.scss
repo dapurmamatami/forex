@@ -86,4 +86,9 @@
         width: 100%;
         height: 100%;
     }
+
+    @include e(tip) {
+        width: 250px;
+        margin: 0 auto;
+    }
 }

@@ -1,0 +1,34 @@
+@include b(verify) {
+
+    .row {
+        margin-bottom: 20px;
+    }
+
+    .alert-danger,
+    .alert-warning,
+    .alert-success {
+        margin-top: 5px;
+        margin-bottom: 0;
+        padding: 5px;
+    }
+
+    .upload_form {
+        margin-left: 0;
+        margin-right: 0;
+        padding: 45px 15px;
+        border: 1px dashed $brand-border-color;
+        border-radius: 4px;
+        background-color: $gray-lightest;
+    }
+
+    @include e(info) {
+        line-height: 2;
+        font-size: 16px;
+
+        span {
+            font-size: 18px;
+            font-weight: 700;
+            color: $brand-red;
+        }
+    }
+}

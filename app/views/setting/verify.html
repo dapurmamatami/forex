@@ -1,15 +1,17 @@
 <div class="setting_content">
-    <h4 class="setting_content__verified" ng-if="!personal.verified">
+    <h4 class="setting_content__verified" ng-if="personal.verified">
         已认证
     </h4>
-    <h4 class="setting_content__unverified" ng-if="personal.verified">
+    <h4 class="setting_content__unverified" ng-if="!personal.verified">
         审核未通过
     </h4>
+    
     <h3 class="setting_content__title">实名认证</h3>
-    <div class="verify" ng-if="personal.verified">
+    
+    <div class="verify" ng-if="!personal.verified">
         <form name="verifyForm">
             <div class="row">
-                <div class="col-xs-3">
+                <div class="col-xs-2">
                     <label>姓名</label>
                 </div>
                 <div class="col-xs-6">
@@ -30,7 +32,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-3">
+                <div class="col-xs-2">
                     <label>身份证号</label>
                 </div>
                 <div class="col-xs-6">
@@ -58,48 +60,58 @@
                 </div>
             </div>
         </form>
-        <div class="row">
-            <div class="upload_form">
-                <div class="col-xs-6 text-center">
-                    <div class="upload_form__front" data-face="front" tw-upload-form >
-                    </div>
+        <label>证件照</label>
+        <div class="upload_form row">
+            <div class="col-xs-6 text-center">
+                <div class="upload_form__front" data-face="front" tw-upload-form >
                 </div>
-                <div class="col-xs-6 text-center">
-                    <div class="upload_form__back" data-face="back" tw-upload-form >
-                    </div> 
+            </div>
+            <div class="col-xs-6 text-center">
+                <div class="upload_form__back" data-face="back" tw-upload-form >
+                </div> 
+            </div>
+            <div class="col-xs-6 text-center">
+                <div class="upload_form__tip">
+                    <p class="alert alert-warning" ng-if="idImage.frontStatus === 1">
+                        {{idImage.frontMessage}}
+                    </p>
+                    <p class="alert alert-success" ng-if="idImage.frontStatus === 2">
+                        {{idImage.frontMessage}}
+                    </p>
+                    <p class="alert alert-danger" ng-if="idImage.frontStatus === 3">
+                        {{idImage.frontMessage}}
+                    </p>
                 </div>
-                <div class="col-xs-6 text-center">
-                    <div class="upload-tip">
-                        <p class="alert alert-warning" ng-if="idImage.frontStatus === 1">
-                            {{idImage.frontMessage}}
-                        </p>
-                        <p class="alert alert-success" ng-if="idImage.frontStatus === 2">
-                            {{idImage.frontMessage}}
-                        </p>
-                        <p class="alert alert-danger" ng-if="idImage.frontStatus === 3">
-                            {{idImage.frontMessage}}
-                        </p>
-                    </div>
-                </div>
-                <div class="col-xs-6 text-center">
-                    <div class="upload-tip">
-                        <p class="alert alert-warning" ng-if="idImage.backStatus === 1">
-                            {{idImage.backMessage}}
-                        </p>
-                        <p class="alert alert-success" ng-if="idImage.backStatus === 2">
-                            {{idImage.backMessage}}
-                        </p>
-                        <p class="alert alert-danger" ng-if="idImage.backStatus === 3">
-                            {{idImage.backMessage}}
-                        </p>
-                    </div>
+            </div>
+            <div class="col-xs-6 text-center">
+                <div class="upload_form__tip">
+                    <p class="alert alert-warning" ng-if="idImage.backStatus === 1">
+                        {{idImage.backMessage}}
+                    </p>
+                    <p class="alert alert-success" ng-if="idImage.backStatus === 2">
+                        {{idImage.backMessage}}
+                    </p>
+                    <p class="alert alert-danger" ng-if="idImage.backStatus === 3">
+                        {{idImage.backMessage}}
+                    </p>
                 </div>
             </div>
         </div>
-        <div class="text-center">
-            <button class="btn btn-primary" ng-disabled="verifyForm.$invalid" ng-click="submitVerifyForm()">
+        
+        <div class="text-center mg-bt-15">
+            <button class="btn btn-primary" ng-disabled="verifyForm.$invalid || idImage.frontStatus !== 2 || idImage.backStatus !== 2" ng-click="submitVerifyForm()">
                 确定提交
             </button>
         </div>
+    </div>
+
+    <div class="verify" ng-if="personal.verified">
+        <p class="verify__info">
+            尊敬的
+            <span>{{realInfo.name}}</span>
+            您好，您上传的证件号为
+            <span>{{realInfo.showedIdNumber}}</span>
+            的证件应经通过实名认证审核，请放心交易。
+        </p>            
     </div>
 </div>

@@ -36,7 +36,7 @@
                         return;
                     }
                     $scope.realInfo.name = data.realname;
-                    $scope.showedIdNumber = data.id_no;
+                    $scope.realInfo.showedIdNumber = data.id_no;
                 });
             }
         });

@@ -10,9 +10,7 @@
     @include e(change) {
         width: 150px;
         margin-top: 10px;
-        font-size: 16px;
-        font-weight: 700;
-
+        padding: 6px !important;
     }
 }
 
@@ -42,16 +40,7 @@
         color: $gray-light;
     }
 
-    label {
-        font-size: 16px;
-        font-weight: 700;
-        color: $gray-light;
-        line-height: 34px;
-    }
-
     .btn-primary {
         float: right;
-        font-size: 16px;
-        font-weight: 700;
     }
 }
