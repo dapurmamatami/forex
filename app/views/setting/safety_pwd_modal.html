@@ -1,0 +1,63 @@
+<div class="setting_modal">
+    <div class="pwd_change">
+        <div class="modal-header">
+            <button class="close" ng-click="closeModal()">X</button>
+            <h4 class="setting_modal__title">修改密码</h4>
+        </div>
+        
+        <div ng-show="step === 1">
+            <div class="modal-body">
+                <form name="pwdForm" novalidate>
+                    <div class="row form_row">
+                        <div class="col-xs-3 text-right">
+                            <label>当前密码</label>
+                        </div>
+                        <div class="col-xs-7">
+                            <input class="form-control" type="text">
+                        </div>
+                    </div>
+                    <div class="row form_row">
+                        <div class="col-xs-3 text-right">
+                            <label>新密码</label>
+                        </div>
+                        <div class="col-xs-7">
+                            <input class="form-control" type="text">
+                        </div>
+                    </div>
+                    <div class="row form_row">
+                        <div class="col-xs-3 text-right">
+                            <label>确认新密码</label>
+                        </div>
+                        <div class="col-xs-7">
+                            <input class="form-control" type="text">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" ng-click="submitPwdForm()">
+                    提交
+                </button>
+                <p class="pwd_change__tip">
+                    注意：修改后的密码同时也将会作为 MT4 客户端的登录密码使用
+                </p>
+            </div>
+        </div>
+
+        <div ng-show="step === 2">
+            <div class="modal-body">
+                <h3 class="pwd_change__success">
+                    密码修改成功！
+                </h3>
+                <p class="pwd_change__tip">
+                    注意：修改后的密码同时也将会作为 MT4 客户端的登录密码使用
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" ng-click="closeModal()">
+                    确定
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

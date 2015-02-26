@@ -1,0 +1,60 @@
+@include b(account_safety) {
+
+    li:nth-child(odd) {
+        background-color: $gray-lightest;
+    }
+    
+    @include e(title) {
+        line-height: 100px;
+        text-align: center;
+        font-size: 16px;
+        font-weight: 700;
+    }
+
+    @include e(intro) {
+        display: table;
+        height: 100px;
+
+        p {
+            display: table-cell;
+            vertical-align: middle;
+        }
+    }
+
+    @include e(operate) {
+        line-height: 100px;
+        text-align: center;
+
+        span {
+            font-size: 16px;
+            font-weight: 700;
+            color: $brand-primary;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+
+    @include e(phone) {
+        color: $brand-red;
+    }
+
+    @include e(email) {
+        font-weight: 700;
+        color: $gray-light;
+    }
+}
+
+@include b(pwd_change) {
+
+    @include e(tip) {
+        margin-top: 15px;
+        text-align: center;
+        color: $brand-red;
+    }
+
+    @include e(success) {
+        text-align: center;
+    }
+}

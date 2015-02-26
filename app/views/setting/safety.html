@@ -1,0 +1,68 @@
+<div class="setting_content">
+    <h4 class="setting_content__level">
+        当前安全级别：
+        <span>低</span>
+    </h4>
+    <h3 class="setting_content__title">账户安全</h3>
+
+    <ul class="account_safety">
+        <li>
+            <div class="row">
+                <div class="col-xs-3 account_safety__title">
+                    登陆密码
+                </div>
+                <div class="col-xs-6 account_safety__intro">
+                    <p>
+                        安全性高的密码可以使帐号更安全，建议您定期更换。
+                    </p>
+                </div>
+                <div class="col-xs-3 account_safety__operate">
+                    <span ng-click="openPwdModal()">
+                        <i class="fa fa-edit"></i>
+                        修改
+                    </span>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="row">
+                <div class="col-xs-3 account_safety__title">
+                    手机号码
+                </div>
+                <div class="col-xs-6 account_safety__intro">
+                    <p>
+                        您已经绑定了手机 
+                        <span class="account_safety__phone">158******00</span>
+                        [您可使用该手机进行登录，找回密码]
+                    </p>
+                </div>
+                <div class="col-xs-3 account_safety__operate">
+                    <span ng-click="openPhoneModal()">
+                        <i class="fa fa-edit"></i>
+                        修改
+                    </span>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="row">
+                <div class="col-xs-3 account_safety__title">
+                    电子邮件
+                </div>
+                <div class="col-xs-6 account_safety__intro">
+                    <p>
+                        您的邮箱： 
+                        <span class="account_safety__email">491538285@qq.com</span>
+                        [我们将通过此邮件定期向您发送你的投资报告和相关资料]
+                    </p>
+                </div>
+                <div class="col-xs-3 account_safety__operate">
+                    <span>
+                        <i class="fa fa-edit"></i>
+                        修改
+                    </span>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>

@@ -36,28 +36,6 @@
 
 @include b(card_add) {
     
-    label {
-        margin-bottom: 0;
-        line-height: 34px;
-    }
-
-    .row {
-        margin-bottom: 20px;
-    }
-
-    .btn-primary {
-        padding: 6px 50px;
-        font-size: 16px;
-        font-weight: 700;
-    }
-
-    @include e(title) {
-        margin: 0;
-        padding: 0 20px 15px;
-        border-bottom: 1px solid $brand-border-color;
-        font-weight: 700;
-    }
-
     @include e(tip) {
         margin-top: 10px;
     }
@@ -67,10 +45,8 @@
   
     .btn-danger {
         padding: 6px 50px;
-    }
-
-    @include e(title) {
-        @extend .card_add__title;
+        font-size: 16px;
+        font-weight: 700;
     }
 
     @include e(query) {
@@ -78,21 +54,3 @@
     }
 }
 
-.card_add,
-.card_delete {
-
-    .modal-header {
-        padding: 25px 15px 0;
-        border-bottom: none;
-    }
-
-    .modal-footer {
-        padding: 0 0 25px;
-        border-top: none;
-        text-align: center;
-    }
-
-    .close {
-        margin-right: 20px;
-    }
-}
