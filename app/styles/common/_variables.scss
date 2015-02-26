@@ -34,7 +34,8 @@ $brand-danger:          #ef4d4d !default;
 //== Background image path
 $image_path:             '../images/';
 $forex_icon_path:        '../images/forex_icon/';
-$flag_icon_path:         '../images/flag_icon/';  
+$flag_icon_path:         '../images/flag_icon/';
+$bank_icon_path:         '../images/bank_icon/';  
 
 //== Scaffolding
 //
@@ -159,7 +160,8 @@ $btn-warning-bg:                 $brand-warning !default;
 $btn-warning-border:             darken($btn-warning-bg, 5%) !default;
 
 $btn-danger-color:               #fff !default;
-$btn-danger-bg:                  $brand-danger !default;
+//$btn-danger-bg:                  $brand-danger !default;
+$btn-danger-bg:                  $brand-red !default;
 $btn-danger-border:              darken($btn-danger-bg, 5%) !default;
 
 $btn-link-disabled-color:        $gray-light !default;

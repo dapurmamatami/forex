@@ -150,5 +150,17 @@
         @extend .icon-flag;
         @include img-retina($flag_icon_path + 'ae.png', $flag_icon_path + 'ae@2x.png', 22px, 13px);
     }
+}
 
+.icon-bank {
+    display: inline-block;
+    vertical-align: middle;
+    width: 40px;
+    height: 40px;
+    background-position: 50%;
+
+    @include m(CMB) {
+        @extend .icon-bank;
+        @include img-normal($bank_icon_path + 'CMB.png');
+    }
 }

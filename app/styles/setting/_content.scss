@@ -34,5 +34,18 @@
         @extend .setting_content__verified;
         color: $brand-red;
     }
+
+    @include e(add) {
+        @extend .setting_content__verified;
+        margin-top: 50px;
+        padding: 6px 12px;
+        border: 1px dashed;
+        font-size: 16px;
+        font-weight: 700;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
 }
 

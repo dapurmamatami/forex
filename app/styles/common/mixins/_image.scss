@@ -38,7 +38,7 @@
     background-image: url("#{$file}");
 }
 
-// 可能用不到，都需要兼容 retina
+// 暂时留着，要删掉
 @mixin background_image_url($url) {
     background-image: url('../images/' + $url);
 }

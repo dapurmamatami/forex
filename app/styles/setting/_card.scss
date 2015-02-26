@@ -1,0 +1,98 @@
+@include b(bank_card) {
+    padding: 30px 25px;
+    border: 1px solid $brand-border-color;
+    border-radius: 4px;
+
+    .col-xs-1 {
+        padding-right: 0;
+    }
+
+    @include e(name) {
+        line-height: 40px;
+        text-align: center;
+        font-size: 16px;
+        font-weight: 700;
+    }
+
+    @include e(number) {
+        line-height: 40px;
+        font-size: 32px;
+        font-weight: 700;
+        color: $gray-light;
+    }
+
+    @include e(delete) {
+        line-height: 40px;
+        text-align: right;
+        font-size: 14px;
+        font-weight: 700;
+        color: $brand-primary;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+@include b(card_add) {
+    
+    label {
+        margin-bottom: 0;
+        line-height: 34px;
+    }
+
+    .row {
+        margin-bottom: 20px;
+    }
+
+    .btn-primary {
+        padding: 6px 50px;
+        font-size: 16px;
+        font-weight: 700;
+    }
+
+    @include e(title) {
+        margin: 0;
+        padding: 0 20px 15px;
+        border-bottom: 1px solid $brand-border-color;
+        font-weight: 700;
+    }
+
+    @include e(tip) {
+        margin-top: 10px;
+    }
+}
+
+@include b(card_delete) {
+  
+    .btn-danger {
+        padding: 6px 50px;
+    }
+
+    @include e(title) {
+        @extend .card_add__title;
+    }
+
+    @include e(query) {
+        font-size: 16px;
+    }
+}
+
+.card_add,
+.card_delete {
+
+    .modal-header {
+        padding: 25px 15px 0;
+        border-bottom: none;
+    }
+
+    .modal-footer {
+        padding: 0 0 25px;
+        border-top: none;
+        text-align: center;
+    }
+
+    .close {
+        margin-right: 20px;
+    }
+}
