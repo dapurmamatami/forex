@@ -23,8 +23,6 @@
         $scope.gotoLogin = gotoLogin;
 
         function submitPwdForm() {
-            console.info($scope.password);
-
             account.changePwd($scope.password.oldPwd, $scope.password.newPwd).then(function (data) {
 
                 if (data.error_msg === '密码不正确') {
