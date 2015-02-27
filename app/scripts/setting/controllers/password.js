@@ -18,15 +18,14 @@
         $scope.pwdCorrect = true;
 
         $scope.eliminateError = eliminateError;
-        $scope.comparePwd = comparePwd;
         $scope.submitPwdForm = submitPwdForm;
         $scope.closeModal = closeModal;
+        $scope.gotoLogin = gotoLogin;
 
         function submitPwdForm() {
             console.info($scope.password);
 
             account.changePwd($scope.password.oldPwd, $scope.password.newPwd).then(function (data) {
-                console.info(data);
 
                 if (data.error_msg === '密码不正确') {
                     $scope.pwdCorrect = false;
@@ -48,8 +47,8 @@
             $scope.pwdCorrect = true;
         }
 
-        function comparePwd() {
-
+        function gotoLogin() {
+            // 跳转到登陆页面重新登录
         }
     }
 })();
