@@ -10,17 +10,22 @@
     function validator($window) {
         var validateFuns = {
             regTypes: {
+                'idNumber': {
+                    tips: '身份证号为 15 或 18 位数字，最后一位为字母时用大写 X',
+                    reg: '(^\d{15}$)|(^\d{17}([0-9]|X)$)'
+                },
                 'phone': {
-                tips: "请输入正确的手机号",
-                reg:'^(?:\\+86)?(1[0-9]{10}$)'
+                    tips: "请输入正确的手机号",
+                    reg:'^(?:\\+86)?(1[0-9]{10}$)'
                 },
                 'email': {
                     tips: '请输入正确的邮箱名，邮箱前缀由英文数字、下划线、减号、点组成，以英文数字结尾',
                     reg:'^\\w+([-.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$'
                 },
                 'money': {
-                    tips: '请输入正确的金额，只能为小数或者整数。小数点后两位',
-                    reg: '(^0\\.[0-9]{1,2}$)|(^[1-9][0-9]*\\.[0-9]{1,2}$)|(^[1-9][0-9]*$)'
+                    tips: '请输入正确的金额，只能为小数或者整数，小数点后最多两位小数',
+                    //reg: '(^0\\.[0-9]{1,2}$)|(^[1-9][0-9]*\\.[0-9]{1,2}$)|(^[1-9][0-9]*$)'   
+                    reg: '^(?!0+(?:\.0+)?$)(?:[1-9]\d*|0)(?:\.\d{1,2})?$'
                 },
                 'num': {
                     tips: '输入项不能包含数字',
@@ -43,38 +48,11 @@
                     reg: '[!@#$%^&*()_+]'
                 }
             },
-            number: function (str, type) {
-                var validateResult = !/\D/.test(str);
-                var validateReason = "";
 
-                if (!validateResult) {
-                    validateReason = '输入项必须为数字！';
-                }
-
-                return {
-                    validate_reason: validateReason,
-                    validate_result: validateResult
-                };
-            },
-            id: function (str) {
-                var validateResult = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X)$)/.test(str);
-                var validateReason = "";
-
-                if (!validateResult) {
-                    validateReason = '输入的身份证号格式不正确';
-                    if (/x$/.test(str)) {
-                        validateReason = '输入的身份证号最后一位应为大写X';
-                    }
-                }
-                return {
-                    validate_reason: validateReason,
-                    validate_result: validateResult
-                };
-            },
             /*
-            *text 书写规则: text:en-zh-num, 是"或"的关系, 且仅有
-            */
-            text: function (str, type) {
+             *text 书写规则: text:en-zh-num, 是"或"的关系, 且仅有
+             */
+            /*text: function (str, type) {
                 var textTypes = type.split(":")[1];
                 var textTypeList = textTypes.split("-");
 
@@ -108,7 +86,8 @@
                     validate_reason: validateReason,
                     validate_result: validateResult
                 };
-            },
+            },*/
+
             /*
              *密码验证：6-15位字符，可由大写字母，小写字母，数字，符号组成，且至少包含其中2项
              */
@@ -152,47 +131,8 @@
                     validate_reason: validateReason,
                     validate_result: validateResult
                 };
-            },
-            /*
-             * length 书写规则： length:start-end
-             */
-            length: function (str, type) {
-                var lengthContent = type.split(":")[1];
-                var lengthStart = lengthContent.split("-")[0];
-                var lengthEnd = lengthContent.split("-")[1];
-                var strLength = str.replace(/[^\x00-\xff]/g,"**").length;
-
-                var validateResult = (lengthStart <= strLength && strLength <= lengthEnd);
-                var validateReason = "";
-                if (!validateResult) {
-                    validateReason = "输入项长度应介于 " + lengthStart + " 位和 " + lengthEnd + " 位之间, 一个中文为两个字符";
-                }
-                return {
-                    validate_reason: validateReason,
-                    validate_result: validateResult
-                };
-            },
-            option: function (str) {
-                return {
-                    validate_reason: "",
-                    validate_result: true
-                };
-            },
-            required: function (str) {
-                var validateResult = false;
-                var validateReason = "";
-                if (str) {
-                    validateResult = true;
-                } else {
-                    validateReason = "此项为必填项";
-                }
-
-                return {
-                    validate_reason: validateReason,
-                    validate_result: validateResult
-                };
-            },
-            phone: function (str) {
+            }
+            /*phone: function (str) {
                 var phoneReg = new RegExp(this.regTypes.phone.reg);
                 var validateReason = "";
                 var validateResult = phoneReg.test(str);
@@ -240,41 +180,12 @@
                     validate_reason: validateReason,
                     validate_result: validateResult
                 };
-            }
+            }*/
         };
-
+        
         var service = {
             validateFuns: validateFuns,
-            //validateInput: validateInput,
-            validate: validate
         };
         return service;
-
-        function validate(type, str) {
-            var typeList = type.split(' ');
-            var validateResult = {
-                validate_result: true,
-                validate_reason: ''
-            };
-
-            if (typeList.indexOf('option') >= 0 && str == '') {
-                return validateResult;
-            }
-
-            var isBreak = false;
-            typeList.forEach(function (type) {
-                if (!isBreak) {
-                    var funsType = type.split(':')[0];
-                    var temptResultObj = validateFuns[funsType](str,type);
-
-                    if (!temptResultObj.validate_result) {
-                        isBreak = true;
-                        validateResult = temptResultObj;
-                        //ga('send', 'event', 'validate-error', type, temptResultObj.validate_reason);
-                    }
-                }
-            });
-            return validateResult;
-        }
     }
 })();

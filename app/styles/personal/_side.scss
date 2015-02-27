@@ -99,8 +99,6 @@
         }
 
         @include e(percent) {
-            //font-size: 16px;
-            //color: $gray-light;
 
             >span {
                 font-size: 28px;
@@ -109,7 +107,6 @@
         }
 
         @include e(open_btn) {
-            display: block;
             margin: 20px 0;
             font-size: 16px;
         } 

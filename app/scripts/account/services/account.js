@@ -15,11 +15,13 @@
             setInfo: setInfo,
             checkNumberExistence: checkNumberExistence,
             submitQuestionnaire: submitQuestionnaire,
-            getLocationInfo: getLocationInfo,
+            getBasicInfo: getBasicInfo,
+            postLocationInfo: postLocationInfo,
             getCountries: getCountries,
             getStates: getStates,
             getCities: getCities,
-            uploadImage: uploadImage
+            uploadImage: uploadImage,
+            changePwd: changePwd
         };
         return service;
 
@@ -124,9 +126,9 @@
         }
 
         /**
-         * Account Service 获取地址信息（包括所有 code）
+         * Account Service 获取基本信息（包括所有 code）
          * 
-         * @method getLocationInfo
+         * @method getBasicInfo
          * return {Object} {
          *   username:
          *   world_code:
@@ -135,9 +137,10 @@
          *   state_name:
          *   city_code:
          *   city_name:
+         *   desc:        //个性签名
          * }    
          */
-        function getLocationInfo() {
+        function getBasicInfo() {
             return $http.get('/basic_settings');
         }
 
@@ -157,9 +160,40 @@
             });
         }
 
+        /**
+         * Account Service 提交地址信息
+         * 
+         * @method postLocationInfo
+         * return {Object} {
+         * }    
+         */
+        function postLocationInfo(sexCode, location, inputRegion, signature) {
+            return $http.post('/basic_settings', {
+                sex: sexCode,
+                world_code: location.country.code,
+                state_code: location.state.code || inputRegion.stateName || null,
+                city_code: location.city.code || inputRegion.cityName || null,
+                desc: signature || null       
+            });
+        } 
+
         function uploadImage(file) {
             return $http.post('/upload', {
                 file: file
+            });
+        }
+
+        /**
+         * Account Service 修改密码
+         * 
+         * @method changePwd
+         * return {Object} {
+         * }    
+         */
+        function changePwd(oldPwd, newPwd) {
+            return $http.post('/change_password', {
+                password: oldPwd,
+                new_pwd: newPwd
             });
         }  
     }

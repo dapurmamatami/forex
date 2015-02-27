@@ -4,7 +4,7 @@
     <div class="basic_setting">
         <div class="row">
             <div class="col-xs-4">
-                <img class="basic_setting__portrait" ng-src="avatar/{{personal.user_code}}_150.jpg" >
+                <img class="basic_setting__portrait" ng-src="/avatar/{{personal.user_code}}_150.jpg" >
                 <button class="btn btn-primary basic_setting__change" ng-click="openPortraitModal('md')">
                     修改头像
                 </button>
@@ -43,7 +43,7 @@
                                     ng-model="location.country"
                                     ng-options="country.name_cn for country in countries"
                                     ng-change="select('country')">
-                                <option value="">请选择</option>
+                                <!-- <option value="">选择国家</option> -->
                             </select>
                         </div>
                     </div>
@@ -64,7 +64,6 @@
                             <input class="form-control" 
                                    name="state"
                                    type="text"
-                                   required
                                    ng-if="noSelect"
                                    ng-model="inputRegion.stateName">
                         </div>
@@ -85,7 +84,6 @@
                             <input class="form-control" 
                                    name="city"
                                    type="text"
-                                   required
                                    ng-if="noSelect"
                                    ng-model="inputRegion.cityName">
                         </div>
@@ -95,7 +93,9 @@
                             <label>个性签名</label>
                         </div>
                         <div class="col-xs-9">
-                            <textarea class="form-control">
+                            <textarea class="form-control"
+                                      name="signature"
+                                      ng-model="signature">
                             </textarea>
                         </div>
                     </div>
@@ -103,7 +103,6 @@
                         保存
                     </button>
                 </form>
-                 
             </div>
         </div>
     </div>

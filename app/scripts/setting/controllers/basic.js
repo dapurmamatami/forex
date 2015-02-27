@@ -28,6 +28,7 @@
             stateName: '',
             cityName: ''
         };
+        $scope.signature = '';
         $scope.noSelect = false;  // 是否显示省、市的 select 元素
         $scope.select = select;
         $scope.openPortraitModal = openPortraitModal;
@@ -35,8 +36,8 @@
 
         // 设置性别
         $scope.$watch('personal.sex', function (value) {
-            
-            if (value) {
+
+            if (typeof value !== 'undefined') { 
                 angular.forEach($scope.sexes, function (sex) {
                     
                     if (value === sex.code) {
@@ -46,15 +47,22 @@
             }
         });
         
-        // 获取 location 信息
-        account.getLocationInfo().then(function (data) {
+        // 获取基本信息来初始化页面数据
+        account.getBasicInfo().then(function (data) {
             
             if (!data.is_succ) {
                 return;
             }
+            $scope.signature = data.desc;
             $scope.location.country.code = data.world_code;
-            $scope.location.state.code = data.state_code;
-            $scope.location.city.code = data.city_code;
+
+            if (data.world_code === 'CN') {
+                $scope.location.state.code = data.state_code;
+                $scope.location.city.code = data.city_code;
+            } else {
+                $scope.inputRegion.stateName = data.state_name;
+                $scope.inputRegion.cityName = data.city_name;
+            }
             $scope.$broadcast('locationInfoReady');
         });
 
@@ -112,6 +120,8 @@
 
                     if ($scope.location.country.code === 'CN') {
                         $scope.noSelect = false;
+                        $scope.inputRegion.stateName = '';
+                        $scope.inputRegion.cityName = '';
                         
                         account.getStates($scope.location.country.code).then(function (data) {
                             if (data.is_succ) {
@@ -121,6 +131,8 @@
                         $scope.cities = [];
                     } else {
                         $scope.noSelect = true;
+                        $scope.location.state = {};
+                        $scope.location.city = {};
                     }
                     break;
                 case 'state':
@@ -143,11 +155,11 @@
         function submitForm() {
             console.info($scope.inputRegion);
             console.info($scope.location);
-            if ($scope.location.country.code === 'CN') {
-                var submitData = {};
-            } else {
-                submitData = {};
-            }
+            account.postLocationInfo($scope.sex.code, $scope.location, $scope.inputRegion,
+                    $scope.signature).then(function (data) {
+                console.info(data);
+                // 弹窗 or 跳转    
+            });
         }
 
         function openPortraitModal(size) {

@@ -1,8 +1,8 @@
 <div class="setting_modal">
-    <div class="pwd_change">
+    <div class="phone_change">
         <div class="modal-header">
             <button class="close" ng-click="closeModal()">X</button>
-            <h4 class="setting_modal__title">修改密码</h4>
+            <h4 class="setting_modal__title">修改手机号码</h4>
         </div>
         
         <div ng-show="step === 1">
@@ -13,20 +13,7 @@
                             <label>当前密码</label>
                         </div>
                         <div class="col-xs-7">
-                            <input class="form-control" 
-                                   name="oldPwd" 
-                                   type="text"
-                                   required
-                                   ng-model="password.oldPwd"
-                                   ng-focus="eliminateError()">
-                            <div ng-show="pwdForm.oldPwd.$dirty">
-                                <p class="alert alert-danger" ng-show="pwdForm.oldPwd.$error.required">
-                                    请输入当前密码
-                                </p>
-                                <p class="alert alert-danger" ng-show="!pwdCorrect">
-                                    密码不正确
-                                </p>
-                            </div>
+                            <input class="form-control" type="text">
                         </div>
                     </div>
                     <div class="row form_row">
@@ -34,11 +21,7 @@
                             <label>新密码</label>
                         </div>
                         <div class="col-xs-7">
-                            <input class="form-control"
-                                   name="newPwd" 
-                                   type="text"
-                                   required
-                                   ng-model="password.newPwd">
+                            <input class="form-control" type="text">
                         </div>
                     </div>
                     <div class="row form_row">
@@ -46,17 +29,13 @@
                             <label>确认新密码</label>
                         </div>
                         <div class="col-xs-7">
-                            <input class="form-control" 
-                                   name="confirmPwd"
-                                   type="text"
-                                   required
-                                   ng-model="password.confirmPwd">
+                            <input class="form-control" type="text">
                         </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-primary" ng-disabled="pwdForm.$invalid" ng-click="submitPwdForm()">
+                <button class="btn btn-primary" ng-click="submitPwdForm()">
                     提交
                 </button>
                 <p class="pwd_change__tip">
