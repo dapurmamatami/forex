@@ -1,68 +1,93 @@
 <div class="setting_content">
-    <h4 class="setting_content__level">
-        当前安全级别：
-        <span>低</span>
-    </h4>
-    <h3 class="setting_content__title">账户安全</h3>
+    <div class="account_safety">
+        <h4 class="safety_level">
+            当前安全级别：
+            <span class="safety_level__low" ng-if="safetyInfo.level === 'low'">低</span>
+            <span class="safety_level__medium" ng-if="safetyInfo.level === 'medium'">中</span>
+            <span class="safety_level__high" ng-if="safetyInfo.level === 'high'">高</span>
+        </h4>
+        <h3 class="setting_content__title">账户安全</h3>
 
-    <ul class="account_safety">
-        <li>
-            <div class="row">
-                <div class="col-xs-3 account_safety__title">
-                    登陆密码
+        <ul>
+            <li>
+                <div class="row">
+                    <div class="col-xs-3 account_safety__title">
+                        登陆密码
+                    </div>
+                    <div class="col-xs-6 account_safety__intro">
+                        <p>
+                            安全性高的密码可以使帐号更安全，建议您定期更换。
+                        </p>
+                    </div>
+                    <div class="col-xs-3">
+                        <span class="safety_verify">
+                            <span class="safety_verify__finished">
+                                已设置
+                            </span>
+                        </span>
+                        <span class="account_safety__operate" ng-click="openPwdModal()">
+                            <i class="fa fa-edit"></i>
+                            修改
+                        </span>
+                    </div>
                 </div>
-                <div class="col-xs-6 account_safety__intro">
-                    <p>
-                        安全性高的密码可以使帐号更安全，建议您定期更换。
-                    </p>
+            </li>
+            <li>
+                <div class="row">
+                    <div class="col-xs-3 account_safety__title">
+                        手机号码
+                    </div>
+                    <div class="col-xs-6 account_safety__intro">
+                        <p>
+                            您已经绑定了手机 
+                            <span class="account_safety__phone">{{safetyInfo.phone}}</span>
+                            [您可使用该手机进行登录，找回密码]
+                        </p>
+                    </div>
+                    <div class="col-xs-3">
+                        <span class="safety_verify">
+                            <span class="safety_verify__unfinished" ng-if="!safetyInfo.phone_number">
+                                [未验证]
+                            </span>
+                            <span class="safety_verify__finished" ng-if="safetyInfo.phone_number">
+                                已验证
+                            </span>
+                        </span>
+                        <span class="account_safety__operate" ng-click="openPhoneModal()">
+                            <i class="fa fa-edit"></i>
+                            修改
+                        </span>
+                    </div>
                 </div>
-                <div class="col-xs-3 account_safety__operate">
-                    <span ng-click="openPwdModal()">
-                        <i class="fa fa-edit"></i>
-                        修改
-                    </span>
+            </li>
+            <li>
+                <div class="row">
+                    <div class="col-xs-3 account_safety__title">
+                        电子邮件
+                    </div>
+                    <div class="col-xs-6 account_safety__intro">
+                        <p>
+                            您的邮箱： 
+                            <span class="account_safety__email">{{safetyInfo.email}}</span>
+                            [我们将通过此邮件定期向您发送你的投资报告和相关资料]
+                        </p>
+                    </div>
+                    <div class="col-xs-3">
+                        <span class="safety_verify">
+                            <span class="safety_verify__unfinished" ng-if="!safetyInfo.email_addr">
+                                [未验证]
+                            </span>
+                            <span class="safety_verify__finished" ng-if="safetyInfo.email_addr">
+                                已验证
+                            </span>
+                        </span>
+                        <span class="account_safety__operate">
+                            <i class="fa fa-edit"></i>
+                            修改
+                        </span>
+                    </div>
                 </div>
-            </div>
-        </li>
-        <li>
-            <div class="row">
-                <div class="col-xs-3 account_safety__title">
-                    手机号码
-                </div>
-                <div class="col-xs-6 account_safety__intro">
-                    <p>
-                        您已经绑定了手机 
-                        <span class="account_safety__phone">158******00</span>
-                        [您可使用该手机进行登录，找回密码]
-                    </p>
-                </div>
-                <div class="col-xs-3 account_safety__operate">
-                    <span ng-click="openPhoneModal()">
-                        <i class="fa fa-edit"></i>
-                        修改
-                    </span>
-                </div>
-            </div>
-        </li>
-        <li>
-            <div class="row">
-                <div class="col-xs-3 account_safety__title">
-                    电子邮件
-                </div>
-                <div class="col-xs-6 account_safety__intro">
-                    <p>
-                        您的邮箱： 
-                        <span class="account_safety__email">491538285@qq.com</span>
-                        [我们将通过此邮件定期向您发送你的投资报告和相关资料]
-                    </p>
-                </div>
-                <div class="col-xs-3 account_safety__operate">
-                    <span>
-                        <i class="fa fa-edit"></i>
-                        修改
-                    </span>
-                </div>
-            </div>
-        </li>
-    </ul>
+            </li>
+        </ul>
+    </div>
 </div>

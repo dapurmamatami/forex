@@ -1,9 +1,49 @@
 @include b(account_safety) {
 
-    li:nth-child(odd) {
+    ul li:nth-child(odd) {
         background-color: $gray-lightest;
     }
     
+    @include b(safety_level) {
+        float: right;
+        font-size: 16px;
+        color: $gray-light;
+
+        @include e(low) {
+            font-weight: 700;
+            color: $brand-red;
+        }
+
+        @include e(medium) {
+            font-weight: 700;
+            color: $brand-yellow;
+        }
+
+        @include e(high) {
+            font-weight: 700;
+            color: $brand-red;
+        }
+    }
+
+    @include b(safety_verify) {
+        margin-right: 20px;
+        line-height: 100px;
+        font-size: 15px;
+        font-weight: 700;
+
+        @include e(finished) {
+            color: $brand-green;
+        }
+
+        @include e(unfinished) {
+            color: $gray-light;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+
     @include e(title) {
         line-height: 100px;
         text-align: center;
@@ -21,18 +61,18 @@
         }
     }
 
+    @include e(status) {
+
+    }
+
     @include e(operate) {
         line-height: 100px;
-        text-align: center;
+        font-size: 15px;
+        font-weight: 700;
+        color: $brand-primary;
 
-        span {
-            font-size: 16px;
-            font-weight: 700;
-            color: $brand-primary;
-
-            &:hover {
-                cursor: pointer;
-            }
+        &:hover {
+            cursor: pointer;
         }
     }
 

@@ -47,16 +47,6 @@
             cursor: pointer;
         }
     }
-
-    @include e(level) {
-        @extend .setting_content__verified;
-        color: $gray-light;
-
-        span {
-            font-weight: 700;
-            color: $brand-red;
-        }
-    }
 }
 
 @include b(setting_modal) {

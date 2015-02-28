@@ -21,7 +21,8 @@
             getStates: getStates,
             getCities: getCities,
             uploadImage: uploadImage,
-            changePwd: changePwd
+            changePwd: changePwd,
+            getSafetyInfo: getSafetyInfo
         };
         return service;
 
@@ -126,18 +127,18 @@
         }
 
         /**
-         * Account Service 获取基本信息（包括所有 code）
+         * Account Service 获取基本信息
          * 
          * @method getBasicInfo
          * return {Object} {
          *   username:
          *   world_code:
          *   world_name:
-         *   state_code:
+         *   state_code:   // 若非中国，为 null
          *   state_name:
-         *   city_code:
+         *   city_code:    // 若非中国，为 null
          *   city_name:
-         *   desc:        //个性签名
+         *   desc:         //个性签名
          * }    
          */
         function getBasicInfo() {
@@ -195,6 +196,25 @@
                 password: oldPwd,
                 new_pwd: newPwd
             });
-        }  
+        }
+
+        /**
+         * Account Service 获取账户安全信息
+         * 
+         * @method getSafetyInfo
+         * return {Object} {
+         *   login_password:
+         *   phone_number:      // 是否认证手机
+         *   phone:             // 认证的手机号 
+         *   email_addr:        // 是否认证邮箱
+         *   email:             // 认证的邮箱
+         *   real_name:         // 是否实名认证
+         *   level:             // 安全级别：high、medium、low
+         *      
+         * }    
+         */  
+        function getSafetyInfo() {
+            return $http.get('/security_settings');
+        }
     }
 })();
