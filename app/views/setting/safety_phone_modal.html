@@ -1,63 +1,135 @@
 <div class="setting_modal">
-    <div class="phone_change">
-        <div class="modal-header">
-            <button class="close" ng-click="closeModal()">X</button>
-            <h4 class="setting_modal__title">修改手机号码</h4>
+    <div class="modal-header">
+        <button class="close" ng-click="closeModal()">X</button>
+        <h4 class="setting_modal__title">修改手机号码 第{{step}}步</h4>
+    </div>
+    
+    <div ng-show="step === 1">
+        <div class="modal-body">
+            <form name="formStep1" novalidate>
+                <div class="row form_row">
+                    <div class="col-xs-3 text-right">
+                        <label>当前手机号码</label>
+                    </div>
+                    <div class="col-xs-7">
+                        <input class="form-control" 
+                               name="oldPhone"
+                               type="text"
+                               required
+                               ng-model="phone.oldNumber"
+                               ng-focus="eliminateError('phone')">
+                        <div ng-show="formStep1.oldPhone.$dirty">
+                            <p class="alert alert-danger" ng-show="formStep1.oldPhone.$error.required">
+                                请输入当前手机号码
+                            </p>
+                            <p class="alert alert-danger" ng-show="!phone.correct">
+                                手机号码不正确
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row form_row">
+                    <div class="col-xs-3 text-right">
+                        <label>登录密码</label>
+                    </div>
+                    <div class="col-xs-7">
+                        <input class="form-control" 
+                               name="password"
+                               type="text"
+                               required
+                               ng-model="password.number"
+                               ng-focus="eliminateError('password')">
+                        <div ng-show="formStep1.password.$dirty">
+                            <p class="alert alert-danger" ng-show="formStep1.password.$error.required">
+                                请输入密码
+                            </p>
+                            <p class="alert alert-danger" ng-show="!password.correct">
+                                密码不正确
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
-        
-        <div ng-show="step === 1">
-            <div class="modal-body">
-                <form name="pwdForm" novalidate>
-                    <div class="row form_row">
-                        <div class="col-xs-3 text-right">
-                            <label>当前密码</label>
-                        </div>
-                        <div class="col-xs-7">
-                            <input class="form-control" type="text">
-                        </div>
-                    </div>
-                    <div class="row form_row">
-                        <div class="col-xs-3 text-right">
-                            <label>新密码</label>
-                        </div>
-                        <div class="col-xs-7">
-                            <input class="form-control" type="text">
-                        </div>
-                    </div>
-                    <div class="row form_row">
-                        <div class="col-xs-3 text-right">
-                            <label>确认新密码</label>
-                        </div>
-                        <div class="col-xs-7">
-                            <input class="form-control" type="text">
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-primary" ng-click="submitPwdForm()">
-                    提交
-                </button>
-                <p class="pwd_change__tip">
-                    注意：修改后的密码同时也将会作为 MT4 客户端的登录密码使用
-                </p>
-            </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-disabled="formStep1.$invalid" ng-click="submitFormStep1()">
+                下一步
+            </button>
         </div>
+    </div>
 
-        <div ng-show="step === 2">
-            <div class="modal-body">
-                <h3 class="pwd_change__success">
-                    密码修改成功！
-                </h3>
-                <p class="pwd_change__tip">
-                    注意：修改后的密码同时也将会作为 MT4 客户端的登录密码使用
-                </p>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-primary" ng-click="closeModal()">
-                    确定
-                </button>
-            </div>
+    <div ng-show="step === 2">
+        <div class="modal-body">
+            <form name="formStep2" novalidate>
+                <div class="row form_row">
+                    <div class="col-xs-3 text-right">
+                        <label>新手机号码</label>
+                    </div>
+                    <div class="col-xs-7">
+                        <input class="form-control" 
+                               name="newPhone"
+                               type="text"
+                               required
+                               ng-model="phone.newNumber"
+                               ng-pattern="">
+                        <div ng-show="formStep2.newPhone.$dirty">
+                            <p class="alert alert-danger" ng-show="formStep2.newPhone.$error.required">
+                                请输入新手机号码
+                            </p>
+                            <p class="alert alert-danger" ng-show="formStep2.newPhone.$error.pattern">
+                                手机号码格式错误
+                            </p>
+                            <p class="alert alert-danger" ng-show="phone.existence">
+                                该手机号码已经认证
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row form_row">
+                    <div class="col-xs-3 text-right">
+                        <label>验证码</label>
+                    </div>
+                    <div class="col-xs-4">
+                        <input class="form-control" 
+                               name="verifyCode"
+                               type="text"
+                               required
+                               ng-model="verifyCode.number">
+                        <div ng-show="formStep2.verifyCode.$dirty">
+                            <p class="alert alert-danger" ng-show="formStep2.verifyCode.$error.required">
+                                请输入验证码
+                            </p>
+                            <p class="alert alert-danger" ng-show="!verifyCode.correct">
+                                验证码错误
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-xs-3">
+                        <span tw-verify-timer></span>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-disabled="formStep2.$invalid" ng-click="submitFormStep2()">
+                下一步
+            </button>
+        </div>
+    </div>
+
+    <div ng-show="step === 3">
+        <div class="modal-body">
+            <h3 class="setting_modal__change_success">
+                手机修改成功！
+            </h3>
+            <p class="setting_modal__change_tip">
+                注意：您的新手机号将作为你的登录账号使用
+            </p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="gotoLogin()">
+                重新登录
+            </button>
         </div>
     </div>
 </div>

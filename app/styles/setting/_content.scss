@@ -79,6 +79,16 @@
         font-weight: 700;
     }
 
+    @include e(change_success) {
+        text-align: center;
+    }
+
+    @include e(change_tip) {
+        margin-top: 15px;
+        text-align: center;
+        color: $brand-red;
+    }
+
 }
 
 @include b(form_row) {
