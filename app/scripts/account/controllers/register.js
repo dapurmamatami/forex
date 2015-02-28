@@ -11,16 +11,15 @@
     function AccountRegisterController($scope, $window, $location, $state, $timeout, $interval,
             $modal, $modalInstance, account, config, validator) {
         $scope.closeModal = closeModal;
+        
         /*
          * 确定显示第几步
          */
-       /* account.getStepInfo('ReliableInformation').then(function (data) {
+        account.getStepInfo('ReliableInformation').then(function (data) {
             if (data.is_succ) {
                 $scope.step = data.progress + 1;
             }
-        });*/
-
-        $scope.step = 1;
+        });
 
         /*
          * 第一步的数据模型

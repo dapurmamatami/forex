@@ -9,20 +9,24 @@
 
     function UserInfoController($location, $scope, $timeout, $modal, $cookieStore, $state,
             account, money, communicate, copy) {
-        $scope.user = {};           // user（别人）
-        
+        $scope.user = {};                     // user（别人）
         $scope.openCopyModal = openCopyModal;
         $scope.follow = follow;
         $scope.cancelFollow = cancelFollow;
+        var personalUserCode;                 // personal 的 user code
 
         // 取到 url 中的 user code
         $scope.userType.code = $state.params.userCode;
+
+        personalUserCode = $cookieStore.get('userCode');
 
         if ($scope.userType.code && $cookieStore.get('userCode') &&
                 $scope.userType.code !== $cookieStore.get('userCode').toString()) {
 
             // 确定了是 user（别人）的信息页面
             $scope.userType.isPersonal = false;
+            $scope.user.userCode = $scope.userType.code;
+            personalUserCode = $cookieStore.get('userCode');
 
             // 获取 user（别人） 的信息
             account.getUserInfo($scope.userType.code).then(function (data) {
@@ -30,7 +34,6 @@
                 if (!data.is_succ) {
                     return;
                 }
-                $scope.user.userCode = $scope.userType.code;
                 $scope.user.userName = data.username;
                 $scope.user.sex = data.sex;
                 $scope.user.copiedTraderSum = data.mycopy_count;
@@ -45,13 +48,17 @@
                     $scope.user.isCopy = false;
                 }
             });
+
             // 获取别人的 fan sum
-            getFanSum($scope.user, $scope.userType.code, communicate);
+            getFanSum($scope.user, personalUserCode, communicate);
         }
 
-        // 获取 user（别人）的 fan sum，同时确定 personal 与 user 的关注关系
-        function getFanSum(user, userCode, service) {
-            service.getFFSum(userCode).then(function (data) {
+        /* 
+         * 获取 user（别人）的 fan sum，同时确定 personal 与 user 的关注关系
+         * 参数 personalUserCode 是 personalUserCode 而非 $scope.personal.user_code（异步数据）
+         */
+        function getFanSum(user, personalUserCode, communicateService) {
+            communicateService.getFFSum(user.userCode, personalUserCode).then(function (data) {
                 if (!data.statecode) {
                     return;
                 }
@@ -87,7 +94,7 @@
         function follow() {
             communicate.doAttention($scope.user.userCode, $scope.personal.user_code, 1).then(function (data) {
                 if (data.statecode) {
-                    getFanSum($scope.user, $scope.user.userCode, communicate);
+                    getFanSum($scope.user, $scope.personal.user_code, communicate);
                 }
             });
         }
@@ -95,7 +102,7 @@
         function cancelFollow() {
             communicate.doAttention($scope.user.userCode, $scope.personal.user_code, 0).then(function (data) {
                 if (data.statecode) {
-                    getFanSum($scope.user, $scope.user.userCode, communicate);
+                    getFanSum($scope.user, $scope.personal.user_code, communicate);
                 }
             });
         }

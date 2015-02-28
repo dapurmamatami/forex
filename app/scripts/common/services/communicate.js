@@ -181,9 +181,10 @@
           /**
            * 获取 following、fan 总数
            */
-            function getFFSum(userCode) {
+            function getFFSum(userCode, personalUserCode) {
                 return topicHttp.get('/attentionsfans', {
-                    usercode: userCode
+                    usercode: userCode,
+                    personal_userc: personalUserCode
                 });
             }
 

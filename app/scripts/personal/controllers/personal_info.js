@@ -24,6 +24,7 @@
         account.getPersonalInfo().then(function (data) {
             $scope.personal = data;
             $cookieStore.put('userCode',parseInt(data.user_code));
+
             getAdditionalInfo($scope.personal, $scope.personal.user_code, account, communicate);
 
             // 是否注册真实账户
@@ -57,7 +58,7 @@
                 personal.copierSum = data.copy_count;
                 personal.region = data.region;
             });
-            communicateService.getFFSum(userCode).then(function (data) {
+            communicateService.getFFSum(userCode, userCode).then(function (data) {
                 personal.followingSum = data.data.attention_sum;
                 personal.fanSum = data.data.fans_sum;
             });
