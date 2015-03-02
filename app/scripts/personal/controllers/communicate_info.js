@@ -187,6 +187,7 @@
               $scope.commentShowToggle = false;
               $scope.tRemainSum=0;
               $scope.showDropComment = showDropComment;
+              $scope.isSelf = $cookieStore.get('userCode') == $scope.item.publisher_id ? 0 : 1;
 
               $scope.doComment = doComment;
               $scope.doSupport = doSupport;

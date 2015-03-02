@@ -45,7 +45,7 @@
                         <span class = "communicateinfo__ptime">{{mData['ptime'] | startNow }}前</span>
                         <div class = "communicateinfo__other_info">
                             <span ng-click="doSupport(mData)">赞({{mData['support_sum']}}) </span>|
-                            <span ng-click="doTransmit(mData)"> 转发({{mData['tramsmit_sum']}}) </span>|
+                            <span ng-show="isSelf" ng-click="doTransmit(mData)"> 转发({{mData['tramsmit_sum']}}) |</span>
                             <span ng-click="showDropComment()"> 评论({{mData['comment_sum']}}) </span>|
                             <span ng-click="skipDetail(mData.topicid)"> 详情</span>
                         </div>
@@ -145,7 +145,7 @@
                             <span class = "tramsmit__ptime">{{mData['relation']['ptime'] | startNow }}前</span>
                             <div class = "tramsmit_other_info">
                                 <span ng-click="doSupport(mData.relation)">赞({{mData['relation']['support_sum']}}) </span>|
-                                <span ng-click="doTransmit(mData.relation)"> 转发({{mData['relation']['tramsmit_sum']}}) </span>|
+                                <span ng-show="isSelf" ng-click="doTransmit(mData.relation)"> 转发({{mData['relation']['tramsmit_sum']}}) |</span>
                                 <span ng-click="skipDetail(mData.relation.topicid)"> 评论({{mData['relation']['comment_sum']}}) </span>|
                                 <span ng-click="skipDetail(mData.relation.topicid)"> 详情</span>
                             </div>

@@ -14,7 +14,7 @@
                     <span class = "tramsmit__ptime">{{topicDetailData['relation']['ptime'] | startNow }}前</span>
                     <div class = "tramsmit_other_info">
                       <span>赞({{topicDetailData['relation']['support_sum']}}) </span>|
-                      <span> 转发({{topicDetailData['relation']['tramsmit_sum']}}) </span>|
+                      <span on-click="doTransmit(topicDetailData)" > 转发({{topicDetailData['relation']['tramsmit_sum']}}) |</span>
                       <span> 评论({{topicDetailData['relation']['comment_sum']}}) </span>|
                       <span ng-click="skipDetail(topicDetailData.relation.topicid)"> 详情</span>
                     </div>
@@ -26,8 +26,8 @@
                 <div class = "topic-other-info">
                     <span ng-show="isMy"  ng-click="openConfirmDeleteC(topicDetailData.topicid)">删除 |</span>
                     <span ng-click="doSupport()">赞({{topicDetailData['support_sum']}}) </span>|
-                    <span ng-="doTransmit()"> 转发({{topicDetailData['tramsmit_sum']}}) </span>|
-                    <span ng-clickclick="showDropComment()"> 评论({{topicDetailData['comment_sum']}}) </span>
+                    <span ng-click="doTransmit(topicDetailData)"> 转发({{topicDetailData['tramsmit_sum']}}) </span>|
+                    <span ng-click="showDropComment()"> 评论({{topicDetailData['comment_sum']}}) </span>
                 </div>
             </div>
 

@@ -18,6 +18,7 @@
         $scope.loadMore = loadMore;
         $scope.skipToSummary = skipToSummary;
         $scope.openConfirmDeleteC = openConfirmDeleteC;
+        $scope.doTransmit = doTransmit;
         $scope.topicDetailData = {publisher_name:'helloworld'};
 
         function getTopicInfo(commentLength){
@@ -53,7 +54,28 @@
               }
             });
         }
+        function doTransmit(mData){
+            var modalInstance = $modal.open({
+                templateUrl:'/views/personal/tramsmit_model.html',
+                controller:'TramsmitController',
+                resolve:{
+                    mData:function(){
+                    return mData;
+                  }
+                }
+            });
+            modalInstance.result.then(function(result) {
 
+                communicate.publishTopic(
+                    $cookieStore.get('userCode'),result,mData.topicid)
+                    .then(function(data){
+                        if(data.statecode){
+                            mData.tramsmit_sum =  topicDetailData.tramsmit_sum+1;
+                        }
+                    },function(){});
+
+            });
+        }
 
         function deleteTopic(topicId,index){
             var type = 1;
