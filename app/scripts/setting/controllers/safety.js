@@ -57,8 +57,13 @@
         function registerReal(size) {
             $modal.open({
                 templateUrl: 'views/account/register.html',
-                controller: 'AccountRegisterController',
-                size: size
+                controller: 'AccountRegisterRealController',
+                size: size,
+                resolve: {
+                    personal: function () {
+                        return $scope.personal
+                    }
+                }
             });
         }
     }

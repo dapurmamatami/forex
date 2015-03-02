@@ -144,7 +144,7 @@
                             then(function (data) {
                         $scope.idNumberCheck.valid = data.is_succ;
                         if ($scope.idNumberCheck.valid) {
-                            $scope.step += 1;
+                            $scope.personal.step += 1;
                         }
                     });
                 }
@@ -157,7 +157,7 @@
         }
 
         function submitFormStep2() {
-            $scope.step += 1;
+            $scope.personal.step += 1;
         }
 
         function submitFormStep3() {
@@ -165,7 +165,7 @@
                 account.submitQuestionnaire($scope.employment, $scope.income, 
                         $scope.experience).then(function (data) {
                     if (data.is_succ) {
-                        $scope.step += 1;
+                        $scope.personal.step += 1;
                     }
                 });
             }

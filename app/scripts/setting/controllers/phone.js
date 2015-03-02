@@ -30,6 +30,7 @@
         $scope.submitFormStep2 = submitFormStep2;
         $scope.eliminateError = eliminateError;
         $scope.closeModal = closeModal;
+        $scope.gotoLogin = gotoLogin;
         var token = '';
 
         function submitFormStep1() {
@@ -75,14 +76,15 @@
         }
 
         function getVerifyCode() {
-            account.getVerifyCode($scope.phone.newNumber).then(function (data) {
-                console.info(data);
-            });
+            account.getVerifyCode($scope.phone.newNumber);
         }
 
         function submitFormStep2() {
             account.changePhone(null, null, token, $scope.phone.newNumber, $scope.verifyCode.number).then(function (data) {
-                console.info(data);
+                
+                if (data.is_succ) {
+                    $scope.step++;
+                }
             });
         }
 
@@ -103,6 +105,10 @@
 
         function closeModal() {
             $modalInstance.close();
+        }
+
+        function gotoLogin() {
+            
         }
     }
 })();
