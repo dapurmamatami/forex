@@ -60,7 +60,7 @@
             <li>
                 <div class="row">
                     <div class="col-xs-3 account_safety__title">
-                        电子邮件
+                        电子邮箱
                     </div>
                     <div class="col-xs-6 account_safety__intro">
                         <p>
@@ -71,14 +71,14 @@
                     </div>
                     <div class="col-xs-3">
                         <span class="safety_verify">
-                            <span class="safety_verify__unfinished" ng-if="!safetyInfo.email_addr">
+                            <span class="safety_verify__unfinished" ng-if="!safetyInfo.email_addr" ng-click="verifyEmail()">
                                 [未验证]
                             </span>
                             <span class="safety_verify__finished" ng-if="safetyInfo.email_addr">
                                 已验证
                             </span>
                         </span>
-                        <span class="account_safety__operate">
+                        <span class="account_safety__operate" ng-click="openEmailModal()">
                             <i class="fa fa-edit"></i>
                             修改
                         </span>

@@ -23,7 +23,10 @@
             uploadImage: uploadImage,
             changePwd: changePwd,
             changePhone: changePhone,
-            getSafetyInfo: getSafetyInfo
+            changeEmail: changeEmail,
+            getSafetyInfo: getSafetyInfo,
+            verifyEmail: verifyEmail,
+            getVerifyCode: getVerifyCode
         };
         return service;
 
@@ -199,8 +202,9 @@
             });
         }
 
-         /**
+        /**
          * Account Service 修改手机号码
+         *
          * @param
          * @method changePhone
          * return {Object} {
@@ -228,6 +232,29 @@
         }
 
         /**
+         * Account Service 修改电子邮件
+         *
+         * @param
+         * @method changeEmail
+         * return {Object} {
+         * }    
+         */
+        function changeEmail(oldNumber, password, token, newNumber) {
+            
+            if (oldNumber === null && password === null) {
+                return $http.post('/change_email', {
+                    token: token,
+                    new_mail: newNumber
+                });
+            } else {
+                return $http.post('/change_email', {
+                    current_mail: oldNumber,
+                    password: password
+                });
+            }
+        }
+
+        /**
          * Account Service 获取账户安全信息
          * 
          * @method getSafetyInfo
@@ -245,5 +272,28 @@
         function getSafetyInfo() {
             return $http.get('/security_settings');
         }
+
+        /**
+         * Account Service 验证邮箱
+         * 
+         * @method verifyEmail
+         */  
+        function verifyEmail() {
+            return $http.post('/send_mail');
+        }
+
+        /**
+         * Account Service 获取手机验证码
+         * 
+         * @method getVerifyCode
+         */ 
+        function getVerifyCode(phone) {
+            return $http.get('/verify', {
+                params: {
+                    phone: phone
+                }
+            });
+        }
+
     }
 })();

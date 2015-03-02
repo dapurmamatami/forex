@@ -1,0 +1,116 @@
+<div class="setting_modal">
+    <div class="modal-header">
+        <button class="close" ng-click="closeModal()">X</button>
+        <h4 class="setting_modal__title">
+            修改电子邮箱 
+            <span>第{{step}}步（共 3 步）</span>
+        </h4>
+    </div>
+    
+    <div ng-show="step === 1">
+        <div class="modal-body">
+            <form name="formStep1" novalidate>
+                <div class="row form_row">
+                    <div class="col-xs-3 text-right">
+                        <label>当前电子邮箱</label>
+                    </div>
+                    <div class="col-xs-7">
+                        <input class="form-control" 
+                               name="oldEmail"
+                               type="text"
+                               required
+                               ng-model="email.oldNumber"
+                               ng-focus="eliminateError('email is incorrect')">
+                        <div ng-show="formStep1.oldEmail.$dirty">
+                            <p class="alert alert-danger" ng-show="formStep1.oldEmail.$error.required">
+                                请输入当前电子邮箱
+                            </p>
+                            <p class="alert alert-danger" ng-show="!email.correct">
+                                电子邮箱不正确
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row form_row">
+                    <div class="col-xs-3 text-right">
+                        <label>登录密码</label>
+                    </div>
+                    <div class="col-xs-7">
+                        <input class="form-control" 
+                               name="password"
+                               type="text"
+                               required
+                               ng-model="password.number"
+                               ng-focus="eliminateError('password is incorrect')">
+                        <div ng-show="formStep1.password.$dirty">
+                            <p class="alert alert-danger" ng-show="formStep1.password.$error.required">
+                                请输入密码
+                            </p>
+                            <p class="alert alert-danger" ng-show="!password.correct">
+                                密码不正确
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-disabled="formStep1.$invalid" ng-click="submitFormStep1()">
+                下一步
+            </button>
+        </div>
+    </div>
+
+    <div ng-show="step === 2">
+        <div class="modal-body">
+            <form name="formStep2" novalidate>
+                <div class="row form_row">
+                    <div class="col-xs-3 text-right">
+                        <label>新电子邮箱</label>
+                    </div>
+                    <div class="col-xs-7">
+                        <input class="form-control" 
+                               name="newEmail"
+                               type="text"
+                               required
+                               ng-model="email.newNumber"
+                               ng-pattern="/^\w+([-.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/"
+                               ng-focus="eliminateError('email is existent')">
+                        <div ng-show="formStep2.newEmail.$dirty">
+                            <p class="alert alert-danger" ng-show="formStep2.newEmail.$error.required">
+                                请输入新电子邮箱
+                            </p>
+                            <p class="alert alert-danger" ng-show="formStep2.newEmail.$error.pattern">
+                                电子邮箱格式错误
+                            </p>
+                            <p class="alert alert-danger" ng-show="email.existence">
+                                该电子邮箱已经验证过
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-disabled="formStep2.$invalid" ng-click="submitFormStep2()">
+                发送验证邮件
+            </button>
+        </div>
+    </div>
+
+    <div ng-show="step === 3">
+        <div class="modal-body">
+            <h3 class="setting_modal__change_success">
+                邮箱修改成功！
+            </h3>
+            <p class="setting_modal__change_tip">
+                注意：我们向您的新邮箱发送了一封认证邮件，请查收您的邮箱，按邮件中操作进行认证。
+            </p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="closeModal()">
+                完成
+            </button>
+        </div>
+    </div>
+</div>
