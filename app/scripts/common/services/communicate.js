@@ -184,7 +184,7 @@
             function getFFSum(userCode, personalUserCode) {
                 return topicHttp.get('/attentionsfans', {
                     usercode: userCode,
-                    personal_userc: personalUserCode
+                    personal_usercode: personalUserCode
                 });
             }
 

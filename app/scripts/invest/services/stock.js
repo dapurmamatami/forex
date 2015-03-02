@@ -33,11 +33,11 @@
         function getEquityReport(number, accountType, userCode) {
             return $http.get('/equity_report', {
                 params: {
-                    period: number,       
-                    tiger_source: accountType,   
-                    cros_user: userCode   
+                    period: number,
+                    tiger_source: accountType,
+                    cros_user: userCode
                 }
-            });    
+            });
         }
 
         /*
@@ -53,7 +53,7 @@
          *   total_volume:      // 总交易手数,
          *   total_pips:        // 获利点数,
          *   order_count:       // 总订单数
-         *   profit_rate:       //盈利订单
+         *   profit_rate:       //盈利订单   即 胜率
          *   max_profit:        //最大盈利
          *   min_profit:        //最小盈利
          *   avg_profit:        //平均盈利
@@ -93,7 +93,7 @@
          */
          function getHistory(argu) {
             var newArgu = {};
-            
+
             angular.forEach(argu, function (value, key) {
                 switch(key) {
                     case 'orderType':

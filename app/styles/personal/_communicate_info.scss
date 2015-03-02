@@ -133,19 +133,24 @@
         min-height: 88px;
         _height:88px;
         overflow:hidden;
-        textarea{
-            margin-top: 0px;
+        @include b(clearTop){
+            margin-top: 0px !important;
+        }
+        ::selection{
+          color:#FF0000;
         }
         @include b(topicOrComment){
             float:right;
             min-height:88px;
             width:415px;
             position:relative;
+            margin-top: 10px;
             textarea {
                width:100%;
                min-height:50px ;
                max-height:70px;
-               margin-top: 10px;
+               resize:none;
+
             }
             @include e(doToast){
              position: absolute;

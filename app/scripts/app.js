@@ -197,7 +197,7 @@ angular
                     },
                     'sidebar-ad@invest.subPage':{
                       templateUrl: 'views/invest/summary_side.html',
-                      controller: ''
+                      controller: 'InvestSummaryController'
                     }
                 }
             })

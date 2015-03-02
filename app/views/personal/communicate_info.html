@@ -19,8 +19,8 @@
     <hr />
     <div class = "publisharea" ng-controller="PersonalTopicPublishController">
         <img class="communicateinfo__user-icon" src="/ngsrc/photo-man.png"></img>
-        <div class="topicOrComment">
-            <textarea name="inputContent" ng-model="inputContent" ng-change="matchTopicContent()" prompt-special-input></textarea>
+        <div class="clearTop topicOrComment">
+            <textarea  name="inputContent" ng-model="inputContent" ng-change="matchTopicContent()" prompt-special-input></textarea>
             <div class = "topicOrComment__doToast" ng-class="showOrNo" >
                 发表成功！
             </div>
