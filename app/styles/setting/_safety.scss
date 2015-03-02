@@ -86,15 +86,3 @@
     }
 }
 
-@include b(pwd_change) {
-
-    @include e(tip) {
-        margin-top: 15px;
-        text-align: center;
-        color: $brand-red;
-    }
-
-    @include e(success) {
-        text-align: center;
-    }
-}

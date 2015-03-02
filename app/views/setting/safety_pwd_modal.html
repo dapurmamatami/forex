@@ -1,103 +1,101 @@
 <div class="setting_modal">
-    <div class="pwd_change">
-        <div class="modal-header">
-            <button class="close" ng-click="closeModal()">X</button>
-            <h4 class="setting_modal__title">修改密码</h4>
+    <div class="modal-header">
+        <button class="close" ng-click="closeModal()">X</button>
+        <h4 class="setting_modal__title">修改密码</h4>
+    </div>
+    
+    <div ng-show="step === 1">
+        <div class="modal-body">
+            <form name="pwdForm" novalidate>
+                <div class="row form_row">
+                    <div class="col-xs-3 text-right">
+                        <label>当前密码</label>
+                    </div>
+                    <div class="col-xs-7">
+                        
+                        <input class="form-control" 
+                               name="oldPwd" 
+                               type="text"
+                               required
+                               ng-model="password.oldPwd"
+                               ng-focus="eliminateError()">
+                        <div ng-show="pwdForm.oldPwd.$dirty">
+                            <p class="alert alert-danger" ng-show="pwdForm.oldPwd.$error.required">
+                                请输入当前密码
+                            </p>
+                            <p class="alert alert-danger" ng-show="!pwdCorrect">
+                                密码不正确
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row form_row">
+                    <div class="col-xs-3 text-right">
+                        <label>新密码</label>
+                    </div>
+                    <div class="col-xs-7">
+                        <input class="form-control"
+                               name="newPwd" 
+                               type="text"
+                               required
+                               ng-model="password.newPwd"
+                               tw-pwd-valid>
+                        <div ng-show="pwdForm.newPwd.$dirty">
+                            <p class="alert alert-danger" ng-show="pwdForm.newPwd.$error.required">
+                                请输入新密码
+                            </p>
+                            <p class="alert alert-danger" ng-show="pwdForm.newPwd.$error.twPwdValid">
+                                6-15位字符，可由大写字母，小写字母，数字，符号（有限制）组成，且至少包含其中2项
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row form_row">
+                    <div class="col-xs-3 text-right">
+                        <label>确认新密码</label>
+                    </div>
+                    <div class="col-xs-7">
+                        <input class="form-control" 
+                               name="confirmPwd"
+                               type="text"
+                               required
+                               ng-model="password.confirmPwd"
+                               tw-confirm-pwd>
+                        <div ng-show="pwdForm.confirmPwd.$dirty">
+                            <p class="alert alert-danger" ng-show="pwdForm.confirmPwd.$error.required">
+                                请再次输入新密码
+                            </p>
+                            <p class="alert alert-danger" ng-show="pwdForm.confirmPwd.$error.twConfirmPwd">
+                                输入的新密码不正确
+                            </p>
+                        </div>    
+                    </div>
+                </div>
+            </form>
         </div>
-        
-        <div ng-show="step === 1">
-            <div class="modal-body">
-                <form name="pwdForm" novalidate>
-                    <div class="row form_row">
-                        <div class="col-xs-3 text-right">
-                            <label>当前密码</label>
-                        </div>
-                        <div class="col-xs-7">
-                            
-                            <input class="form-control" 
-                                   name="oldPwd" 
-                                   type="text"
-                                   required
-                                   ng-model="password.oldPwd"
-                                   ng-focus="eliminateError()">
-                            <div ng-show="pwdForm.oldPwd.$dirty">
-                                <p class="alert alert-danger" ng-show="pwdForm.oldPwd.$error.required">
-                                    请输入当前密码
-                                </p>
-                                <p class="alert alert-danger" ng-show="!pwdCorrect">
-                                    密码不正确
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row form_row">
-                        <div class="col-xs-3 text-right">
-                            <label>新密码</label>
-                        </div>
-                        <div class="col-xs-7">
-                            <input class="form-control"
-                                   name="newPwd" 
-                                   type="text"
-                                   required
-                                   ng-model="password.newPwd"
-                                   tw-pwd-valid>
-                            <div ng-show="pwdForm.newPwd.$dirty">
-                                <p class="alert alert-danger" ng-show="pwdForm.newPwd.$error.required">
-                                    请输入新密码
-                                </p>
-                                <p class="alert alert-danger" ng-show="pwdForm.newPwd.$error.twPwdValid">
-                                    6-15位字符，可由大写字母，小写字母，数字，符号（有限制）组成，且至少包含其中2项
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row form_row">
-                        <div class="col-xs-3 text-right">
-                            <label>确认新密码</label>
-                        </div>
-                        <div class="col-xs-7">
-                            <input class="form-control" 
-                                   name="confirmPwd"
-                                   type="text"
-                                   required
-                                   ng-model="password.confirmPwd"
-                                   tw-confirm-pwd>
-                            <div ng-show="pwdForm.confirmPwd.$dirty">
-                                <p class="alert alert-danger" ng-show="pwdForm.confirmPwd.$error.required">
-                                    请再次输入新密码
-                                </p>
-                                <p class="alert alert-danger" ng-show="pwdForm.confirmPwd.$error.twConfirmPwd">
-                                    输入的新密码不正确
-                                </p>
-                            </div>    
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-primary" ng-disabled="pwdForm.$invalid" ng-click="submitPwdForm()">
-                    提交
-                </button>
-                <p class="pwd_change__tip">
-                    注意：修改后的密码同时也将会作为 MT4 客户端的登录密码使用
-                </p>
-            </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-disabled="pwdForm.$invalid" ng-click="submitPwdForm()">
+                提交
+            </button>
+            <p class="pwd_change__tip">
+                注意：修改后的密码同时也将会作为 MT4 客户端的登录密码使用
+            </p>
         </div>
+    </div>
 
-        <div ng-show="step === 2">
-            <div class="modal-body">
-                <h3 class="pwd_change__success">
-                    密码修改成功！
-                </h3>
-                <p class="pwd_change__tip">
-                    注意：修改后的密码同时也将会作为 MT4 客户端的登录密码使用
-                </p>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-primary" ng-click="gotoLogin()">
-                    重新登录
-                </button>
-            </div>
+    <div ng-show="step === 2">
+        <div class="modal-body">
+            <h3 class="setting_modal__change_success">
+                密码修改成功！
+            </h3>
+            <p class="setting_modal__change_tip">
+                注意：修改后的密码同时也将会作为 MT4 客户端的登录密码使用
+            </p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="gotoLogin()">
+                重新登录
+            </button>
         </div>
     </div>
 </div>

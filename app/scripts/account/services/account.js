@@ -22,6 +22,7 @@
             getCities: getCities,
             uploadImage: uploadImage,
             changePwd: changePwd,
+            changePhone: changePhone,
             getSafetyInfo: getSafetyInfo
         };
         return service;
@@ -196,6 +197,34 @@
                 password: oldPwd,
                 new_pwd: newPwd
             });
+        }
+
+         /**
+         * Account Service 修改手机号码
+         * @param
+         * @method changePhone
+         * return {Object} {
+         * }    
+         */
+        function changePhone(oldNumber, password, token, newNumber, verifyCode) {
+
+            if (oldNumber === null && password === null) {
+                
+                // 修改手机的第二步
+                return $http.post('/change_phone', {
+                    token: token,
+                    new_phone: newNumber,
+                    verify_code: verifyCode
+                });
+            } else {
+
+                // 修改手机的第一步
+                return $http.post('/change_phone', {
+                    current_phone: oldNumber,
+                    password: password
+                });
+            }
+
         }
 
         /**
