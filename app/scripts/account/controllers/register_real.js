@@ -3,23 +3,18 @@
 
     angular
         .module('tigerwitPersonalApp')
-        .controller('AccountRegisterController', AccountRegisterController);
+        .controller('AccountRegisterRealController', AccountRegisterRealController);
 
-    AccountRegisterController.$inject = ['$scope', '$window', '$location', '$state', '$timeout',
-            '$interval', '$modal', '$modalInstance', 'account', 'config', 'validator'];
+    AccountRegisterRealController.$inject = ['$scope', '$modalInstance', 'account', 'personal'];
 
-    function AccountRegisterController($scope, $window, $location, $state, $timeout, $interval,
-            $modal, $modalInstance, account, config, validator) {
+    function AccountRegisterRealController($scope, $modalInstance, account, personal) {
         $scope.closeModal = closeModal;
         
         /*
          * 确定显示第几步
          */
-        account.getStepInfo('ReliableInformation').then(function (data) {
-            if (data.is_succ) {
-                $scope.step = data.progress + 1;
-            }
-        });
+        $scope.personal = personal;  // personal.step
+
 
         /*
          * 第一步的数据模型

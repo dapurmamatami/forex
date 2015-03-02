@@ -53,5 +53,13 @@
                 console.info(data);
             });
         }
+
+        function registerReal(size) {
+            $modal.open({
+                templateUrl: 'views/account/register.html',
+                controller: 'AccountRegisterController',
+                size: size
+            });
+        }
     }
 })();

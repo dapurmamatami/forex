@@ -106,11 +106,16 @@
             });
         }
 
-        // 获取注册第几步
+        /**
+         * Account Service 获取注册真实账户的步骤
+         *
+         * @method getStepInfo
+         * @param type:    //'ReliableInformation' or 'idPicInformation'
+         */
         function getStepInfo(type) {
             return $http.get('/get_info_progress', {
                 params: {
-                    type: type    //'ReliableInformation' or 'idPicInformation'
+                    type: type    
                 }
             });
         }
@@ -134,7 +139,7 @@
          * Account Service 获取基本信息
          * 
          * @method getBasicInfo
-         * return {Object} {
+         * @return {Object} {
          *   username:
          *   world_code:
          *   world_name:
@@ -169,7 +174,7 @@
          * Account Service 提交地址信息
          * 
          * @method postLocationInfo
-         * return {Object} {
+         * @return {Object} {
          * }    
          */
         function postLocationInfo(sexCode, location, inputRegion, signature) {
@@ -192,7 +197,7 @@
          * Account Service 修改密码
          * 
          * @method changePwd
-         * return {Object} {
+         * @return {Object} {
          * }    
          */
         function changePwd(oldPwd, newPwd) {
@@ -207,7 +212,7 @@
          *
          * @param
          * @method changePhone
-         * return {Object} {
+         * @return {Object} {
          * }    
          */
         function changePhone(oldNumber, password, token, newNumber, verifyCode) {
@@ -236,7 +241,7 @@
          *
          * @param
          * @method changeEmail
-         * return {Object} {
+         * @return {Object} {
          * }    
          */
         function changeEmail(oldNumber, password, token, newNumber) {
@@ -258,7 +263,7 @@
          * Account Service 获取账户安全信息
          * 
          * @method getSafetyInfo
-         * return {Object} {
+         * @return {Object} {
          *   login_password:
          *   phone_number:      // 是否认证手机
          *   phone:             // 认证的手机号 

@@ -95,7 +95,14 @@
     @include b(real_account) {
         $real_account: &;
 
+        .btn-primary {
+            margin-top: 10px;
+            padding: 6px 20px;
+            font-size: 16px;
+        }
+
         @include e(title) {
+            font-weight: 700;
         }
 
         @include e(percent) {
@@ -105,12 +112,6 @@
                 font-weight: 700;
              }
         }
-
-        @include e(open_btn) {
-            margin: 20px 0;
-            font-size: 16px;
-        } 
-
     }
 }
 

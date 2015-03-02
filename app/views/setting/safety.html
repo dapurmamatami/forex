@@ -85,6 +85,28 @@
                     </div>
                 </div>
             </li>
+            <li>
+                <div class="row">
+                    <div class="col-xs-3 account_safety__title">
+                        实名认证
+                    </div>
+                    <div class="col-xs-6 account_safety__intro">
+                        <p>
+                           进行实名认证，交易更安全。
+                        </p>
+                    </div>
+                    <div class="col-xs-3">
+                        <span class="safety_verify">
+                            <span class="safety_verify__unfinished" ng-if="!safetyInfo.real_name" ng-click="verifyReal()">
+                                [未认证]
+                            </span>
+                            <span class="safety_verify__finished" ng-if="safetyInfo.real_name">
+                                已认证
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </li>
         </ul>
     </div>
 </div>
