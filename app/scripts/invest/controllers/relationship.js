@@ -5,9 +5,9 @@
         .module('tigerwitPersonalApp')
         .controller('InvestRelationshipController', InvestRelationshipController);
 
-    InvestRelationshipController.$inject = ['$scope', 'relationship'];
+    InvestRelationshipController.$inject = ['$scope', 'config', 'relationship'];
 
-    function InvestRelationshipController($scope, relationship) {
+    function InvestRelationshipController($scope, config, relationship) {
         $scope.investors = [];
         $scope.relationType = '';   // 'copiedTrader', 'copier', 'following', 'fan'
         $scope.noMoreInvestors = false;
@@ -39,7 +39,7 @@
                         if (Object.prototype.toString.call(data.data) !== '[object Array]') {
                             return;
                         }
-                        $scope.investors = modifyPropertyName(data.data);
+                        $scope.investors = modPropName(data.data);
                         $scope.investorSum = data.total;
                         var length = $scope.investors.length;
                         $scope.noMoreInvestors = !hasMoreInvestors($scope.investorSum, length);
@@ -57,7 +57,7 @@
                         if (Object.prototype.toString.call(data.data) !== '[object Array]') {
                             return;
                         }
-                        $scope.investors = modifyPropertyName(data.data);
+                        $scope.investors = modPropName(data.data);
                         $scope.investorSum = data.total;
                         var length = $scope.investors.length;
                         $scope.noMoreInvestors = !hasMoreInvestors($scope.investSum, length);
@@ -88,7 +88,7 @@
                     if (Object.prototype.toString.call(data.data.list) !== '[object Array]') {
                         return;
                     }
-                    $scope.investors = modifyPropertyName(data.data.list);
+                    $scope.investors = modPropName(data.data.list);
                     var length = $scope.investors.length;
 
                     if (relationType === 'following') {
@@ -116,7 +116,7 @@
             switch ($scope.relationType) {
                 case 'copier':
                     relationship.getCopiers($scope.userType.code, lastId, count).then(function (data) {
-                        var newList = modifyPropertyName(data.data);
+                        var newList = modPropName(data.data);
 
                         if (newList.length <= 0) {
                             return;
@@ -140,7 +140,7 @@
 
             if ($scope.relationType === 'following' || $scope.relationType === 'fan') {
                 tmp.then(function (data) {
-                    var newList = modifyPropertyName(data.data.list);
+                    var newList = modPropName(data.data.list);
 
                     if (newList.length <= 0) {
                         return;
@@ -234,16 +234,20 @@
         }
 
         /*
-         * 修改返回数据的 data 的属性名，使得在 HTML 中的变量名统一，并且
+         * 修改返回数据的 data 的属性名，同时添加需要的属性，使得在 HTML 中的变量名统一，并且
          * 也符合了前端命名规范    
          */
-        function modifyPropertyName(list) {
+        function modPropName(list) {
             var newList = [];
+            var userCode;
 
             angular.forEach(list, function (item) {
+                userCode = item['user_code'] || item['userCode'];
+
                 this.push({
                     userName: item['username'] || item['userName'],
                     userCode: item['user_code'] || item['userCode'],
+                    smAvatar: config.avatarUrl + userCode + '_50.jpg',
                     copierSum: item['copy_copiers_count'],
                     fanSum: item['fanCount'],
                     rate: item['total_profit_rate'],

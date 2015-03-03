@@ -33,7 +33,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown" ng-class="{open: infoShow}" ng-mouseover="showInfo()" ng-mouseleave="hideInfo()">
                     <a class="nav_personal" href="">
-                        <img class="nav_personal__photo" ng-src="ngsrc/photo-man.png" alt="**">
+                        <img class="nav_personal__photo" ng-src="{{personal.xsAvatar}}" alt="**">
                         <span class="nav_personal__name">{{personal.username}}</span>
                         <i class="fa fa-sort-down"></i>
                     </a>
@@ -41,7 +41,7 @@
                         <div class="nav_personal_detail__basic">
                             <div class="row">
                                 <div class="col-xs-4">
-                                    <img class="nav_personal_detail__photo" ng-src="ngsrc/photo-man.png" alt="**">
+                                    <img class="nav_personal_detail__photo" ng-src="{{personal.mdAvatar}}" alt="**">
                                 </div>
                                 <div class="col-xs-8">
                                     <p class="nav_personal_detail__name">

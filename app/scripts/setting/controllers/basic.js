@@ -9,10 +9,10 @@
 
     function SettingBasicController($scope, $modal, account) {
         $scope.sexes = [{
-            nameCN: '男',
+            nameZH: '男',
             code: 1
         }, {
-            nameCN: '女',
+            nameZH: '女',
             code: 0
         }];
         $scope.countries = [];
@@ -31,7 +31,7 @@
         $scope.signature = '';
         $scope.noSelect = false;  // 是否显示省、市的 select 元素
         $scope.select = select;
-        $scope.openPortraitModal = openPortraitModal;
+        $scope.openAvatarModal = openAvatarModal;
         $scope.submitForm = submitForm;
 
         // 设置性别
@@ -162,10 +162,10 @@
             });
         }
 
-        function openPortraitModal(size) {
+        function openAvatarModal(size) {
             $modal.open({
-                templateUrl: 'views/setting/portrait_modal.html',
-                controller: 'SettingPortraitController',
+                templateUrl: 'views/setting/basic_avatar_modal.html',
+                controller: 'SettingAvatarController',
                 size: size,
                 resolve: {
                     personal: function () {

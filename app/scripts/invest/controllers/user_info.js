@@ -5,10 +5,10 @@
         .controller('UserInfoController', UserInfoController);
 
     UserInfoController.$inject = ['$location','$scope', '$timeout',
-            '$modal', '$cookieStore', '$state', 'account', 'money', 'communicate', 'copy'];
+            '$modal', '$cookieStore', '$state', 'config', 'account', 'money', 'communicate', 'copy'];
 
     function UserInfoController($location, $scope, $timeout, $modal, $cookieStore, $state,
-            account, money, communicate, copy) {
+            config, account, money, communicate, copy) {
         $scope.user = {};                     // user（别人）
         $scope.openCopyModal = openCopyModal;
         $scope.follow = follow;
@@ -18,15 +18,18 @@
         // 取到 url 中的 user code
         $scope.userType.code = $state.params.userCode;
 
-        personalUserCode = $cookieStore.get('userCode');
-
         if ($scope.userType.code && $cookieStore.get('userCode') &&
                 $scope.userType.code !== $cookieStore.get('userCode').toString()) {
 
             // 确定了是 user（别人）的信息页面
             $scope.userType.isPersonal = false;
             $scope.user.userCode = $scope.userType.code;
-            personalUserCode = $cookieStore.get('userCode');
+            $scope.user.xsAvatar = config.avatarUrl + $scope.user.userCode + '_28.jpg';
+            $scope.user.smAvatar = config.avatarUrl + $scope.user.userCode + '_50.jpg';
+            $scope.user.mdAvatar = config.avatarUrl + $scope.user.userCode + '_80.jpg';
+            $scope.user.lgAvatar = config.avatarUrl + $scope.user.userCode + '_150.jpg';
+
+            personalUserCode = $cookieStore.get('userCode').toString();
 
             // 获取 user（别人） 的信息
             account.getUserInfo($scope.userType.code).then(function (data) {
@@ -40,7 +43,7 @@
                 $scope.user.copierSum = data.copy_count;
                 $scope.user.demoCopyAmount = data.copy_demo;
                 $scope.user.realCopyAmount = data.copy_real;
-                $scope.user.region = data.region;
+                $scope.user.location = data.region;
 
                 if (data.copy_demo || data.copy_real) {
                     $scope.user.isCopy = true;

@@ -26,7 +26,10 @@
             changeEmail: changeEmail,
             getSafetyInfo: getSafetyInfo,
             verifyEmail: verifyEmail,
-            getVerifyCode: getVerifyCode
+            getVerifyCode: getVerifyCode,
+            getBankCrds: getBankCrds,
+            addBankCrd: addBankCrd,
+            delBankCrd: delBankCrd
         };
         return service;
 
@@ -299,6 +302,42 @@
                 }
             });
         }
+
+        /**
+         * Account Service 添加银行卡
+         * 
+         * @method addBankCrd
+         */
+        function getBankCrds() {
+            return $http.get('/bankcard_settings');
+        }
+
+        /**
+         * Account Service 添加银行卡
+         * 
+         * @method addBankCrd
+         */ 
+        function addBankCrd(nameEN, cardNum, bankAddr) {
+            return $http.post('/bankcard_settings', {
+                bank_name: nameEN,
+                card: cardNum,
+                bank_addr: bankAddr
+            });
+        }
+
+        /**
+         * Account Service 删除银行卡
+         * 
+         * @method delBankCrd
+         */ 
+        function delBankCrd(cardId) {
+            return $http.delete('/bankcard_settings', {
+                params: {
+                    id: cardId
+                }
+            });
+        }
+
 
     }
 })();

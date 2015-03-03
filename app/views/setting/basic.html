@@ -4,8 +4,8 @@
     <div class="basic_setting">
         <div class="row">
             <div class="col-xs-4">
-                <img class="basic_setting__portrait" ng-src="/avatar/{{personal.user_code}}_150.jpg" >
-                <button class="btn btn-primary basic_setting__change" ng-click="openPortraitModal('md')">
+                <img class="basic_setting__portrait" ng-src="{{personal.lgAvatar}}" alt="**" >
+                <button class="btn btn-primary basic_setting__change" ng-click="openAvatarModal()">
                     修改头像
                 </button>
             </div>
@@ -28,7 +28,7 @@
                                     name="sex"
                                     required
                                     ng-model="sex"
-                                    ng-options="sex.nameCN for sex in sexes">
+                                    ng-options="sex.nameZH for sex in sexes">
                             </select>
                         </div>
                     </div>

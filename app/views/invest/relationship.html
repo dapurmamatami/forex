@@ -43,7 +43,7 @@
             <li class="investor" ng-repeat="investor in investors">
                 <div class="row">
                     <div class="col-xs-1">
-                        <img class="investor__photo" src="ngsrc/photo-man.png" alt="**">
+                        <img class="investor__photo" ng-src="{{investor.smAvatar}}" alt="**">
                     </div>
                     <div class="col-xs-3 investor__info">
                         <p class="investor__name">

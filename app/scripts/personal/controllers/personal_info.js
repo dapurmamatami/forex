@@ -6,10 +6,10 @@
         .controller('PersonalInfoController', PersonalInfoController);
 
     PersonalInfoController.$inject = ['$location','$scope', '$timeout',
-            '$modal', '$cookieStore', '$state', 'account', 'money', 'communicate', 'copy'];
+            '$modal', '$cookieStore', '$state', 'config', 'account', 'money', 'communicate', 'copy'];
 
     function PersonalInfoController($location, $scope, $timeout, $modal, $cookieStore, $state,
-            account, money, communicate, copy) {
+            config, account, money, communicate, copy) {
         $scope.userType = {
             code:'',
             isPersonal:true
@@ -23,6 +23,11 @@
         // 获取 personal 的信息
         account.getPersonalInfo().then(function (data) {
             $scope.personal = data;
+            $scope.personal.xsAvatar = config.avatarUrl + data.user_code + '_28.jpg';
+            $scope.personal.smAvatar = config.avatarUrl + data.user_code + '_50.jpg';
+            $scope.personal.mdAvatar = config.avatarUrl + data.user_code + '_80.jpg';
+            $scope.personal.lgAvatar = config.avatarUrl + data.user_code + '_150.jpg';
+
             $cookieStore.put('userCode',parseInt(data.user_code));
 
             getAdditionalInfo($scope.personal, $scope.personal.user_code, account, communicate);
@@ -64,7 +69,7 @@
             accountService.getUserInfo(userCode).then(function (data) {
                 personal.copiedTraderSum = data.mycopy_count;
                 personal.copierSum = data.copy_count;
-                personal.region = data.region;
+                personal.location = data.region;
             });
             communicateService.getFFSum(userCode, userCode).then(function (data) {
                 personal.followingSum = data.data.attention_sum;

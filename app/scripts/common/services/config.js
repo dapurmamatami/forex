@@ -12,7 +12,8 @@
             apiUrl: '/api/v1',
             personalUrl:'/communicate/api',
             webSocketUrl: 'ws://' + $location.host() + '/api/v1',
-            httpTimeout: 10000
+            httpTimeout: 10000,
+            avatarUrl: '/avatar/'
         };
         return service;
     }

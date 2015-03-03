@@ -3,18 +3,18 @@
     <div class="personal_info__panel basic_info">
         <div class="basic_info__photo_wrap">
             <a href="">
-                <img class="basic_info__photo" ng-show="personal.sex != undefined" ng-src="ngsrc/photo-{{ personal.sex ? 'man' : 'woman'}}.png" alt="thumbnail" >
+                <img class="basic_info__photo"  ng-src="{{personal.lgAvatar}}" alt="**" >
             </a>
         </div>
         <h3 class="basic_info__name">{{personal.username}}</h3>
         <div class="basic_info__location">
             <p>
-                {{personal.region.state_name}}
-                {{personal.region.city_name}}
+                {{personal.location.state_name}}
+                {{personal.location.city_name}}
             </p>
             <p>
-                <i class="icon-flag-{{personal.region.world_code.toLowerCase()}}"></i>
-                {{personal.region.world_name}}
+                <i class="icon-flag-{{personal.location.world_code.toLowerCase()}}"></i>
+                {{personal.location.world_name}}
             </p>              
         </div>
     </div>
@@ -69,18 +69,18 @@
     <div class="user_info__panel basic_info">
         <div class="basic_info__photo_wrap">
             <a href="">
-                <img class="basic_info__photo" ng-src="ngsrc/photo-{{ user.sex ? 'man' : 'woman'}}.png" alt="**" >
+                <img class="basic_info__photo" ng-src="{{user.lgAvatar}}" alt="**" >
             </a>
         </div>
         <h3 class="basic_info__name">{{user.userName}}</h3>
         <div class="basic_info__location">
             <p class="basic_info__region">
-                {{user.region.state_name}}
-                {{user.region.city_name}}
+                {{user.location.state_name}}
+                {{user.location.city_name}}
             </p>
             <p class="basic_info__nation">
-                <i class="icon-flag-{{user.region.world_code.toLowerCase()}}"></i>
-                {{user.region.world_name}}
+                <i class="icon-flag-{{user.location.world_code.toLowerCase()}}"></i>
+                {{user.location.world_name}}
             </p>              
         </div>
     </div>

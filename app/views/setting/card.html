@@ -6,23 +6,26 @@
     
     <h3 class="setting_content__title">银行卡管理</h3>
 
-    <ul>
-        <li class="bank_card">
+    <ul ng-show="cards.length > 0">
+        <li class="bank_card" ng-repeat="card in cards">
             <div class="row">
                 <div class="col-xs-1">
                     <span class="icon-bank-CMB"></span>
                 </div>
                 <div class="col-xs-2 bank_card__name">
-                    招商银行
+                    {{card.nameZH}}
                 </div>
                 <div class="col-xs-6 bank_card__number">
-                    **** **** **** 0209
+                    {{card.card}}
                 </div>
-                <div class="col-xs-3 bank_card__delete" ng-click="openDelModal('sm')">
+                <div class="col-xs-3 bank_card__delete" ng-click="openDelModal('sm', card.id)">
                     <i class="fa fa-trash"></i>删除
                 </div>
             </div>
         </li>
     </ul>
+    <p class="text-center" ng-show="cards.length <= 0">
+        无数据！
+    </p>
 
 </div>

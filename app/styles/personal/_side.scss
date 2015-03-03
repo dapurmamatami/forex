@@ -17,10 +17,10 @@
             width: 150px;
             height: 150px;
             margin: -11px auto 0;
-            @include box-shadow($brand-primary 0 0 0 4px);
+            @include box-shadow($brand-border-color 0 0 0 1px);
 
             &:hover {
-                @include box-shadow($brand-primary 0 0 10px 4px);
+                @include box-shadow($brand-border-color 0 0 10px 1px);
             }
 
             @include e(photo, $basic_info) {
