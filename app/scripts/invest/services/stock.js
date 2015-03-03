@@ -63,11 +63,12 @@
          *   avg_deficit:       //平均亏损
          * }
          */
-        function getSummaryReport(accountType, userCode) {
+        function getSummaryReport(accountType, userCode,period) {
             return $http.get('/summary_report', {
                 params: {
                     tiger_source: accountType,
-                    cros_user: userCode
+                    cros_user: userCode,
+                    period:period
                 }
             });
         }

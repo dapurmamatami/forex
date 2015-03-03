@@ -12,7 +12,7 @@
           },
           template: "<p>" +
                         "<span ng-repeat = 'cItem in contentArray' ng-if='cItem'>" +
-                            "<span ng-class = '{focus_name : cItem.show}'>{{cItem.content|senstiviyWord}}</span>" +
+                            "<span ng-class = '{focus_name : cItem.show}'>{{cItem.content}}</span>" +
                         "</span>" +
                     "</p>",
           replace:true,
