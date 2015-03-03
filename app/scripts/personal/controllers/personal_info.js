@@ -17,7 +17,7 @@
         $scope.personal = {};       // personal（自己）
         $scope.realEquityInfo = {}; // 真实账户资产信息
         $scope.demoEquityInfo = {}; // 模拟账户资产信息
-        $scope.openRegisterModal = openRegisterModal;
+        $scope.registerReal = registerReal;  // 注册真实账户（实名认证）
         $scope.skipDetail = skipDetail;
 
         // 获取 personal 的信息
@@ -45,6 +45,14 @@
             }
         });
         
+        // 获取开通真实账户的进度信息
+        account.getStepInfo('ReliableInformation').then(function (data) {
+
+            if (data.is_succ) {
+                $scope.personal.step =data.progress + 1;
+            }
+        });
+
         //
         switchLayout();
 
@@ -64,11 +72,16 @@
             });
         }
 
-        function openRegisterModal(size) {
+        function registerReal(size) {
             $modal.open({
                 templateUrl: 'views/account/register.html',
-                controller: 'AccountRegisterController',
-                size: size
+                controller: 'AccountRegisterRealController',
+                size: size,
+                resolve: {
+                    personal: function () {
+                        return $scope.personal
+                    }
+                }
             });
         }
 

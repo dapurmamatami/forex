@@ -12,8 +12,9 @@
         $scope.safetyInfo = {};
         $scope.openPwdModal = openPwdModal;
         $scope.openPhoneModal = openPhoneModal;
-        //$scope.openDelModal = openDelModal;
-        
+        $scope.openEmailModal = openEmailModal;
+        $scope.verifyEmail = verifyEmail;
+
         account.getSafetyInfo().then(function (data) {
             $scope.safetyInfo = data;
         });
@@ -31,6 +32,38 @@
                 templateUrl: 'views/setting/safety_phone_modal.html',
                 controller: 'SettingPhoneController',
                 size: size
+            });
+        }
+
+        function openEmailModal(size) {
+            $modal.open({
+                templateUrl: 'views/setting/safety_email_modal.html',
+                controller: 'SettingEmailController',
+                size: size,
+                resolve: {
+                    safetyInfo: function () {
+                        return $scope.safetyInfo
+                    }
+                }
+            });
+        }
+
+        function verifyEmail() {
+            account.verifyEmail().then(function (data) {
+                console.info(data);
+            });
+        }
+
+        function registerReal(size) {
+            $modal.open({
+                templateUrl: 'views/account/register.html',
+                controller: 'AccountRegisterRealController',
+                size: size,
+                resolve: {
+                    personal: function () {
+                        return $scope.personal
+                    }
+                }
             });
         }
     }

@@ -3,23 +3,18 @@
 
     angular
         .module('tigerwitPersonalApp')
-        .controller('AccountRegisterController', AccountRegisterController);
+        .controller('AccountRegisterRealController', AccountRegisterRealController);
 
-    AccountRegisterController.$inject = ['$scope', '$window', '$location', '$state', '$timeout',
-            '$interval', '$modal', '$modalInstance', 'account', 'config', 'validator'];
+    AccountRegisterRealController.$inject = ['$scope', '$modalInstance', 'account', 'personal'];
 
-    function AccountRegisterController($scope, $window, $location, $state, $timeout, $interval,
-            $modal, $modalInstance, account, config, validator) {
+    function AccountRegisterRealController($scope, $modalInstance, account, personal) {
         $scope.closeModal = closeModal;
         
         /*
          * 确定显示第几步
          */
-        account.getStepInfo('ReliableInformation').then(function (data) {
-            if (data.is_succ) {
-                $scope.step = data.progress + 1;
-            }
-        });
+        $scope.personal = personal;  // personal.step
+
 
         /*
          * 第一步的数据模型
@@ -149,7 +144,7 @@
                             then(function (data) {
                         $scope.idNumberCheck.valid = data.is_succ;
                         if ($scope.idNumberCheck.valid) {
-                            $scope.step += 1;
+                            $scope.personal.step += 1;
                         }
                     });
                 }
@@ -162,7 +157,7 @@
         }
 
         function submitFormStep2() {
-            $scope.step += 1;
+            $scope.personal.step += 1;
         }
 
         function submitFormStep3() {
@@ -170,7 +165,7 @@
                 account.submitQuestionnaire($scope.employment, $scope.income, 
                         $scope.experience).then(function (data) {
                     if (data.is_succ) {
-                        $scope.step += 1;
+                        $scope.personal.step += 1;
                     }
                 });
             }

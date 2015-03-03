@@ -17,7 +17,7 @@
                                type="text"
                                required
                                ng-model="phone.oldNumber"
-                               ng-focus="eliminateError('phone')">
+                               ng-focus="eliminateError('phone is incorrect')">
                         <div ng-show="formStep1.oldPhone.$dirty">
                             <p class="alert alert-danger" ng-show="formStep1.oldPhone.$error.required">
                                 请输入当前手机号码
@@ -38,7 +38,7 @@
                                type="text"
                                required
                                ng-model="password.number"
-                               ng-focus="eliminateError('password')">
+                               ng-focus="eliminateError('password is incorrect')">
                         <div ng-show="formStep1.password.$dirty">
                             <p class="alert alert-danger" ng-show="formStep1.password.$error.required">
                                 请输入密码
@@ -71,7 +71,9 @@
                                type="text"
                                required
                                ng-model="phone.newNumber"
-                               ng-pattern="">
+                               ng-pattern=""
+                               ng-focus="eliminateError('phone is existent')"
+                               ng-blur="checkExistence()">
                         <div ng-show="formStep2.newPhone.$dirty">
                             <p class="alert alert-danger" ng-show="formStep2.newPhone.$error.required">
                                 请输入新手机号码
@@ -80,7 +82,7 @@
                                 手机号码格式错误
                             </p>
                             <p class="alert alert-danger" ng-show="phone.existence">
-                                该手机号码已经认证
+                                该手机号码已经认证过
                             </p>
                         </div>
                     </div>
@@ -105,7 +107,7 @@
                         </div>
                     </div>
                     <div class="col-xs-3">
-                        <span tw-verify-timer></span>
+                        <span tw-verify-timer ng-disabled="formStep2.newPhone.$invalid || phone.existence" ng-click="getVerifyCode()"></span>
                     </div>
                 </div>
             </form>
@@ -120,10 +122,10 @@
     <div ng-show="step === 3">
         <div class="modal-body">
             <h3 class="setting_modal__change_success">
-                手机修改成功！
+                手机号码修改成功！
             </h3>
             <p class="setting_modal__change_tip">
-                注意：您的新手机号将作为你的登录账号使用
+                注意：您的新手机号码将作为你的登录账号使用
             </p>
         </div>
         <div class="modal-footer">

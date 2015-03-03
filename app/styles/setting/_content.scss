@@ -77,6 +77,11 @@
         padding: 0 20px 15px;
         border-bottom: 1px solid $brand-border-color;
         font-weight: 700;
+
+        span {
+            font-size: 16px;
+            color: $gray-light;
+        }
     }
 
     @include e(change_success) {

@@ -23,7 +23,10 @@
             uploadImage: uploadImage,
             changePwd: changePwd,
             changePhone: changePhone,
-            getSafetyInfo: getSafetyInfo
+            changeEmail: changeEmail,
+            getSafetyInfo: getSafetyInfo,
+            verifyEmail: verifyEmail,
+            getVerifyCode: getVerifyCode
         };
         return service;
 
@@ -103,11 +106,16 @@
             });
         }
 
-        // 获取注册第几步
+        /**
+         * Account Service 获取注册真实账户的步骤
+         *
+         * @method getStepInfo
+         * @param type:    //'ReliableInformation' or 'idPicInformation'
+         */
         function getStepInfo(type) {
             return $http.get('/get_info_progress', {
                 params: {
-                    type: type    //'ReliableInformation' or 'idPicInformation'
+                    type: type    
                 }
             });
         }
@@ -131,7 +139,7 @@
          * Account Service 获取基本信息
          * 
          * @method getBasicInfo
-         * return {Object} {
+         * @return {Object} {
          *   username:
          *   world_code:
          *   world_name:
@@ -166,7 +174,7 @@
          * Account Service 提交地址信息
          * 
          * @method postLocationInfo
-         * return {Object} {
+         * @return {Object} {
          * }    
          */
         function postLocationInfo(sexCode, location, inputRegion, signature) {
@@ -189,7 +197,7 @@
          * Account Service 修改密码
          * 
          * @method changePwd
-         * return {Object} {
+         * @return {Object} {
          * }    
          */
         function changePwd(oldPwd, newPwd) {
@@ -199,11 +207,12 @@
             });
         }
 
-         /**
+        /**
          * Account Service 修改手机号码
+         *
          * @param
          * @method changePhone
-         * return {Object} {
+         * @return {Object} {
          * }    
          */
         function changePhone(oldNumber, password, token, newNumber, verifyCode) {
@@ -228,10 +237,33 @@
         }
 
         /**
+         * Account Service 修改电子邮件
+         *
+         * @param
+         * @method changeEmail
+         * @return {Object} {
+         * }    
+         */
+        function changeEmail(oldNumber, password, token, newNumber) {
+            
+            if (oldNumber === null && password === null) {
+                return $http.post('/change_email', {
+                    token: token,
+                    new_mail: newNumber
+                });
+            } else {
+                return $http.post('/change_email', {
+                    current_mail: oldNumber,
+                    password: password
+                });
+            }
+        }
+
+        /**
          * Account Service 获取账户安全信息
          * 
          * @method getSafetyInfo
-         * return {Object} {
+         * @return {Object} {
          *   login_password:
          *   phone_number:      // 是否认证手机
          *   phone:             // 认证的手机号 
@@ -245,5 +277,28 @@
         function getSafetyInfo() {
             return $http.get('/security_settings');
         }
+
+        /**
+         * Account Service 验证邮箱
+         * 
+         * @method verifyEmail
+         */  
+        function verifyEmail() {
+            return $http.post('/send_mail');
+        }
+
+        /**
+         * Account Service 获取手机验证码
+         * 
+         * @method getVerifyCode
+         */ 
+        function getVerifyCode(phone) {
+            return $http.get('/verify', {
+                params: {
+                    phone: phone
+                }
+            });
+        }
+
     }
 })();
