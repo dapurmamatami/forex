@@ -70,6 +70,22 @@
     color: $brand-info;
 }
 
+.mg-tp-15 {
+    margin-top: 15px;
+}
+
+.mg-tp-30 {
+    margin-top: 30px;
+}
+
+.mg-tp-100 {
+    margin-top: 100px;
+}
+
+.mg-bt-15 {
+    margin-bottom: 15px;
+}
+
 .mg-lf-30 {
     margin-left: 30px;
 }
@@ -78,15 +94,16 @@
     margin-right: 30px;
 }
 
-.mg-tp-15 {
-    margin-top: 15px;
-}
-
-.mg-bt-15 {
-    margin-bottom: 15px;
-}
 .pd-tp-15 {
     padding-top: 15px;
+}
+
+.pd-tp-20 {
+    padding-top: 20px;
+}
+
+.pd-bt-20 {
+    padding-bottom: 20px;
 }
 
 .close {

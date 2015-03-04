@@ -1,0 +1,54 @@
+@include b(deposit_pnl) {
+    display: block;
+    margin: 0 auto;
+    width: 180px;
+    height: 150px;
+    border: 1px solid $brand-primary;
+
+    @include e(title) {
+        height: 100px;
+        margin: 0;
+        line-height: 100px;
+        text-align: center;
+        font-weight: 700;
+    }
+
+    @include e(entry) {
+        display: block;
+        height: 48px;
+        margin-bottom: 0;
+        line-height: 48px;
+        text-align: center;
+        font-size: 16px;
+        font-weight: 700;
+        color: #fff;
+        background-color: $brand-primary;
+
+        &:hover,
+        &:focus {
+            color: #fff;
+        }
+    }
+
+    @include m(red) {
+        @extend .deposit_pnl;
+        border-color: $brand-red;
+
+        @include e(title) {
+            @extend .deposit_pnl__title;
+        }
+
+        @include e(entry) {
+            @extend .deposit_pnl__entry;
+            background-color: $brand-red;
+        }
+    }
+}
+
+@include b(deposit_custom) {
+    margin: 0;
+    line-height: 60px;
+    text-align: center;
+    font-size: 16px;
+    color: $gray;
+}

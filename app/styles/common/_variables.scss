@@ -36,7 +36,8 @@ $brand-danger:          #ef4d4d !default;
 $image_path:             '../images/';
 $forex_icon_path:        '../images/forex_icon/';
 $flag_icon_path:         '../images/flag_icon/';
-$bank_icon_path:         '../images/bank_icon/';  
+$bank_icon_path:         '../images/bank_icon/';
+$money_icon_path:        '../images/money_icon/';     
 
 //== Scaffolding
 //
@@ -183,7 +184,13 @@ $input-color:                    $gray !default;
 $input-border:                   #ccc !default;
 //** `<input>` border radius
 $input-border-radius:            $border-radius-base !default;
+//** Large `.form-control` border radius
+$input-border-radius-large:      $border-radius-large !default;
+//** Small `.form-control` border radius
+$input-border-radius-small:      $border-radius-small !default;
+
 //** Border color for inputs on focus
+$input-border-focus:             $brand-light; 
 $input-border-focus:             #66afe9 !default;
 
 //** Placeholder text color
