@@ -29,6 +29,7 @@
             }
         }
     }
+
     .btn-default {
         width: 120px;
         border-color: $brand-border-color;
@@ -49,8 +50,8 @@
     }
 }
 
-@include b(asset_detail) {
-    $asset_detail: &;
+@include b(asset_summary) {
+    $asset_summary: &;
 
     @include e(h_divider) {
         height: 1px;
@@ -68,23 +69,28 @@
     @include e(panel) {
         text-align: center;
 
-        @include e(percent, $asset_detail) {
+        @include e(percent-profit, $asset_summary) {
             font-size: 32px;
             font-weight: 700;
             color: $brand-green;
         }
 
-        @include e(amount, $asset_detail) {
+        @include e(percent-deficit, $asset_summary) {
+            @extend .asset_summary__percent-profit;
+            color: $brand-red;
+        }
+
+        @include e(amount, $asset_summary) {
             font-size: 32px;
             font-weight: 700;
         }
 
-        @include e(number, $asset_detail) {
+        @include e(number, $asset_summary) {
             font-size: 32px;
             font-weight: 700;
         }
 
-        @include e(tips, $asset_detail) {
+        @include e(tips, $asset_summary) {
             color: $gray-lighter;
         }
 

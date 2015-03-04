@@ -64,10 +64,10 @@
                         {{order.close_price}}
                     </div>
                     <div class="col-xs-2 order_item__profit" ng-show="order.sum.indexOf('-') < 0">
-                        {{order.sum}}
+                        ${{order.sum}}
                     </div>
                     <div class="col-xs-2 order_item__deficit" ng-show="order.sum.indexOf('-') >= 0">
-                        {{order.sum}}
+                        ${{order.sum}}
                     </div>
                 </div>
             </li>
@@ -118,10 +118,10 @@
                     <div class="col-xs-2">
                     </div>
                     <div class="col-xs-2 order_item__profit" ng-show="copiedTrader.profit_rate.indexOf('-') < 0">
-                        {{copiedTrader.profit_rate}}
+                        {{copiedTrader.profit_rate}}%
                     </div>
                     <div class="col-xs-2 order_item__deficit" ng-show="copiedTrader.profit_rate.indexOf('-') >= 0">
-                        {{copiedTrader.profit_rate}}
+                        {{copiedTrader.profit_rate}}%
                     </div>
                 </div>
                 <ul class="copy_orders">
@@ -160,10 +160,10 @@
                                 {{order.close_price}}
                             </div>
                             <div class="col-xs-2 order_item__profit" ng-show="order.sum.indexOf('-') < 0">
-                                {{order.sum}}
+                                ${{order.sum}}
                             </div>
                             <div class="col-xs-2 order_item__deficit" ng-show="order.sum.indexOf('-') >= 0">
-                                {{order.sum}}
+                                ${{order.sum}}
                             </div>
                         </div>
                     </li>

@@ -7,6 +7,7 @@
 
     relationship.$inject = ['$http','topicHttp'];
 
+    // 该服务以后分别并入 communicate service 和 copy service
     function relationship($http, topicHttp) {
         var service = {
             getCopiedTraders: getCopiedTraders,

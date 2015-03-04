@@ -9,22 +9,22 @@
 
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="#/personal/communicate_info" ng-class="{'active':  prefix === '/personal/' || prefix === '/invest/'}">
+                    <a href="#/personal/communicate_info" ng-class="{'active':  currentUrl.prefix === 'personal' || currentUrl.prefix === 'invest'}">
                         个人中心
                     </a>
                 </li>
                 <li>
-                    <a href="#/master" ng-class="{'active':  prefix === '/master/'}">
+                    <a href="#/master" ng-class="{'active':  currentUrl.prefix === 'master'}">
                         交易高手
                     </a>
                 </li>
                 <li>
-                    <a href="#/guides" ng-class="{'active':  prefix === '/guides/'}">
-                        新手指南
+                    <a ui-sref="money.subPage" ng-class="{'active':  currentUrl.prefix === 'money'}">
+                        资金管理
                     </a>
                 </li>
                 <li>
-                    <a ui-sref="setting.subPage" ng-class="{'active':  prefix === '/setting/'}">
+                    <a ui-sref="setting.subPage" ng-class="{'active':  currentUrl.prefix === 'setting'}">
                         设置
                     </a>
                 </li>

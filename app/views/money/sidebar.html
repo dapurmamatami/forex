@@ -1,0 +1,15 @@
+<div class="setting_nav">
+    <h4 class="setting_nav__title">资金管理</h4>
+    <p>随时掌控自己的资金动态</p>
+    <ul class="sidebar_nav" tw-sidebar-nav>
+        <li ng-class="{active: subPage === 'history'}" ng-click="switchItem('history')">
+            <a ng-href="#/setting/history">出入金历史</a>
+        </li>
+         <li ng-class="{active: subPage === 'deposit'}" ng-click="switchItem('deposit')">
+            <a ng-href="#/setting/deposit">入金到账户</a>
+        </li>
+         <li ng-class="{active: subPage === 'withdraw'}" ng-click="switchItem('withdraw')">
+            <a ng-href="#/setting/withdraw">从账户出金</a>
+        </li>
+    </ul>
+</div>

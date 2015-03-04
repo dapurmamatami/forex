@@ -5,9 +5,9 @@
         .module('tigerwitPersonalApp')
         .factory('stock', stock);
 
-    stock.$inject = ['$rootScope', '$http'];
+    stock.$inject = ['$http'];
 
-    function stock($rootScope, $http) {
+    function stock($http) {
         var service = {
             getEquityReport: getEquityReport,
             getSummaryReport: getSummaryReport,
@@ -16,24 +16,24 @@
         return service;
 
         /*
-         * 投资详情（Invest） - 近期资产情况
+         * Stock Service 获取资产的净值的变化率
          *
          * @method getEquityReport
-         * @param {Object} {
-         *     period:       // 距离当前的天数
-         *     tiger_source: // 'demo' or 'real'
-         *     cros_user:    // 别人的 user code
-         * }
+         * @param {String} period 距离当前的天数 
+         * @param {String} accountType 值为 'demo' or 'real'   
+         * @param {String} userCode 用户的 user code
          * @return {Object} {
-         *     data: [[ //timestamp / 1000, // 金额]],
-         *     error_msg:"",
-         *     is_succ: true / false
+         *   data: [{
+         * 
+         *   }],
+         *   error_msg: '',
+         *   is_succ: true / false
          * }
          */
-        function getEquityReport(number, accountType, userCode) {
+        function getEquityReport(period, accountType, userCode) {
             return $http.get('/equity_report', {
                 params: {
-                    period: number,
+                    period: period,
                     tiger_source: accountType,
                     cros_user: userCode
                 }
@@ -41,34 +41,33 @@
         }
 
         /*
-         * 投资详情（Invest） - 账户概况
+         * Stock Service 获取资产概况
          *
          * @method getSummaryReport
-         * @param {Object} {
-         *     tiger_source: // 'demo' or 'real'
-         *     cros_user:    // 别人的 user code
-         * }
+         * @param {String} period 距离当前的天数 
+         * @param {String} accountType 值为 'demo' or 'real'   
+         * @param {String} userCode 用户的 user code
          * @return {Object} {
-         *   total_profit_rate: // 盈利率,
-         *   total_volume:      // 总交易手数,
-         *   total_pips:        // 获利点数,
-         *   order_count:       // 总订单数
-         *   profit_rate:       //盈利订单   即 胜率
-         *   max_profit:        //最大盈利
-         *   min_profit:        //最小盈利
-         *   avg_profit:        //平均盈利
-         *   deficit_rate:      //亏损订单
-         *   max_deficit:       //最大亏损
-         *   min_deficit:       //最小亏损
-         *   avg_deficit:       //平均亏损
+         *   total_profit_rate 盈利率
+         *   total_volume      总交易手数
+         *   total_pips        获利点数
+         *   order_count       总订单数
+         *   profit_rate       盈利订单（即胜率）
+         *   max_profit        最大盈利
+         *   min_profit        最小盈利
+         *   avg_profit        平均盈利
+         *   deficit_rate      亏损订单
+         *   max_deficit       最大亏损
+         *   min_deficit       最小亏损
+         *   avg_deficit       平均亏损
          * }
          */
-        function getSummaryReport(accountType, userCode,period) {
+        function getSummaryReport(accountType, userCode, period) {
             return $http.get('/summary_report', {
                 params: {
                     tiger_source: accountType,
                     cros_user: userCode,
-                    period:period
+                    period: period
                 }
             });
         }

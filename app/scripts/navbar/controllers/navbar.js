@@ -5,10 +5,12 @@
         .module('tigerwitPersonalApp')
         .controller('NavbarController', NavbarController);
 
-    NavbarController.$inject = ['$scope', '$state',"$cookieStore"];
+    NavbarController.$inject = ['$scope', '$state', '$cookieStore'];
 
-    function NavbarController($scope, $state,$cookieStore) {
-        $scope.parentState = '';
+    function NavbarController($scope, $state, $cookieStore) {
+        $scope.currentUrl = {
+            prefix: ''
+        };
         $scope.infoShow = false;
         $scope.showInfo = showInfo;
         $scope.hideInfo =hideInfo;
@@ -18,7 +20,8 @@
         $scope.sys_unvisited_sum = $cookieStore.get('sys_unvisited_sum');
         $scope.user_unvisited_sum =  $cookieStore.get('user_unvisited_sum');
 
-        $scope.prefix = $state.$current.url.prefix;
+        //$scope.prefix = $state.$current.url.prefix;
+        $scope.currentUrl.prefix = $state.$current.url.source.split('/')[1];
 
         function loginFun() {
 

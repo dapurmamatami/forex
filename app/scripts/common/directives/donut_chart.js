@@ -18,10 +18,11 @@
 
                     if (id.indexOf('profit') > 0) {
                         data = parseFloat(data.profit_rate);
-                    } else if (id.indexOf('deficit') > 0) {
+                    } 
+
+                    if (id.indexOf('deficit') > 0) {
                         data = parseFloat(data.deficit_rate);
                     }
-            
                     var dataRest = 100 - data;
                     var options = {
                         chart: {

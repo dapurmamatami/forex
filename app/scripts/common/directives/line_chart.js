@@ -63,7 +63,7 @@
                                 var date = dateStamp.getFullYear() + '/' + (dateStamp.getMonth() + 1) +
                                         '/' + (dateStamp.getDate());
                                 return '<p class="line_chart__title">' + date + 
-                                        '</p><p class="line_chart__money">$' + this.y + '</p>';
+                                        '</p><p class="line_chart__money">' + this.y + '%</p>';
                             }
                         },
                         series: [{

@@ -43,40 +43,43 @@
     </div>
 </div>
 
-<div class="asset_detail">
-    <div class="asset_detail__h_divider"></div>
+<div class="asset_summary">
+    <div class="asset_summary__h_divider"></div>
     <div class="row">
-        <div class="asset_detail__panel col-xs-4">
+        <div class="asset_summary__panel col-xs-4">
             <h4>盈利率</h4>
-            <p class="asset_detail__percent">
+            <p class="asset_summary__percent-profit" ng-if="summary.total_profit_rate.indexOf('-') < 0">
                 +{{summary.total_profit_rate}}
             </p>
-            <p class="asset_detail__tips">
+            <p class="asset_summary__percent-deficit" ng-if="summary.total_profit_rate.indexOf('-') >= 0">
+                {{summary.total_profit_rate}}
+            </p>
+            <p class="asset_summary__tips">
                 用户的盈利幅度
             </p>
         </div>
-        <div class="asset_detail__panel col-xs-4">
-            <div class="asset_detail__v_divider"></div>
+        <div class="asset_summary__panel col-xs-4">
+            <div class="asset_summary__v_divider"></div>
             <h4>交易手数</h4>
-            <p class="asset_detail__amount">
+            <p class="asset_summary__amount">
                 {{summary.total_volume}}
             </p>
-            <p class="asset_detail__tips">
+            <p class="asset_summary__tips">
                 已平仓交易的交易手数
             </p>
         </div>
-         <div class="asset_detail__panel col-xs-4">
-            <div class="asset_detail__v_divider"></div>
+         <div class="asset_summary__panel col-xs-4">
+            <div class="asset_summary__v_divider"></div>
             <h4>获利点数</h4>
-            <p class="asset_detail__number">
+            <p class="asset_summary__number">
                 {{summary.total_pips}}
             </p>
-            <p class="asset_detail__tips">
+            <p class="asset_summary__tips">
                 以标准手计算
             </p>
         </div>
     </div>
-    <div class="asset_detail__h_divider"></div>
+    <div class="asset_summary__h_divider"></div>
 </div>
 
 <div class="transaction_data">
@@ -133,15 +136,15 @@
             <div class="transaction_data__order_detail col-xs-5">
                 <p class="transaction_data__deficit_detail">
                     最大亏损
-                    <span>-{{summary.max_deficit}}%</span>
+                    <span>{{summary.max_deficit}}%</span>
                 </p>
                 <p class="transaction_data__deficit_detail">
                     平均亏损
-                    <span>-{{summary.avg_deficit}}%</span>
+                    <span>{{summary.avg_deficit}}%</span>
                 </p>
                 <p class="transaction_data__deficit_detail">
                     最小亏损
-                    <span>-{{summary.min_deficit}}%</span>
+                    <span>{{summary.min_deficit}}%</span>
                 </p>
             </div>
         </div>

@@ -1,7 +1,8 @@
 <div class="setting_nav">
     <h4 class="setting_nav__title">设置</h4>
     <p>自定义您的账户设置</p>
-    <ul class="sidebar_nav">
+    <ul class="sidebar_nav" tw-sidebar-nav>
+        {{name}}
         <li ng-class="{active: subPage === 'basic'}" ng-click="switchItem('basic')">
             <a ng-href="#/setting/basic">基本信息</a>
         </li>

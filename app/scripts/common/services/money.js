@@ -5,35 +5,20 @@
         .module('tigerwitPersonalApp')
         .factory('money', money);
 
-        money.$inject = ['$window', '$http'];
+        money.$inject = ['$http'];
 
-        function money($window, $http) {
-            //var equitySocketUrl = 'ws://test.tigerwit.com/api/v1/equity';
-            //var equitySocket;
-
+        function money($http) {
             var service = {
-                //equitySocket: equitySocket,
                 getLastEquity: getLastEquity,
-                //pay: pay,
-                //withdraw: withdraw
             };
             return service;
 
-            /*function equitySocket() {
-                if (equitySocket) {
-                    return equitySocket;
-                } else {
-                    if ('WebSocket' in window) {
-                        console.info(window);
-                        console.info($window);
-                        equitySocket = new WebSocket(equitySocketUrl);
-                        return equitySocket;
-                    } else {
-
-                    }
-                }
-            }*/
-
+            /**
+             * Money Service 获取资产信息
+             *
+             * @method getLastEquity
+             * @param {String} type 值为 'demo' or 'real'
+             */
             function getLastEquity(type) {
                 return $http.get('/equity/last', {
                     params: {
@@ -41,17 +26,5 @@
                     }
                 });
             }
-
-           /* function pay() {
-                return $http.get('/pay', {
-                    params: {
-                        amount: money
-                    }
-                });
-            }
-
-            function withdraw(opts) {
-                return $http.post('/withdraw', opts);
-            }*/
         }
 })();

@@ -214,7 +214,6 @@ angular
                     },
                     'sidebar@setting': {
                         templateUrl: 'views/setting/sidebar.html',
-                        controller: 'SettingSidebarController'
                     },
                     'ft@setting': {
                         templateUrl: 'views/layout/footer.html'
@@ -239,7 +238,46 @@ angular
                         }
                     }
                 }
+            })
+
+            .state('money', {
+                views: {
+                    '@': {
+                        templateUrl: 'views/layout/layout-2-sm.html',
+                        controller: 'PersonalInfoController'
+                    },
+                    'hd@money': {
+                        templateUrl: 'views/navbar/navbar-logined.html',
+                        controller: 'NavbarController'
+                    },
+                    'sidebar@money': {
+                        templateUrl: 'views/money/sidebar.html',
+                    },
+                    'ft@money': {
+                        templateUrl: 'views/layout/footer.html'
+                    }
+                }
+            })
+            .state('money.subPage', {
+                url: '/money/:subPage',
+                views: {
+                    'content@money': {
+                        templateUrl: function ($stateParams) {
+                            $stateParams.subPage = $stateParams.subPage || 'history';
+                            return 'views/money/' + $stateParams.subPage + '.html';
+                        },
+                        controllerProvider: function ($stateParams) {
+                            var ctrlPrefix = 'Money';
+                            var ctrlSuffix = 'Controller';
+                            var subPage = $stateParams.subPage || 'history';
+                            var ctrlRoot = modifyCtrlName(subPage);
+                            var ctrlName = ctrlPrefix + ctrlRoot + ctrlSuffix;
+                            return ctrlName;
+                        }
+                    }
+                }
             });
+
 
             function modifyCtrlName(name) {
                 var strArray = name.split(/[-_]/i);
