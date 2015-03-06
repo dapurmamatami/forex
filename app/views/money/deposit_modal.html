@@ -1,6 +1,6 @@
-<div class="setting_modal">
+<div class="deposit_modal">
     <div class="modal-header">
-        <h4 class="setting_modal__title">
+        <h4 class="deposit_modal__title">
             网上支付提示
         </h4>
     </div>
@@ -8,19 +8,19 @@
     <div class="modal-body">
         <div class="row">
             <div class="col-xs-3">
-                <img src="images/money_icon/dollar.png" alt="**">
+                <img class="deposit_modal__img" src="images/money_icon/dollar.png" alt="**">
             </div>
-            <div class="col-xs-9">
+            <div class="col-xs-9 deposit_modal__info">
                 <p>支付完成前，请不要关闭支付验证窗口。</p>
                 <p>支付完成后，请根据您支付的情况点击下面按钮。</p>
             </div>
         </div>
 
-        <div class="row">
-            <button class="btn btn-danger">
+        <div class="row text-center">
+            <button class="btn btn-danger" ng-click="openDialog()">
                 支付遇到问题
             </button>
-            <button class="btn btn-primary">
+            <button class="btn btn-primary" ng-click="closeModal()">
                 支付成功
             </button>
         </div>
