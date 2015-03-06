@@ -1,1 +1,68 @@
-<h1>出入金历史</h1>
+<div class="money_content">
+    <div class="money_history">
+        <ul class="nav nav-pills">
+            <li class="active" ng-class="{active: orderType === 'normal'}" ng-click="orderType === 'normal' || getOrders('normal', accountType.key)">
+                <a href="">全部历史</a>
+            </li>
+
+            <li ng-class="{active: orderType === 'deposit'}" ng-click="orderType === 'deposit' || getOrders('deposit')">
+                <a href="">入金历史</a>
+            </li>
+            <li ng-class="{active: orderType === 'withdraw'}" ng-click="orderType === 'withdraw' || getOrders('withdraw')">
+                <a href="">出金历史</a>
+            </li>
+        </ul>
+
+        <h3 class="money_content__title">
+            出入金历史
+        </h3>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>操作</th>
+                    <th>编号</th>
+                    <th>金额</th>
+                    <th>类别</th>
+                    <th>时间</th>
+                </tr>
+            </thead>
+            <tr>
+                <td>
+                    <span class="deposit_icon"></span>
+                    入金
+                </td>
+                <td>
+                    125445455
+                </td>
+                <td>
+                    $200.00
+                </td>
+                <td>
+                    银行入金
+                </td>
+                <td>
+                    2014/11/10
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="deposit_icon"></span>
+                    入金
+                </td>
+                <td>
+                    125445455
+                </td>
+                <td>
+                    $200.00
+                </td>
+                <td>
+                    银行入金
+                </td>
+                <td>
+                    2014/11/10
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

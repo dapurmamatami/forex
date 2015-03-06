@@ -1,0 +1,36 @@
+@include b(money_history) {
+
+    .table.table-striped {
+        margin-top: 45px;
+        text-align: center;
+        font-size: 15px;
+
+        thead > tr > th {
+            text-align: center;
+        }
+
+        td {
+            line-height: 75px;
+        }
+
+        td:first-child {
+            font-weight: 700;
+        }
+    }
+
+    .nav-pills {
+        float: right;
+
+        a {
+            padding: 6px 12px;
+            font-size: 15px;
+            font-weight: 700;
+
+            &:hover,
+            &:focus {
+                color: $brand-dark-primary;
+                background-color: $gray-lightest;
+            }
+        }
+    }
+}

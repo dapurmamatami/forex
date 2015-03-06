@@ -40,7 +40,7 @@
                 w;
 
             // 判断是否注册真实账户    
-            if ($scope.personal.verified) {
+            if (!$scope.personal.verified) {
                 openTipModal('sm');
                 return;
             }
