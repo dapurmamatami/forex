@@ -11,10 +11,10 @@
 
 
     stock.getSummaryReport( $scope.accountType.key, $state.params.userCode,7).then(function(data){
-        $scope.total_profit_rate = data.total_profit_rate*100;
-        $scope.max_profit = data.max_profit*100;
-        $scope.max_deficit = data.max_deficit*100;
-        $scope.profit_rate = data.profit_rate*100;
+        $scope.total_profit_rate = data.total_profit_rate;
+        $scope.max_profit = data.max_profit;
+        $scope.max_deficit = data.max_deficit;
+        $scope.profit_rate = data.profit_rate;
     });
   }
 

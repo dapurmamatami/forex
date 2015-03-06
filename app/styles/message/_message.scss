@@ -10,9 +10,10 @@
 
     @include b(msg_content) {
         @extend .col-lg-9;
-        width: 730px;
+        width: 700px;
         padding: 0;
         padding: 18px;
+        margin-left: 30px;
         background-color: $brand-white;
         border: 1px solid $brand-border-color;
     }
@@ -51,8 +52,9 @@
     }
     @include b(msg_main_content){
         float:right;
-        margin-left:20px;
-        width:620px;
+        margin-left:10px;
+        margin-top: 8px;
+        width:600px;
         @include e(tip){
             color:#f8bc37;
         }

@@ -1,0 +1,17 @@
+<div class="sidebar">
+  <h4 class="sidebar__title">交易高手</h4>
+  <p>立即跟随高手交易获取高额收益</p>
+  <ul class="sidebar_nav" tw-sidebar-nav>
+    <li ng-class="{active: subPage === 'recommend'}" ng-click="switchItem('recommend')">
+      <a ng-href="#/master/recommend">高手推荐</a>
+    </li>
+    <li ng-class="{active: subPage === 'ranking_list'}" ng-click="switchItem('ranking_list')">
+      <a ng-href="#/master/ranking_list">高手排行</a>
+    </li>
+    <li ng-class="{active: subPage === 'combination'}" ng-click="switchItem('combination')">
+      <a ng-href="#/master/combination">高手组合</a>
+    </li>
+  </ul>
+  <img src="/images/u14.png">
+  </img>
+</div>

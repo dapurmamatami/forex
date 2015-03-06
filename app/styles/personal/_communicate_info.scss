@@ -95,13 +95,13 @@
 
         @include b(head_menu){
             float:right;
-            position:relative;
             height:34px;
             @include e(btn) {
                 @extend .btn;
                 @extend .btn-default;
                 font-weight:600;
                 position:relative;
+                width:126px;
                 left:0;
                 top:0;
                 border-color:$brand-border-color;
@@ -112,17 +112,30 @@
                   border-color: $brand-border-color;
                 }
             }
-            @include e(drop) {
-                @extend .dropdown-menu;
-                min-width:124px;
-                display: block;
-                top:85%;
 
-                li a{
-                  cursor:pointer;
+            @include b(border_bottom){
+                border-bottom: 1px solid transparent;
+                border-color:$brand-border-color;
+            }
+            ul {
+                min-width:126px;
+                top:95%;
+                padding:0px;
+                margin-top: 0px;
+                li{
+                    line-height: 40px;
+                }
+                li > a{
+                    padding: 6px 20px;
+                }
+                li>a:hover,
+                li>a:focus{
+                    cursor:pointer;
+                    text-decoration: none;
+                    color: $dropdown-link-hover-color;
+                    background-color: $dropdown-link-hover-bg;
                 }
             }
-
         }
 
         hr{
@@ -210,8 +223,14 @@
                         width:118px;
                         height:76px;
                         border:0;
+                        padding:8px;
                         display:inline;
-                        float:left
+                        float:left;
+                        background: $gray-lightest;
+                        margin-bottom: 1px;
+                        border-right: 1px solid transparent;
+                        border-bottom: 1px solid transparent;
+                        border-color:$brand-border-color;
                     }
                     @include b(base_info){
                         min-height:76px;

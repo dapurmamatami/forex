@@ -1,0 +1,12 @@
+<div class="sidebar">
+    <h4 class="sidebar__title">资金管理</h4>
+    <p>随时掌控自己的资金动态</p>
+    <ul class="sidebar_nav" tw-sidebar-nav>
+        <li ng-class="{active: subPage === 'user'}" ng-click="switchItem('user')">
+            <a>我的消息</a>
+        </li>
+         <li ng-class="{active: subPage === 'sys'}" ng-click="switchItem('sys')">
+            <a>系统消息</a>
+        </li>
+    </ul>
+</div>

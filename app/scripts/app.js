@@ -77,7 +77,7 @@ angular
     .module('tigerwitPersonalApp')
     .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$controllerProvider',
             function ($stateProvider, $urlRouterProvider, $httpProvider, $controllerProvider) {
-        $urlRouterProvider.otherwise('/personal/communicate_info');
+        $urlRouterProvider.otherwise('/personal');
 
         $stateProvider
 
@@ -100,7 +100,7 @@ angular
                 }
             })
             .state('personal.communicate_info', {
-                url: '/personal/communicate_info',
+                url: '/personal',
                 views: {
 
                     'content@personal': {
@@ -127,12 +127,50 @@ angular
                     }
                 }
             })
+            .state('master',{
+                views:{
+                    '@':{
+                        templateUrl:'views/layout/layout-2-sm.html',
+                        controller:'PersonalInfoController'
+                    },
+                    'hd@master': {
+                        templateUrl: 'views/navbar/navbar-logined.html',
+                        controller: 'NavbarController'
+                    },
+                    'sidebar@master':{
+                        templateUrl: 'views/master/siderbar.html',
+                        controller:''
+                    },
+                    'ft@master': {
+                       templateUrl: 'views/layout/footer.html'
+                    }
+                }
+            })
+            .state('master.subPage',{
+                url:'/master/:subPage',
+                views:{
+                    'content@master':{
+                        templateUrl:function($stateParams){
+                          $stateParams.subPage = $stateParams.subPage || 'recommend';
+                          return 'views/master/' + $stateParams.subPage + '.html';
+                        }
+                    },
+                    'controller':function(){
+                        var ctrlPrefix = 'Master';
+                        var ctrlSuffix = 'Controller';
+                        var subPage = $stateParams.subPage || 'recommend';
+                        var ctrlRoot = modifyCtrlName(subPage);
+                        var ctrlName = ctrlPrefix + ctrlRoot + ctrlSuffix;
+                        return ctrlName;
+                    }
+                }
+            })
             .state('message',{
                 url:'/message/:type_message',
                 views:{
                     '@':{
                         templateUrl:'views/layout/layout-msg.html',
-                        controller:'MessageController'
+                        controller:'PersonalInfoController'
                     },
                     'hd@message': {
                         templateUrl: 'views/navbar/navbar-logined.html',
@@ -143,9 +181,10 @@ angular
                         controller:'MsgSideController'
                     },
                     'content@message':{
-                        templateUrl: 'views/message/message.html'
+                        templateUrl: 'views/message/message.html',
+                        controller:'MessageController'
                     },
-                    'ft@personal': {
+                    'ft@message': {
                         templateUrl: 'views/layout/footer.html'
                     }
                 }
@@ -252,7 +291,7 @@ angular
                         controller: 'NavbarController'
                     },
                     'sidebar@money': {
-                        templateUrl: 'views/money/sidebar.html',
+                        templateUrl: '../views/message/sidebar.html',
                     },
                     'ft@money': {
                         templateUrl: 'views/layout/footer.html'

@@ -2,12 +2,12 @@
     <div class = "head">
         <span class = "head__title">{{title_name}}</span>
 
-        <div class = "head_menu" ng-show="!isSummary" ng-mouseover="showMenu()" ng-mouseleave="backMenu()">
+        <div class = "head_menu dropdown" ng-class="{open:showDropdown}" ng-show="!isSummary" ng-mouseover="showMenu()" ng-mouseleave="backMenu()">
             <button class="head_menu__btn">{{title_name}}
               <span class="caret"></span>
             </button>
-            <ul  class="head_menu__drop" ng-show="showDropdown">
-                <li>
+            <ul  class="dropdown-menu" >
+                <li class="border_bottom">
                     <a ng-click="switchIdentify('rel')">与我相关的</a>
                 </li>
                 <li>
@@ -78,7 +78,7 @@
                         <p class = "communicateinfo__ptime">{{mData['ptime'] | startNow}}前</p>
                     </div>
                     <div class = "outinfo">
-                        <img class = "outinfo__icon"></img>
+                        <img class = "outinfo__icon" ng-src="/images/forex_icon/{{mData['relation']['out_type']|lowercase}}@2x.png"></img>
                         <div class = "base_info">
                             <p class="base_info__name">{{mData['relation']['out_type']}}</p>
                             <p class="communicateinfo__ptime base_info__htime">持仓7小时23分钟</p>
