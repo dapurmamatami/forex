@@ -61,18 +61,40 @@
 
     <div class="row">
         <div class="col-xs-6 col-xs-offset-3 form-inline">
-            <div class="input-group">
-                <input class="form-control" type="text">
-                <span class="input-group-btn">
-                    <a class="btn btn-primary" href="">
-                        入金
-                    </a>
-                </span>
-            </div>
+            <form name="depositForm" novalidate>
+                <div class="input-group">
+                    <input class="form-control"
+                           name="depositAmount" 
+                           type="text"
+                           required
+                           ng-model="deposit.amount"
+                           ng-pattern="/^(?!0+(?:\.0+)?$)(?:[1-9]\d*|0)(?:\.\d{1,2})?$/"
+                           tw-amount-valid
+                           min-amount="deposit.minAmount">
+                    <span class="input-group-btn">
+                        <a class="btn btn-primary" href="" ng-disabled="depositForm.$invalid">
+                            入金
+                        </a>
+                    </span>
+                </div>
+                <div ng-show="depositForm.depositAmount.$dirty">
+                    <p class="alert alert-danger" ng-show="depositForm.depositAmount.$error.required">
+                        请输入金额
+                    </p>
+                    <p class="alert alert-danger" ng-show="depositForm.depositAmount.$error.pattern">
+                        请输入正确的金额。只能为整数或者小数，小数点后最多两位数字
+                    </p>
+                    <p class="alert alert-danger" ng-show="depositForm.depositAmount.$error.twAmountValid">
+                        第一次入金最少 200 美元，以后每次入金最少 100 美元。
+                    </p>
+                </div>
+            </form>
         </div>
     </div>
     <p class="mg-tp-50">
-        今日汇率：1 美元 = {{}}
+        今日汇率：1 美元 = {{FXRate.value}} 人民币
     </p>
-    <p>数据仅供参考，交易时以银行柜台成交价为准 更新时间:2014-12-12</p>
+    <p>数据仅供参考，交易时以银行柜台成交价为准 更新时间：
+        {{FXRate.date.year}}-{{FXRate.date.month}}-{{FXRate.date.day}}
+    </p>
 </div>

@@ -479,14 +479,23 @@ input[type="checkbox"] {
         }
       }
 
-      .form-control:not(:first-child):not(:last-child) {
-        border-radius: 0;
+      .form-control {
+
+        &:first-child {
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;        
+        }
+
+        &:not(:first-child):not(:last-child) {
+          border-radius: 0;
+        }
       }
 
       .input-group-btn {
         
         .btn {
-          position: relative;        
+          position: relative;
+          width: 100%;        
         }
 
         &:first-child > .btn {
@@ -496,7 +505,7 @@ input[type="checkbox"] {
         }
 
         &:last-child > .btn {
-          margin-left: -2px;
+          margin-left: -1px;
           border-top-left-radius: 0;
           border-bottom-left-radius: 0;
         }  

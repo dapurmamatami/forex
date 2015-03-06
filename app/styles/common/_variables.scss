@@ -12,15 +12,18 @@ $gray-lighter:           #999 !default;
 $gray-lightest:          #f5f5f5 !default;
 
 $brand-primary:         #008acd !default;
-$brand-light:		    #009de7 !default;
-$brand-dark:            #0074ae !default;
+$brand-light-primary:   #009de7 !default;
+$brand-light:		    #009de7 !default; // 不用了
+$brand-dark-primary:    #0074ae !default;  
+$brand-dark:            #0074ae !default; // 不用了
 $brand-white:           #fff !default;
 $brand-red:             #cc3300 !default;
 $brand-green:           #3c9300 !default;
 $brand-yellow:          #C7B92A !default;
-
-$brand-border-color:    #ccc !default;
-$brand-border-light:    #ddd !default;
+$brand-border:          #ccc !default;
+$brand-border-color:    #ccc !default;    // 不用了
+$brand-light-border:    #ddd !default;  
+$brand-border-light:    #ddd !default;    // 不用了
 
 $gray-darker:           lighten(#000, 13.5%) !default; // #222
 $gray:                  lighten(#000, 33.5%) !default; // #555
@@ -33,11 +36,11 @@ $brand-warning:         #cc3300 !default;
 $brand-danger:          #ef4d4d !default;
 
 //== Background image path
-$image_path:             '../images/';
-$forex_icon_path:        '../images/forex_icon/';
-$flag_icon_path:         '../images/flag_icon/';
-$bank_icon_path:         '../images/bank_icon/';
-$money_icon_path:        '../images/money_icon/';     
+$image_path:             "../images/";
+$forex_icon_path:        "../images/forex_icon/";
+$flag_icon_path:         "../images/flag_icon/";
+$bank_icon_path:         "../images/bank_icon/";
+$money_icon_path:        "../images/money_icon/";     
 
 //== Scaffolding
 //
@@ -136,9 +139,9 @@ $border-radius-small:       3px !default;
 //## For btns
 $btn-font-weight:                normal !default;
 
-$btn-default-color:              $brand-primary !default;
+$btn-default-color:              $gray-dark !default;
 $btn-default-bg:                 #fff !default;
-$btn-default-border:             $brand-primary !default;
+$btn-default-border:             $brand-border !default;
 
 $btn-primary-color:              #fff !default;
 $btn-primary-bg:                 $brand-primary !default;

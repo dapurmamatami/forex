@@ -16,6 +16,12 @@
             font-weight: 700;
         }
     }
+
+    .alert-danger {
+        margin-top: 10px;
+        margin-bottom: 0;
+        padding: 5px;
+    }
     
     @include e(title) {
         display: inline-block;

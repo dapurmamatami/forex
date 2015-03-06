@@ -30,28 +30,28 @@
         .filter('startNow', startNow);
 
     function startNow() {
-        return function (timeStamp) {
-            if (typeof timeStamp === 'undefined') {
+        return function (timestamp) {
+            if (typeof timestamp === 'undefined') {
                 return;
             }
 
-            if (timeStamp < 60) {
-                return timeStamp + '秒';
+            if (timestamp < 60) {
+                return timestamp + '秒';
             }
 
-            if (timeStamp < 60 * 60) {
-                return Math.round((timeStamp / 60)) + '分钟';
+            if (timestamp < 60 * 60) {
+                return Math.round((timestamp / 60)) + '分钟';
             }
 
-            if (timeStamp < 60 * 60 *24) {
-                return Math.round((timeStamp / (60 * 60))) + '小时';
+            if (timestamp < 60 * 60 *24) {
+                return Math.round((timestamp / (60 * 60))) + '小时';
             }
 
-            if (timeStamp < 60 * 60 * 24 * 7) {
-                return Math.round((timeStamp / (60 * 60 * 24))) + '天';
+            if (timestamp < 60 * 60 * 24 * 7) {
+                return Math.round((timestamp / (60 * 60 * 24))) + '天';
             }
 
-            return Math.round((timeStamp / (60 * 60 * 24 * 7))) + '周';
+            return Math.round((timestamp / (60 * 60 * 24 * 7))) + '周';
         }
     }
 })();
