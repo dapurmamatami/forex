@@ -1,0 +1,30 @@
+@include b(sidebar_intro) {
+
+    @include e(safe_icon) {
+        display: inline-block;
+        vertical-align: top;
+        width: 30px;
+        height: 30px;
+        @include img-retina($money_icon_path + 'safe.png', $money_icon_path + 'safe@2x.png', 30px, 30px);
+        background-repeat: no-repeat;
+        background-position: 50%;
+    }
+
+    @include e(fast_icon) {
+        @extend .sidebar_intro__safe_icon;
+        @include img-retina($money_icon_path + 'fast.png', $money_icon_path + 'fast@2x.png', 30px, 30px);
+    }
+
+    @include e(title) {
+        display: inline-block;
+        vertical-align: top;
+        margin: 0 0 0 15px;
+        line-height: 30px;
+        font-size: 24px;
+    }
+
+    @include e(tip) {
+        margin-top: 10px;
+        color: $gray-light;
+    }
+}
