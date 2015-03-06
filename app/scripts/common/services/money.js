@@ -11,7 +11,8 @@
             var service = {
                 getLastEquity: getLastEquity,
                 getDepositAmnt: getDepositAmnt,
-                getFXRate: getFXRate
+                getFXRate: getFXRate,
+                deposit: deposit
             };
             return service;
 
@@ -58,7 +59,21 @@
                 return $http.get('/get_parity');
             }
 
-
+            /**
+             * Money Service 入金
+             *
+             * @method deposit
+             * @param 
+             * @return  
+             * }
+             */
+            function deposit(amount) {
+                return $http.get('/pay', {
+                    params: {
+                        amount: amount
+                    }
+                });
+            }
 
         }
 })();

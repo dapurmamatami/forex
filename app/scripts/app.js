@@ -80,6 +80,7 @@ angular
         $urlRouterProvider.otherwise('/personal/communicate_info');
 
         $stateProvider
+
             .state('personal', {
                 views: {
                     '': {
@@ -273,6 +274,18 @@ angular
                             var ctrlRoot = modifyCtrlName(subPage);
                             var ctrlName = ctrlPrefix + ctrlRoot + ctrlSuffix;
                             return ctrlName;
+                        }
+                    }
+                }
+            })
+
+            // 各种静态页面的配置
+            .state('static', {
+                url: '/static/:subPage',
+                views: {
+                    '@': {
+                        templateUrl: function ($stateParams) {
+                            return 'views/web/' + $stateParams.subPage + '.html';
                         }
                     }
                 }

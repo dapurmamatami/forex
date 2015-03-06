@@ -17,9 +17,12 @@ $brand-light:		    #009de7 !default; // 不用了
 $brand-dark-primary:    #0074ae !default;  
 $brand-dark:            #0074ae !default; // 不用了
 $brand-white:           #fff !default;
-$brand-red:             #cc3300 !default;
-$brand-green:           #3c9300 !default;
-$brand-yellow:          #C7B92A !default;
+$brand-danger:          #cc3300 !default;
+$brand-red:             #cc3300 !default; // 不用了
+$brand-success:         #3c9300 !default;
+$brand-green:           #3c9300 !default; // 不用了
+$brand-warning:         #C7B92A !default;
+$brand-yellow:          #C7B92A !default; // 不用了
 $brand-border:          #ccc !default;
 $brand-border-color:    #ccc !default;    // 不用了
 $brand-light-border:    #ddd !default;  
@@ -27,13 +30,11 @@ $brand-border-light:    #ddd !default;    // 不用了
 
 $gray-darker:           lighten(#000, 13.5%) !default; // #222
 $gray:                  lighten(#000, 33.5%) !default; // #555
-$brand-success:         #5cb85c !default;
+
 $brand-info:            #589eef !default;
 $brand-light-info:      #589ecf !default;
 $brand-lightest-info:   #eef5fa !default;
 $brand-unactive:        #e6e6e6 !default;
-$brand-warning:         #cc3300 !default;
-$brand-danger:          #ef4d4d !default;
 
 //== Background image path
 $image_path:             "../images/";
@@ -166,7 +167,7 @@ $btn-warning-border:             darken($btn-warning-bg, 5%) !default;
 
 $btn-danger-color:               #fff !default;
 //$btn-danger-bg:                  $brand-danger !default;
-$btn-danger-bg:                  $brand-red !default;
+$btn-danger-bg:                  $brand-danger !default;
 $btn-danger-border:              darken($btn-danger-bg, 5%) !default;
 
 $btn-link-disabled-color:        $gray-light !default;

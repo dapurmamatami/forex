@@ -6,9 +6,9 @@
         .module('tigerwitPersonalApp')
         .controller('MoneyDepositController', MoneyDepositController);
 
-    MoneyDepositController.$inject = ['$scope', '$modal', 'money'];
+    MoneyDepositController.$inject = ['$scope','$window', '$modal', 'money'];
 
-    function MoneyDepositController($scope, $modal, money) {
+    function MoneyDepositController($scope, $window, $modal, money) {
         $scope.deposit = {
             amount: '',          // 金额
             minAmount: '',       // 最小金额
@@ -21,8 +21,9 @@
                 day: ''
             }
         };
-        $scope.openDepositModal = openDepositModal;
-        var date;
+        $scope.deposit = deposit;
+        var date,
+            w;
 
         money.getDepositAmnt().then(function (data) {
             $scope.deposit.minAmount = data.limit;
@@ -36,10 +37,26 @@
             $scope.FXRate.date.day = date.getDate();
         });
 
+        function deposit() {
+            w = $window.open('#/static/waiting');
+
+            money.deposit(Number($scope.deposit.amount).toFixed(2)).then(function (data) {
+                if (!data.is_succ) return;
+                openDepositModal();
+                w.location = data.url; 
+            });
+        }
+
         function openDepositModal() {
             $modal.open({
                 templateUrl: 'views/money/deposit_modal.html',
-                controller: ''
+                controller: function ($scope, $modalInstance) {
+                    $scope.closeModal = closeModal;
+
+                    function closeModal() {
+                        $modalInstance.dismiss();
+                    }
+                }
             });
         }
     }
