@@ -159,8 +159,14 @@
     height: 40px;
     background-position: 50%;
 
-    @include m(CMB) {
+    @include m(cmb) {
         @extend .icon-bank;
-        @include img-normal($bank_icon_path + 'CMB.png');
+        @include img-normal($bank_icon_path + 'cmb.png');
     }
+
+    @include m(icbc) {
+        @extend .icon-bank;
+        @include img-normal($bank_icon_path + 'icbc.png');    
+    }
+    
 }

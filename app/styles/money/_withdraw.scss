@@ -1,0 +1,37 @@
+@include b(withdraw_modal) {
+    @extend .setting_modal;
+
+    .bank_card {
+
+        .bank_card__name {
+            margin: 0;
+            line-height: 16px;
+            text-align: left;
+            font-size: 16px;
+        }
+
+        .bank_card__number {
+            margin-bottom: 0;
+            line-height: 24px;
+            font-size: 24px;
+        }
+    }
+
+
+    @include e(title) {
+        @extend .setting_modal__title;
+    }
+
+    @include e(tip) {
+        font-size: 15px;
+        font-weight: 700;
+
+        @include m(danger) {
+            color: $brand-danger;
+        }
+    }
+
+    @include e(confirm_info) {
+        font-size: 16px;
+    }
+}

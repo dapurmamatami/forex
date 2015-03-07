@@ -1,12 +1,100 @@
-<div class="deposit_modal">
+<div class="withdraw_modal" ng-if="step === 1">
     <div class="modal-header">
-        <h4 class="deposit_modal__title">
+        <h4 class="withdraw_modal__title">
             确认出金
+            <span>（1/3）</span>
         </h4>
     </div>
 
     <div class="modal-body">
-        <p>为了确保您的资金安全，请仔细阅读以下信息：</p>
-        <p>1. 为了您的交易安全，请确保出金前无持仓订单</p>
+        <p class="withdraw_modal__tip">
+            为了确保您的资金安全，请仔细阅读以下信息：
+        </p>
+        <p class="withdraw_modal__tip-danger">
+            1. 为了您的交易安全，请确保出金前无持仓订单
+        </p>
+        <p class="withdraw_modal__tip-danger">
+            2. 系统会暂时关闭您的复制交易功能，待出金成功后自动恢复
+        </p>
+        <p class="withdraw_modal__tip-danger">
+            3. 为了您的资金安全，我们仅支持出金到您本人的银行卡中
+        </p>
+        <p class="withdraw_modal__tip-danger">
+            4. 每次出金将会产生 $20 美金的国际汇款手续费，老虎汇每月会为您支付一次该费用
+        </p>
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn btn-danger" ng-click="toNextStep()">
+            阅读完毕，确认出金
+        </button>
+    </div>
+</div>
+
+<div class="withdraw_modal" ng-if="step === 2">
+    <div class="modal-header">
+        <h4 class="withdraw_modal__title">
+            选择银行卡
+            <span>（2/3）</span>
+        </h4>
+    </div>
+
+    <div class="modal-body">
+        <ul ng-if="cards.length > 0">
+            <li class="bank_card" ng-repeat="card in cards">
+                <div class="row">
+                    <div class="col-xs-2 text-center">
+                        <span class="icon-bank-{{card.nameEN.toLowerCase()}}"></span>
+                    </div>
+                    <div class="col-xs-6 pd-lf-0">
+                        <h4 class="bank_card__name">
+                            {{card.nameZH}}    
+                        </h4>
+                        <p class="bank_card__number">
+                            {{card.card}}
+                        </p>
+                    </div>
+                    <div class="col-xs-2 col-xs-offset-2 bank_card__chose" ng-click="choseCard(card.id)">
+                        选择
+                    </div>
+                </div>
+            </li>
+            <p class="withdraw_modal__tip-danger text-right">
+                可以到“设置 -> 我的银行卡”中添加用于出金的银行卡。
+            </p>
+        </ul>
+        <p class="text-center" ng-if="cards.length <= 0">
+            没有可以用于出金的银行卡。请到“设置 -> 我的银行卡”中添加银行卡用于出金。
+        </p>
+    </div>
+</div>
+
+<div class="withdraw_modal" ng-if="step === 3">
+    <div class="modal-header">
+        <h4 class="withdraw_modal__title">
+            确认出金信息
+            <span>（3/3）</span>
+        </h4>
+    </div>
+
+    <div class="modal-body text-center withdraw_modal__confirm_info">
+        <p>
+            账户姓名：{{realName}}
+        </p>
+        <p>
+            银行卡卡号：{{chosedCard.card}}
+        </p>
+        <p>
+            开户行：{{chosedCard.nameZH}}
+        </p>
+        <p>
+            出金金额：{{withdrawAmount | currency}}
+        </p>
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn btn-danger" ng-click="withdrawFun()">
+            确认出金
+        </button>
     </div>
 </div>

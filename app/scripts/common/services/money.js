@@ -12,7 +12,8 @@
                 getLastEquity: getLastEquity,
                 getDepositAmnt: getDepositAmnt,
                 getFXRate: getFXRate,
-                deposit: deposit
+                deposit: deposit,
+                withdraw: withdraw
             };
             return service;
 
@@ -74,6 +75,21 @@
                     }
                 });
             }
+
+            /**
+             * Money Service 出金
+             *
+             * @method withdraw
+             * @param 
+             * @return  
+             * }
+             */
+            function withdraw(amount, cardId) {
+                return $http.post('/withdraw', {
+                    amount: amount,
+                    card_id: cardId
+                });
+            } 
 
         }
 })();

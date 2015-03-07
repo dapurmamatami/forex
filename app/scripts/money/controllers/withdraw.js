@@ -16,21 +16,25 @@
             value: '',
             timestamp: ''
         };
-        $scope.withdraw = withdraw;
+        $scope.openWithdrawMdl = openWithdrawMdl;
 
         money.getFXRate().then(function (data) {
             $scope.FXRate.value = data.parity;
             $scope.FXRate.timestamp = data.update_date;
         });
 
-        function withdraw() {
-            openWithdrawMdl();
-        }
-
         function openWithdrawMdl() {
             $modal.open({
                 templateUrl: 'views/money/withdraw_modal.html',
-                controller: 'MoneyWithdrawStepController'
+                controller: 'MoneyWithdrawStepController',
+                resolve: {
+                    withdraw: function () {
+                        return $scope.withdraw;
+                    },
+                    personal: function () {
+                        return $scope.personal;
+                    }
+                }
             });
         }
 

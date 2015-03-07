@@ -10,7 +10,7 @@
         <li class="bank_card" ng-repeat="card in cards">
             <div class="row">
                 <div class="col-xs-1">
-                    <span class="icon-bank-CMB"></span>
+                    <span class="icon-bank-{{card.nameEN.toLowerCase()}}"></span>
                 </div>
                 <div class="col-xs-2 bank_card__name">
                     {{card.nameZH}}
@@ -18,7 +18,7 @@
                 <div class="col-xs-6 bank_card__number">
                     {{card.card}}
                 </div>
-                <div class="col-xs-3 bank_card__delete" ng-click="openDelModal('sm', card.id)">
+                <div class="col-xs-2 col-xs-offset-1 bank_card__delete" ng-click="openDelModal('sm', card.id)">
                     <i class="fa fa-trash"></i>删除
                 </div>
             </div>
