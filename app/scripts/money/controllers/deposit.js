@@ -15,11 +15,7 @@
         };
         $scope.FXRate = {
             value: '',
-            date: {
-                year: '',
-                month: '',
-                day: ''
-            }
+            timestamp: ''
         };
         $scope.deposit = deposit;
 
@@ -29,10 +25,7 @@
 
         money.getFXRate().then(function (data) {
             $scope.FXRate.value = data.parity;
-            var date = new Date(data.update_date * 1000);
-            $scope.FXRate.date.year = date.getFullYear();
-            $scope.FXRate.date.month = date.getMonth() + 1;
-            $scope.FXRate.date.day = date.getDate();
+            $scope.FXRate.timestamp = data.update_date;
         });
 
         function deposit(amount) {

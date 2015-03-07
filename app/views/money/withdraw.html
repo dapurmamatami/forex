@@ -40,16 +40,16 @@
         </div>
     </div>
     <p class="mg-tp-15">
-        当前账户可出金金额：${{realEquityInfo.balance}} ｜ 全部出金
+        当前账户可出金金额：{{realEquityInfo.balance | currency}} ｜ 全部出金
     </p>
     <p class="mg-tp-30">
         今日汇率：1 美元 = {{FXRate.value}} 人民币
     </p>
     <p>
-        数据仅供参考，交易时以银行柜台成交价为准 更新时间：
-        {{FXRate.date.year}}-{{FXRate.date.month}}-{{FXRate.date.day}}
+        数据仅供参考，交易时以银行柜台成交价为准。更新时间：
+        {{FXRate.timestamp | dateFormatter}}
     </p>
 </div>
-<div class="money_content" ng-if="personal.verified" >
+<div class="money_content" ng-if="!personal.verified" >
     未注册真实账户，不能出金
 </div>

@@ -46,7 +46,7 @@
                     // 有最大值限制
                     if (typeof scope.maxAmount !== 'undefined') {
 
-                        if (parseFloat(viewVal) <= parseFloat(scope.maxAmount)) {
+                        if (parseFloat(viewVal) > 0 && parseFloat(viewVal) <= parseFloat(scope.maxAmount)) {
                             controller.$setValidity('twAmountValid', true);
                             return viewVal;
                         } else {
