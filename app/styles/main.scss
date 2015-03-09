@@ -41,8 +41,11 @@
 // Module CSS
 @import "navbar/navbar";
 
+@import "account/content";
 @import "account/register";
 @import "account/login";
+@import "account/forget";
+
 
 @import "personal/side";
 @import "personal/content";

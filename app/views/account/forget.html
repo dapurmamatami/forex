@@ -1,0 +1,110 @@
+<div class="account_ctn">
+    <h4 class="account_ctn__title">
+        找回密码
+        <span>
+            ({{step}}/3)
+        </span>
+    </h4>
+
+    <form name="formStep1" novalidate ng-if="step === 1">
+        <div class="row form_row">
+            <div class="col-xs-3 text-right">
+                <label>手机号</label>
+            </div>
+            <div class="col-xs-4">
+                <input class="form-control" 
+                       name="phone" 
+                       type="text"
+                       required
+                       ng-model="phone.number"
+                       ng-pattern=""
+                       ng-focus="eliminateErr('phone is not existent')"
+                       ng-blur="checkExistence()">
+                <div ng-show="formStep1.phone.$dirty">
+                    <p class="alert alert-danger" ng-show="formStep1.phone.$error.required">
+                        请输入手机号码
+                    </p>
+                    <p class="alert alert-danger" ng-show="formStep1.phone.$error.pattern">
+                        手机号码格式错误
+                    </p>
+                    <p class="alert alert-danger" ng-show="!phone.existence">
+                        该手机号码未注册
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row form_row">
+            <div class="col-xs-3 text-right">
+                <label>验证码</label>
+            </div>
+            <div class="col-xs-2">
+                <input class="form-control" 
+                       name="verifyCode"
+                       type="text"
+                       required
+                       ng-model="phone.verifyCode"
+                       ng-focus="eliminateErr('verify code is incorrect')">
+                <div ng-show="formStep1.verifyCode.$dirty">
+                    <p class="alert alert-danger" ng-show="formStep1.verifyCode.$error.required">
+                        请输入验证码
+                    </p>
+                    <p class="alert alert-danger" ng-show="!phone.correct">
+                        验证码错误
+                    </p>
+                </div>
+            </div>
+            <div class="col-xs-2">
+                <span tw-verify-timer  ng-disabled="formStep1.phone.$invalid || !phone.existence" ng-click="getVerifyCode()">
+                </span>
+            </div>
+        </div>
+        <div class="row mg-tp-30">
+            <div class="col-xs-4 col-xs-offset-3">
+                <button class="btn btn-danger" ng-disabled="formStep1.$invalid" ng-click="submitFormStep1()">
+                    下一步
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <form name="formStep1" novalidate ng-if="step === 2">
+        <div class="row form_row">
+            <div class="col-xs-3 text-right">
+                <label>新密码</label>
+            </div>
+            <div class="col-xs-4">
+                <input class="form-control" type="text">
+            </div>
+        </div>
+        <div class="row form_row">
+            <div class="col-xs-3 text-right">
+                <label>确认密码</label>
+            </div>
+            <div class="col-xs-4">
+                <input class="form-control" type="text">
+            </div>
+        </div>
+        <div class="row mg-tp-30">
+            <div class="col-xs-4 col-xs-offset-3">
+                <button class="btn btn-danger" ng-click="goNextStep()">
+                    下一步
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <div class="row" ng-if="step === 3">
+        <div class="col-xs-4 col-xs-offset-3 text-center">
+            <h3 class="">
+                新密码设置成功！
+            </h3>
+            <p class="account_ctn__tip">
+                注意：您的 MT4 客户端登陆密码也同时被修改为新密码
+            </p>
+            <button class="btn btn-danger">
+                重新登录
+            </button>
+        </div>
+    </div>
+
+</div>

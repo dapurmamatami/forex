@@ -14,7 +14,7 @@
             restrict: 'A',
             scope: {},
             replace: true,
-            template: '<span class="btn btn-primary" style="width:95px; padding: 6px;">' + 
+            template: '<span class="btn btn-primary">' + 
                         '<span ng-show="timer.start">' + '获取验证码' + '</span>' +        
                         '<span ng-show="timer.running">' + '{{timer.seconds}}' + '</span>' + 
                         '<span ng-show="timer.restart">' + '重新获取' + '</span>' + 

@@ -17,7 +17,7 @@
                                type="text"
                                required
                                ng-model="phone.oldNumber"
-                               ng-focus="eliminateError('phone is incorrect')">
+                               ng-focus="eliminateErr('phone is incorrect')">
                         <div ng-show="formStep1.oldPhone.$dirty">
                             <p class="alert alert-danger" ng-show="formStep1.oldPhone.$error.required">
                                 请输入当前手机号码
@@ -38,7 +38,7 @@
                                type="text"
                                required
                                ng-model="password.number"
-                               ng-focus="eliminateError('password is incorrect')">
+                               ng-focus="eliminateErr('password is incorrect')">
                         <div ng-show="formStep1.password.$dirty">
                             <p class="alert alert-danger" ng-show="formStep1.password.$error.required">
                                 请输入密码
@@ -72,7 +72,7 @@
                                required
                                ng-model="phone.newNumber"
                                ng-pattern=""
-                               ng-focus="eliminateError('phone is existent')"
+                               ng-focus="eliminateErr('phone is existent')"
                                ng-blur="checkExistence()">
                         <div ng-show="formStep2.newPhone.$dirty">
                             <p class="alert alert-danger" ng-show="formStep2.newPhone.$error.required">
@@ -96,7 +96,8 @@
                                name="verifyCode"
                                type="text"
                                required
-                               ng-model="verifyCode.number">
+                               ng-model="verifyCode.number"
+                               ng-focus="eliminateErr('verify code is incorrect')">
                         <div ng-show="formStep2.verifyCode.$dirty">
                             <p class="alert alert-danger" ng-show="formStep2.verifyCode.$error.required">
                                 请输入验证码
@@ -107,7 +108,7 @@
                         </div>
                     </div>
                     <div class="col-xs-3">
-                        <span tw-verify-timer ng-disabled="formStep2.newPhone.$invalid || phone.existence" ng-click="getVerifyCode()"></span>
+                        <span class="verify_code_btn" tw-verify-timer ng-disabled="formStep2.newPhone.$invalid || phone.existence" ng-click="getVerifyCode()"></span>
                     </div>
                 </div>
             </form>

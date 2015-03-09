@@ -86,3 +86,9 @@
     }
 }
 
+@include b(verify_code_btn) {
+    width: 100%;
+    padding: 6px !important;
+    line-height: 20px;
+}
+

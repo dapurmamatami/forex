@@ -28,7 +28,7 @@
         $scope.checkExistence = checkExistence;
         $scope.getVerifyCode = getVerifyCode;
         $scope.submitFormStep2 = submitFormStep2;
-        $scope.eliminateError = eliminateError;
+        $scope.eliminateErr = eliminateErr;
         $scope.closeModal = closeModal;
         $scope.gotoLogin = gotoLogin;
         var token = '';
@@ -82,13 +82,20 @@
         function submitFormStep2() {
             account.changePhone(null, null, token, $scope.phone.newNumber, $scope.verifyCode.number).then(function (data) {
                 
+                if (!data.is_succ) {
+
+                    if (data.error_msg === '验证码不正确') {
+                        $scope.verifyCode.correct = false;
+                    }
+                }
+
                 if (data.is_succ) {
                     $scope.step++;
                 }
             });
         }
 
-        function eliminateError(message) {
+        function eliminateErr(message) {
 
             if (message === 'phone is incorrect') {
                 $scope.phone.correct = true;
@@ -100,6 +107,10 @@
 
             if (message === 'phone is existent') {
                 $scope.phone.existence = false;
+            }
+
+            if (message === 'verify code is incorrect') {
+                $scope.verifyCode.correct = true;
             }
         }
 
