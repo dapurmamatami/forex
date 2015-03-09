@@ -153,18 +153,56 @@ angular
                         templateUrl:function($stateParams){
                           $stateParams.subPage = $stateParams.subPage || 'recommend';
                           return 'views/master/' + $stateParams.subPage + '.html';
-                        }
-                    },
-                    'controller':function(){
+                        },
+                      controllerProvider:function($stateParams){
                         var ctrlPrefix = 'Master';
                         var ctrlSuffix = 'Controller';
                         var subPage = $stateParams.subPage || 'recommend';
                         var ctrlRoot = modifyCtrlName(subPage);
                         var ctrlName = ctrlPrefix + ctrlRoot + ctrlSuffix;
                         return ctrlName;
+                      }
                     }
                 }
             })
+          .state('class',{
+            views:{
+              '@':{
+                templateUrl:'views/layout/layout-2-sm.html',
+                controller:'PersonalInfoController'
+              },
+              'hd@class': {
+                templateUrl: 'views/navbar/navbar-logined.html',
+                controller: 'NavbarController'
+              },
+              'sidebar@class':{
+                templateUrl: 'views/class/siderbar.html',
+                controller:''
+              },
+              'ft@class': {
+                templateUrl: 'views/layout/footer.html'
+              }
+            }
+          })
+          .state('class.subPage',{
+            url:'/class/:subPage',
+            views:{
+              'content@class':{
+                templateUrl:function($stateParams){
+                  $stateParams.subPage = $stateParams.subPage || 'currency';
+                  return 'views/class/' + $stateParams.subPage + '.html';
+                },
+                controllerProvider:function($stateParams){
+                  var ctrlPrefix = 'Class';
+                  var ctrlSuffix = 'Controller';
+                  var subPage = $stateParams.subPage || 'currency';
+                  var ctrlRoot = modifyCtrlName(subPage);
+                  var ctrlName = ctrlPrefix + ctrlRoot + ctrlSuffix;
+                  return ctrlName;
+                }
+              }
+            }
+          })
             .state('message',{
                 url:'/message/:type_message',
                 views:{

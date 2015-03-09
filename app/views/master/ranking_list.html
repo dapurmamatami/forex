@@ -1,11 +1,19 @@
-<div class="master_content">
+<div class="table_content">
 
-    <div class="master_content_head">
-        <h3 class="">最近 1 周的投资排行榜</h3>
-        <span class="">更新时间：2015-03-04 12:00 GMT</span>
+    <div class="head">
+        <div class="table_content_head">
+            <h3 class="">最近 1 周的投资排行榜</h3>
+            <span class="">更新时间：2015-03-04 12:00 GMT</span>
+        </div>
+        <div class="head_drop_menu dropdown">
+            <button class="head_menu__btn">最近一周
+              <span class="caret"></span>
+            </button>
+        </div>
+
     </div>
 
-    <div class="master_content_data">
+    <div class="table_content_data">
          <table class="table table-striped" >
               <thead>
                   <tr>
@@ -13,7 +21,7 @@
                       <th>复制者</th>
                       <th>交易单数</th>
                       <th>获利点数</th>
-                      <th class="master_ranking_greem">盈利率<span class="caret"></span></th>
+                      <th class="table_column_greem">盈利率<span class="caret"></span></th>
                   </tr>
               </thead>
               <tbody>
@@ -36,10 +44,12 @@
                       <td>
                           34.7
                       </td>
-                      <td class="master_ranking_border">
+                      <td class="table_greem_border">
                           +219.64%
                       </td>
                   </tr>
+
+
                   <tr>
                     <td>
                       <div class="ranking_user">
@@ -59,61 +69,18 @@
                     <td>
                       34.7
                     </td>
-                    <td class="master_ranking_border">
-                      +219.64%
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="ranking_user">
-                        <img src="/ngsrc/photo-woman.png"></img>
-                        <div class="ranking_user_info">
-                          <p class="ranking_user_info__name">KASHY07</p>
-                          <p class="ranking_user_info__addr">北京,朝阳</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      128
-                    </td>
-                    <td>
-                      34
-                    </td>
-                    <td>
-                      34.7
-                    </td>
-                    <td class="master_ranking_border">
-                      +219.64%
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="ranking_user">
-                        <img src="/ngsrc/photo-woman.png"></img>
-                        <div class="ranking_user_info">
-                          <p class="ranking_user_info__name">KASHY07</p>
-                          <p class="ranking_user_info__addr">北京,朝阳</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      128
-                    </td>
-                    <td>
-                      34
-                    </td>
-                    <td>
-                      34.7
-                    </td>
-                    <td class="master_ranking_border">
+                    <td class="table_greem_border table_buttom_border">
                       +219.64%
                     </td>
                   </tr>
               </tbody>
 
          </table>
-
-
-
+        <div class="btn-loading mg-loading" ng-click="loadMore()" tw-loading-more>
+                    <span class="btn-loading__caption">
+                        点击加载更多...
+                    </span>
+          <span class="btn-loading__icon"></span>
+        </div>
     </div>
 </div>

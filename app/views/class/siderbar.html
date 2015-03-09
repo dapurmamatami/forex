@@ -1,0 +1,15 @@
+<div class="sidebar">
+  <h4 class="sidebar__title">交易品种</h4>
+  <p>时刻关注最佳的交易品种</p>
+  <ul class="sidebar_nav" tw-sidebar-nav>
+    <li ng-class="{active: subPage === 'currency'}" ng-click="switchItem('currency')">
+      <a ng-href="#/class/currency">货币</a>
+    </li>
+    <li ng-class="{active: subPage === 'precious_metal'}" ng-click="switchItem('precious_metal')">
+      <a ng-href="#/class/precious_metal">贵金属</a>
+    </li>
+    <li ng-class="{active: subPage === 'cfd'}" ng-click="switchItem('cfd')">
+      <a ng-href="#/class/cfd">CFD</a>
+    </li>
+  </ul>
+</div>

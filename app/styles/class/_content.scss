@@ -1,0 +1,44 @@
+@include b(currency_basic){
+
+    img{
+        float:left;
+        width:50px;
+        height:36px;
+        margin-top: 10px;
+    }
+}
+@include b(gold_basic){
+
+  img{
+    float:left;
+    width:52px;
+    height:40px;
+    margin-top: 10px;
+  }
+}
+@include b(cfd_basic){
+
+  img{
+    float:left;
+    width:50px;
+    height:35px;
+    margin-top: 10px;
+  }
+}
+
+@include b(class_basic_info){
+    margin-left: 20px;
+    float:left;
+    @include e(name){
+        color:$brand-primary;
+        font-size: 19px;
+        font-weight: 700;
+        text-align: left;
+    }
+    @include e(addr){
+        font-size:16px;
+        font-weight: normal !important;
+        text-align: left;
+        color:$gray-lighter
+    }
+}

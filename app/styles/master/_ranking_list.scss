@@ -1,0 +1,32 @@
+
+@include b(head){
+    &>.head_drop_menu{
+        position:absolute;
+        top:40px;
+        left:570px;
+    }
+}
+
+
+@include b(ranking_user){
+
+    img{
+        float:left;
+        width:50px;
+        height:50px;
+    }
+   @include b(ranking_user_info){
+        margin-left: 10px;
+        float:left;
+        @include e(name){
+            color:$brand-primary;
+
+        }
+        @include e(addr){
+            font-size:16px;
+            font-weight: normal !important;
+            color:$gray-lighter
+        }
+    }
+}
+

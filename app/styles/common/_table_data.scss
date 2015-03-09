@@ -1,0 +1,51 @@
+@include b(table_content) {
+    padding: 10px;
+    min-height: 300px;
+    background-color: $brand-white;
+    border: 1px solid $brand-border-color;
+
+    @include b(table_content_head) {
+      margin-top: 30px;
+      margin-left: 20px;
+    }
+
+    .table_content_data{
+        &>table{
+            th{
+                font-size: 16px;
+                text-align: center;
+                padding: 12px !important;
+                border-bottom: 1px solid $brand-border-light !important;
+            }
+            .table_column_greem{
+                background: $brand-green;
+                color:$brand-white;
+                border-right: 1px solid $brand-green;
+                border-left: 1px solid $brand-green;
+                border-bottom: none !important;
+            }
+            .table_greem_border{
+                border-right: 1px solid $brand-green;
+                border-left: 1px solid $brand-green;
+                color:$brand-green
+            }
+            .table_buttom_border{
+                border-bottom: 1px solid $brand-green;
+                color:$brand-green
+            }
+            td:last-of-type,th:last-of-type{
+              widows: 10%;
+            }
+            td {
+                vertical-align: middle !important;
+                text-align: center;
+                border-top: none !important;
+                font-weight: 600;
+                padding:14px !important;
+                font-size: 15px;
+            }
+        }
+  }
+
+
+}

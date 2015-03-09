@@ -34,6 +34,10 @@
 @import "common/carousel";
 @import "common/sidebar";
 
+
+@import "common/table_data";
+
+
 // Module CSS
 @import "navbar/navbar";
 @import "account/register";
@@ -44,8 +48,11 @@
 @import "personal/topic_detail";
 @import "personal/share_side";
 
-@import "master/content";
-@import "master/content_ranking_list";
+@import "master/recommend";
+@import "master/ranking_list";
+
+@import "class/content";
+@import "class/currency";
 
 @import "invest/index";
 @import "invest/statistics";
