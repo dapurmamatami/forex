@@ -1,0 +1,52 @@
+<div class="login">
+    <div class="row">
+        <div class="col-xs-8">
+            <div class="login__logo">
+            </div>
+        </div>
+        <div class="col-xs-4">
+            <h4 class="login__title">账户登陆</h4>
+            <form name="loginForm" novalidate>
+                <input class="form-control" 
+                       name="id"
+                       type="text"
+                       placeholder="请输入手机号码"
+                       required
+                       ng-model="account.id"
+                       ng-focus="eliminateErr()">
+                <div ng-show="loginForm.id.$dirty">
+                    <p class="alert alert-danger" ng-show="loginForm.id.$error.required">
+                        请输入手机号码
+                    </p>
+                </div>
+
+                <input class="form-control" 
+                       name="password"
+                       type="text"
+                       placeholder="请输入密码"
+                       required
+                       ng-model="account.password"
+                       ng-focus="eliminateErr()">
+                <div ng-show="loginForm.password.$dirty">
+                    <p class="alert alert-danger" ng-show="loginForm.password.$error.required">
+                        请输入密码
+                    </p>
+                    <p class="alert alert-danger" ng-show="!account.correct">
+                        用户名或者密码错误
+                    </p>
+                </div>       
+                       
+                <button class="btn btn-danger" ng-disabled="loginForm.$invalid" ng-click="login()">
+                    登陆
+                </button>
+            </form>
+            <p class="text-right mg-tp-15">
+                <a class="login__forget" href="">忘记密码</a>
+            </p>
+            <span class="login__register">
+                立即注册
+                <i class="fa fa-angle-right"></i>
+            </span>
+        </div>
+    </div>
+</div>

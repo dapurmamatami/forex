@@ -30,7 +30,8 @@
             getBankCrds: getBankCrds,
             modCardsProp: modCardsProp,
             addBankCrd: addBankCrd,
-            delBankCrd: delBankCrd
+            delBankCrd: delBankCrd,
+            login: login
         };
         return service;
 
@@ -369,6 +370,17 @@
             });
         }
 
+        /**
+         * Account Service 登陆
+         * 
+         * @method login
+         */ 
+        function login(id, password) {
+            return $http.post('/login', {
+                phone: id,
+                password: password
+            });
+        } 
 
     }
 })();

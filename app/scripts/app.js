@@ -77,7 +77,7 @@ angular
     .module('tigerwitPersonalApp')
     .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$controllerProvider',
             function ($stateProvider, $urlRouterProvider, $httpProvider, $controllerProvider) {
-        $urlRouterProvider.otherwise('/personal');
+        $urlRouterProvider.otherwise('/account/login');
 
         $stateProvider
 
@@ -127,7 +127,7 @@ angular
                     }
                 }
             })
-            .state('master',{
+            .state('master', {
                 views:{
                     '@':{
                         templateUrl:'views/layout/layout-2-sm.html',
@@ -146,7 +146,7 @@ angular
                     }
                 }
             })
-            .state('master.subPage',{
+            .state('master.subPage', {
                 url:'/master/:subPage',
                 views:{
                     'content@master':{
@@ -203,7 +203,7 @@ angular
               }
             }
           })
-            .state('message',{
+            .state('message', {
                 url:'/message/:type_message',
                 views:{
                     '@':{
@@ -348,6 +348,39 @@ angular
                             var ctrlPrefix = 'Money';
                             var ctrlSuffix = 'Controller';
                             var subPage = $stateParams.subPage || 'history';
+                            var ctrlRoot = modifyCtrlName(subPage);
+                            var ctrlName = ctrlPrefix + ctrlRoot + ctrlSuffix;
+                            return ctrlName;
+                        }
+                    }
+                }
+            })
+
+            .state('account', {
+                views: {
+                    '@': {
+                        templateUrl: 'views/layout/layout-1.html'
+                    },
+                    'hd@account': {
+                        templateUrl: 'views/layout/header.html',
+                    },
+                    'ft@account': {
+                        templateUrl: 'views/layout/footer.html'
+                    }
+                }
+            })
+            .state('account.subPage', {
+                url: '/account/:subPage',
+                views: {
+                    'bd@account': {
+                        templateUrl: function($stateParams) {
+                            $stateParams.subPage = $stateParams.subPage || 'login';
+                            return 'views/account/' + $stateParams.subPage + '.html';
+                        },
+                        controllerProvider: function($stateParams) {
+                            var ctrlPrefix = 'Account';
+                            var ctrlSuffix = 'Controller';
+                            var subPage = $stateParams.subPage || 'login';
                             var ctrlRoot = modifyCtrlName(subPage);
                             var ctrlName = ctrlPrefix + ctrlRoot + ctrlSuffix;
                             return ctrlName;

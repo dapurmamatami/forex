@@ -7,6 +7,7 @@
         margin-top: -8px;
     }
 }
+
 .container {
 
     @include m(main) {
@@ -80,103 +81,30 @@
 
 
 
-.doc1 {
-    .navbar-lang {
-        margin-left: 150px;
-        top: 14px;
-    }
-    @media (max-width: $screen-xs) {
-        .navbar-login {
-            display: none;
+@include b(layout-1) {
+
+    .hd {
+        @extend .container;
+        width: $container-main;
+
+        h2 {
+            margin-bottom: 30px;
+            font-weight: 700;
+
+            span {
+                font-size: 16px;
+                font-weight: 500;
+            }
         }
-    }
-    .navbar-tail {
-        .btn-magnet-lf {
-            margin-left: -5px;
-        }
-        .help-tip {
-            position: absolute;
-        }
+
     }
 
-    .module {
-
-        padding: 54px 0;
-        .container-module {
-            padding-left: 0;
-            .container {
-                width: 100%;
-            }
-            background-color: $module-sub-bg;
-            border: 1px solid #e7e7e7;
-            .h2, .hd {
-                    padding-left: 60px;
-                    margin-top: 14px;
-                    font-size: $font-size-h3;
-                    padding-bottom: 21px;
-                    border-bottom: 1px solid #f3f3f3;
-            }
-            .form-wrapper {
-                margin: 64px 0 64px 119px;
-                .col-sm-4 {
-                    width: 28%;
-                    padding-left: 4px;
-                    .form-control {
-                        height: 40px;
-                    }
-                }
-                .col-sm-5 {
-                    padding-left: 1px;
-                }
-                .btn-ex-lg {
-                    padding: 10px 76px;
-                }
-            }
-        }
-    }
     .bd {
-
-        .hd-sub {
-
-            height: 68px;
-            line-height: 79px;
-            font-size: $font-size-h3;
-            padding-left: 110px;
-            border-bottom: 1px solid $module-border;
-            p {
-                width: 100%;
-            }
-        }
-        .bd-sub {
-            padding: 0;
-            margin-top: 21px;
-            margin-bottom: 46px;
-            background-color: #fff;
-            .sidebar {
-                @extend .col-lg-3;
-                padding: 0;
-            }
-            .content {
-                margin-left: -2px;
-                background-color: #fff;
-                padding: 15px;
-                min-height: 700px;
-                @extend .col-lg-9;
-                .hd-title {
-                    padding-bottom: 5px;
-                    border-bottom: 1px solid $module-border;
-                    margin-bottom: 10px;
-                    color: $text-title-color;
-                    .title {
-                        font-size: $font-size-large;
-                        margin: 0;
-                    }
-                }
-            }
-
-        }
+        @extend .container;
+        width: $container-main;
     }
 }
+
 // 两列布局
 @include b(layout-2) {
 

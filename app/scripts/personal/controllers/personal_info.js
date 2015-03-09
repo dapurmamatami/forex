@@ -79,7 +79,7 @@
 
         function registerReal(size) {
             $modal.open({
-                templateUrl: 'views/account/register.html',
+                templateUrl: 'views/account/register_real.html',
                 controller: 'AccountRegisterRealController',
                 size: size,
                 resolve: {
