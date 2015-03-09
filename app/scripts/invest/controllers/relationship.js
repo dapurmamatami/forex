@@ -60,7 +60,7 @@
                         $scope.investors = modPropName(data.data);
                         $scope.investorSum = data.total;
                         var length = $scope.investors.length;
-                        $scope.noMoreInvestors = !hasMoreInvestors($scope.investSum, length);
+                        $scope.noMoreInvestors = !hasMoreInvestors($scope.investorSum, length);
 
                         if (length > 0) {
                             lastId = $scope.investors[length - 1].id;
