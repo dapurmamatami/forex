@@ -329,7 +329,7 @@ angular
                         controller: 'NavbarController'
                     },
                     'sidebar@money': {
-                        templateUrl: '../views/message/sidebar.html',
+                        templateUrl: 'views/money/sidebar.html',
                     },
                     'ft@money': {
                         templateUrl: 'views/layout/footer.html'

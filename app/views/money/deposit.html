@@ -13,7 +13,7 @@
                 <h2 class="deposit_pnl__title">
                     <i class="fa fa-dollar"></i>1000
                 </h2>
-                <a class="deposit_pnl__entry" href="">
+                <a class="deposit_pnl__entry" href="" ng-click="deposit(1000)">
                     选择入金
                     <i class="fa fa-angle-right"></i> 
                 </a>
@@ -25,7 +25,7 @@
                 <h2 class="deposit_pnl-red__title">
                     <i class="fa fa-dollar"></i>2000
                 </h2>
-                <a class="deposit_pnl-red__entry" href="">
+                <a class="deposit_pnl-red__entry" href="" ng-click="deposit(2000)">
                     选择入金
                     <i class="fa fa-angle-right"></i> 
                 </a>
@@ -37,7 +37,7 @@
                 <h2 class="deposit_pnl__title">
                     <i class="fa fa-dollar"></i>5000
                 </h2>
-                <a class="deposit_pnl__entry" href="">
+                <a class="deposit_pnl__entry" href="" ng-click="deposit(5000)">
                     选择入金
                     <i class="fa fa-angle-right"></i> 
                 </a>
@@ -71,6 +71,7 @@
                            ng-pattern="/^(?!0+(?:\.0+)?$)(?:[1-9]\d*|0)(?:\.\d{1,2})?$/"
                            tw-amount-valid
                            min-amount="deposit.minAmount">
+
                     <span class="input-group-btn">
                         <a class="btn btn-primary" href="" ng-disabled="depositForm.$invalid" ng-click="deposit()">
                             入金
@@ -94,7 +95,8 @@
     <p class="mg-tp-50">
         今日汇率：1 美元 = {{FXRate.value}} 人民币
     </p>
-    <p>数据仅供参考，交易时以银行柜台成交价为准 更新时间：
-        {{FXRate.date.year}}-{{FXRate.date.month}}-{{FXRate.date.day}}
+    <p>
+        数据仅供参考，交易时以银行柜台成交价为准。更新时间：
+        {{FXRate.timestamp | dateFormatter}}
     </p>
 </div>

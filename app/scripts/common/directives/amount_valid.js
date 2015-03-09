@@ -16,7 +16,8 @@
         return {
             require: '?ngModel',
             scope: {
-                minAmount: '='
+                minAmount: '=',
+                maxAmount: '='
             },
             link: function (scope, element, attrs, controller) {
                 if (!controller) return;
@@ -29,7 +30,6 @@
                         controller.$setValidity('twAmountValid', true);
                         return viewVal;
                     }
-
 
                     // 有最小值限制
                     if (typeof scope.minAmount !== 'undefined') {
@@ -44,6 +44,16 @@
                     }
 
                     // 有最大值限制
+                    if (typeof scope.maxAmount !== 'undefined') {
+
+                        if (parseFloat(viewVal) > 0 && parseFloat(viewVal) <= parseFloat(scope.maxAmount)) {
+                            controller.$setValidity('twAmountValid', true);
+                            return viewVal;
+                        } else {
+                            controller.$setValidity('twAmountValid', false);
+                            return viewVal;
+                        }
+                    }
 
                 });
             }

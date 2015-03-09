@@ -1,1 +1,56 @@
-<h1>出入金历史</h1>
+<div tw-loading-img></div>
+<div class="money_content">
+    <div class="money_history">
+        <ul class="nav nav-pills">
+            <li  ng-class="{active: type === ''}" ng-click="type === '' || getRecords('')">
+                <a href="">全部历史</a>
+            </li>
+
+            <li ng-class="{active: type === 'payment'}" ng-click="type === 'payment' || getRecords('payment')">
+                <a href="">入金历史</a>
+            </li>
+            <li ng-class="{active: type === 'withdraw'}" ng-click="type === 'withdraw' || getRecords('withdraw')">
+                <a href="">出金历史</a>
+            </li>
+        </ul>
+
+        <h3 class="money_content__title">
+            出入金历史
+        </h3>
+
+        <table class="table table-striped" ng-if="records.length > 0">
+            <thead>
+                <tr>
+                    <th>操作</th>
+                    <th>编号</th>
+                    <th>金额</th>
+                    <th>类别</th>
+                    <th>时间</th>
+                </tr>
+            </thead>
+            <tr ng-repeat="record in records">
+                <td>
+                    <span class="{{record.type}}_icon"></span>
+                    <span ng-if="record.type === 'deposit'">入金</span>
+                    <span ng-if="record.type === 'withdraw'">出金</span>                    
+                </td>
+                <td>
+                    {{record.code}}
+                </td>
+                <td>
+                    {{record.amount | currency}}
+                </td>
+                <td>
+                    {{record.statusMsg}}
+                </td>
+                <td>
+                    {{record.timestamp | dateFormatter}}
+                </td>
+            </tr>
+        </table>
+
+        <p class="text-center mg-tp-30" ng-if="records.length <= 0">
+            无数据！
+        </p>
+    </div>
+</div>

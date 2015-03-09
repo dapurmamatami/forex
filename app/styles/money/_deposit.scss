@@ -52,3 +52,32 @@
     font-size: 16px;
     color: $gray;
 }
+
+@include b(deposit_modal) {
+    @extend .setting_modal;
+
+    .btn-primary,
+    .btn-danger {
+        width: 135px;
+        padding: 6px;
+    }
+
+    @include e(title) {
+        @extend .setting_modal__title;
+    }
+
+    @include e(img) {
+    }
+
+    @include e(info) {
+        margin-top: 36px;
+
+        p {
+            margin-left: 20px;
+        }
+    }
+
+    @include e(tip) {
+        color: $brand-danger;
+    }
+}

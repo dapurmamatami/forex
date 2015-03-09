@@ -28,6 +28,7 @@
             verifyEmail: verifyEmail,
             getVerifyCode: getVerifyCode,
             getBankCrds: getBankCrds,
+            modCardsProp: modCardsProp,
             addBankCrd: addBankCrd,
             delBankCrd: delBankCrd
         };
@@ -311,6 +312,36 @@
         function getBankCrds() {
             return $http.get('/bankcard_settings');
         }
+
+        /**
+         * Account Service 完善获取的银行卡的属性
+         *
+         * @method modCardsProp
+         */
+        function modCardsProp(cards) {
+            angular.forEach(cards, function (card) {
+
+                if (card['bank_name'] === 'CMB') {
+                    card['nameEN'] = 'CMB';
+                    card['nameZH'] = '招商银行';
+                }
+                
+                if (card['bank_name'] === 'ICBC') {
+                    card['nameEN'] = 'ICBC';
+                    card['nameZH'] = '工商银行';
+                }
+
+                if (card['bank_name'] === 'CCB') {
+                    card['nameEN'] = 'CCB';
+                    card['nameZH'] = '建设银行';
+                }
+
+                if (card['bank_name'] === 'BOC') {
+                    card['nameEN'] = 'BOC';
+                    card['nameZH'] = '中国银行';
+                } 
+            });    
+        } 
 
         /**
          * Account Service 添加银行卡

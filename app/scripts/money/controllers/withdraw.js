@@ -6,9 +6,37 @@
         .module('tigerwitPersonalApp')
         .controller('MoneyWithdrawController', MoneyWithdrawController);
 
-    MoneyWithdrawController.$inject = ['$scope', 'money'];
+    MoneyWithdrawController.$inject = ['$scope', '$modal', 'money'];
 
-    function MoneyWithdrawController($scope, money) {
-        
+    function MoneyWithdrawController($scope, $modal, money) {
+        $scope.withdraw = {
+            amount: ''
+        };
+        $scope.FXRate = {
+            value: '',
+            timestamp: ''
+        };
+        $scope.openWithdrawMdl = openWithdrawMdl;
+
+        money.getFXRate().then(function (data) {
+            $scope.FXRate.value = data.parity;
+            $scope.FXRate.timestamp = data.update_date;
+        });
+
+        function openWithdrawMdl() {
+            $modal.open({
+                templateUrl: 'views/money/withdraw_modal.html',
+                controller: 'MoneyWithdrawStepController',
+                resolve: {
+                    withdraw: function () {
+                        return $scope.withdraw;
+                    },
+                    personal: function () {
+                        return $scope.personal;
+                    }
+                }
+            });
+        }
+
     }
 })();

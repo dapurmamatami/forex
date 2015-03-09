@@ -24,7 +24,7 @@
 
     @include e(delete) {
         line-height: 40px;
-        text-align: right;
+        text-align: center;
         font-size: 14px;
         font-weight: 700;
         color: $brand-primary;
@@ -32,6 +32,10 @@
         &:hover {
             cursor: pointer;
         }
+    }
+
+    @include e(chose) {
+        @extend .bank_card__delete;
     }
 }
 

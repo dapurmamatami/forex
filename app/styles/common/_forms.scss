@@ -456,6 +456,7 @@ input[type="checkbox"] {
       .input-group-btn,
       .form-control {
         display: table-cell;
+        vertical-align: top;
         width: auto;
       }
 
