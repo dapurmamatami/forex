@@ -13,6 +13,7 @@
     }
 
     @include e(title) {
+        margin-top: 0;
         margin-bottom: 50px;
         padding: 0 20px 15px;
         border-bottom: 1px solid $brand-border;
@@ -29,6 +30,11 @@
         margin-top: 15px;
         margin-bottom: 40px;
         color: $brand-danger;
+    }
+
+    @include e(step) {
+        float: right;
+        margin: 10px 20px 0 0;
     }
 }
 
