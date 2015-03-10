@@ -19,8 +19,10 @@
             require: 'ngModel',
             link: function (scope, element, attrs, controller) {
                 controller.$parsers.push(function (viewVal) {
+                    
                     if (typeof viewVal === 'undefined') {
-                        return;
+                        controller.$setValidity('twPwdValid', true);
+                        return viewVal;
                     }
 
                     if (validator.isValidPwd(viewVal)) {

@@ -13,7 +13,7 @@
             getUserInfo: getUserInfo,
             getStepInfo: getStepInfo,
             setInfo: setInfo,
-            checkNumberExistence: checkNumberExistence,
+            checkExist: checkExist,
             submitQuestionnaire: submitQuestionnaire,
             getBasicInfo: getBasicInfo,
             postLocationInfo: postLocationInfo,
@@ -31,7 +31,8 @@
             modCardsProp: modCardsProp,
             addBankCrd: addBankCrd,
             delBankCrd: delBankCrd,
-            login: login
+            login: login,
+            registerDemo: registerDemo
         };
         return service;
 
@@ -94,7 +95,7 @@
             });
         }
 
-        // 注册时提交的真实姓名和身份证号
+        // 注册真实账户时提交的真实姓名和身份证号
         function setInfo(realName, idNumber, forkCode) {
             return $http.post('/set_info', {
                 real_name: realName,
@@ -103,10 +104,18 @@
             });
         }
 
-        function checkNumberExistence(number) {
+        /**
+         * Account Service 检查号码、昵称是否已存在
+         *
+         * @method checkExist
+         * @param {String} number 可以是手机号、电子邮箱、身份证号码
+         * @param {String} username 昵称
+         */
+        function checkExist(number, username) {
             return $http.get('/exists', {
                 params: {
-                    key: number
+                    key: number,
+                    username: username
                 }
             });
         }
@@ -380,7 +389,22 @@
                 phone: id,
                 password: password
             });
-        } 
+        }
 
+        /**
+         * Account Service 注册模拟账户
+         * 
+         * @method registerDemo
+         */  
+        function registerDemo(username, phone, verifyCode, email, password, forkCode) {
+            return $http.post('/register', {
+                username: username,
+                phone: phone,
+                verify_code: verifyCode,
+                email: email,
+                password: password,
+                fork_code: forkCode
+            });
+        } 
     }
 })();

@@ -9,12 +9,13 @@
     SettingPhoneController.$inject = ['$scope', '$modalInstance', 'account'];
 
     function SettingPhoneController($scope, $modalInstance, account) {
-        $scope.step = 1;
+        $scope.step = 2;
         $scope.phone = {
             oldNumber: '',
             correct: true,     // 原手机号码是否正确
             newNumber: '',
             existence: false,   // 新手机号码是否已经认证
+            infoBack: false     // 检查新手机号码是否已经认证的方法返回的信息
         };
         $scope.password = {
             number: '',
@@ -59,17 +60,17 @@
 
         // 检查新手机号码是否已经认证过
         function checkExistence() {
+            if ($scope.phone.newNumber === undefined || $scope.phone.newNumber === '') return;
+            account.checkExist($scope.phone.newNumber).then(function (data) {
 
-            if (!$scope.phone.newNumber) {
-                return;
-            }
+                if (data.is_succ) {
+                    $scope.phone.infoBack = true;
 
-            account.checkNumberExistence($scope.phone.newNumber).then(function (data) {
-
-                if (data.data) {
-                    $scope.phone.existence = true;
-                } else {
-                    $scope.phone.existence = false;
+                    if (data.data) {
+                        $scope.phone.existence = true;
+                    } else {
+                        $scope.phone.existence = false;
+                    }
                 }
             });
 
@@ -107,6 +108,7 @@
 
             if (message === 'phone is existent') {
                 $scope.phone.existence = false;
+                $scope.phone.infoBack = false;
             }
 
             if (message === 'verify code is incorrect') {
