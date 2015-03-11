@@ -7,10 +7,10 @@
     <div ng-if="step === 1">
         <form name="registerForm" novalidate>
             <div class="row form_row">
-                <div class="col-xs-3 text-right">
+                <div class="col-xs-2 text-right">
                     <label>昵称</label>
                 </div>
-                <div class="col-xs-4">
+                <div class="col-xs-5">
                     <input class="form-control" 
                            name="username" 
                            type="text"
@@ -34,7 +34,7 @@
             </div>
 
             <div class="row form_row">
-                <div class="col-xs-3 text-right">
+                <div class="col-xs-2 text-right">
                     <label>手机号码</label>
                 </div>
                 
@@ -44,7 +44,7 @@
                            type="text"
                            required
                            ng-model="account.phone"
-                           ng-pattern="^(0|86|17951)?(13[0-9]|14[57]|15[0-35-9]|17[678]|18[0-9])[0-9]{8}$"
+                           ng-pattern="/^(0|86|17951)?(13[0-9]|14[57]|15[0-35-9]|17[678]|18[0-9])[0-9]{8}$/"
                            ng-focus="eliminateErr('phone is existent')"
                            ng-blur="checkPhoneExist()">
                     <div ng-show="registerForm.phone.$dirty">
@@ -52,7 +52,7 @@
                             请输入手机号码
                         </p>
                         <p class="alert alert-danger" ng-show="registerForm.phone.$error.pattern">
-                            请输入的正确的手机号码
+                            请输入正确的手机号
                         </p>
                         <p class="alert alert-danger" ng-show="account.phoneExist">
                             该手机号码已经注册
@@ -60,7 +60,7 @@
                     </div>
                 </div>
 
-                <div class="col-xs-1 pd-0">
+                <div class="col-xs-2 text-center">
                     <div class="check_valid">
                         <div class="check_valid__check" ng-if="!account.pInfoBack">
                             检查可用性
@@ -75,11 +75,11 @@
                 </div>
             </div>
             <div class="row form_row">
-                <div class="col-xs-3 text-right">
+                <div class="col-xs-2 text-right">
                     <label>验证码</label>
                 </div>
                 
-                <div class="col-xs-2">
+                <div class="col-xs-3">
                     <input class="form-control" 
                            name="verifyCode"
                            type="text"
@@ -103,10 +103,10 @@
             </div>
 
             <div class="row form_row">
-                <div class="col-xs-3 text-right">
+                <div class="col-xs-2 text-right">
                     <label>电子邮箱</label>
                 </div>
-                <div class="col-xs-4">
+                <div class="col-xs-5">
                     <input class="form-control" 
                            name="email" 
                            type="text"
@@ -130,10 +130,10 @@
             </div>
 
             <div class="row form_row">
-                <div class="col-xs-3 text-right">
+                <div class="col-xs-2 text-right">
                     <label>密码</label>
                 </div>
-                <div class="col-xs-4">
+                <div class="col-xs-5">
                     <input class="form-control" 
                            name="password" 
                            type="text"
@@ -151,10 +151,10 @@
                 </div>
             </div>
             <div class="row form_row">
-                <div class="col-xs-3 text-right">
+                <div class="col-xs-2 text-right">
                     <label>确认密码</label>
                 </div>
-                <div class="col-xs-4">
+                <div class="col-xs-5">
                     <input class="form-control" 
                            name="confirmPwd" 
                            type="password"
@@ -173,10 +173,10 @@
                 </div>
             </div>
             <div class="row form_row">
-                <div class="col-xs-3 text-right">
+                <div class="col-xs-2 text-right">
                     <label>邀请码</label>
                 </div>
-                <div class="col-xs-4">
+                <div class="col-xs-5">
                     <input class="form-control" 
                            name="forkCode"
                            type="text"
@@ -185,8 +185,8 @@
                 </div>
             </div>
             <div class="row mg-tp-30">
-                <div class="col-xs-4 col-xs-offset-3">
-                    <button class="btn btn-danger" ng-disabled="registerForm.$invalid || account.nameExist || account.phoneExist || account.emailExist" ng-click="register()">
+                <div class="col-xs-5 col-xs-offset-2">
+                    <button class="btn btn-danger" ng-disabled="registerForm.$invalid || account.nameExist || account.phoneExist || account.emailExist" ng-click="registerDemo()">
                         注册账户
                     </button>
                 </div>
@@ -208,7 +208,7 @@
                 <a class="btn btn-danger" href="#/personal">
                     进入个人中心
                 </a>
-                <span class="register_demo__register_real">
+                <span class="register_demo__register_real" ng-click="registerReal()">
                     开通真实账户，进行真实交易
                 </span>
             </div>

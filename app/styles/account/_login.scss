@@ -1,37 +1,57 @@
 @include b(login) {
-    border: 1px solid $brand-border;
-    background-color: #fff;
 
-    .col-xs-8 {
-        width: 600px;
-    }
+    @include e(hd) {
+        h2 {
+            margin-bottom: 30px;
+            font-weight: 700;
 
-    .col-xs-4 {
-        width: 358px;
-        height: 400px;
-        padding-right: 45px;
-
-        form {
-
-            input[type='text'] {
-                height: 40px;
-                margin-top: 20px;
-            }
-
-            .btn-danger {
-                width: 298px;
-                margin-top: 40px;
+            span {
                 font-size: 16px;
-                font-weight: 700;
-            }       
+                font-weight: 500;
+            }
         }
     }
-    
-    .alert-danger {
-        padding: 5px;
-        margin-top: 5px;
-        margin-bottom: 0;
-    }    
+
+    @include e(bd) {
+        border: 1px solid $brand-border;
+        background-color: #fff;
+
+        .col-xs-8 {
+            width: 600px;
+        }
+
+        .col-xs-4 {
+            width: 358px;
+            height: 400px;
+            padding-right: 45px;
+
+            form {
+
+                input{
+                    height: 40px;
+                    margin-top: 20px;
+                }
+
+                .btn-danger {
+                    width: 298px;
+                    margin-top: 40px;
+                    font-size: 16px;
+                    font-weight: 700;
+                }       
+            }
+        }
+        
+        .alert-danger {
+            padding: 5px;
+            margin-top: 5px;
+            margin-bottom: 0;
+        }    
+    }
+
+    @include e(ft) {
+        @extend .ft;
+        padding-top: 60px;
+    }
 
     @include e(logo) {
         display: block;

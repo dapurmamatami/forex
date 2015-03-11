@@ -17,29 +17,24 @@
 
     @include m(lg) {
         @extend .container;
-        width: $container-lg;// 1170px
+        width: $container-lg; // 1170px
     }
 
     @include m(sm) {
         @extend .container;
-        width: $container-sm;
+        width: $container-sm; // 780px;
     }
 }
 
 @include b(ft) {
     padding: 30px 0;
 
-    h4 {
-        color: $text-inverse-title-color;
-        font-size: $font-size-base;
-        margin-top: 6px;
-        margin-bottom: 14px;
-    }
     ul {
         margin-bottom: 10px;
         padding: 0;
         text-align: center;
         font-size: 0;
+
         li {
             display: inline-block;
             padding: 0 15px;
@@ -56,6 +51,7 @@
             }
         }
     }
+
     p {
         margin-bottom: 0;
         text-align: center;
@@ -85,7 +81,7 @@
 
     .hd {
         @extend .container;
-        width: $container-main;
+        width: $container-sm;
 
         h2 {
             margin-bottom: 30px;
@@ -101,7 +97,7 @@
 
     .bd {
         @extend .container;
-        width: $container-main;
+        width: $container-sm;
     }
 }
 

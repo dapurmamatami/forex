@@ -298,7 +298,8 @@ $grid-float-breakpoint-max: ($grid-float-breakpoint - 1) !default;
 // Small screen / tablet
 $container-tablet:             ((720px + $grid-gutter-width)) !default;
 //** For `$screen-sm-min` and up.
-$container-sm:                 $container-tablet !default;
+//$container-sm:                 $container-tablet !default;
+$container-sm:                  780px !default;
 
 // Medium screen / desktop
 $container-desktop:            ((940px + $grid-gutter-width)) !default;

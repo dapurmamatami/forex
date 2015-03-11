@@ -14,7 +14,7 @@
             getStepInfo: getStepInfo,
             setInfo: setInfo,
             checkExist: checkExist,
-            submitQuestionnaire: submitQuestionnaire,
+            submitQuest: submitQuest,
             getBasicInfo: getBasicInfo,
             postLocationInfo: postLocationInfo,
             getCountries: getCountries,
@@ -134,7 +134,13 @@
             });
         }
 
-        function submitQuestionnaire(employment, income, experience) {
+        /**
+         * Account Service 提交问卷（风险调查）
+         *
+         * @method submitQuest
+         * @param 
+         */
+        function submitQuest(employment, income, experience) {
             return $http.post('/questionnaire', {
                 current_situation: employment,
                 yearly_income: income,

@@ -1,0 +1,249 @@
+<div class="account_register">
+    <div class="account_register__step" ng-if="step === 1">
+        <div class="modal-header">
+            <button class="close" ng-click="closeModal()">X</button>
+            <span class="account_register__step_tip">
+                还差 3 步就能完成
+            </span>
+            <h3 class="modal-title">
+                基本信息
+            </h3>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-xs-5 text-center">
+                    <img class="account_register__photo_logo" src="/ngsrc/photo-man.png">
+                </div>
+                <div class="col-xs-7">
+                    <form name="formStep1" novalidate>
+                        <div class="form-group">
+                            <label>真实姓名</label>
+                            <input class="form-control" 
+                                   name="name" 
+                                   type="text"
+                                   required
+                                   ng-model="account.name"
+                                   ng-pattern="/^[\u4e00-\u9fa5\.]{2,20}$/">
+                            <div ng-show="formStep1.name.$dirty">
+                                <p class="alert alert-danger" ng-show="formStep1.name.$error.required">
+                                    请填写姓名
+                                </p>
+                                <p class="alert alert-danger" ng-show="formStep1.name.$error.pattern">
+                                    名字为 2-20 个汉字以及 . 号
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>身份证号</label>
+                            <input class="form-control" 
+                                   name="idNumber"
+                                   type="text"
+                                   required 
+                                   ng-model="account.id.number"
+                                   ng-pattern="/(^\d{15}$)|(^\d{17}([0-9]|X)$)/"
+                                   ng-focus="eliminateErr()">
+                            <div ng-show="formStep1.idNumber.$dirty">
+                                <p class="alert alert-danger" ng-show="formStep1.idNumber.$error.required">
+                                    请填写身份证号
+                                </p>
+                                <p class="alert alert-danger" ng-show="formStep1.idNumber.$error.pattern">
+                                    15 或 18 位数字，最后一位为字母时用大写 X
+                                </p>
+                                <p class="alert alert-danger" ng-show="account.id.existence">
+                                    该身份证号已经注册！
+                                </p>
+                                <p class="alert alert-danger" ng-show="!account.id.valid">
+                                    该身份证号无效！
+                                </p>
+                            </div>
+                        </div>
+                    </form>    
+                </div>
+            </div>
+            <div class="account_register__tip">
+                <h4>
+                    我们为什么需要此类资料？
+                </h4>
+                <p>
+                老虎汇接受英国 FCA 监管，FCA 要求所有交易者都是真实有效用户，顾我们只将您的相关资料转交给英国 FCA 进行监管核查，我们将对您的信息严格保密，觉不会泄露给第三方。  
+                </p>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-disabled="formStep1.$invalid || account.id.existence || !account.id.valid" ng-click="submitFormStep1()">
+                下一步
+            </button>
+        </div>
+    </div>
+
+    <div class="account_register__step" ng-if="step === 2">
+        <div class="modal-header">
+            <button class="close" ng-click="closeModal()">X</button>
+            <span class="account_register__step_tip">
+                还差 2 步就能完成
+            </span>
+            <h3 class="modal-title">
+                上传证件照
+            </h3>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="upload_form">
+                    <div class="col-xs-6 text-center">
+                        <div class="upload_form__front" data-face="front" tw-upload-form >
+                        </div>
+                    </div>
+                    <div class="col-xs-6 text-center">
+                        <div class="upload_form__back" data-face="back" tw-upload-form >
+                        </div> 
+                    </div>
+                    <div class="col-xs-6 text-center">
+                        <div class="upload_form__tip">
+                            <p class="alert alert-warning" ng-if="account.id.frontImgStatus === 1">
+                                {{account.id.frontImgMsg}}
+                            </p>
+                            <p class="alert alert-success" ng-if="account.id.frontImgStatus === 2">
+                                {{account.id.frontImgMsg}}
+                            </p>
+                            <p class="alert alert-danger" ng-if="account.id.frontImgStatus === 3">
+                                {{account.id.frontImgMsg}}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 text-center">
+                        <div class="upload_form__tip">
+                            <p class="alert alert-warning" ng-if="account.id.backImgStatus === 1">
+                                {{account.id.backImgMsg}}
+                            </p>
+                            <p class="alert alert-success" ng-if="account.id.backImgStatus === 2">
+                                {{account.id.backImgMsg}}
+                            </p>
+                            <p class="alert alert-danger" ng-if="account.id.backImgStatus === 3">
+                                {{account.id.backImgMsg}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="account_register__tip">
+            * 目前只支持 png，jpg，jpeg 的图片格式，大小控制在 3M 之内。
+            </p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-disabled="account.id.frontImgStatus !== 2 || account.id.backImgStatus !== 2" ng-click="submitFormStep2()">
+                下一步
+            </button>
+        </div>
+    </div>
+
+    <div class="account_register__step" ng-if="step ===3">
+        <div class="modal-header">
+            <button class="close" ng-click="closeModal()">X</button>
+            <span class="account_register__step_tip">
+                还差 1 步就能完成
+            </span>
+            <h3 class="modal-title">
+                风险调查
+            </h3>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-xs-5 text-center">
+                    <img class="account_register__research_logo" src="/ngsrc/assess.png">
+                </div>
+                <div class="col-xs-7">
+                    <form name="formStep3" novalidate>
+                        <div class="form-group">
+                            <label>您的就业情况</label>
+                            <select class="form-control"
+                                    name="employment" 
+                                    ng-model="account.employment"
+                                    required>
+                                <option value="">请选择</option>
+                                <option value="0">受雇</option>
+                                <option value="1">自雇</option>
+                                <option value="2">退休</option>
+                                <option value="3">失业</option>
+                            </select>
+                            <div ng-show="formStep3.employment.$dirty">
+                                <p class="alert alert-danger" ng-show="formStep3.employment.$error.required">
+                                    请选择您的就业情况
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>您的年收入</label>
+                            <select class="form-control"
+                                    name="income"
+                                    ng-model="account.income"
+                                    required>
+                                <option value="">请选择</option>
+                                <option value="0">小于 10 万</option>
+                                <option value="1">10-25 万</option>
+                                <option value="2">25-50 万</option>
+                                <option value="3">50 万以上</option>
+                            </select>
+                            <div ng-show="formStep3.income.$dirty">
+                                <p class="alert alert-danger" ng-show="formStep3.income.$error.required">
+                                    请选择您的年收入
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>您的外汇经验</label>
+                            <select class="form-control"
+                                    name="experience"
+                                    ng-model="account.experience"
+                                    required>
+                                <option value="">请选择</option>
+                                <option value="0">无</option>
+                                <option value="1">小于 1 年</option>
+                                <option value="2">1-3 年</option>
+                                <option value="3">3-5 年</option>
+                                <option value="4">5 年以上</option>
+                            </select>
+                            <div ng-show="formStep3.experience.$dirty">
+                                <p class="alert alert-danger" ng-show="formStep3.experience.$error.required">
+                                    请选择您的外汇经验
+                                </p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <p class="account_register__tip">
+            我们将根据您的答案为您提供更好的交易策略和分线评估。
+            </p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-disabled="formStep3.$invalid" ng-click="submitFormStep3()">
+                下一步
+            </button>
+        </div>
+    </div>
+
+    <div class="account_register__step" ng-show="step === 4">
+        <div class="modal-header">
+            <button class="close" ng-click="closeModal()">X</button>
+            <h3 class="modal-title">
+                完成实名认证
+            </h3>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-xs-5 text-center">
+                    <img  src="/ngsrc/important.png" style="width:130px;">
+                </div>
+                <div class="col-xs-7 account_register__tip">
+                    我们将尽快审核您提交的身份认证资料，认证通过后，我们将通过短信和邮件的方式通知您，请注意查收。
+                    <p class="account_register__warning">
+                        注：审核期间并不影响您的正常交易。
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary">马上入金进行交易</button>
+        </div>
+    </div> 
+</div>

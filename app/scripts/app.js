@@ -356,6 +356,15 @@ angular
                 }
             })
 
+            .state('account.login', {
+                url: '/account/login',
+                views: {
+                    '@': {
+                        templateUrl: 'views/account/login.html',
+                        controller: 'AccountLoginController'
+                    }
+                }
+            })
             .state('account', {
                 views: {
                     '@': {
@@ -365,7 +374,7 @@ angular
                         templateUrl: 'views/layout/header.html',
                     },
                     'ft@account': {
-                        templateUrl: 'views/layout/footer.html'
+                        templateUrl: 'views/layout/footer-sm.html'
                     }
                 }
             })
@@ -374,13 +383,13 @@ angular
                 views: {
                     'bd@account': {
                         templateUrl: function($stateParams) {
-                            $stateParams.subPage = $stateParams.subPage || 'login';
+                            $stateParams.subPage = $stateParams.subPage || 'forget';
                             return 'views/account/' + $stateParams.subPage + '.html';
                         },
                         controllerProvider: function($stateParams) {
                             var ctrlPrefix = 'Account';
                             var ctrlSuffix = 'Controller';
-                            var subPage = $stateParams.subPage || 'login';
+                            var subPage = $stateParams.subPage || 'forget';
                             var ctrlRoot = modifyCtrlName(subPage);
                             var ctrlName = ctrlPrefix + ctrlRoot + ctrlSuffix;
                             return ctrlName;

@@ -6,9 +6,9 @@
         .module('tigerwitPersonalApp')
         .controller('AccountRegisterDemoController', AccountRegisterDemoController);
 
-    AccountRegisterDemoController.$inject = ['$scope', 'account'];
+    AccountRegisterDemoController.$inject = ['$scope', '$state', 'account'];
 
-    function AccountRegisterDemoController($scope, account) {
+    function AccountRegisterDemoController($scope, $state, account) {
         $scope.step = 2;
         $scope.account = {
             username: '',
@@ -27,9 +27,10 @@
         $scope.checkNameExist = checkNameExist;
         $scope.checkPhoneExist = checkPhoneExist;
         $scope.checkEmailExist = checkEmailExist;
-        $scope.register = register;
+        $scope.registerDemo = registerDemo;
         $scope.eliminateErr = eliminateErr;
         $scope.getVerifyCode = getVerifyCode;
+        $scope.registerReal = registerReal;
 
         // 检查昵称是否已存在
         function checkNameExist() {
@@ -79,7 +80,7 @@
             });
         }
 
-        function register() {
+        function registerDemo() {
             account.registerDemo($scope.account.username, $scope.account.phone, $scope.account.verifyCode,
                     $scope.account.email, $scope.account.password).then(function (data) {
                 console.info(data);
@@ -119,6 +120,11 @@
 
         function getVerifyCode() {
             account.getVerifyCode($scope.account.phone);
+        }
+
+        // 注册真实账户
+        function registerReal() {
+            $state.go('account.subPage', {subPage: 'register_real'});
         }
     }
 })();
