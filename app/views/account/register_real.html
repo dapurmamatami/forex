@@ -12,15 +12,49 @@
             </div>
 
             <div class="col-xs-7 mg-tp-15">
-                <div class="form-group">
-                    <label>真实姓名</label>
-                    <input class="form-control" type="text">
-                </div>
-
-                <div class="form-group">
-                    <label>身份证号</label>
-                    <input class="form-control" type="text">
-                </div>
+                <form name="formStep1" novalidate>
+                    <div class="form-group">
+                        <label>真实姓名</label>
+                        <input class="form-control" 
+                               name="name" 
+                               type="text"
+                               required
+                               ng-model="account.name"
+                               ng-pattern="/^[\u4e00-\u9fa5\.]{2,20}$/">
+                        <div ng-show="formStep1.name.$dirty">
+                            <p class="alert alert-danger" ng-show="formStep1.name.$error.required">
+                                请填写姓名
+                            </p>
+                            <p class="alert alert-danger" ng-show="formStep1.name.$error.pattern">
+                                名字为 2-20 个汉字以及 . 号
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>身份证号</label>
+                        <input class="form-control" 
+                               name="idNumber"
+                               type="text"
+                               required 
+                               ng-model="account.id.number"
+                               ng-pattern="/(^\d{15}$)|(^\d{17}([0-9]|X)$)/"
+                               ng-focus="eliminateErr()">
+                        <div ng-show="formStep1.idNumber.$dirty">
+                            <p class="alert alert-danger" ng-show="formStep1.idNumber.$error.required">
+                                请填写身份证号
+                            </p>
+                            <p class="alert alert-danger" ng-show="formStep1.idNumber.$error.pattern">
+                                15 或 18 位数字，最后一位为字母时用大写 X
+                            </p>
+                            <p class="alert alert-danger" ng-show="account.id.existence">
+                                该身份证号已经注册！
+                            </p>
+                            <p class="alert alert-danger" ng-show="!account.id.valid">
+                                该身份证号无效！
+                            </p>
+                        </div>
+                    </div>
+                </form> 
             </div>
         </div>
 
@@ -34,7 +68,7 @@
         </div>
 
         <div class="text-center mg-tp-30">
-            <button class="btn btn-primary" ng-disabled="" ng-click="submitFormStep1()">
+            <button class="btn btn-primary" ng-disabled="formStep1.$invalid || account.id.existence || !account.id.valid" ng-click="submitFormStep1()">
                 下一步
             </button>
         </div>
@@ -91,7 +125,7 @@
         </p>
 
         <div class="text-center mg-tp-30">
-            <button class="btn btn-primary" ng-disabled="" ng-click="submitFormStep1()">
+            <button class="btn btn-primary" ng-disabled="account.id.frontImgStatus !== 2 || account.id.backImgStatus !== 2" ng-click="submitFormStep2()">
                 下一步
             </button>
         </div>
@@ -174,7 +208,7 @@
         </p>
 
         <div class="text-center mg-tp-30">
-            <button class="btn btn-primary" ng-disabled="" ng-click="submitFormStep1()">
+            <button class="btn btn-primary" ng-disabled="formStep3.$invalid" ng-click="submitFormStep3()">
                 下一步
             </button>
         </div>
@@ -201,7 +235,7 @@
         </div>
 
         <div class="text-center mg-tp-30">
-            <button class="btn btn-primary" ng-disabled="" ng-click="submitFormStep1()">
+            <button class="btn btn-primary">
                 完成
             </button>
         </div>

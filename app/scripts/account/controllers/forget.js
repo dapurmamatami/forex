@@ -12,22 +12,21 @@
         $scope.phone = {
             number:'',
             existence: true,  // 号码是否注册
+            infoBack: false,
             verifyCode: '',
             correct: true     // 验证码是否正确
         };
         $scope.goNextStep = goNextStep;
-        $scope.checkExistence = checkExistence;
+        $scope.checkExist = checkExist;
         $scope.eliminateErr = eliminateErr;
         $scope.getVerifyCode = getVerifyCode;
 
         // 检查手机号码是否已经认证过
-        function checkExistence() {
+        function checkExist() {
+            if ($scope.phone.number === undefined || $scope.phone.number === '') return;
 
-            if (!$scope.phone.number) {
-                return;
-            }
-
-            account.checkNumberExistence($scope.phone.number).then(function (data) {
+            account.checkExist($scope.phone.number).then(function (data) {
+                $scope.phone.infoBack = true;
 
                 if (data.data) {
                     $scope.phone.existence = true;
@@ -40,6 +39,7 @@
 
         function eliminateErr(message) {
             if (message === 'phone is not existent') {
+                $scope.phone.infoBack = false;
                 $scope.phone.existence = true;
             }
         }

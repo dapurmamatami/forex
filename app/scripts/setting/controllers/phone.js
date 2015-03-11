@@ -9,7 +9,7 @@
     SettingPhoneController.$inject = ['$scope', '$modalInstance', 'account'];
 
     function SettingPhoneController($scope, $modalInstance, account) {
-        $scope.step = 2;
+        $scope.step = 1;
         $scope.phone = {
             oldNumber: '',
             correct: true,     // 原手机号码是否正确
