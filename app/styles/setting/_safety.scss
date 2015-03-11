@@ -87,8 +87,8 @@
 }
 
 @include b(verify_code_btn) {
-    width: 100%;
-    padding: 6px !important;
+    width: 90px;
+    padding: 6px 0 !important;
     line-height: 20px;
 }
 

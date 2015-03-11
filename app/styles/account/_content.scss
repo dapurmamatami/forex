@@ -6,10 +6,13 @@
 
     .btn-primary,
     .btn-danger {
-        width: 100%;
         line-height: 20px;
         font-size: 16px;
         font-weight: 700;
+    }
+
+    .btn-danger {
+        width: 100%;
     }
 
     @include e(title) {

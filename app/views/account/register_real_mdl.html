@@ -12,9 +12,9 @@
         <div class="modal-body">
             <div class="row">
                 <div class="col-xs-5 text-center">
-                    <img class="account_register__photo_logo" src="/ngsrc/photo-man.png">
+                    <div class="account_register__photo_logo"></div>
                 </div>
-                <div class="col-xs-7">
+                <div class="col-xs-7 mg-tp-15">
                     <form name="formStep1" novalidate>
                         <div class="form-group">
                             <label>真实姓名</label>
@@ -148,8 +148,8 @@
         </div>
         <div class="modal-body">
             <div class="row">
-                <div class="col-xs-5 text-center">
-                    <img class="account_register__research_logo" src="/ngsrc/assess.png">
+                <div class="col-xs-5 mg-tp-30">
+                    <div class="account_register__quest_logo"></div>
                 </div>
                 <div class="col-xs-7">
                     <form name="formStep3" novalidate>
@@ -222,7 +222,7 @@
         </div>
     </div>
 
-    <div class="account_register__step" ng-show="step === 4">
+    <div class="account_register__step" ng-if="step === 4">
         <div class="modal-header">
             <button class="close" ng-click="closeModal()">X</button>
             <h3 class="modal-title">
@@ -231,8 +231,8 @@
         </div>
         <div class="modal-body">
             <div class="row">
-                <div class="col-xs-5 text-center">
-                    <img  src="/ngsrc/important.png" style="width:130px;">
+                <div class="col-xs-5">
+                    <div class="account_register__finish_logo"></div>
                 </div>
                 <div class="col-xs-7 account_register__tip">
                     我们将尽快审核您提交的身份认证资料，认证通过后，我们将通过短信和邮件的方式通知您，请注意查收。

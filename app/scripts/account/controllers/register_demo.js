@@ -9,7 +9,7 @@
     AccountRegisterDemoController.$inject = ['$scope', '$state', 'account'];
 
     function AccountRegisterDemoController($scope, $state, account) {
-        $scope.step = 2;
+        $scope.step = 1;
         $scope.account = {
             username: '',
             nameExist: false,   // 昵称是否存在
