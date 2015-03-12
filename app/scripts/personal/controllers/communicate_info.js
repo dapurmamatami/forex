@@ -150,6 +150,7 @@
               .then(function(data){
                   if(data.statecode){
                       $scope.showOrNo = 'cm-enter';
+                      $scope.$parent.mCdata.unshift(data.data);
                       $timeout(function(){
                          $scope.showOrNo = 'cm-leave';
                       },1000);

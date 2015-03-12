@@ -160,7 +160,7 @@ angular
                         var subPage = $stateParams.subPage || 'recommend';
                         var ctrlRoot = modifyCtrlName(subPage);
                         var ctrlName = ctrlPrefix + ctrlRoot + ctrlSuffix;
-                        return ctrlName;
+                        return 'MasterRankingListController';
                       }
                     }
                 }

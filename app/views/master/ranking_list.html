@@ -2,14 +2,31 @@
 
     <div class="head">
         <div class="table_content_head">
-            <h3 class="">最近 1 周的投资排行榜</h3>
-            <span class="">更新时间：2015-03-04 12:00 GMT</span>
+            <h3 class="">{{head_title}}的投资排行榜</h3>
+            <span class="">更新时间：{{data.timestamp|dateFormatter}} GMT</span>
         </div>
-        <div class="head_drop_menu dropdown">
-            <button class="head_menu__btn">最近一周
+        <div class="head_drop_menu head_menu dropdown" ng-class="{open:showDropdown}" ng-mouseover="showMenu()" ng-mouseleave="backMenu()">
+            <button class="head_menu__btn">{{head_title}}
               <span class="caret"></span>
             </button>
-        </div>
+            <ul  class="dropdown-menu" >
+                <li class="border_bottom">
+                  <a ng-click="getMasterList(7)">最近 1 周</a>
+                </li>
+                <li class="border_bottom">
+                  <a ng-click="getMasterList(30)">最近 1 月</a>
+                </li>
+                <li>
+                  <a ng-click="getMasterList('90')">最近 3 月</a>
+                </li>
+                <li>
+                  <a ng-click="getMasterList('180')">最近 6 月</a>
+                </li>
+                <li>
+                  <a ng-click="getMasterList('360')">最近 1 年</a>
+                </li>
+            </ul>
+         </div>
 
     </div>
 
@@ -25,53 +42,28 @@
                   </tr>
               </thead>
               <tbody>
-                  <tr>
+                  <tr ng-repeat="item in data.data">
                       <td>
                           <div class="ranking_user">
-                              <img src="/ngsrc/photo-woman.png"></img>
+                              <img src="/avatar/{{item.user_code}}_50.jpg"></img>
                               <div class="ranking_user_info">
-                                  <p class="ranking_user_info__name">KASHY07</p>
-                                  <p class="ranking_user_info__addr">北京,朝阳</p>
+                                  <p class="ranking_user_info__name">{{item.username}}</p>
+                                  <p class="ranking_user_info__addr">{{item.region_cn.city_name}},{{item.region_cn.state_name}}</p>
                               </div>
                           </div>
                       </td>
                       <td>
-                          128
+                         {{item.user_code}}
                       </td>
                       <td>
-                          34
+                          {{item.total_orders}}
                       </td>
                       <td>
-                          34.7
+                          {{item.total_pips}}
                       </td>
                       <td class="table_greem_border">
-                          +219.64%
+                         {{item.profit_rate}}
                       </td>
-                  </tr>
-
-
-                  <tr>
-                    <td>
-                      <div class="ranking_user">
-                        <img src="/ngsrc/photo-woman.png"></img>
-                        <div class="ranking_user_info">
-                          <p class="ranking_user_info__name">KASHY07</p>
-                          <p class="ranking_user_info__addr">北京,朝阳</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      128
-                    </td>
-                    <td>
-                      34
-                    </td>
-                    <td>
-                      34.7
-                    </td>
-                    <td class="table_greem_border table_buttom_border">
-                      +219.64%
-                    </td>
                   </tr>
               </tbody>
 

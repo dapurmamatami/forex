@@ -18,7 +18,7 @@
     </div>
     <hr />
     <div class = "publisharea" ng-controller="PersonalTopicPublishController">
-        <img class="communicateinfo__user-icon" src="/ngsrc/photo-man.png"></img>
+        <img class="communicateinfo__user-icon" src="{{personal.smAvatar}}"></img>
         <div class="clearTop topicOrComment">
             <textarea  name="inputContent" ng-model="inputContent" ng-change="matchTopicContent()" prompt-special-input></textarea>
             <div class = "topicOrComment__doToast" ng-class="showOrNo" >
@@ -37,7 +37,7 @@
     <div class = "communicatelist" ng-repeat="item in mCdata">
         <div ng-if = "item['topic_type']==0" ng-controller="PersonalCommunicateDoController">
             <div class="communicate" ng-init="mData = item">
-                <img class = "communicateinfo__user-icon" src="/ngsrc/photo-woman.png"></img>
+                <img class = "communicateinfo__user-icon" src="/avatar/{{mData.publisher_id}}_50.jpg"></img>
                 <div class="communicate-text">
                     <span class = "focus_name" ng-click="skipToSummary(mData.publisher_id)">{{mData['publisher_name']}}</span>
                     <tw-content-show info = "mData['content']"></tw-content-show>
@@ -69,7 +69,7 @@
 
         <div ng-if = "item['topic_type']==1" ng-controller="PersonalCommunicateDoController">
             <div class="communicate" ng-init="mData = item">
-                <img class = "communicateinfo__user-icon" src="/ngsrc/photo-woman.png"></img>
+                <img class = "communicateinfo__user-icon" src="/avatar/{{mData.publisher_id}}_50.jpg"></img>
                 <div class="communicate-out">
                     <div>
                         <span class="focus_name"  ng-click="skipToSummary(mData.relation.publisher_id)">{{mData['relation']['username']}}</span>
@@ -109,7 +109,7 @@
 
         <div ng-if="item['topic_type']==2" ng-controller="PersonalCommunicateDoController">
             <div class="communicate" ng-init="mData = item">
-                <img class = "communicateinfo__user-icon" src="/ngsrc/photo-woman.png"></img>
+                <img class = "communicateinfo__user-icon" src="/avatar/{{mData.publisher_id}}_50.jpg"></img>
                 <div class="communicate-copy">
                     <div>
                         <span class="focus_name" ng-click="skipToSummary(mData.relation.be_follow_id)">{{mData['relation']['bename']}}</span>
@@ -133,7 +133,7 @@
         <div ng-if="item['topic_type']==3" ng-controller="PersonalCommunicateDoController" >
 
             <div class="communicate" ng-init="mData = item">
-                <img class = "communicateinfo__user-icon" src="/ngsrc/photo-woman.png"></img>
+                <img class = "communicateinfo__user-icon" src="/avatar/{{mData.publisher_id}}_50.jpg"></img>
                 <div class="communicate-text">
                     <span class = "focus_name" ng-click="skipToSummary(mData.publisher_id)">{{mData['publisher_name']}}</span>
                     <p class = "communicateinfo__ptime">{{mData['ptime'] | startNow}}前</p>
