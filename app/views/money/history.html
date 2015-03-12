@@ -18,36 +18,44 @@
             出入金历史
         </h3>
 
-        <table class="table table-striped" ng-if="records.length > 0">
-            <thead>
-                <tr>
-                    <th>操作</th>
-                    <th>编号</th>
-                    <th>金额</th>
-                    <th>类别</th>
-                    <th>时间</th>
+        <div ng-if="records.length > 0">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>操作</th>
+                        <th>编号</th>
+                        <th>金额</th>
+                        <th>类别</th>
+                        <th>时间</th>
+                    </tr>
+                </thead>
+                <tr ng-repeat="record in records">
+                    <td>
+                        <span class="{{record.type}}_icon"></span>
+                        <span ng-if="record.type === 'deposit'">入金</span>
+                        <span ng-if="record.type === 'withdraw'">出金</span>                    
+                    </td>
+                    <td>
+                        {{record.code}}
+                    </td>
+                    <td>
+                        {{record.amount | currency}}
+                    </td>
+                    <td>
+                        {{record.statusMsg}}
+                    </td>
+                    <td>
+                        {{record.timestamp | dateFormatter}}
+                    </td>
                 </tr>
-            </thead>
-            <tr ng-repeat="record in records">
-                <td>
-                    <span class="{{record.type}}_icon"></span>
-                    <span ng-if="record.type === 'deposit'">入金</span>
-                    <span ng-if="record.type === 'withdraw'">出金</span>                    
-                </td>
-                <td>
-                    {{record.code}}
-                </td>
-                <td>
-                    {{record.amount | currency}}
-                </td>
-                <td>
-                    {{record.statusMsg}}
-                </td>
-                <td>
-                    {{record.timestamp | dateFormatter}}
-                </td>
-            </tr>
-        </table>
+            </table>
+            <p class="btn-loading" ng-show="moreRecords" ng-click="getMoreRecords()" tw-loading-more>
+                <span class="btn-loading__caption">
+                    点击加载更多...    
+                </span>
+                <span class="btn-loading__icon"></span>
+            </p>
+        </div>
 
         <p class="text-center mg-tp-30" ng-if="records.length <= 0">
             无数据！

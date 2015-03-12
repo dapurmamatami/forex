@@ -383,13 +383,12 @@ angular
                 views: {
                     'bd@account': {
                         templateUrl: function($stateParams) {
-                            $stateParams.subPage = $stateParams.subPage || 'forget';
                             return 'views/account/' + $stateParams.subPage + '.html';
                         },
                         controllerProvider: function($stateParams) {
                             var ctrlPrefix = 'Account';
                             var ctrlSuffix = 'Controller';
-                            var subPage = $stateParams.subPage || 'forget';
+                            var subPage = $stateParams.subPage;
                             var ctrlRoot = modifyCtrlName(subPage);
                             var ctrlName = ctrlPrefix + ctrlRoot + ctrlSuffix;
                             return ctrlName;

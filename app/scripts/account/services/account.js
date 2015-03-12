@@ -32,7 +32,9 @@
             addBankCrd: addBankCrd,
             delBankCrd: delBankCrd,
             login: login,
-            registerDemo: registerDemo
+            registerDemo: registerDemo,
+            verifyCode: verifyCode,
+            setNewPwd: setNewPwd
         };
         return service;
 
@@ -311,11 +313,13 @@
          * Account Service 获取手机验证码
          * 
          * @method getVerifyCode
+         * @existence {Boolean} 给存在的手机还是不存在的手机发验证码
          */ 
-        function getVerifyCode(phone) {
+        function getVerifyCode(phone, existence) {
             return $http.get('/verify', {
                 params: {
-                    phone: phone
+                    phone: phone,
+                    exists: existence
                 }
             });
         }
@@ -411,6 +415,33 @@
                 password: password,
                 fork_code: forkCode
             });
-        } 
+        }
+
+        /**
+         * Account Service 检查验证码是否正确
+         * 忘记密码功能的第一步用到
+         * 
+         * @method verifyCode
+         */
+        function verifyCode(phone, verifyCode) {
+            return $http.post('/verifycode', {
+                phone: phone,
+                verify_code: verifyCode
+            });
+        }
+
+        /**
+         * Account Service 设置新密码
+         * 忘记密码功能的第二步用到
+         * 
+         * @method setNewPwd
+         */
+        function setNewPwd(phone, verifyCode, newPwd) {
+            return $http.post('/change_password', {
+                phone: phone,
+                code: verifyCode,
+                new_pwd: newPwd
+            });
+        }   
     }
 })();
