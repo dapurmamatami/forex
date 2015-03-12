@@ -1,6 +1,6 @@
 <div class="upload_avatar" tw-crop-image>
     <div ng-show="support">
-        <button class="close">X</button>
+        <button class="close" ng-click="closeModal()">X</button>
         <div class="row">
             <div class="col-xs-4">
                 <div id="imgPreview" class="upload_avatar__preview">
@@ -29,6 +29,6 @@
         </div>
     </div>
     <div ng-show="!support">
-        请使用 chrome
+        浏览器不支持上传头像功能，请使用 chrome
     </div>
 </div>

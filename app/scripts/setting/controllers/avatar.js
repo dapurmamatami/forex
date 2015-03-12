@@ -11,6 +11,7 @@
     function SettingAvatarController($scope, $modalInstance, personal, account) {
         $scope.personal = personal;
         $scope.uploadImg = uploadImg;
+        $scope.closeModal = closeModal;
 
         function uploadImg() {
             console.info($scope.imgDataUrl);
@@ -20,6 +21,10 @@
                     $scope.personal.lgAvatar = $scope.imgDataUrl;
                 }
             });
+        }
+
+        function closeModal() {
+            $modalInstance.dismiss();
         }
     }
 })();
