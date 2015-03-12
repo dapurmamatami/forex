@@ -1,3 +1,10 @@
+.account_ctn {
+
+    .account_register {
+        padding: 0 80px;
+    }
+}
+
 @include b(account_register) {
     $account_register: &;
 
@@ -17,6 +24,7 @@
     }
     .btn-primary {
         font-size: 16px;
+        font-weight: 700;
         padding: 8px 50px;
         
     }
@@ -32,15 +40,30 @@
     }
 
     @include e(photo_logo) {
-        width: 130px;
-        height: 130px;
-        margin-top: 6px;
+        width: 200px;
+        height: 180px;
+        margin: 0 auto;
+        @include img-normal($account_path + "photo.png");
+        background-repeat: no-repeat;
+        background-position: 50%;
     }
 
-    @include e(research_logo) {
+    @include e(quest_logo) {
         width: 150px;
         height: 160px;
-        margin-top: 30px;
+        margin: 0 auto;
+        @include img-normal($account_path + "quest.png");
+        background-repeat: no-repeat;
+        background-position: 50%;
+    }
+
+    @include e(finish_logo) {
+        width: 150px;
+        height: 160px;
+        margin: 0 auto;
+        @include img-normal($account_path + "finish.png");
+        background-repeat: no-repeat;
+        background-position: 50%;
     }
     
     @include e(tip) {

@@ -1,5 +1,5 @@
 <div class="account_register">
-    <div class="account_register__step" ng-show="personal.step === 1">
+    <div class="account_register__step" ng-if="step === 1">
         <div class="modal-header">
             <button class="close" ng-click="closeModal()">X</button>
             <span class="account_register__step_tip">
@@ -12,9 +12,9 @@
         <div class="modal-body">
             <div class="row">
                 <div class="col-xs-5 text-center">
-                    <img class="account_register__photo_logo" src="/ngsrc/photo-man.png">
+                    <div class="account_register__photo_logo"></div>
                 </div>
-                <div class="col-xs-7">
+                <div class="col-xs-7 mg-tp-15">
                     <form name="formStep1" novalidate>
                         <div class="form-group">
                             <label>真实姓名</label>
@@ -22,7 +22,7 @@
                                    name="name" 
                                    type="text"
                                    required
-                                   ng-model="name"
+                                   ng-model="account.name"
                                    ng-pattern="/^[\u4e00-\u9fa5\.]{2,20}$/">
                             <div ng-show="formStep1.name.$dirty">
                                 <p class="alert alert-danger" ng-show="formStep1.name.$error.required">
@@ -39,9 +39,9 @@
                                    name="idNumber"
                                    type="text"
                                    required 
-                                   ng-model="idNumber"
+                                   ng-model="account.id.number"
                                    ng-pattern="/(^\d{15}$)|(^\d{17}([0-9]|X)$)/"
-                                   ng-focus="eliminateError()">
+                                   ng-focus="eliminateErr()">
                             <div ng-show="formStep1.idNumber.$dirty">
                                 <p class="alert alert-danger" ng-show="formStep1.idNumber.$error.required">
                                     请填写身份证号
@@ -49,10 +49,10 @@
                                 <p class="alert alert-danger" ng-show="formStep1.idNumber.$error.pattern">
                                     15 或 18 位数字，最后一位为字母时用大写 X
                                 </p>
-                                <p class="alert alert-danger" ng-show="idNumberCheck.existence">
+                                <p class="alert alert-danger" ng-show="account.id.existence">
                                     该身份证号已经注册！
                                 </p>
-                                <p class="alert alert-danger" ng-show="!idNumberCheck.valid">
+                                <p class="alert alert-danger" ng-show="!account.id.valid">
                                     该身份证号无效！
                                 </p>
                             </div>
@@ -70,13 +70,13 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button class="btn btn-primary" ng-disabled="formStep1.$invalid" ng-click="submitFormStep1()">
+            <button class="btn btn-primary" ng-disabled="formStep1.$invalid || account.id.existence || !account.id.valid" ng-click="submitFormStep1()">
                 下一步
             </button>
         </div>
     </div>
 
-    <div class="account_register__step" ng-show="personal.step === 2">
+    <div class="account_register__step" ng-if="step === 2">
         <div class="modal-header">
             <button class="close" ng-click="closeModal()">X</button>
             <span class="account_register__step_tip">
@@ -99,27 +99,27 @@
                     </div>
                     <div class="col-xs-6 text-center">
                         <div class="upload_form__tip">
-                            <p class="alert alert-warning" ng-if="idImage.frontImageStatus === 1">
-                                正在上传...
+                            <p class="alert alert-warning" ng-if="account.id.frontImgStatus === 1">
+                                {{account.id.frontImgMsg}}
                             </p>
-                            <p class="alert alert-success" ng-if="idImage.frontImageStatus === 2">
-                                上传成功
+                            <p class="alert alert-success" ng-if="account.id.frontImgStatus === 2">
+                                {{account.id.frontImgMsg}}
                             </p>
-                            <p class="alert alert-danger" ng-if="idImage.frontImageStatus === 3">
-                                {{idImage.frontImageError}}
+                            <p class="alert alert-danger" ng-if="account.id.frontImgStatus === 3">
+                                {{account.id.frontImgMsg}}
                             </p>
                         </div>
                     </div>
                     <div class="col-xs-6 text-center">
                         <div class="upload_form__tip">
-                            <p class="alert alert-warning" ng-if="idImage.backImageStatus === 1">
-                                正在上传...
+                            <p class="alert alert-warning" ng-if="account.id.backImgStatus === 1">
+                                {{account.id.backImgMsg}}
                             </p>
-                            <p class="alert alert-success" ng-if="idImage.backImageStatus === 2">
-                                上传成功
+                            <p class="alert alert-success" ng-if="account.id.backImgStatus === 2">
+                                {{account.id.backImgMsg}}
                             </p>
-                            <p class="alert alert-danger" ng-if="idImage.backImageStatus === 3">
-                                {{idImage.backImageError}}
+                            <p class="alert alert-danger" ng-if="account.id.backImgStatus === 3">
+                                {{account.id.backImgMsg}}
                             </p>
                         </div>
                     </div>
@@ -130,13 +130,13 @@
             </p>
         </div>
         <div class="modal-footer">
-            <button class="btn btn-primary" ng-disabled="idImage.frontImageStatus !== 2 || idImage.backImageStatus !== 2" ng-click="submitFormStep2()">
+            <button class="btn btn-primary" ng-disabled="account.id.frontImgStatus !== 2 || account.id.backImgStatus !== 2" ng-click="submitFormStep2()">
                 下一步
             </button>
         </div>
     </div>
 
-    <div class="account_register__step" ng-show="personal.step ===3">
+    <div class="account_register__step" ng-if="step ===3">
         <div class="modal-header">
             <button class="close" ng-click="closeModal()">X</button>
             <span class="account_register__step_tip">
@@ -148,8 +148,8 @@
         </div>
         <div class="modal-body">
             <div class="row">
-                <div class="col-xs-5 text-center">
-                    <img class="account_register__research_logo" src="/ngsrc/assess.png">
+                <div class="col-xs-5 mg-tp-30">
+                    <div class="account_register__quest_logo"></div>
                 </div>
                 <div class="col-xs-7">
                     <form name="formStep3" novalidate>
@@ -157,7 +157,7 @@
                             <label>您的就业情况</label>
                             <select class="form-control"
                                     name="employment" 
-                                    ng-model="employment"
+                                    ng-model="account.employment"
                                     required>
                                 <option value="">请选择</option>
                                 <option value="0">受雇</option>
@@ -175,7 +175,7 @@
                             <label>您的年收入</label>
                             <select class="form-control"
                                     name="income"
-                                    ng-model="income"
+                                    ng-model="account.income"
                                     required>
                                 <option value="">请选择</option>
                                 <option value="0">小于 10 万</option>
@@ -193,7 +193,7 @@
                             <label>您的外汇经验</label>
                             <select class="form-control"
                                     name="experience"
-                                    ng-model="experience"
+                                    ng-model="account.experience"
                                     required>
                                 <option value="">请选择</option>
                                 <option value="0">无</option>
@@ -222,7 +222,7 @@
         </div>
     </div>
 
-    <div class="account_register__step" ng-show="personal.step === 4">
+    <div class="account_register__step" ng-if="step === 4">
         <div class="modal-header">
             <button class="close" ng-click="closeModal()">X</button>
             <h3 class="modal-title">
@@ -231,8 +231,8 @@
         </div>
         <div class="modal-body">
             <div class="row">
-                <div class="col-xs-5 text-center">
-                    <img  src="/ngsrc/important.png" style="width:130px;">
+                <div class="col-xs-5">
+                    <div class="account_register__finish_logo"></div>
                 </div>
                 <div class="col-xs-7 account_register__tip">
                     我们将尽快审核您提交的身份认证资料，认证通过后，我们将通过短信和邮件的方式通知您，请注意查收。

@@ -40,7 +40,14 @@
 
 // Module CSS
 @import "navbar/navbar";
-@import "account/register";
+
+@import "account/content";
+@import "account/register_demo";
+@import "account/register_real";
+@import "account/login";
+@import "account/forget";
+
+
 @import "personal/side";
 @import "personal/content";
 @import "personal/animate";

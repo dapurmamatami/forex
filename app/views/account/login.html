@@ -1,0 +1,89 @@
+<div class="login container-main">
+    <div class="login__hd">
+        <h2>
+            TigerWit
+            <span>网聚高手，汇聚财富</span>
+        </h2>
+    </div>
+    <div class="login__bd">
+        <div class="row">
+            <div class="col-xs-8">
+                <div class="login__logo">
+                </div>
+            </div>
+            <div class="col-xs-4">
+                <h4 class="login__title">账户登陆</h4>
+                <form name="loginForm" novalidate>
+                    <input class="form-control" 
+                           name="id"
+                           type="text"
+                           placeholder="请输入手机号码"
+                           required
+                           ng-model="account.id"
+                           ng-pattern=""
+                           ng-focus="eliminateErr()">
+                    <div ng-show="loginForm.id.$dirty">
+                        <p class="alert alert-danger" ng-show="loginForm.id.$error.required">
+                            请输入手机号码
+                        </p>
+                        <p class="alert alert-danger" ng-show="loginForm.id.$error.pattern">
+                            手机号码格式错误
+                        </p>
+                    </div>
+
+                    <input class="form-control" 
+                           name="password"
+                           type="password"
+                           placeholder="请输入密码"
+                           required
+                           ng-model="account.password"
+                           ng-focus="eliminateErr()">
+                    <div ng-show="loginForm.password.$dirty">
+                        <p class="alert alert-danger" ng-show="loginForm.password.$error.required">
+                            请输入密码
+                        </p>
+                        <p class="alert alert-danger" ng-show="!account.correct">
+                            用户名或者密码错误
+                        </p>
+                    </div>       
+                           
+                    <button class="btn btn-danger" ng-disabled="loginForm.$invalid" ng-click="login()">
+                        登陆
+                    </button>
+                </form>
+                <p class="text-right mg-tp-15">
+                    <a class="login__forget" href="#/account/forget">忘记密码</a>
+                </p>
+                <a class="login__register" href="#/account/register_demo">
+                    立即注册
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="login__ft">
+        <ul>
+            <li>
+                <a href="">常见问题</a>
+            </li>
+            <li>
+                <a href="">交易软件</a>
+            </li>
+            <li>
+                <a href="">代理加盟</a>
+            </li>
+            <li>
+                <a href="">成为高手</a>
+            </li>
+            <li>
+                <a href="">联系我们</a>
+            </li>
+        </ul>
+        <p>
+            老虎汇 版权所有  客服电话: 400 809 8509
+        </p>
+        <p>
+            Copyright &copy; 2014 TigerWit All Rights Reserved.
+        </p>
+    </div>
+</div>

@@ -13,8 +13,8 @@
             getUserInfo: getUserInfo,
             getStepInfo: getStepInfo,
             setInfo: setInfo,
-            checkNumberExistence: checkNumberExistence,
-            submitQuestionnaire: submitQuestionnaire,
+            checkExist: checkExist,
+            submitQuest: submitQuest,
             getBasicInfo: getBasicInfo,
             postLocationInfo: postLocationInfo,
             getCountries: getCountries,
@@ -30,7 +30,9 @@
             getBankCrds: getBankCrds,
             modCardsProp: modCardsProp,
             addBankCrd: addBankCrd,
-            delBankCrd: delBankCrd
+            delBankCrd: delBankCrd,
+            login: login,
+            registerDemo: registerDemo
         };
         return service;
 
@@ -93,7 +95,7 @@
             });
         }
 
-        // 注册时提交的真实姓名和身份证号
+        // 注册真实账户时提交的真实姓名和身份证号
         function setInfo(realName, idNumber, forkCode) {
             return $http.post('/set_info', {
                 real_name: realName,
@@ -102,10 +104,18 @@
             });
         }
 
-        function checkNumberExistence(number) {
+        /**
+         * Account Service 检查号码、昵称是否已存在
+         *
+         * @method checkExist
+         * @param {String} number 可以是手机号、电子邮箱、身份证号码
+         * @param {String} username 昵称
+         */
+        function checkExist(number, username) {
             return $http.get('/exists', {
                 params: {
-                    key: number
+                    key: number,
+                    username: username
                 }
             });
         }
@@ -124,7 +134,13 @@
             });
         }
 
-        function submitQuestionnaire(employment, income, experience) {
+        /**
+         * Account Service 提交问卷（风险调查）
+         *
+         * @method submitQuest
+         * @param 
+         */
+        function submitQuest(employment, income, experience) {
             return $http.post('/questionnaire', {
                 current_situation: employment,
                 yearly_income: income,
@@ -369,6 +385,32 @@
             });
         }
 
+        /**
+         * Account Service 登陆
+         * 
+         * @method login
+         */ 
+        function login(id, password) {
+            return $http.post('/login', {
+                phone: id,
+                password: password
+            });
+        }
 
+        /**
+         * Account Service 注册模拟账户
+         * 
+         * @method registerDemo
+         */  
+        function registerDemo(username, phone, verifyCode, email, password, forkCode) {
+            return $http.post('/register', {
+                username: username,
+                phone: phone,
+                verify_code: verifyCode,
+                email: email,
+                password: password,
+                fork_code: forkCode
+            });
+        } 
     }
 })();

@@ -86,3 +86,31 @@
     }
 }
 
+@include b(verify_code_btn) {
+    width: 90px;
+    padding: 6px 0 !important;
+    line-height: 20px;
+}
+
+@include b(check_valid) {
+    display: inline-block;
+    line-height: 34px;
+    font-weight: 700;
+
+    @include e(check) {
+        color: $brand-primary;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    @include e(valid) {
+        color: $brand-success;
+    }
+
+    @include e(invalid) {
+        color: $brand-danger;
+    }
+}
+

@@ -49,15 +49,15 @@
                 $scope.demoEquityInfo = data;
             });
         });
-
+    
         // 获取开通真实账户的进度信息
         account.getStepInfo('ReliableInformation').then(function (data) {
-
+            
             if (data.is_succ) {
-                $scope.personal.step =data.progress + 1;
+                $scope.personal.step = data.progress + 1;
             }
         });
-
+        
         //
         switchLayout();
 
@@ -77,14 +77,22 @@
             });
         }
 
+        // 打开注册真实账户的 Modal
         function registerReal(size) {
             $modal.open({
-                templateUrl: 'views/account/register.html',
-                controller: 'AccountRegisterRealController',
+                templateUrl: 'views/account/register_real_mdl.html',
+                controller: 'AccountRegisterRealMdlController',
                 size: size,
                 resolve: {
-                    personal: function () {
-                        return $scope.personal
+                    registerStep: function () {
+
+                        // 获取开通真实账户的进度信息
+                        return account.getStepInfo('ReliableInformation').then(function (data) {
+                            
+                            if (data.is_succ) {
+                                return data.progress + 1;
+                            }
+                        });
                     }
                 }
             });

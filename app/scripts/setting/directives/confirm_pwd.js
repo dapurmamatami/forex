@@ -14,14 +14,19 @@
     function twConfirmPwd() {
         return {
             require: 'ngModel',
+            scope: {
+                password: '='
+            },
             link: function (scope, element, attrs, controller) {
                 
                 controller.$parsers.push(function (viewVal) {
+                    
                     if (typeof viewVal === 'undefined') {
-                        return;
+                        controller.$setValidity('twConfirmPwd', true);
+                        return viewVal;
                     }
 
-                    if (viewVal === scope.password.newPwd) {
+                    if (viewVal === scope.password) {
                         controller.$setValidity('twConfirmPwd', true);
                         return viewVal;
                     } else {
@@ -29,14 +34,6 @@
                         return viewVal;
                     }
                 });
-
-                scope.$watch('password.newPwd', function (newVal, oldVal) {
-                    if (newVal === oldVal) {
-                        return;
-                    }
-                    scope.password.confirmPwd = '';
-                });   
-                
             }
         };
     }

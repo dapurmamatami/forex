@@ -14,13 +14,14 @@
             restrict: 'A',
             scope: {},
             replace: true,
-            template: '<span class="btn btn-primary" style="width:95px; padding: 6px;">' + 
-                        '<span ng-show="timer.start">' + '获取验证码' + '</span>' +        
-                        '<span ng-show="timer.running">' + '{{timer.seconds}}' + '</span>' + 
-                        '<span ng-show="timer.restart">' + '重新获取' + '</span>' + 
-                    '</span>',
+            template: 
+                '<span class="btn btn-primary">' + 
+                    '<span ng-show="timer.start">' + '获取验证码' + '</span>' +        
+                    '<span ng-show="timer.running">' + '{{timer.seconds}}' + '</span>' + 
+                    '<span ng-show="timer.restart">' + '重新获取' + '</span>' + 
+                '</span>',
             link: function (scope, element, attrs) {
-                var seconds = 3;
+                var seconds = 4;
                 scope.timer = {
                     seconds: seconds,
                     start: true,
@@ -31,13 +32,13 @@
                 element.bind('click', function () {
 
                     if (scope.timer.start || scope.timer.restart) {
+                        element.attr('disabled', true);
                         scope.timer.start = false;
                         scope.timer.running = true;
                         scope.timer.restart = false;
-                        updateTime();
+                        updateTime(); 
                     }
                 });
-
 
                 function updateTime() {
 
@@ -45,7 +46,8 @@
                         scope.timer.start = false;
                         scope.timer.running = false;
                         scope.timer.restart = true;
-                        scope.timer.seconds = seconds
+                        scope.timer.seconds = seconds;
+                        element.attr('disabled', false);
                         return;
                     }
                     scope.timer.seconds --;
@@ -54,7 +56,6 @@
                        updateTime();
                     }, 1000);
                 }
-                
             }
         };
     }

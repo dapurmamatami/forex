@@ -1,15 +1,14 @@
-;
 (function () {
     'use strict';
 
     angular
         .module('tigerwitPersonalApp')
-        .controller('AccountRegisterRealController', AccountRegisterRealController);
+        .controller('AccountRegisterRealMdlController', AccountRegisterRealMdlController);
+   
+    AccountRegisterRealMdlController.$inject = ['$scope', '$modalInstance', 'registerStep', 'registerReal'];
+    
 
-    AccountRegisterRealController.$inject = ['$scope', 'registerReal'];
-
-    function AccountRegisterRealController($scope, registerReal) {
-        $scope.step = 1;
+    function AccountRegisterRealMdlController($scope, $modalInstance, registerStep, registerReal) {
         $scope.account = {
             name: '',
             id: {
@@ -26,10 +25,15 @@
             income: '',
             experience: ''
         };
+        $scope.closeModal = closeModal;
         $scope.eliminateErr = eliminateErr;
         $scope.submitFormStep1 = submitFormStep1;
         $scope.submitFormStep2 = submitFormStep2;
         $scope.submitFormStep3 = submitFormStep3;
+
+        
+        //确定显示第几步
+        $scope.step = registerStep;
 
         $scope.$on('uploadFormStart', function (event, data) {
             $scope.$apply(function () {
@@ -58,7 +62,11 @@
                 $scope.account.id[data.face + 'ImgMsg'] = '上传失败！图片格式不正确';    
             });
         });
+        
 
+        function closeModal() {
+            $modalInstance.close();
+        }
 
         function goNextStep() {
             $scope.step++;
@@ -88,5 +96,6 @@
                 goNextStep();
             });
         }
+
     }
 })();
