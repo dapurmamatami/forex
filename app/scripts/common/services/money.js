@@ -142,14 +142,17 @@
 
                         if (item['status'] === -2) {
 
-                            record['statusMsg'] = '出金处理完毕（人工转账完成）';
+                            record['statusMsg'] = '出金处理完毕';
                             record['type'] = 'withdraw';
                         }
 
                         this.push(record);
                     }, records);
                     
-                    return records;
+                    return {
+                        records: records,
+                        moreRecords: data.next
+                    };
                 });
             }
         }

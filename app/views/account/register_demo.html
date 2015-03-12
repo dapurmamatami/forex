@@ -16,7 +16,7 @@
                            type="text"
                            required
                            ng-model="account.username"
-                           ng-pattern="/^[\u4e00-\u9fa5a-zA-Z\d]{4,30}$/"
+                           ng-pattern="/^[\u4e00-\u9fa5a-zA-Z\d]{4,20}$/"
                            ng-blur="checkNameExist()"
                            ng-focus="eliminateErr('username is existent')">
                     <div ng-show="registerForm.username.$dirty">
@@ -97,7 +97,7 @@
                 </div>
                 
                 <div class="col-xs-2">
-                    <span class="verify_code_btn" tw-verify-timer ng-disabled="registerForm.phone.$invalid || !account.pInfoBack || account.phoneExist" ng-click="getVerifyCode()">
+                    <span class="verify_timer_btn" tw-verify-timer ng-disabled="registerForm.phone.$invalid || !account.pInfoBack || account.phoneExist" ng-click="getVerifyCode()">
                     </span>
                 </div>
             </div>

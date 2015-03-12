@@ -50,7 +50,7 @@
             <div class="col-xs-2 text-right">
                 <label>验证码</label>
             </div>
-            <div class="col-xs-2">
+            <div class="col-xs-3">
                 <input class="form-control" 
                        name="verifyCode"
                        type="text"
@@ -67,7 +67,7 @@
                 </div>
             </div>
             <div class="col-xs-2">
-                <span class="verify_code_btn" tw-verify-timer  ng-disabled="formStep1.phone.$invalid || !phone.infoBack || !phone.existence" ng-click="getVerifyCode()">
+                <span class="verify_timer_btn" tw-verify-timer  ng-disabled="formStep1.phone.$invalid || !phone.infoBack || !phone.existence" ng-click="getVerifyCode()">
                 </span>
             </div>
         </div>
@@ -80,13 +80,26 @@
         </div>
     </form>
 
-    <form name="formStep1" novalidate ng-if="step === 2">
+    <form name="formStep2" novalidate ng-if="step === 2">
         <div class="row form_row">
             <div class="col-xs-2 text-right">
                 <label>新密码</label>
             </div>
             <div class="col-xs-5">
-                <input class="form-control" type="text">
+                <input class="form-control"
+                       name="newPwd" 
+                       type="password"
+                       required
+                       ng-model="password.newPwd"
+                       tw-pwd-valid>
+                <div ng-show="formStep2.newPwd.$dirty">
+                    <p class="alert alert-danger" ng-show="formStep2.newPwd.$error.required">
+                        请输入新密码
+                    </p>
+                    <p class="alert alert-danger" ng-show="formStep2.newPwd.$error.twPwdValid">
+                        6-15 个字符，可由大写字母，小写字母，数字，符号（有限制）组成，且至少包含其中2项
+                    </p>
+                </div>
             </div>
         </div>
         <div class="row form_row">
@@ -94,12 +107,26 @@
                 <label>确认密码</label>
             </div>
             <div class="col-xs-5">
-                <input class="form-control" type="text">
+               <input class="form-control" 
+                       name="confirmPwd"
+                       type="password"
+                       required
+                       ng-model="password.confirmPwd"
+                       tw-confirm-pwd
+                       password="password.newPwd">
+                <div ng-show="formStep2.confirmPwd.$dirty">
+                    <p class="alert alert-danger" ng-show="formStep2.confirmPwd.$error.required">
+                        请再次输入新密码
+                    </p>
+                    <p class="alert alert-danger" ng-show="formStep2.confirmPwd.$error.twConfirmPwd">
+                        输入的新密码不正确
+                    </p>
+                </div>    
             </div>
         </div>
         <div class="row mg-tp-30">
-            <div class="col-xs-5 col-xs-offset-3">
-                <button class="btn btn-danger" ng-click="goNextStep()">
+            <div class="col-xs-5 col-xs-offset-2">
+                <button class="btn btn-danger" ng-disabled="formStep2.$invalid" ng-click="submitFormStep2()">
                     下一步
                 </button>
             </div>
@@ -107,16 +134,16 @@
     </form>
 
     <div class="row" ng-if="step === 3">
-        <div class="col-xs-5 col-xs-offset-3 text-center">
-            <h3 class="">
+        <div class="col-xs-5 col-xs-offset-2 text-center">
+            <h3>
                 新密码设置成功！
             </h3>
             <p class="account_ctn__tip">
                 注意：您的 MT4 客户端登陆密码也同时被修改为新密码
             </p>
-            <button class="btn btn-danger">
+            <a class="btn btn-danger" href="#/account/login">
                 重新登录
-            </button>
+            </a>
         </div>
     </div>
 

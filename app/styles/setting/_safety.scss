@@ -86,9 +86,11 @@
     }
 }
 
-@include b(verify_code_btn) {
+@include b(verify_timer_btn) {
+    @extend .btn;
+    @extend .btn-primary;
     width: 90px;
-    padding: 6px 0 !important;
+    padding: 6px 0;
     line-height: 20px;
 }
 
