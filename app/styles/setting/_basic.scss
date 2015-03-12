@@ -14,17 +14,34 @@
     }
 }
 
-@include b(upload_portrait) {
+@include b(upload_avatar) {
+    padding:  30px;  
+
+    .close {
+        margin-top: -15px;
+    }
+
+    .btn-primary {
+        padding: 6px 50px;
+        font-size: 16px;
+        font-weight: 700;
+    }
+
     @include e(container) {
-        width: 550px;
+        width: 500px;
         height: 350px;
-        margin: 10px auto;
+        margin: 30px auto;
     }
 
     @include e(preview) {
         width: 150px;
         height: 150px;
+        margin: 0 auto;
         overflow: hidden;
+    }
+
+    @include e(input) {
+        display: none !important;
     }
 }
 
