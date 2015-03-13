@@ -21,6 +21,7 @@
             getStates: getStates,
             getCities: getCities,
             uploadImage: uploadImage,
+            uploadAvatar: uploadAvatar,
             changePwd: changePwd,
             changePhone: changePhone,
             changeEmail: changeEmail,
@@ -212,6 +213,17 @@
         function uploadImage(file) {
             return $http.post('/upload', {
                 file: file
+            });
+        }
+
+        /**
+         * Account Service 上传头像
+         * 
+         * @method uploadAvatar   
+         */
+        function uploadAvatar(imgDataUrl) {
+            return $http.post('/upload_avatar', {
+                file: imgDataUrl
             });
         }
 

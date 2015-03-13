@@ -153,8 +153,6 @@
         }
 
         function submitForm() {
-            console.info($scope.inputRegion);
-            console.info($scope.location);
             account.postLocationInfo($scope.sex.code, $scope.location, $scope.inputRegion,
                     $scope.signature).then(function (data) {
                 console.info(data);
