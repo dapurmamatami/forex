@@ -58,7 +58,7 @@
             });
         }
         function deleteTopic(topicId,index){
-            communicate.deleteTopic($scope.personal.user_codes,1,topicId)
+            communicate.deleteTopic($scope.personal.user_code,1,topicId)
             .then(function(data){
                 if(data.statecode){
                    $scope.discussList.splice(index,1);
