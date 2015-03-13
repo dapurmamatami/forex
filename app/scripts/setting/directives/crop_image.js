@@ -13,7 +13,9 @@
             restrict: 'A',
             link: function (scope, element, attrs) {
                 scope.imgDataUrl = '';
-                scope.support = true;   
+                scope.sizeLimit = true;
+                scope.support = true;
+                var MAX_SIZE = 2;   
                 var image = $(element).find('#image');
                 var input = $(element).find('#input');
 
@@ -43,7 +45,14 @@
 
                 
                 input.bind('change', function () {
-                    image.cropper('replace', window.URL.createObjectURL(this.files[0]));
+                    var fileSize = this.files[0].size / (1024 * 1024);
+
+                    if (fileSize > MAX_SIZE) {
+                        scope.sizeLimit = false;
+                    } else {
+                        scope.sizeLimit = true;
+                        image.cropper('replace', window.URL.createObjectURL(this.files[0]));
+                    }
                 });
                 
             }

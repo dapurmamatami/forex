@@ -15,6 +15,9 @@
                     <input id="input" class="upload_avatar__input" type="file" accept="image/jpeg, image/png" >
                     选择图片
                 </label>
+                <div class="alert alert-danger" ng-show="!sizeLimit">
+                    图片大小超过 2MB，请重新选择图片
+                </div>
             </div>
         </div>
         

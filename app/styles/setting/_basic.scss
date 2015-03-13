@@ -27,6 +27,11 @@
         font-weight: 700;
     }
 
+    .alert-danger {
+        padding: 5px;
+        margin-top: 10px;
+    }
+
     @include e(container) {
         width: 500px;
         height: 350px;
