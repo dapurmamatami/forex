@@ -120,11 +120,13 @@
                 @include e(area){
                     overflow: hidden;
                 }
-            @include e(saysome){
-                position:relative;
-                left:140px;
-            }
-
+                @include e(saysome){
+                    position:relative;
+                    left:140px;
+                }
+                a{
+                    cursor: pointer;
+                }
             }
             @include b(comment-item){
                 overflow: hidden;
@@ -137,7 +139,7 @@
                     @include b(ccContent-other){
                         overflow:hidden;
                         .ptime{
-                          float:left;
+                            float:left;
                         }
                         .other_info{
                             float:right;

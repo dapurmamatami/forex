@@ -5,7 +5,7 @@
     <div class="topic-info">
 
         <div class="topic-content">
-            <span class = "focus_name" >{{topicDetailData.publisher_name}}</span>
+            <span class = "focus_name" ng-click="skipToSummary(topicDetailData.publisher_id)">{{topicDetailData.publisher_name}}</span>
             <tw-content-show ng-show="content"  info="content"></tw-content-show>
             <div class="tramsmit" ng-if="topicDetailData.topic_type==3">
                 <span class = "tramsmit__focus_name">{{topicDetailData['relation']['publisher_name']}}</span>
@@ -98,7 +98,7 @@
 
                         <div class = "reply">
                             <div>
-                                <a ng-click = "loadAll()">点击查看全部回复</a>
+                                <a ng-click = "loadAll()" class="reply__loadAll">点击查看全部回复</a>
                                 <a class="reply__saysome" ng-click="showDoCommentAndAt()">我也说两句</a>
                             </div>
                             <div class="reply__area" ng-show="showReply">
@@ -118,7 +118,7 @@
                 <div style="clear:both"></div>
                 <hr/>
             </div>
-            <div class="btn-loading tail_loading" ng-click="loadMore()" tw-loading-more>
+            <div class="btn-loading tail_loading" ng-show="anyMore" ng-click="loadMore()" tw-loading-more>
                   <span class="btn-loading__caption">
                       点击加载更多...
                   </span>

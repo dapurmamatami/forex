@@ -38,7 +38,8 @@ angular
 
                         if (configParam.url === '/equity_report' ||
                                 configParam.url === '/summary_report' ||
-                                configParam.url === '/get_info_progress') {
+                                configParam.url === '/get_info_progress'||
+                                configParam.url == '/master_list') {
                             configParam.url = '/api/v2' + configParam.url;
                             return configParam;
                         }

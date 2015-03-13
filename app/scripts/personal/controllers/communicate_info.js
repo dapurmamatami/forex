@@ -78,6 +78,11 @@
                   console.log(data);
                   if(data.statecode){
                      $scope.mCdata = $scope.mCdata.concat(data.data);
+                      if(data.data.length<10){
+                         $scope.anyMore = false;
+                      }else{
+                         $scope.anyMore = true;
+                      }
                   }else{
                       console.log("statemessage:"+data.statemessage);
                   }
@@ -96,6 +101,11 @@
               .then(function(data){
                   if(data.statecode){
                       $scope.mCdata = $scope.mCdata.concat(data.data);
+                      if(data.data.length<10){
+                          $scope.anyMore = false;
+                      }else{
+                          $scope.anyMore = true;
+                      }
                   }else{
 
                   }

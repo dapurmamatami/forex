@@ -26,16 +26,18 @@
                 .then(function(data){
                     console.info(data)
                     if(data.statecode){
-                       if(!commentLength){
-                          $scope.topicDetailData = data.data;
-                          $scope.content = data.data.content;
-                          $scope.commentList = $scope.topicDetailData.comment_list;
-                          $scope.isMy = (data.data.publisher_id == $scope.personal.user_code);
-                          console.info("isMy:"+$scope.isMy);
-                       }else{
-                          $scope.commentList = $scope.commentList.concat(data.data);
-                       }
-                       $scope.$broadcast('stopLoadingMore');
+                         if(!commentLength){
+                              $scope.topicDetailData = data.data;
+                              $scope.content = data.data.content;
+                              $scope.commentList = $scope.topicDetailData.comment_list;
+                              $scope.anyMore = $scope.commentList.length<10?false:true;
+                              $scope.isMy = (data.data.publisher_id == $scope.personal.user_code);
+                              console.info("isMy:"+$scope.isMy);
+                         }else{
+                              $scope.commentList = $scope.commentList.concat(data.data);
+                              $scope.anyMore = $scope.commentList.length<10?false:true;
+                         }
+                         $scope.$broadcast('stopLoadingMore');
 
                     }
             },function(data){
@@ -141,7 +143,7 @@
               $scope.tRemainSum = 0;
         }
         function skipToSummary(touchId){
-          $state.go('/invest/summary/'+touchId);
+          $state.go('invest.subPage',{userCode:touchId,subPage:'summary'});
         }
         function loadMore(){
             var commentLength = $scope.commentList.length;

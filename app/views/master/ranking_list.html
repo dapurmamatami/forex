@@ -3,7 +3,7 @@
     <div class="head">
         <div class="table_content_head">
             <h3 class="">{{head_title}}的投资排行榜</h3>
-            <span class="">更新时间：{{data.timestamp|dateFormatter}} GMT</span>
+            <span class="">更新时间：{{timeStampe|dateFormatter}} GMT</span>
         </div>
         <div class="head_drop_menu head_menu dropdown" ng-class="{open:showDropdown}" ng-mouseover="showMenu()" ng-mouseleave="backMenu()">
             <button class="head_menu__btn">{{head_title}}
@@ -11,19 +11,19 @@
             </button>
             <ul  class="dropdown-menu" >
                 <li class="border_bottom">
-                  <a ng-click="getMasterList(7)">最近 1 周</a>
+                  <a ng-click="changeData(7)">最近 1 周</a>
                 </li>
                 <li class="border_bottom">
-                  <a ng-click="getMasterList(30)">最近 1 月</a>
+                  <a ng-click="changeData(30)">最近 1 月</a>
                 </li>
                 <li>
-                  <a ng-click="getMasterList('90')">最近 3 月</a>
+                  <a ng-click="changeData('90')">最近 3 月</a>
                 </li>
                 <li>
-                  <a ng-click="getMasterList('180')">最近 6 月</a>
+                  <a ng-click="changeData('180')">最近 6 月</a>
                 </li>
                 <li>
-                  <a ng-click="getMasterList('360')">最近 1 年</a>
+                  <a ng-click="changeData('360')">最近 1 年</a>
                 </li>
             </ul>
          </div>
@@ -42,7 +42,7 @@
                   </tr>
               </thead>
               <tbody>
-                  <tr ng-repeat="item in data.data">
+                  <tr ng-repeat="item in listData">
                       <td>
                           <div class="ranking_user">
                               <img src="/avatar/{{item.user_code}}_50.jpg"></img>
@@ -61,14 +61,14 @@
                       <td>
                           {{item.total_pips}}
                       </td>
-                      <td class="table_greem_border">
+                      <td class="table_greem_border" ng-class="{table_buttom_border:item.id == listData[listData.length-1].id}">
                          {{item.profit_rate}}
                       </td>
                   </tr>
               </tbody>
 
          </table>
-        <div class="btn-loading mg-loading" ng-click="loadMore()" tw-loading-more>
+        <div class="btn-loading mg-loading" ng-show="anyMore" ng-click="loadMore(listData[listData.length-1].id,period)" tw-loading-more>
                     <span class="btn-loading__caption">
                         点击加载更多...
                     </span>
