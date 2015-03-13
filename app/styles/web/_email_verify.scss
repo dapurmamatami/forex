@@ -1,0 +1,13 @@
+@include b(email_verify) {
+    @extend .account_ctn;
+
+    .btn-danger {
+        width: 300px;
+    }
+
+    @include e(title) {
+        text-align: center;
+        margin-top: 80px;
+        margin-bottom: 100px;
+    }
+}

@@ -83,27 +83,9 @@
 
 @import "message/message";
 @import "message/ad_side";
-/* @import "tigerwit/index";
-@import "account/register";
-@import "account/login";
-@import "account/register_succ";
-@import "account/reset_password";
-@import "account/common";
-@import "personal/index";
-@import "personal/ad_side";
-@import "personal/history";
-@import "personal/deposit";
-@import "personal/history_chart";
-@import "personal/notify";
-@import "personal/withdraw";
-@import "personal/info_side";
-@import "personal/hot_info";
-@import "settings/info";
-@import "settings/password";
-@import "master/index";
-@import "master/side_nav";
-@import "master/recommend_lst";
-@import "guides/index"; */
+
+@import "web/email_verify";
+
 
 // Utility classes
 @import "common/utilities";

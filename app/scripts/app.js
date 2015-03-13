@@ -288,7 +288,16 @@ angular
                     }
                 }
             })
-
+            
+            .state('setting.emailVerify', {
+                url: '/setting/email_verify',
+                views: {
+                    '@': {
+                        templateUrl: 'views/setting/email_verify.html',
+                        controller: 'SettingEmailVerifyController'
+                    }
+                }
+            })    
             .state('setting', {
                 views: {
                     '@': {
