@@ -102,6 +102,7 @@ angular
             })
             .state('personal.communicate_info', {
                 url: '/personal',
+                authenticate: true,
                 views: {
 
                     'content@personal': {
@@ -117,6 +118,7 @@ angular
             })
             .state('personal.topic_detail', {
                 url: '/personal/topic_detail/:topicId',
+                authenticate: true,
                 views: {
                     'content@personal': {
                         templateUrl:  'views/personal/topic_detail.html',
@@ -149,6 +151,7 @@ angular
             })
             .state('master.subPage', {
                 url:'/master/:subPage',
+                authenticate: true,
                 views:{
                     'content@master':{
                         templateUrl:function($stateParams){
@@ -187,6 +190,7 @@ angular
           })
           .state('class.subPage',{
             url:'/class/:subPage',
+            authenticate: true,
             views:{
               'content@class':{
                 templateUrl:function($stateParams){
@@ -207,6 +211,7 @@ angular
           })
             .state('message', {
                 url:'/message/:type_message',
+                authenticate: true,
                 views:{
                     '@':{
                         templateUrl:'views/layout/layout-msg.html',
@@ -232,6 +237,7 @@ angular
 
             .state('invest', {
                 url: '/invest/:userCode',
+                authenticate: true,
                 views: {
                     '@': {
                         templateUrl: 'views/layout/layout-2.html',
@@ -256,6 +262,7 @@ angular
             })
             .state('invest.subPage', {
                 url: '/:subPage',
+                authenticate: true,
                 views: {
                     '@invest': {
                         templateUrl: function ($stateParams) {
@@ -302,6 +309,7 @@ angular
             })
             .state('setting.subPage', {
                 url: '/setting/:subPage',
+                authenticate: true,
                 views: {
                     'content@setting': {
                         templateUrl: function ($stateParams) {
@@ -340,6 +348,7 @@ angular
             })
             .state('money.subPage', {
                 url: '/money/:subPage',
+                authenticate: true,
                 views: {
                     'content@money': {
                         templateUrl: function ($stateParams) {
@@ -411,7 +420,6 @@ angular
                 }
             });
 
-
             function modifyCtrlName(name) {
                 var strArray = name.split(/[-_]/i);
 
@@ -428,6 +436,23 @@ angular
 
                 return newName;
             }
+    }])
+    
+    .run(['$rootScope', '$state', '$stateParams', 'authorization', 
+            function ($rootScope, $state, $stateParams, authorization) {
+
+        $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams) {
+            $rootScope.toState = toState;
+            $rootScope.toStateParams = toStateParams;
+
+            if (toState.authenticate) {
+                authorization.authorize();
+            }
+        });
+
+        $rootScope.$on('$stateChangeSuccess', function () {
+        });        
+                
     }]);
 
 

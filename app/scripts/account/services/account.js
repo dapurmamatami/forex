@@ -33,6 +33,7 @@
             addBankCrd: addBankCrd,
             delBankCrd: delBankCrd,
             login: login,
+            logout: logout,
             registerDemo: registerDemo,
             verifyCode: verifyCode,
             setNewPwd: setNewPwd
@@ -411,6 +412,15 @@
                 phone: id,
                 password: password
             });
+        }
+
+        /**
+         * Account Service 登出
+         * 
+         * @method logout
+         */ 
+        function logout() {
+            return $http.get('/logout');
         }
 
         /**
