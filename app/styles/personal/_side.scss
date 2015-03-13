@@ -71,6 +71,11 @@
             width: 50%;
             text-align: center;
 
+            &:hover {
+                text-decoration: none;
+                cursor: pointer;
+            }
+            
             >h4 {
                 font-weight: 700;
                 color: $brand-primary;

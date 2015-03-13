@@ -5,9 +5,10 @@
         .module('tigerwitPersonalApp')
         .controller('SettingBasicController', SettingBasicController);
 
-    SettingBasicController.$inject = ['$scope', '$modal', 'account'];
+    SettingBasicController.$inject = ['$scope', '$timeout', '$modal', 'account'];
 
-    function SettingBasicController($scope, $modal, account) {
+    function SettingBasicController($scope, $timeout, $modal, account) {
+        $scope.succSave = false;
         $scope.sexes = [{
             nameZH: '男',
             code: 1
@@ -155,8 +156,14 @@
         function submitForm() {
             account.postLocationInfo($scope.sex.code, $scope.location, $scope.inputRegion,
                     $scope.signature).then(function (data) {
-                console.info(data);
-                // 弹窗 or 跳转    
+                
+                if (data.is_succ) {
+                    $scope.succSave = true;
+
+                    $timeout(function () {
+                        $scope.succSave = false;
+                    }, 1000);
+                }
             });
         }
 

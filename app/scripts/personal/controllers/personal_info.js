@@ -70,6 +70,7 @@
                 personal.copiedTraderSum = data.mycopy_count;
                 personal.copierSum = data.copy_count;
                 personal.location = data.region;
+                personal.signature = data.desc;
             });
             communicateService.getFFSum(userCode, userCode).then(function (data) {
                 personal.followingSum = data.data.attention_sum;

@@ -2,10 +2,10 @@
     <div class="row">
         <div class="col-xs-9">
             <h3 class="real_demo__name">
-            {{userType.isPersonal? personal.username: user.username}}
+                {{userType.isPersonal? personal.username: user.username}}
             </h3>
             <p>
-                今天没有被逼出来的只有两类人：一类是来不及跑的韭菜，另一类是经验丰富的老江湖。
+                {{userType.isPersonal? personal.signature: user.signature}}
             </p>
         </div>
         <div class="col-xs-3" ng-show="personal.real_id && accountType.visible">

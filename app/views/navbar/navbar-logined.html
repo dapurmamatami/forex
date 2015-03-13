@@ -37,7 +37,7 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown" ng-class="{open: infoShow}" ng-mouseover="showInfo()" ng-mouseleave="hideInfo()">
-                    <a class="nav_personal" href="">
+                    <a class="nav_personal" ng-href="#/invest/{{personal.user_code}}/summary">
                         <img class="nav_personal__photo" ng-src="{{personal.xsAvatar}}" alt="**">
                         <span class="nav_personal__name">{{personal.username}}</span>
                         <i class="fa fa-sort-down"></i>
@@ -62,24 +62,24 @@
                             </div>
                         </div>
                         <div class="social_counter">
-                            <div class="social_counter__counter_itm">
+                            <a class="social_counter__counter_itm" ng-href="#/invest/{{personal.user_code}}/relationship">
                                 <h4>{{personal.copiedTraderSum}}</h4>
                                 <p>复制</p>
-                            </div>
-                            <div class="social_counter__counter_itm">
+                            </a>
+                            <a class="social_counter__counter_itm" ng-href="#/invest/{{personal.user_code}}/relationship">
                                 <h4>{{personal.copierSum}}</h4>
                                 <p>跟随</p>
                                 <span class="social_counter__divider"></span>
-                            </div>
-                            <div class="social_counter__counter_itm">
+                            </a>
+                            <a class="social_counter__counter_itm" ng-href="#/invest/{{personal.user_code}}/relationship">
                                 <h4>{{personal.followingSum}}</h4>
                                 <p>关注</p>
-                            </div>
-                             <div class="social_counter__counter_itm">
+                            </a>
+                             <a class="social_counter__counter_itm" ng-href="#/invest/{{personal.user_code}}/relationship">
                                 <h4>{{personal.fanSum}}</h4>
                                 <p>粉丝</p>
                                 <span class="social_counter__divider"></span>
-                            </div>
+                            </a>
                         </div>
                         <div class="nav_deposit">
                             <p class="nav_deposit__number">
@@ -93,16 +93,18 @@
                             </p>
                         </div>
                         <div class="money_transfer">
-                            <a class="money_transfer__deposit" href="">
+                            <a class="money_transfer__deposit" href="#/money/deposit">
                                 入金
                             </a>
-                            <a class="money_transfer__withdraw" href="">
+                            <a class="money_transfer__withdraw" href="#/money/withdraw">
                                 出金
                             </a>
                         </div>
-                        <a class="nav_logout" href="" ng-click="logout()">
-                            退出
-                        </a>
+                        <div class="nav_logout">
+                            <a href="" ng-click="logout()">
+                                退出
+                            </a>
+                        </div>
                     </div>
                 </li>
             </ul>

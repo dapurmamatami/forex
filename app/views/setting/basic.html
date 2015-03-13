@@ -1,6 +1,5 @@
 <div class="setting_content">
     <h3 class="setting_content__title">个人信息</h3>
-    
     <div class="basic_setting">
         <div class="row">
             <div class="col-xs-4">
@@ -102,6 +101,9 @@
                     <button class="btn btn-primary" ng-disabled="basicInfoForm.$invalid" ng-click="submitForm()">
                         保存
                     </button>
+                    <div class="save_success" ng-show="succSave">
+                        <i class="fa fa-check"></i>保存成功
+                    </div>
                 </form>
             </div>
         </div>
