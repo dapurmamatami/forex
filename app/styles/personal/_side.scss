@@ -71,7 +71,8 @@
             width: 50%;
             text-align: center;
 
-            &:hover {
+            &:hover,
+            &:focus {
                 text-decoration: none;
                 cursor: pointer;
             }
