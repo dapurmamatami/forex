@@ -6,9 +6,9 @@
         .module('tigerwitPersonalApp')
         .controller('SettingPhoneController', SettingPhoneController);
 
-    SettingPhoneController.$inject = ['$scope', '$modalInstance', 'account'];
+    SettingPhoneController.$inject = ['$scope', '$state', '$modalInstance', 'account'];
 
-    function SettingPhoneController($scope, $modalInstance, account) {
+    function SettingPhoneController($scope, $state, $modalInstance, account) {
         $scope.step = 1;
         $scope.phone = {
             oldNumber: '',
@@ -121,7 +121,8 @@
         }
 
         function gotoLogin() {
-            
+            closeModal()
+            $state.go('account.login');
         }
     }
 })();

@@ -20,7 +20,7 @@
                            name="name"
                            type="text"
                            required
-                           ng-model="realInfo.name"
+                           ng-model="account.name"
                            ng-pattern="/^[\u4e00-\u9fa5\.]{2,20}$/">
                     <div ng-show="verifyForm.name.$dirty">
                         <p class="alert alert-danger" ng-show="verifyForm.name.$error.required">
@@ -41,7 +41,7 @@
                            name="idNumber"
                            type="text"
                            required 
-                           ng-model="realInfo.idNumber"
+                           ng-model="account.id.number"
                            ng-pattern="/(^\d{15}$)|(^\d{17}([0-9]|X)$)/"
                            ng-focus="eliminateError()">
                     <div ng-show="verifyForm.idNumber.$dirty">
@@ -51,16 +51,17 @@
                         <p class="alert alert-danger" ng-show="verifyForm.idNumber.$error.pattern">
                             15 或 18 位数字，最后一位为字母时用大写 X
                         </p>
-                        <p class="alert alert-danger" ng-show="idNumberCheck.existence">
+                        <p class="alert alert-danger" ng-show="account.id.existence">
                             该身份证号已经注册！
                         </p>
-                        <p class="alert alert-danger" ng-show="idNumberCheck.invalid">
+                        <p class="alert alert-danger" ng-show="!account.id.valid">
                             该身份证号无效！
                         </p>
                     </div>
                 </div>
             </div>
         </form>
+
         <label>证件照</label>
         <div class="upload_form row">
             <div class="col-xs-6 text-center">
@@ -73,45 +74,49 @@
             </div>
             <div class="col-xs-6 text-center">
                 <div class="upload_form__tip">
-                    <p class="alert alert-warning" ng-if="idImage.frontStatus === 1">
-                        {{idImage.frontMessage}}
+                    <p class="alert alert-warning" ng-if="account.id.frontImgStatus === 1">
+                        {{account.id.frontImgMsg}}
                     </p>
-                    <p class="alert alert-success" ng-if="idImage.frontStatus === 2">
-                        {{idImage.frontMessage}}
+                    <p class="alert alert-success" ng-if="account.id.frontImgStatus === 2">
+                        {{account.id.frontImgMsg}}
                     </p>
-                    <p class="alert alert-danger" ng-if="idImage.frontStatus === 3">
-                        {{idImage.frontMessage}}
+                    <p class="alert alert-danger" ng-if="account.id.frontImgStatus === 3">
+                        {{account.id.frontImgMsg}}
                     </p>
                 </div>
             </div>
             <div class="col-xs-6 text-center">
                 <div class="upload_form__tip">
-                    <p class="alert alert-warning" ng-if="idImage.backStatus === 1">
-                        {{idImage.backMessage}}
+                    <p class="alert alert-warning" ng-if="account.id.backImgStatus === 1">
+                        {{account.id.backImgMsg}}
                     </p>
-                    <p class="alert alert-success" ng-if="idImage.backStatus === 2">
-                        {{idImage.backMessage}}
+                    <p class="alert alert-success" ng-if="account.id.backImgStatus === 2">
+                        {{account.id.backImgMsg}}
                     </p>
-                    <p class="alert alert-danger" ng-if="idImage.backStatus === 3">
-                        {{idImage.backMessage}}
+                    <p class="alert alert-danger" ng-if="account.id.backImgStatus === 3">
+                        {{account.id.backImgMsg}}
                     </p>
                 </div>
             </div>
         </div>
         
         <div class="text-center mg-bt-15">
-            <button class="btn btn-primary" ng-disabled="verifyForm.$invalid || idImage.frontStatus !== 2 || idImage.backStatus !== 2" ng-click="submitVerifyForm()">
+            <button class="btn btn-primary" ng-disabled="verifyForm.$invalid || account.id.frontImgStatus !== 2 || account.id.backImgStatus !== 2" ng-click="submitVerifyForm()">
                 确定提交
             </button>
+        </div>
+
+        <div class="succ_tip" ng-show="succSave">
+            <i class="fa fa-check"></i>提交成功
         </div>
     </div>
 
     <div class="verify" ng-if="personal.verified">
         <p class="verify__info">
             尊敬的
-            <span>{{realInfo.name}}</span>
+            <span>{{account.name}}</span>
             您好，您上传的证件号为
-            <span>{{realInfo.showedIdNumber}}</span>
+            <span>{{account.id.showedIdNum}}</span>
             的证件应经通过实名认证审核，请放心交易。
         </p>            
     </div>

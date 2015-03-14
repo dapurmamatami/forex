@@ -69,13 +69,15 @@
     }
 }
 
-@include b(save_success) {
+@include b(succ_tip) {
     position: absolute;
     top: 50%;
     left: 50%;
+    margin-top: -17px;
     padding: 6px 12px;
     border: 1px solid $brand-border;
     background-color: #fff;
+    line-height: 20px;
     font-size: 16px;
     font-weight: 700;
     color: $brand-primary;

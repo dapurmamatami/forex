@@ -6,9 +6,10 @@
         .module('tigerwitPersonalApp')
         .controller('SettingSafetyController', SettingSafetyController);
 
-    SettingSafetyController.$inject = ['$scope', '$modal', 'account'];
+    SettingSafetyController.$inject = ['$scope', '$timeout', '$modal', 'account'];
 
-    function SettingSafetyController($scope, $modal, account) {
+    function SettingSafetyController($scope, $timeout, $modal, account) {
+        $scope.succSend = false;
         $scope.safetyInfo = {};
         $scope.openPwdModal = openPwdModal;
         $scope.openPhoneModal = openPhoneModal;
@@ -49,9 +50,16 @@
             });
         }
 
+        // 往邮箱发送邮件
         function verifyEmail() {
             account.verifyEmail().then(function (data) {
-                console.info(data);
+
+                if (data.is_succ) {
+                    $scope.succSend = true;
+                    $timeout(function () {
+                        $scope.succSend = false;
+                    }, 1000);
+                }
             });
         }
 

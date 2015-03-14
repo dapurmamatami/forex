@@ -21,7 +21,7 @@
                     accept: {
                         title: 'Images',
                         extensions: 'jpg,jpeg,png',
-                        mimeTypes: 'images/*'
+                        mimeTypes: 'images/jpeg, images/png'
                     },
                     formData: {
                         face: attrs.face

@@ -87,6 +87,7 @@
 }
 
 @include b(verify_timer_btn) {
+    @extend .btn;
     display: inline-block;
     width: 90px;
     padding: 6px 0;
@@ -99,8 +100,9 @@
     font-weight: 700;
     color: #fff;
 
-    &:hover {
-        cursor: pointer;
+    &:hover,
+    &:focus {
+        color: #fff;
     }
 }
 
