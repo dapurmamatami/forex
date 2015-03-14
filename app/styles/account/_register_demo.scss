@@ -1,8 +1,23 @@
+.form_row {
+
+    .checkbox {
+        
+        label {
+            line-height: 1.5;
+        }
+
+        span {
+            font-weight: 700;
+            color: $brand-primary;
+        }    
+    }
+}
+
 @include b(register_demo) {
 
     .btn-danger {
         width: 70%;
-    }
+    }  
 
     @include e(logo) {
         display: block;

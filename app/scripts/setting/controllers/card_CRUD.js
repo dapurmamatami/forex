@@ -58,17 +58,7 @@
         // 添加或者删除银行卡后更新 $scope.cards，并且更新后再关闭 modal
         function updateCards(passedScope) {
             account.getBankCrds().then(function (data) {
-
-                if (!data.is_succ) {
-                    return;
-                }
-                passedScope.cards = data.data;
-
-                if (passedScope.cards.length) {
-                    passedScope.modifyProp(passedScope.cards);
-                }
-
-                // 关闭弹窗
+                passedScope.cards = data;
                 closeModal();
             });
         }

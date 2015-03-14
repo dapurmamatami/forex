@@ -5,10 +5,10 @@
         .module('tigerwitPersonalApp')
         .controller('AccountRegisterRealMdlController', AccountRegisterRealMdlController);
    
-    AccountRegisterRealMdlController.$inject = ['$scope', '$modalInstance', 'registerStep', 'registerReal'];
+    AccountRegisterRealMdlController.$inject = ['$scope','$state', '$modalInstance', 'registerStep', 'registerReal'];
     
 
-    function AccountRegisterRealMdlController($scope, $modalInstance, registerStep, registerReal) {
+    function AccountRegisterRealMdlController($scope, $state, $modalInstance, registerStep, registerReal) {
         $scope.account = {
             name: '',
             id: {
@@ -30,6 +30,7 @@
         $scope.submitFormStep1 = submitFormStep1;
         $scope.submitFormStep2 = submitFormStep2;
         $scope.submitFormStep3 = submitFormStep3;
+        $scope.gotoDeposit = gotoDeposit;
 
         
         //确定显示第几步
@@ -95,6 +96,11 @@
             registerReal.submitQuest($scope.account).then(function () {
                 goNextStep();
             });
+        }
+
+        function gotoDeposit() {
+            closeModal();
+            $state.go('money.subPage', {subPage: 'deposit'});
         }
 
     }

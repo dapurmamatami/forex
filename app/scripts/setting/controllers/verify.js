@@ -32,11 +32,12 @@
             if (value === true) {
                 account.getPersonalInfo('Profile').then(function (data) {
                     
-                    if (!data.is_succ) {
-                        return;
+                    if (data.is_succ) {
+                        $scope.realInfo.name = data.realname;
+                        $scope.realInfo.showedIdNumber = data.id_no;
+                        $scope.$broadcast('hideLoadingImg');
                     }
-                    $scope.realInfo.name = data.realname;
-                    $scope.realInfo.showedIdNumber = data.id_no;
+                   
                 });
             }
         });

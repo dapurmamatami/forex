@@ -29,7 +29,6 @@
             verifyEmail: verifyEmail,
             getVerifyCode: getVerifyCode,
             getBankCrds: getBankCrds,
-            modCardsProp: modCardsProp,
             addBankCrd: addBankCrd,
             delBankCrd: delBankCrd,
             login: login,
@@ -343,38 +342,35 @@
          * @method addBankCrd
          */
         function getBankCrds() {
-            return $http.get('/bankcard_settings');
+            return $http.get('/bankcard_settings').then(function (data) {
+                if (!data.is_succ) return;
+
+                angular.forEach(data.data, function (item) {
+
+                    if (item['bank_name'] === 'CMB') {
+                        item['nameEN'] = 'CMB';
+                        item['nameZH'] = '招商银行';
+                    }
+                    
+                    if (item['bank_name'] === 'ICBC') {
+                        item['nameEN'] = 'ICBC';
+                        item['nameZH'] = '工商银行';
+                    }
+
+                    if (item['bank_name'] === 'CCB') {
+                        item['nameEN'] = 'CCB';
+                        item['nameZH'] = '建设银行';
+                    }
+
+                    if (item['bank_name'] === 'BOC') {
+                        item['nameEN'] = 'BOC';
+                        item['nameZH'] = '中国银行';
+                    } 
+                });
+
+                return data.data;
+            });
         }
-
-        /**
-         * Account Service 完善获取的银行卡的属性
-         *
-         * @method modCardsProp
-         */
-        function modCardsProp(cards) {
-            angular.forEach(cards, function (card) {
-
-                if (card['bank_name'] === 'CMB') {
-                    card['nameEN'] = 'CMB';
-                    card['nameZH'] = '招商银行';
-                }
-                
-                if (card['bank_name'] === 'ICBC') {
-                    card['nameEN'] = 'ICBC';
-                    card['nameZH'] = '工商银行';
-                }
-
-                if (card['bank_name'] === 'CCB') {
-                    card['nameEN'] = 'CCB';
-                    card['nameZH'] = '建设银行';
-                }
-
-                if (card['bank_name'] === 'BOC') {
-                    card['nameEN'] = 'BOC';
-                    card['nameZH'] = '中国银行';
-                } 
-            });    
-        } 
 
         /**
          * Account Service 添加银行卡

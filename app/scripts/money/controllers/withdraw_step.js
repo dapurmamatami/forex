@@ -19,14 +19,7 @@
         $scope.withdrawFun = withdrawFun;
 
         account.getBankCrds().then(function (data) {
-
-            if (data.is_succ) {
-                $scope.cards = data.data;
-
-                if (data.data.length) {
-                    account.modCardsProp($scope.cards);
-                }
-            }
+            $scope.cards = data;
         });
 
         function toNextStep() {

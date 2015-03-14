@@ -87,11 +87,21 @@
 }
 
 @include b(verify_timer_btn) {
-    @extend .btn;
-    @extend .btn-primary;
+    display: inline-block;
     width: 90px;
     padding: 6px 0;
+    border: 1px solid $brand-dark-primary;
+    border-radius: 4px;
+    background-color: $brand-primary;
     line-height: 20px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 @include b(check_valid) {

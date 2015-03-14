@@ -5,11 +5,11 @@
         .module('tigerwitPersonalApp')
         .controller('PersonalInfoController', PersonalInfoController);
 
-    PersonalInfoController.$inject = ['$location','$scope', '$timeout',
-            '$modal', '$cookieStore', '$state', 'config', 'account', 'money', 'communicate', 'copy'];
+    PersonalInfoController.$inject = ['$location','$scope', '$timeout','$modal', '$cookieStore', 
+            '$state', '$q','config', 'account', 'money', 'communicate', 'copy'];
 
-    function PersonalInfoController($location, $scope, $timeout, $modal, $cookieStore, $state,
-            config, account, money, communicate, copy) {
+    function PersonalInfoController($location, $scope, $timeout, $modal, $cookieStore, $state, 
+            $q, config, account, money, communicate, copy) {
         $scope.userType = {
             code:'',
             isPersonal:true
@@ -55,9 +55,10 @@
             
             if (data.is_succ) {
                 $scope.personal.step = data.progress + 1;
+                return data.progress + 1;
             }
         });
-        
+
         //
         switchLayout();
 
@@ -86,14 +87,7 @@
                 size: size,
                 resolve: {
                     registerStep: function () {
-
-                        // 获取开通真实账户的进度信息
-                        return account.getStepInfo('ReliableInformation').then(function (data) {
-                            
-                            if (data.is_succ) {
-                                return data.progress + 1;
-                            }
-                        });
+                        return $scope.personal.step;
                     }
                 }
             });

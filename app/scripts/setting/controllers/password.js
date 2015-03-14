@@ -6,9 +6,9 @@
         .module('tigerwitPersonalApp')
         .controller('SettingPasswordController', SettingPasswordController);
 
-    SettingPasswordController.$inject = ['$scope', '$modalInstance', 'account'];
+    SettingPasswordController.$inject = ['$scope', '$state', '$modalInstance', 'account'];
 
-    function SettingPasswordController($scope, $modalInstance, account) {
+    function SettingPasswordController($scope, $state, $modalInstance, account) {
         $scope.step = 1;
         $scope.password = {
             oldPwd: '',
@@ -46,7 +46,8 @@
         }
 
         function gotoLogin() {
-            // 跳转到登陆页面重新登录
+            closeModal();
+            $state.go('account.login');
         }
     }
 })();

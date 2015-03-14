@@ -26,6 +26,7 @@
         money.getFXRate().then(function (data) {
             $scope.FXRate.value = data.parity;
             $scope.FXRate.timestamp = data.update_date;
+            $scope.$broadcast('hideLoadingImg');
         });
 
         function deposit(amount) {

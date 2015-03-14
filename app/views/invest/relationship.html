@@ -43,17 +43,20 @@
             <li class="investor" ng-repeat="investor in investors">
                 <div class="row">
                     <div class="col-xs-1">
-                        <img class="investor__photo" ng-src="{{investor.smAvatar}}" alt="**">
+                        <a ng-href="#/invest/{{investor.userCode}}/summary">
+                            <img class="investor__photo" ng-src="{{investor.smAvatar}}" alt="**">
+                        </a>
                     </div>
-                    <div class="col-xs-3 investor__info">
+                    <div class="col-xs-5 investor__info">
                         <p class="investor__name">
-                            {{investor.userName}}
+                            {{investor.username}}
                         </p>
                         <p class="investor__location">
-                            中国，北京，朝阳区
+                            {{investor.location.world_name}}
+                            {{investor.location.state_name}}
+                            {{investor.location.city_name}}
                         </p>
                     </div>
-                    <div class="col-xs-2"></div>
                     <div class="col-xs-2 investor__number">
                         {{investor.copierSum}}
                     </div>

@@ -17,6 +17,7 @@
 
         account.getSafetyInfo().then(function (data) {
             $scope.safetyInfo = data;
+            $scope.$broadcast('hideLoadingImg');
         });
 
         function openPwdModal(size) {

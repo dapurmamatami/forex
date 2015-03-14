@@ -210,6 +210,7 @@
                     angular.forEach(investors, function (investor) {
 
                         if (investor.userCode === item.user_code) {
+                            investor.location = item.region;
                             investor.copierSum = item.copy_copiers_count;
                             investor.rate = item.total_profit_rate;
                         }
@@ -245,9 +246,10 @@
                 userCode = item['user_code'] || item['userCode'];
 
                 this.push({
-                    userName: item['username'] || item['userName'],
+                    username: item['username'] || item['userName'],
                     userCode: item['user_code'] || item['userCode'],
                     smAvatar: config.avatarUrl + userCode + '_50.jpg',
+                    location: item['region'],
                     copierSum: item['copy_copiers_count'],
                     fanSum: item['fanCount'],
                     rate: item['total_profit_rate'],

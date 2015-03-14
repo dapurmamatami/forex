@@ -65,6 +65,7 @@
                 $scope.inputRegion.cityName = data.city_name;
             }
             $scope.$broadcast('locationInfoReady');
+            $scope.$broadcast('hideLoadingImg');
         });
 
         $scope.$on('locationInfoReady', function () {

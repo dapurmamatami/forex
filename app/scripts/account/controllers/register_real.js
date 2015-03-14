@@ -9,7 +9,7 @@
     AccountRegisterRealController.$inject = ['$scope', 'registerReal'];
 
     function AccountRegisterRealController($scope, registerReal) {
-        $scope.step = 1;
+        $scope.step = 4;
         $scope.account = {
             name: '',
             id: {
