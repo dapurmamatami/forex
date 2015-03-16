@@ -1,5 +1,3 @@
-
-
 @include b(layout-msg) {
 
     @include b(msg_menu) {
@@ -20,13 +18,13 @@
 }
 
 @include b(hr_stl){
-  border: 0 ;
-  background-color:$brand-border-color;
-  height:1px;
-  margin-top: 20px;
-  margin-left: 10px;
-  margin-right: 10px;
-  clear:both;
+    border: 0 ;
+    background-color:$brand-border-color;
+    height:1px;
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    clear:both;
 }
 
 @include b(msg_head){

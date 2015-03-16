@@ -1,3 +1,11 @@
+.navbar-nav.navbar-right {
+    a:hover,
+    a:focus,
+    a:active {
+        border-bottom-color: transparent;
+    }
+}
+
 .dropdown.open {
     a.nav_personal {
         background-color: $brand-white !important;
@@ -9,57 +17,42 @@
     }
 }
 
-@include b(nav_split){
-    padding-top: 12px;
-    font-size: 20px;
-    color:$brand-white;
-    >span{
-        margin-left: 15px;
+@include b(nav_msg){
+    position: relative;
+    
+    @include e(pic){
+        width:30px;
+        height:20px;
+    }
+    
+    @include e(tip){
+        z-index: 99;
+        position:absolute;
+        top:8px;
+        right:8px;
     }
 }
-
-@include b(nav_msg){
-  position: relative;
-  @include e(pic){
-    width:30px;
-    height:20px;
-  }
-  @include e(tip){
-    z-index: 99;
-    position:absolute;
-    top:8px;
-    right:8px;
-  }
-}
 @include b(nav_drop_msg){
-    top: 48px !important;
-    left: -139px !important;
-    width: 200px;
+    left: auto !important;
+    right: -1px;
     padding-top: 0px !important;
     padding-bottom: 0px !important;
 
     @include e(item){
+        padding-left: 15px;
         line-height: 40px;
-        border-bottom: 1px solid transparent;
-        border-color:$brand-border-color;
+
         &:hover{
-            background-color: #0066bb;
+            background-color: $brand-primary;
             cursor:pointer;
+
             span{
               color:$brand-white;
             }
         }
-        span{
-            margin-left:20px;
 
-            color:$gray-dark;
-        }
-        hr {
-          border: 0 ;
-          margin:0px;
-          background-color:$brand-border-color;
-          height:1px;
-          clear:both;
+        &:first-child {
+            border-bottom: 1px solid $brand-border-color;
         }
     }
 }
@@ -82,11 +75,6 @@
         font-weight: 700;
         overflow: hidden;
     }
-
-    /* &:hover,
-    &:focus {
-        border-bottom-color: transparent !important;
-    } */
 }
 
 @include b(nav_personal_detail) {
@@ -130,7 +118,7 @@
 
 }
 
-@include b(nav_deposit) {
+@include b(nav_money) {
     border-top: 1px solid $brand-border-color;
     padding: 10px;
 

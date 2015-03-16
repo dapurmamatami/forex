@@ -36,6 +36,34 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown" ng-class="{open: msg_show}" ng-mouseenter="showMsg()" ng-mouseleave="hideMsg()">
+                    <a class="nav_msg" href="">
+                        <img class = "nav_msg__pic" ng-src="ngsrc/icon_mail.png">
+                        <img class = "nav_msg__tip" ng-src="ngsrc/icon_mail_tip.png" ng-show="hasMsg">
+                    </a>
+
+                    <div class="dropdown-menu nav_drop_msg">
+                        <ul>
+                            <li class="nav_drop_msg__item" ng-click="select('user')">
+                                <span>查看我的消息</span>
+                                <span ng-if="user_unvisited_sum">
+                                    ({{user_unvisited_sum}})
+                                </span>
+                            </li>
+                            <li class="nav_drop_msg__item" ng-click="select('sys')">
+                                <span>查看系统消息</span>
+                                <span ng-if="sys_unvisited_sum">
+                                    ({{sys_unvisited_sum}})
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
+                    <a href="">|</a>
+                </li>
+
                 <li class="dropdown" ng-class="{open: infoShow}" ng-mouseover="showInfo()" ng-mouseleave="hideInfo()">
                     <a class="nav_personal" ng-href="#/invest/{{personal.user_code}}/summary">
                         <img class="nav_personal__photo" ng-src="{{personal.xsAvatar}}" alt="**">
@@ -61,6 +89,7 @@
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="social_counter">
                             <a class="social_counter__counter_itm" ng-href="#/invest/{{personal.user_code}}/relationship?type=copiedTrader">
                                 <h4>{{personal.copiedTraderSum}}</h4>
@@ -81,12 +110,13 @@
                                 <span class="social_counter__divider"></span>
                             </a>
                         </div>
-                        <div class="nav_deposit">
-                            <p class="nav_deposit__number">
+                        
+                        <div class="nav_money">
+                            <p class="nav_money__number">
                                 {{realEquityInfo.equity || 0 | currency}}
                             </p>
-                            <h5 class="nav_deposit__title">当前净值：</h5>
-                            <p class="nav_deposit__time">
+                            <h5 class="nav_money__title">当前净值：</h5>
+                            <p class="nav_money__time">
                                 数据更新于
                                 <span>2014/12/08 13:34</span>
                                 GMT
@@ -108,29 +138,6 @@
                     </div>
                 </li>
             </ul>
-            
-            <div class="nav navbar-nav nav_split navbar-right">
-              <span>|</span>
-            </div>
-            <ul class="nav navbar-nav navbar-right nav_mod">
-                <li class="dropdown" ng-class="{open: msg_show}" ng-mouseenter="showMsg()" ng-mouseleave="hideMsg()">
-                    <a class ="nav_msg">
-                      <img class = "nav_msg__pic" ng-src="ngsrc/icon_mail.png">
-                      <img class = "nav_msg__tip" ng-src="ngsrc/icon_mail_tip.png" ng-show="hasMsg">
-                    </a>
-                    <div class="dropdown-menu nav_drop_msg">
-                      <ul>
-                        <li class="nav_drop_msg__item" ng-click="select('user')">
-                          <span>查看我的消息</span><span ng-if="user_unvisited_sum">({{user_unvisited_sum}})</span>
-                        </li>
-                        <li class="nav_drop_msg__item" ng-click="select('sys')">
-                          <span>查看系统消息</span><span ng-if="sys_unvisited_sum">({{sys_unvisited_sum}})</span>
-                        </li>
-                      </ul>
-
-                    </div>
-                </li>
-            </ul >
         </div>
     </div>
 </div>
