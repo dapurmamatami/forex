@@ -22,6 +22,25 @@
         background-color: $gray-lightest;
     }
 
+     @include e(success) {
+        float: right;
+        color: $brand-success;
+    }
+
+    @include e(fail) {
+        @extend .verify__success;
+        color: $brand-red;
+    }
+
+    @include e(unverified) {
+        @extend .verify__fail;
+    }
+
+    @include e(verifying) {
+        @extend .verify__success;
+        color: $brand-warning;
+    }
+
     @include e(info) {
         line-height: 2;
         font-size: 16px;
@@ -31,5 +50,9 @@
             font-weight: 700;
             color: $brand-red;
         }
+    }
+
+    @include e(tip) {
+        color: $brand-danger;
     }
 }

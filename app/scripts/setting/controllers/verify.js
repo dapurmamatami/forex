@@ -6,9 +6,9 @@
         .module('tigerwitPersonalApp')
         .controller('SettingVerifyController', SettingVerifyController);
 
-    SettingVerifyController.$inject = ['$scope', '$timeout', 'account', 'registerReal'];
+    SettingVerifyController.$inject = ['$scope', '$timeout', '$modal', 'account', 'registerReal'];
 
-    function SettingVerifyController($scope, $timeout, accountService, registerReal) {
+    function SettingVerifyController($scope, $timeout, $modal, accountService, registerReal) {
         $scope.succSave = false;
         $scope.account = {
             name: '',
@@ -26,6 +26,7 @@
         };
         $scope.eliminateError = eliminateError;
         $scope.submitVerifyForm = submitVerifyForm;
+        $scope.openModal = openModal;
 
         $scope.$watch('personal.verified', function (value) {
 
@@ -87,6 +88,19 @@
                     $timeout(function () {
                         $scope.succSave = false;
                     }, 1000);
+                }
+            });
+        }
+
+        function openModal(size) {
+            $modal.open({
+                templateUrl: 'views/account/register_real_mdl.html',
+                controller: 'AccountRegisterRealMdlController',
+                size: size,
+                resolve: {
+                    registerStep: function () {
+                        return $scope.personal.step;
+                    }
                 }
             });
         }

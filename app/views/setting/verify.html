@@ -1,15 +1,48 @@
-<div tw-loading-img></div>
+<!-- <div tw-loading-img></div> -->
 <div class="setting_content">
-    <h4 class="setting_content__verified" ng-if="personal.verified">
-        已认证
-    </h4>
-    <h4 class="setting_content__unverified" ng-if="!personal.verified">
-        审核未通过
-    </h4>
+    <div class="verify" ng-if="true">
+        <h4 class="verify__unverified">
+            未认证
+        </h4>
+        
+        <h3 class="setting_content__title">实名认证</h3>
+
+        <p class="text-center">
+            您还没有进行实名认证，马上认证，进行更安全的真实交易。
+        </p>
+        <p class="text-center mg-tp-30">
+            <button class="btn btn-primary" ng-click="openModal()">
+                实名认证
+            </button>
+        </p>    
+    </div>
+
+    <div class="verify" ng-if="true">
+        <h4 class="verify__verifying">
+            认证审核中
+        </h4>
+        
+        <h3 class="setting_content__title">实名认证</h3>
+        
+        <p class="verify__info">
+            尊敬的
+            <span>{{account.name}}</span>
+            您好，您上传的证件号为
+            <span>{{account.id.showedIdNum}}</span>
+            的证件正在审核中，认证通过后，我们将通过短信和邮件的方式通知您，请注意查收。
+        </p>
+        <p class="verify__tip mg-tp-30">
+            注意：审核期间并不影响您的正常交易。
+        </p>            
+    </div>
+
+    <div class="verify" ng-if="true">
+        <h4 class="verify__fail">
+            审核未通过
+        </h4>
+        
+        <h3 class="setting_content__title">实名认证</h3>
     
-    <h3 class="setting_content__title">实名认证</h3>
-    
-    <div class="verify" ng-if="!personal.verified">
         <form name="verifyForm">
             <div class="row">
                 <div class="col-xs-2">
@@ -111,7 +144,12 @@
         </div>
     </div>
 
-    <div class="verify" ng-if="personal.verified">
+    <div class="verify" ng-if="true">
+        <h4 class="verify__success">
+            已认证
+        </h4>
+        <h3 class="setting_content__title">实名认证</h3>
+
         <p class="verify__info">
             尊敬的
             <span>{{account.name}}</span>
