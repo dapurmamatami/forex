@@ -5,9 +5,9 @@
         .module('tigerwitPersonalApp')
         .controller('InvestRelationshipController', InvestRelationshipController);
 
-    InvestRelationshipController.$inject = ['$scope', 'config', 'relationship'];
+    InvestRelationshipController.$inject = ['$scope', '$state', 'config', 'relationship'];
 
-    function InvestRelationshipController($scope, config, relationship) {
+    function InvestRelationshipController($scope, $state, config, relationship) {
         $scope.investors = [];
         $scope.relationType = '';   // 'copiedTrader', 'copier', 'following', 'fan'
         $scope.noMoreInvestors = false;
@@ -17,17 +17,14 @@
         var lastId;
         var count = 1;              //单页 investor 数
         
-        if ($scope.userType.isPersonal) {
-            getInvestors('copiedTrader', $scope.userType.code);
-        } else {
-            getInvestors('copier', $scope.userType.code);
-        }
-        
+        $scope.$on('$stateChangeSuccess', function () {
+            getInvestors($scope.userType.code, $state.params.type, count);
+        });
     
         /*
          * 根据 relationType 获取用户列表（data.data）赋值给 $scope.investors
          */
-        function getInvestors(relationType) {
+        function getInvestors(userCode, relationType, count) {
             $scope.$broadcast('showLoadingImg');
             $scope.relationType = relationType;
             $scope.noMoreInvestors = false;
@@ -36,9 +33,7 @@
             switch (relationType) {
                 case 'copiedTrader':
                     relationship.getCopiedTraders().then(function (data) {
-                        if (Object.prototype.toString.call(data.data) !== '[object Array]') {
-                            return;
-                        }
+                        if (Object.prototype.toString.call(data.data) !== '[object Array]') return;
                         $scope.investors = modPropName(data.data);
                         $scope.investorSum = data.total;
                         var length = $scope.investors.length;
@@ -53,10 +48,8 @@
                     break;
                 case 'copier':
                     lastId = -1;
-                    relationship.getCopiers($scope.userType.code, lastId, count).then(function (data){
-                        if (Object.prototype.toString.call(data.data) !== '[object Array]') {
-                            return;
-                        }
+                    relationship.getCopiers(userCode, lastId, count).then(function (data){
+                        if (Object.prototype.toString.call(data.data) !== '[object Array]') return;
                         $scope.investors = modPropName(data.data);
                         $scope.investorSum = data.total;
                         var length = $scope.investors.length;
@@ -73,11 +66,11 @@
                     break;
                 case 'following':
                     lastId = 0;
-                    tmp = relationship.getFollowings($scope.userType.code, lastId, count);
+                    tmp = relationship.getFollowings(userCode, lastId, count);
                     break;
                 case 'fan':
                     lastId = 0;
-                    tmp = relationship.getFans($scope.userType.code, lastId, count);
+                    tmp = relationship.getFans(userCode, lastId, count);
                     break;
                 default:
                     break;
@@ -85,9 +78,7 @@
 
             if (relationType === 'following' || relationType === 'fan') {
                 tmp.then(function (data) {
-                    if (Object.prototype.toString.call(data.data.list) !== '[object Array]') {
-                        return;
-                    }
+                    if (Object.prototype.toString.call(data.data.list) !== '[object Array]') return;
                     $scope.investors = modPropName(data.data.list);
                     var length = $scope.investors.length;
 

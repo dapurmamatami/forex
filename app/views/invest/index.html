@@ -48,7 +48,11 @@
         </a>
     </li>
     <li class="invest_tab__item" ng-class="{active: childState === 'relationship'}">
-        <a  ng-href="#/invest/{{userType.code}}/relationship">
+        <a  ng-if="userType.isPersonal" ng-href="#/invest/{{userType.code}}/relationship?type=copiedTrader">
+           <i class="invest_tab__icon invest_tab__icon-relationship"></i>
+           关系
+        </a>
+        <a  ng-if="!userType.isPersonal" ng-href="#/invest/{{userType.code}}/relationship?type=copier">
            <i class="invest_tab__icon invest_tab__icon-relationship"></i>
            关系
         </a>

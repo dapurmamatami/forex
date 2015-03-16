@@ -14,17 +14,17 @@
     </span>
     
     <ul class="nav nav-pills">
-        <li ng-class="{active: relationType === 'fan'}" ng-click="relationType === 'fan' || getInvestors('fan')">
-            <a href="">粉丝</a>
+        <li ng-class="{active: relationType === 'fan'}">
+            <a ng-href="#/invest/{{userType.code}}/relationship?type=fan">粉丝</a>
         </li>
-        <li ng-show="userType.isPersonal" ng-class="{active: relationType === 'following'}" ng-click="getInvestors('following')">
-            <a href="">关注</a>
+        <li ng-class="{active: relationType === 'following'}" ng-show="userType.isPersonal">
+            <a ng-href="#/invest/{{userType.code}}/relationship?type=following">关注</a>
         </li>
-        <li ng-class="{active: relationType === 'copier'}" ng-click="relationType === 'copier' || getInvestors('copier')">
-            <a href="">跟随</a>
+        <li ng-class="{active: relationType === 'copier'}">
+            <a ng-href="#/invest/{{userType.code}}/relationship?type=copier">跟随</a>
         </li>
-        <li ng-show="userType.isPersonal" ng-class="{active: relationType === 'copiedTrader'}" ng-click="relationType === 'copiedTrader' || getInvestors('copiedTrader')">
-            <a href="">复制</a>
+        <li ng-class="{active: relationType === 'copiedTrader'}" ng-show="userType.isPersonal">
+            <a ng-href="#/invest/{{userType.code}}/relationship?type=copiedTrader">复制</a>
         </li>
     </ul>
 
@@ -48,9 +48,9 @@
                         </a>
                     </div>
                     <div class="col-xs-5 investor__info">
-                        <p class="investor__name">
+                        <a class="investor__name" ng-href="#/invest/{{investor.userCode}}/summary">
                             {{investor.username}}
-                        </p>
+                        </a>
                         <p class="investor__location">
                             {{investor.location.world_name}}
                             {{investor.location.state_name}}

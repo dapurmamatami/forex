@@ -261,7 +261,7 @@ angular
                 }
             })
             .state('invest.subPage', {
-                url: '/:subPage',
+                url: '/:subPage?type',
                 authenticate: true,
                 views: {
                     '@invest': {
