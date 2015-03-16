@@ -9,7 +9,7 @@
     SettingVerifyController.$inject = ['$scope', '$timeout', '$modal', 'account', 'registerReal'];
 
     function SettingVerifyController($scope, $timeout, $modal, accountService, registerReal) {
-        $scope.succSave = false;
+        $scope.verifyStatus = 1;
         $scope.account = {
             name: '',
             id: {
@@ -22,7 +22,8 @@
                 backImgMsg: '',
                 backImgStatus: 0
             },
-            forkCode: null
+            forkCode: null,
+            succSave: false
         };
         $scope.eliminateError = eliminateError;
         $scope.submitVerifyForm = submitVerifyForm;
@@ -30,23 +31,27 @@
 
 
         // 根据状态吗确定认证状态：未认证、认证审核中、认证未通过、认证通过
-        $scope.$watch('personal.verified', function (value) {
+        accountService.getPersonalInfo('Profile').then(function (data) {
+            if (!data.is_succ) return;    
 
-            if (value === true) {
-                accountService.getPersonalInfo('Profile').then(function (data) {
-                    
-                    if (data.is_succ) {
-                        $scope.account.name = data.realname;
-                        $scope.account.id.showedIdNum = data.id_no;
-                        $scope.$broadcast('hideLoadingImg');
-                    }
-                });
+            if (data.profile_check === null) {
+                $scope.verifyStatus = 0;
             }
 
-            if (value === false) {
-                $scope.$broadcast('hideLoadingImg');
+            // 审核未通过
+            if (data.profile_check === 1) {
+                $scope.verifyStatus = 1;
             }
+
+            if (data.profile_check === 2 || data.profile_check === 3) {
+                $scope.verifyStatus = data.profile_check;
+                $scope.account.name = data.realname;
+                $scope.account.id.showedIdNum = data.id_no;
+            }
+
+            $scope.$broadcast('hideLoadingImg');
         });
+
 
         $scope.$on('uploadFormStart', function (event, data) {
             $scope.$apply(function () {
@@ -85,10 +90,10 @@
             registerReal.postNameId($scope.account).then(function (data) {
 
                 if (data) {
-                    $scope.succSave = true;
+                    $scope.account.succSave = true;
 
                     $timeout(function () {
-                        $scope.succSave = false;
+                        $scope.account.succSave = false;
                     }, 1000);
                 }
             });

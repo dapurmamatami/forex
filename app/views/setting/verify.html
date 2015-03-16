@@ -1,6 +1,6 @@
 <div tw-loading-img></div>
 <div class="setting_content">
-    <div class="verify" ng-if="true">
+    <div class="verify" ng-if="verifyStatus === 0">
         <h4 class="verify__unverified">
             未认证
         </h4>
@@ -17,7 +17,7 @@
         </p>    
     </div>
 
-    <div class="verify" ng-if="true">
+    <div class="verify" ng-if="verifyStatus === 2">
         <h4 class="verify__verifying">
             认证审核中
         </h4>
@@ -36,7 +36,7 @@
         </p>            
     </div>
 
-    <div class="verify" ng-if="true">
+    <div class="verify" ng-if="verifyStatus === 1">
         <h4 class="verify__fail">
             审核未通过
         </h4>
@@ -139,12 +139,12 @@
             </button>
         </div>
 
-        <div class="succ_tip" ng-show="succSave">
+        <div class="succ_tip" ng-show="account.succSave">
             <i class="fa fa-check"></i>提交成功
         </div>
     </div>
 
-    <div class="verify" ng-if="true">
+    <div class="verify" ng-if="verifyStatus === 3">
         <h4 class="verify__success">
             已认证
         </h4>
