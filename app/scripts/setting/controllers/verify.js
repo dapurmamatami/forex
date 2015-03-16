@@ -28,6 +28,8 @@
         $scope.submitVerifyForm = submitVerifyForm;
         $scope.openModal = openModal;
 
+
+        // 根据状态吗确定认证状态：未认证、认证审核中、认证未通过、认证通过
         $scope.$watch('personal.verified', function (value) {
 
             if (value === true) {

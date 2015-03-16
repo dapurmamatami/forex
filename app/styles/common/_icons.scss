@@ -126,21 +126,6 @@
     height: 13px;
     background-position: 50%;
 
-    @include m(us) {
-        @extend .icon-flag;
-        @include img-retina($flag_icon_path + "us.png", $flag_icon_path + "us@2x.png", 22px, 13px);
-    }
-
-    @include m(gb) {
-        @extend .icon-flag;
-        @include img-retina($flag_icon_path + "gb.png", $flag_icon_path + "gb@2x.png", 22px, 13px);
-    }
-
-    @include m(cn) {
-        @extend .icon-flag;
-        @include img-retina($flag_icon_path + "cn.png", $flag_icon_path + "cn@2x.png", 22px, 13px);
-    }
-
     @include m(ad) {
         @extend .icon-flag;
         @include img-retina($flag_icon_path + "ad.png", $flag_icon_path + "ad@2x.png", 22px, 13px);
@@ -149,6 +134,861 @@
     @include m(ae) {
         @extend .icon-flag;
         @include img-retina($flag_icon_path + "ae.png", $flag_icon_path + "ae@2x.png", 22px, 13px);
+    }
+
+    @include m(af) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "af.png", $flag_icon_path + "af@2x.png", 22px, 13px);
+    }
+
+    @include m(ag) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "ag.png", $flag_icon_path + "ag@2x.png", 22px, 13px);
+    }
+
+    @include m(ai) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "ai.png", $flag_icon_path + "ai@2x.png", 22px, 13px);
+    }
+
+    @include m(al) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "al.png", $flag_icon_path + "al@2x.png", 22px, 13px);
+    }
+
+    @include m(am) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "am.png", $flag_icon_path + "am@2x.png", 22px, 13px);
+    }
+
+    @include m(ao) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "ao.png", $flag_icon_path + "ao@2x.png", 22px, 13px);
+    }
+
+    @include m(ar) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "ar.png", $flag_icon_path + "ar@2x.png", 22px, 13px);
+    }
+
+    @include m(at) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "at.png", $flag_icon_path + "at@2x.png", 22px, 13px);
+    }
+
+    @include m(au) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "au.png", $flag_icon_path + "au@2x.png", 22px, 13px);
+    }
+
+    @include m(az) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "az.png", $flag_icon_path + "az@2x.png", 22px, 13px);
+    }
+
+    @include m(bb) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "bb.png", $flag_icon_path + "bb@2x.png", 22px, 13px);
+    }
+
+    @include m(bd) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "bd.png", $flag_icon_path + "bd@2x.png", 22px, 13px);
+    }
+
+    @include m(be) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "be.png", $flag_icon_path + "be@2x.png", 22px, 13px);
+    }
+
+    @include m(bf) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "bf.png", $flag_icon_path + "bf@2x.png", 22px, 13px);
+    }
+
+    @include m(bs) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "bs.png", $flag_icon_path + "bs@2x.png", 22px, 13px);
+    }
+
+    @include m(bw) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "bw.png", $flag_icon_path + "bw@2x.png", 22px, 13px);
+    }
+
+    @include m(by) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "by.png", $flag_icon_path + "by@2x.png", 22px, 13px);
+    }
+
+    @include m(bz) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "bz.png", $flag_icon_path + "bz@2x.png", 22px, 13px);
+    }
+
+    @include m(ca) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "ca.png", $flag_icon_path + "ca@2x.png", 22px, 13px);
+    }
+
+    @include m(cf) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "cf.png", $flag_icon_path + "cf@2x.png", 22px, 13px);
+    }
+
+    @include m(cg) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "cg.png", $flag_icon_path + "cg@2x.png", 22px, 13px);
+    }
+
+    @include m(ch) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "ch.png", $flag_icon_path + "ch@2x.png", 22px, 13px);
+    }
+
+    @include m(ck) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "ck.png", $flag_icon_path + "ck@2x.png", 22px, 13px);
+    }
+
+    @include m(cl) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "cl.png", $flag_icon_path + "cl@2x.png", 22px, 13px);
+    }
+
+    @include m(cm) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "cm.png", $flag_icon_path + "cm@2x.png", 22px, 13px);
+    }
+
+    @include m(cn) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "cn.png", $flag_icon_path + "cn@2x.png", 22px, 13px);
+    }
+
+    @include m(co) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "co.png", $flag_icon_path + "co@2x.png", 22px, 13px);
+    }
+
+    @include m(cr) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "cr.png", $flag_icon_path + "cr@2x.png", 22px, 13px);
+    }
+
+    @include m(cu) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "cu.png", $flag_icon_path + "cu@2x.png", 22px, 13px);
+    }
+
+    @include m(cy) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "cy.png", $flag_icon_path + "cy@2x.png", 22px, 13px);
+    }
+
+    @include m(cz) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "cz.png", $flag_icon_path + "cz@2x.png", 22px, 13px);
+    }
+
+    @include m(de) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "de.png", $flag_icon_path + "de@2x.png", 22px, 13px);
+    }
+
+    @include m(dj) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "dj.png", $flag_icon_path + "dj@2x.png", 22px, 13px);
+    }
+
+    @include m(dk) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "dk.png", $flag_icon_path + "dk@2x.png", 22px, 13px);
+    }
+
+    @include m(do) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "do.png", $flag_icon_path + "do@2x.png", 22px, 13px);
+    }
+
+    @include m(dz) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "dz.png", $flag_icon_path + "dz@2x.png", 22px, 13px);
+    }
+
+    @include m(ec) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "ec.png", $flag_icon_path + "ec@2x.png", 22px, 13px);
+    }
+
+    @include m(ee) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "ee.png", $flag_icon_path + "ee@2x.png", 22px, 13px);
+    }
+
+    @include m(eg) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "eg.png", $flag_icon_path + "eg@2x.png", 22px, 13px);
+    }
+
+    @include m(es) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "es.png", $flag_icon_path + "es@2x.png", 22px, 13px);
+    }
+
+    @include m(et) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "et.png", $flag_icon_path + "et@2x.png", 22px, 13px);
+    }
+
+    @include m(fi) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "fi.png", $flag_icon_path + "fi@2x.png", 22px, 13px);
+    }
+
+    @include m(fj) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "fj.png", $flag_icon_path + "fj@2x.png", 22px, 13px);
+    }
+
+    @include m(fr) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "fr.png", $flag_icon_path + "fr@2x.png", 22px, 13px);
+    }
+
+    @include m(ga) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "ga.png", $flag_icon_path + "ga@2x.png", 22px, 13px);
+    }
+
+    @include m(gb) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "gb.png", $flag_icon_path + "gb@2x.png", 22px, 13px);
+    }
+
+    @include m(gd) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "gd.png", $flag_icon_path + "gd@2x.png", 22px, 13px);
+    }
+
+    @include m(ge) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "ge.png", $flag_icon_path + "ge@2x.png", 22px, 13px);
+    }
+
+    @include m(gf) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "gf.png", $flag_icon_path + "gf@2x.png", 22px, 13px);
+    }
+
+    @include m(gh) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "gh.png", $flag_icon_path + "gh@2x.png", 22px, 13px);
+    }
+
+    @include m(gi) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "gi.png", $flag_icon_path + "gi@2x.png", 22px, 13px);
+    }
+
+    @include m(gm) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "gm.png", $flag_icon_path + "gm@2x.png", 22px, 13px);
+    }
+
+    @include m(gn) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "gn.png", $flag_icon_path + "gn@2x.png", 22px, 13px);
+    }
+
+    @include m(gr) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "gr.png", $flag_icon_path + "gr@2x.png", 22px, 13px);
+    }
+
+    @include m(gt) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "gt.png", $flag_icon_path + "gt@2x.png", 22px, 13px);
+    }
+
+    @include m(gu) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "gu.png", $flag_icon_path + "gu@2x.png", 22px, 13px);
+    }
+
+    @include m(gy) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "gy.png", $flag_icon_path + "gy@2x.png", 22px, 13px);
+    }
+
+    @include m(hk) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "hk.png", $flag_icon_path + "hk@2x.png", 22px, 13px);
+    }
+
+    @include m(hn) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "hn.png", $flag_icon_path + "hn@2x.png", 22px, 13px);
+    }
+
+    @include m(ht) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "ht.png", $flag_icon_path + "ht@2x.png", 22px, 13px);
+    }
+
+    @include m(hu) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "hu.png", $flag_icon_path + "hu@2x.png", 22px, 13px);
+    }
+
+    @include m(id) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "id.png", $flag_icon_path + "id@2x.png", 22px, 13px);
+    }
+
+    @include m(ie) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "ie.png", $flag_icon_path + "ie@2x.png", 22px, 13px);
+    }
+
+    @include m(il) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "il.png", $flag_icon_path + "il@2x.png", 22px, 13px);
+    }
+
+    @include m(in) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "in.png", $flag_icon_path + "in@2x.png", 22px, 13px);
+    }
+
+    @include m(iq) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "iq.png", $flag_icon_path + "iq@2x.png", 22px, 13px);
+    }
+
+    @include m(ir) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "ir.png", $flag_icon_path + "ir@2x.png", 22px, 13px);
+    }
+
+    @include m(is) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "is.png", $flag_icon_path + "is@2x.png", 22px, 13px);
+    }
+
+    @include m(it) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "it.png", $flag_icon_path + "it@2x.png", 22px, 13px);
+    }
+
+    @include m(jm) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "jm.png", $flag_icon_path + "jm@2x.png", 22px, 13px);
+    }
+
+    @include m(jo) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "jo.png", $flag_icon_path + "jo@2x.png", 22px, 13px);
+    }
+
+    @include m(jp) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "jp.png", $flag_icon_path + "jp@2x.png", 22px, 13px);
+    }
+
+    @include m(ke) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "ke.png", $flag_icon_path + "ke@2x.png", 22px, 13px);
+    }
+
+    @include m(kg) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "kg.png", $flag_icon_path + "kg@2x.png", 22px, 13px);
+    }
+
+    @include m(kh) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "kh.png", $flag_icon_path + "kh@2x.png", 22px, 13px);
+    }
+
+    @include m(kp) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "kp.png", $flag_icon_path + "kp@2x.png", 22px, 13px);
+    }
+
+    @include m(kr) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "kr.png", $flag_icon_path + "kr@2x.png", 22px, 13px);
+    }
+
+    @include m(kw) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "kw.png", $flag_icon_path + "kw@2x.png", 22px, 13px);
+    }
+
+    @include m(kz) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "kz.png", $flag_icon_path + "kz@2x.png", 22px, 13px);
+    }
+
+    @include m(la) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "la.png", $flag_icon_path + "la@2x.png", 22px, 13px);
+    }
+
+    @include m(lb) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "lb.png", $flag_icon_path + "lb@2x.png", 22px, 13px);
+    }
+
+    @include m(lc) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "lc.png", $flag_icon_path + "lc@2x.png", 22px, 13px);
+    }
+
+    @include m(li) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "li.png", $flag_icon_path + "li@2x.png", 22px, 13px);
+    }
+
+    @include m(lk) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "lk.png", $flag_icon_path + "lk@2x.png", 22px, 13px);
+    }
+
+    @include m(lr) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "lr.png", $flag_icon_path + "lr@2x.png", 22px, 13px);
+    }
+
+    @include m(ls) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "ls.png", $flag_icon_path + "ls@2x.png", 22px, 13px);
+    }
+
+    @include m(lt) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "lt.png", $flag_icon_path + "lt@2x.png", 22px, 13px);
+    }
+
+    @include m(lu) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "lu.png", $flag_icon_path + "lu@2x.png", 22px, 13px);
+    }
+
+    @include m(lv) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "lv.png", $flag_icon_path + "lv@2x.png", 22px, 13px);
+    }
+
+    @include m(ly) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "ly.png", $flag_icon_path + "ly@2x.png", 22px, 13px);
+    }
+
+    @include m(ma) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "ma.png", $flag_icon_path + "ma@2x.png", 22px, 13px);
+    }
+
+    @include m(mc) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "mc.png", $flag_icon_path + "mc@2x.png", 22px, 13px);
+    }
+
+    @include m(md) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "md.png", $flag_icon_path + "md@2x.png", 22px, 13px);
+    }
+
+    @include m(mg) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "mg.png", $flag_icon_path + "mg@2x.png", 22px, 13px);
+    }
+
+    @include m(ml) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "ml.png", $flag_icon_path + "ml@2x.png", 22px, 13px);
+    }
+
+    @include m(mm) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "mm.png", $flag_icon_path + "mm@2x.png", 22px, 13px);
+    }
+
+    @include m(mn) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "mn.png", $flag_icon_path + "mn@2x.png", 22px, 13px);
+    }
+
+    @include m(mo) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "mo.png", $flag_icon_path + "mo@2x.png", 22px, 13px);
+    }
+
+    @include m(ms) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "ms.png", $flag_icon_path + "ms@2x.png", 22px, 13px);
+    }
+
+    @include m(mt) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "mt.png", $flag_icon_path + "mt@2x.png", 22px, 13px);
+    }
+
+    @include m(mu) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "mu.png", $flag_icon_path + "mu@2x.png", 22px, 13px);
+    }
+
+    @include m(mv) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "mv.png", $flag_icon_path + "mv@2x.png", 22px, 13px);
+    }
+
+    @include m(mw) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "mw.png", $flag_icon_path + "mw@2x.png", 22px, 13px);
+    }
+
+    @include m(mx) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "mx.png", $flag_icon_path + "mx@2x.png", 22px, 13px);
+    }
+
+    @include m(my) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "my.png", $flag_icon_path + "my@2x.png", 22px, 13px);
+    }
+
+    @include m(mz) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "mz.png", $flag_icon_path + "mz@2x.png", 22px, 13px);
+    }
+
+    @include m(na) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "na.png", $flag_icon_path + "na@2x.png", 22px, 13px);
+    }
+
+    @include m(ne) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "ne.png", $flag_icon_path + "ne@2x.png", 22px, 13px);
+    }
+
+    @include m(ng) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "ng.png", $flag_icon_path + "ng@2x.png", 22px, 13px);
+    }
+
+    @include m(ni) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "ni.png", $flag_icon_path + "ni@2x.png", 22px, 13px);
+    }
+
+    @include m(nl) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "nl.png", $flag_icon_path + "nl@2x.png", 22px, 13px);
+    }
+
+    @include m(no) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "no.png", $flag_icon_path + "no@2x.png", 22px, 13px);
+    }
+
+    @include m(np) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "np.png", $flag_icon_path + "np@2x.png", 22px, 13px);
+    }
+
+    @include m(nr) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "nr.png", $flag_icon_path + "nr@2x.png", 22px, 13px);
+    }
+
+    @include m(nz) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "nz.png", $flag_icon_path + "nz@2x.png", 22px, 13px);
+    }
+
+    @include m(om) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "om.png", $flag_icon_path + "om@2x.png", 22px, 13px);
+    }
+
+    @include m(pa) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "pa.png", $flag_icon_path + "pa@2x.png", 22px, 13px);
+    }
+
+    @include m(pe) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "pe.png", $flag_icon_path + "pe@2x.png", 22px, 13px);
+    }
+
+    @include m(pf) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "pf.png", $flag_icon_path + "pf@2x.png", 22px, 13px);
+    }
+
+    @include m(pg) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "pg.png", $flag_icon_path + "pg@2x.png", 22px, 13px);
+    }
+
+    @include m(ph) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "ph.png", $flag_icon_path + "ph@2x.png", 22px, 13px);
+    }
+
+    @include m(pk) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "pk.png", $flag_icon_path + "pk@2x.png", 22px, 13px);
+    }
+
+    @include m(pl) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "pl.png", $flag_icon_path + "pl@2x.png", 22px, 13px);
+    }
+
+    @include m(pr) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "pr.png", $flag_icon_path + "pr@2x.png", 22px, 13px);
+    }
+
+    @include m(pt) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "pt.png", $flag_icon_path + "pt@2x.png", 22px, 13px);
+    }
+
+    @include m(py) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "py.png", $flag_icon_path + "py@2x.png", 22px, 13px);
+    }
+
+    @include m(qa) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "qa.png", $flag_icon_path + "qa@2x.png", 22px, 13px);
+    }
+
+    @include m(ro) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "ro.png", $flag_icon_path + "ro@2x.png", 22px, 13px);
+    }
+
+    @include m(ru) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "ru.png", $flag_icon_path + "ru@2x.png", 22px, 13px);
+    }
+
+    @include m(sa) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "sa.png", $flag_icon_path + "sa@2x.png", 22px, 13px);
+    }
+
+    @include m(sb) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "sb.png", $flag_icon_path + "sb@2x.png", 22px, 13px);
+    }
+
+    @include m(sc) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "sc.png", $flag_icon_path + "sc@2x.png", 22px, 13px);
+    }
+
+    @include m(sd) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "sd.png", $flag_icon_path + "sd@2x.png", 22px, 13px);
+    }
+
+    @include m(se) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "se.png", $flag_icon_path + "se@2x.png", 22px, 13px);
+    }
+
+    @include m(sg) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "sg.png", $flag_icon_path + "sg@2x.png", 22px, 13px);
+    }
+
+    @include m(si) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "si.png", $flag_icon_path + "si@2x.png", 22px, 13px);
+    }
+
+    @include m(sk) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "sk.png", $flag_icon_path + "sk@2x.png", 22px, 13px);
+    }
+
+    @include m(sl) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "sl.png", $flag_icon_path + "sl@2x.png", 22px, 13px);
+    }
+
+    @include m(sm) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "sm.png", $flag_icon_path + "sm@2x.png", 22px, 13px);
+    }
+
+    @include m(sn) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "sn.png", $flag_icon_path + "sn@2x.png", 22px, 13px);
+    }
+
+    @include m(so) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "so.png", $flag_icon_path + "so@2x.png", 22px, 13px);
+    }
+
+    @include m(sr) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "sr.png", $flag_icon_path + "sr@2x.png", 22px, 13px);
+    }
+
+    @include m(st) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "st.png", $flag_icon_path + "st@2x.png", 22px, 13px);
+    }
+
+    @include m(sv) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "sv.png", $flag_icon_path + "sv@2x.png", 22px, 13px);
+    }
+
+    @include m(sy) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "sy.png", $flag_icon_path + "sy@2x.png", 22px, 13px);
+    }
+
+    @include m(sz) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "sz.png", $flag_icon_path + "sz@2x.png", 22px, 13px);
+    }
+
+    @include m(td) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "td.png", $flag_icon_path + "td@2x.png", 22px, 13px);
+    }
+
+    @include m(tg) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "tg.png", $flag_icon_path + "tg@2x.png", 22px, 13px);
+    }
+
+    @include m(th) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "th.png", $flag_icon_path + "th@2x.png", 22px, 13px);
+    }
+
+    @include m(tj) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "tj.png", $flag_icon_path + "tj@2x.png", 22px, 13px);
+    }
+
+    @include m(tm) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "tm.png", $flag_icon_path + "tm@2x.png", 22px, 13px);
+    }
+
+    @include m(tn) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "tn.png", $flag_icon_path + "tn@2x.png", 22px, 13px);
+    }
+
+    @include m(to) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "to.png", $flag_icon_path + "to@2x.png", 22px, 13px);
+    }
+
+    @include m(tr) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "tr.png", $flag_icon_path + "tr@2x.png", 22px, 13px);
+    }
+
+    @include m(tt) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "tt.png", $flag_icon_path + "tt@2x.png", 22px, 13px);
+    }
+
+    @include m(tw) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "tw.png", $flag_icon_path + "tw@2x.png", 22px, 13px);
+    }
+
+    @include m(tz) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "tz.png", $flag_icon_path + "tz@2x.png", 22px, 13px);
+    }
+
+    @include m(ua) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "ua.png", $flag_icon_path + "ua@2x.png", 22px, 13px);
+    }
+
+    @include m(ug) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "ug.png", $flag_icon_path + "ug@2x.png", 22px, 13px);
+    }
+
+    @include m(us) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "us.png", $flag_icon_path + "us@2x.png", 22px, 13px);
+    }
+
+    @include m(uy) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "uy.png", $flag_icon_path + "uy@2x.png", 22px, 13px);
+    }
+
+    @include m(uz) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "uz.png", $flag_icon_path + "uz@2x.png", 22px, 13px);
+    }
+
+    @include m(vc) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "vc.png", $flag_icon_path + "vc@2x.png", 22px, 13px);
+    }
+
+    @include m(ve) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "ve.png", $flag_icon_path + "ve@2x.png", 22px, 13px);
+    }
+
+    @include m(vn) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "vn.png", $flag_icon_path + "vn@2x.png", 22px, 13px);
+    }
+
+    @include m(ye) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "ye.png", $flag_icon_path + "ye@2x.png", 22px, 13px);
+    }
+
+    @include m(yu) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "yu.png", $flag_icon_path + "yu@2x.png", 22px, 13px);
+    }
+
+    @include m(za) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "za.png", $flag_icon_path + "za@2x.png", 22px, 13px);
+    }
+
+    @include m(zm) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "zm.png", $flag_icon_path + "zm@2x.png", 22px, 13px);
+    }
+
+    @include m(zr) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "zr.png", $flag_icon_path + "zr@2x.png", 22px, 13px);
+    }
+
+    @include m(zw) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "zw.png", $flag_icon_path + "zw@2x.png", 22px, 13px);
     }
 }
 
@@ -167,6 +1007,5 @@
     @include m(icbc) {
         @extend .icon-bank;
         @include img-normal($bank_icon_path + "icbc.png");    
-    }
-    
+    }  
 }
