@@ -6,12 +6,12 @@
         .module('tigerwitPersonalApp')
         .controller('SettingEmailVerifyController', SettingEmailVerifyController);
 
-    SettingEmailVerifyController.$inject = ['$scope', '$location'];
+    SettingEmailVerifyController.$inject = ['$scope', '$state'];
 
-    function SettingEmailVerifyController($scope, $location) {
-        var searchObj = $location.search();
+    function SettingEmailVerifyController($scope, $state) {
+        var queryVal = $state.params.success;
 
-        if (searchObj.success === 'true') {
+        if (queryVal === 'true') {
             $scope.success = true;    
         } else {
             $scope.success = false;

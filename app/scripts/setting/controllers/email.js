@@ -22,7 +22,7 @@
         };
         $scope.submitFormStep1 = submitFormStep1;
         $scope.submitFormStep2 = submitFormStep2;
-        $scope.eliminateError = eliminateError;
+        $scope.eliminateErr = eliminateErr;
         $scope.closeModal = closeModal;
         var token = '';
 
@@ -65,7 +65,7 @@
             });
         }
 
-        function eliminateError(message) {
+        function eliminateErr(message) {
             if (message === 'email is incorrect') {
                 $scope.email.correct = true;
             }

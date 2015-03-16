@@ -20,7 +20,7 @@
                                type="text"
                                required
                                ng-model="email.oldNumber"
-                               ng-focus="eliminateError('email is incorrect')">
+                               ng-focus="eliminateErr('email is incorrect')">
                         <div ng-show="formStep1.oldEmail.$dirty">
                             <p class="alert alert-danger" ng-show="formStep1.oldEmail.$error.required">
                                 请输入当前电子邮箱
@@ -41,7 +41,7 @@
                                type="text"
                                required
                                ng-model="password.number"
-                               ng-focus="eliminateError('password is incorrect')">
+                               ng-focus="eliminateErr('password is incorrect')">
                         <div ng-show="formStep1.password.$dirty">
                             <p class="alert alert-danger" ng-show="formStep1.password.$error.required">
                                 请输入密码
@@ -75,7 +75,7 @@
                                required
                                ng-model="email.newNumber"
                                ng-pattern="/^\w+([-.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/"
-                               ng-focus="eliminateError('email is existent')">
+                               ng-focus="eliminateErr('email is existent')">
                         <div ng-show="formStep2.newEmail.$dirty">
                             <p class="alert alert-danger" ng-show="formStep2.newEmail.$error.required">
                                 请输入新电子邮箱

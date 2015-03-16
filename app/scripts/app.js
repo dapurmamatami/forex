@@ -289,15 +289,6 @@ angular
                 }
             })
             
-            .state('setting.emailVerify', {
-                url: '/setting/email_verify',
-                views: {
-                    '@': {
-                        templateUrl: 'views/setting/email_verify.html',
-                        controller: 'SettingEmailVerifyController'
-                    }
-                }
-            })    
             .state('setting', {
                 views: {
                     '@': {
@@ -316,6 +307,15 @@ angular
                     }
                 }
             })
+            .state('setting.emailVerify', {
+                url: '/setting/email_verify?success',
+                views: {
+                    '@': {
+                        templateUrl: 'views/setting/email_verify.html',
+                        controller: 'SettingEmailVerifyController'
+                    }
+                }
+            })    
             .state('setting.subPage', {
                 url: '/setting/:subPage',
                 authenticate: true,
@@ -376,15 +376,6 @@ angular
                 }
             })
 
-            .state('account.login', {
-                url: '/account/login',
-                views: {
-                    '@': {
-                        templateUrl: 'views/account/login.html',
-                        controller: 'AccountLoginController'
-                    }
-                }
-            })
             .state('account', {
                 views: {
                     '@': {
@@ -395,6 +386,15 @@ angular
                     },
                     'ft@account': {
                         templateUrl: 'views/layout/footer-sm.html'
+                    }
+                }
+            })
+            .state('account.login', {
+                url: '/account/login',
+                views: {
+                    '@': {
+                        templateUrl: 'views/account/login.html',
+                        controller: 'AccountLoginController'
                     }
                 }
             })
