@@ -2,19 +2,25 @@
     <div class="row">
 
         <div class="col-xs-4">
-            <img class="copy_modal__photo" ng-src="ngsrc/{{copiedTrader.sex ? 'man' : 'woman'}}.png">
+            <img class="copy_modal__photo" ng-src="{{copiedTrader.xsAvatar}}">
             <div class="copy_modal__copy_type" ng-class="{demo: copyType === 'demo', real: copyType === 'real'}"> 
             </div>
         </div>
 
-        <div class="col-xs-8">
+        <div class="col-xs-8 pd-lf-0">
             <button class="close" ng-click="closeModal()">X</button>
             <h4 class="copy_modal__name">
-                {{copiedTrader.userName}}
+                {{copiedTrader.username}}
             </h4>
             <span class="copy_modal__copy_type-switch" ng-show="!isCancel" ng-click="switchCopyType()">
-                <span ng-show="copyType === 'demo'">换用真实账户复制</span>
-                <span ng-show="copyType === 'real'">换用模拟账户复制</span>
+                <span ng-show="copyType === 'demo'">
+                    <i class="fa fa-exchange"></i>
+                    换用真实账户复制
+                </span>
+                <span ng-show="copyType === 'real'">
+                    <i class="fa fa-exchange"></i>
+                    换用模拟账户复制
+                </span>
             </span>
         </div>
 

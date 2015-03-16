@@ -36,9 +36,9 @@
                             <span class="order_item__exchange">
                                 {{order.cmd ? '卖出' : '买入'}}
                             </span>
-                            <span class="order_item__symbol">
+                            <a class="order_item__symbol" href="">
                                 {{order.symbol | symbolBeauty}}
-                            </span>
+                            </a>
                         </p>
                         <p>
                             <span class="order_item__way">
@@ -98,12 +98,15 @@
             <li class="order_item bg-white" ng-repeat="copiedTrader in copiedTraders">
                 <div class="row copied_trader_info">
                     <div class="col-xs-1">
-                        <img class="copied_trader_info__photo" src="ngsrc/man.png" alt="**" style="width:50px;height:50px;">
+                        <a ng-href="#/invest/{{copiedTrader.user_code}}/summary">
+                            <img class="copied_trader_info__photo" ng-src="/avatar/{{copiedTrader.user_code}}_50.jpg" alt="**" style="width:50px;height:50px;">
+                        </a>
                     </div>
                     <div class="col-xs-5 text-left">
-                        <h4 class="copied_trader_info__name"> 
+                        <a class="copied_trader_info__name" ng-href="#/invest/{{copiedTrader.user_code}}/summary"> 
                             {{copiedTrader.username}}
-                        </h4>
+                        </a>
+                        <br/>
                         <p class="fold_btn" tw-fold>
                             <span class="fold_btn__close">
                                 <i class="fa fa-minus"></i>折叠
@@ -139,9 +142,9 @@
                                     <span class="order_item__exchange">
                                         {{order.cmd ? '卖出' : '买入'}}
                                     </span>
-                                    <span class="order_item__symbol">
+                                    <a class="order_item__symbol" href="">
                                         {{order.symbol | symbolBeauty}}
-                                    </span>
+                                    </a>
                                 </p>
                                 <p>
                                     <span class="order_item__way">

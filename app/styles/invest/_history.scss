@@ -64,8 +64,8 @@
             }
 
             @include e(way, $order_item) {
-                padding: 2px;
                 margin: 0 2px;
+                padding: 2px;
                 border-radius: 4px;
                 font-size: 12px;
                 background-color: #ebebea;
@@ -115,10 +115,13 @@
         @include e(name) {
             margin: 0;
             line-height: 30px;
-            text-align: left;
             font-size: 15px;
             font-weight: 700;
-            color: $brand-primary;    
+            color: $brand-primary;
+
+            &:hover {
+                text-decoration: none;
+            }    
         }
     }
 

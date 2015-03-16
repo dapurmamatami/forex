@@ -2,6 +2,11 @@
     $copy_modal: &;
 
     padding: 15px;
+
+    .btn-primary {
+        font-size: 15px;
+        font-weight: 700;
+    }
     
     @include e(photo) {
         display: block;
@@ -28,10 +33,10 @@
     }
 
     @include e(copy_type-switch) {
+        font-size: 15px;
         color: $brand-primary;
 
         &:hover {
-            text-decoration: underline;
             cursor: pointer;
         }
     }
@@ -96,11 +101,10 @@
     @include e(cancel) {
         margin-bottom: 0;
         text-align: right;
-        color: $brand-primary;
+        color: $brand-danger;
         cursor: pointer;
 
         &:hover {
-            text-decoration: underline;
         }
     }
 }

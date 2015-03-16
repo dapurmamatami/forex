@@ -37,7 +37,7 @@
                 if (!data.is_succ) {
                     return;
                 }
-                $scope.user.userName = data.username;
+                $scope.user.username = data.username;
                 $scope.user.sex = data.sex;
                 $scope.user.copiedTraderSum = data.mycopy_count;
                 $scope.user.copierSum = data.copy_count;
