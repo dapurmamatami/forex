@@ -1,22 +1,9 @@
 @include b(withdraw_modal) {
     @extend .setting_modal;
 
-    .bank_card {
-
-        .bank_card__name {
-            margin: 0;
-            line-height: 16px;
-            text-align: left;
-            font-size: 16px;
-        }
-
-        .bank_card__number {
-            margin-bottom: 0;
-            line-height: 24px;
-            font-size: 24px;
-        }
+    .money_logo {
+        float: right;
     }
-
 
     @include e(title) {
         @extend .setting_modal__title;
@@ -27,11 +14,18 @@
         font-weight: 700;
 
         @include m(danger) {
+            margin-top: 10px;
             color: $brand-danger;
         }
     }
 
     @include e(confirm_info) {
-        font-size: 16px;
+        margin-top: 8px;
+
+        p {  
+            font-size: 15px;
+            font-weight: 700;
+            color: $gray;
+        }
     }
 }

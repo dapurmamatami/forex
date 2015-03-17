@@ -6,41 +6,40 @@
         .module('tigerwitPersonalApp')
         .controller('MoneyWithdrawStepController', MoneyWithdrawStepController);
 
-    MoneyWithdrawStepController.$inject = ['$scope', '$modalInstance', 'money', 'account','personal', 'withdraw'];
+    MoneyWithdrawStepController.$inject = ['$scope', '$modalInstance', 'money','personal', 'withdraw'];
 
-    function MoneyWithdrawStepController($scope, $modalInstance, money, account, personal, withdraw) {
+    function MoneyWithdrawStepController($scope, $modalInstance, money, personal, withdraw) {
         $scope.step = 1;
-        $scope.cards = [];
-        $scope.chosedCard = {};
         $scope.realName = personal.realname;
         $scope.withdrawAmount = withdraw.amount;
-        $scope.toNextStep = toNextStep;
-        $scope.choseCard = choseCard;
+        $scope.card = {
+            bankAddr: '',
+            number: ''
+        };
+        $scope.goNextStep = goNextStep;
+        $scope.goPreStep = goPreStep;
         $scope.withdrawFun = withdrawFun;
+        $scope.closeModal = closeModal;
 
-        account.getBankCrds().then(function (data) {
-            $scope.cards = data;
-        });
-
-        function toNextStep() {
+        function goNextStep() {
             $scope.step ++;
         }
 
-        function choseCard(cardId) { 
+        function goPreStep() {
+            $scope.step--;
+        }
 
-            angular.forEach($scope.cards, function (card) {
-
-                if (card.id === cardId) {
-                    $scope.chosedCard = card;
-                }
-            });
-
-            toNextStep();
+        function closeModal() {
+            $modalInstance.dismiss();
         }
 
         function withdrawFun() {
-            money.withdraw(Number($scope.withdrawAmount).toFixed(2), $scope.chosedCard.id).then(function (data) {
-                console.info(data);
+            money.withdraw(Number($scope.withdrawAmount).toFixed(2), $scope.card.bankAddr, 
+                    $scope.card.number).then(function (data) {
+
+                if (data.is_succ) {
+                    goNextStep();
+                }
             });
         }
 

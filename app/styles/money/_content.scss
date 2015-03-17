@@ -73,3 +73,11 @@
     }
 }
 
+@include b(money_logo) {
+    display: block;
+    width: 128px;
+    height: 128px;
+    @include img-normal($money_icon_path + "dollar.png");
+    background-repeat: no-repeat;
+    background-position: 50%;
+}

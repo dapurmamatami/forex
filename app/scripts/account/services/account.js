@@ -28,9 +28,6 @@
             getSafetyInfo: getSafetyInfo,
             verifyEmail: verifyEmail,
             getVerifyCode: getVerifyCode,
-            getBankCrds: getBankCrds,
-            addBankCrd: addBankCrd,
-            delBankCrd: delBankCrd,
             login: login,
             logout: logout,
             registerDemo: registerDemo,
@@ -333,68 +330,6 @@
                 params: {
                     phone: phone,
                     exists: existence
-                }
-            });
-        }
-
-        /**
-         * Account Service 添加银行卡
-         * 
-         * @method addBankCrd
-         */
-        function getBankCrds() {
-            return $http.get('/bankcard_settings').then(function (data) {
-                if (!data.is_succ) return;
-
-                angular.forEach(data.data, function (item) {
-
-                    if (item['bank_name'] === 'CMB') {
-                        item['nameEN'] = 'CMB';
-                        item['nameZH'] = '招商银行';
-                    }
-                    
-                    if (item['bank_name'] === 'ICBC') {
-                        item['nameEN'] = 'ICBC';
-                        item['nameZH'] = '工商银行';
-                    }
-
-                    if (item['bank_name'] === 'CCB') {
-                        item['nameEN'] = 'CCB';
-                        item['nameZH'] = '建设银行';
-                    }
-
-                    if (item['bank_name'] === 'BOC') {
-                        item['nameEN'] = 'BOC';
-                        item['nameZH'] = '中国银行';
-                    } 
-                });
-
-                return data.data;
-            });
-        }
-
-        /**
-         * Account Service 添加银行卡
-         * 
-         * @method addBankCrd
-         */ 
-        function addBankCrd(nameEN, cardNum, bankAddr) {
-            return $http.post('/bankcard_settings', {
-                bank_name: nameEN,
-                card: cardNum,
-                bank_addr: bankAddr
-            });
-        }
-
-        /**
-         * Account Service 删除银行卡
-         * 
-         * @method delBankCrd
-         */ 
-        function delBankCrd(cardId) {
-            return $http.delete('/bankcard_settings', {
-                params: {
-                    id: cardId
                 }
             });
         }

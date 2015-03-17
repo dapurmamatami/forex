@@ -24,10 +24,11 @@
             $scope.$broadcast('hideLoadingImg');
         });
 
-        function openWithdrawMdl() {
+        function openWithdrawMdl(size) {
             $modal.open({
                 templateUrl: 'views/money/withdraw_modal.html',
                 controller: 'MoneyWithdrawStepController',
+                size: size,
                 resolve: {
                     withdraw: function () {
                         return $scope.withdraw;

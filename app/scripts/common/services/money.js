@@ -85,10 +85,11 @@
              * @return  
              * }
              */
-            function withdraw(amount, cardId) {
+            function withdraw(amount, bankAddr, cardNum) {
                 return $http.post('/withdraw', {
                     amount: amount,
-                    card_id: cardId
+                    bank_name: bankAddr,
+                    card_id: cardNum
                 });
             }
 
