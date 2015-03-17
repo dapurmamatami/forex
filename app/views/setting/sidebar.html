@@ -2,17 +2,13 @@
     <h4 class="sidebar__title">设置</h4>
     <p>自定义您的账户设置</p>
     <ul class="sidebar_nav" tw-sidebar-nav>
-        {{name}}
         <li ng-class="{active: subPage === 'basic'}" ng-click="switchItem('basic')">
             <a ng-href="#/setting/basic">基本信息</a>
         </li>
-         <li ng-class="{active: subPage === 'verify'}" ng-click="switchItem('verify')">
+        <li ng-class="{active: subPage === 'verify'}" ng-click="switchItem('verify')">
             <a ng-href="#/setting/verify">实名认证</a>
         </li>
-         <li ng-class="{active: subPage === 'card'}" ng-click="switchItem('card')">
-            <a ng-href="#/setting/card">我的银行卡</a>
-        </li>
-         <li ng-class="{active: subPage === 'safety'}" ng-click="switchItem('safety')">
+        <li ng-class="{active: subPage === 'safety'}" ng-click="switchItem('safety')">
             <a ng-href="#/setting/safety">账户安全</a>
         </li>
     </ul>
