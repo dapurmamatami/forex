@@ -29,25 +29,27 @@
                         <th>时间</th>
                     </tr>
                 </thead>
-                <tr ng-repeat="record in records">
-                    <td>
-                        <span class="{{record.type}}_icon"></span>
-                        <span ng-if="record.type === 'deposit'">入金</span>
-                        <span ng-if="record.type === 'withdraw'">出金</span>                    
-                    </td>
-                    <td>
-                        {{record.code}}
-                    </td>
-                    <td>
-                        {{record.amount | currency}}
-                    </td>
-                    <td>
-                        {{record.statusMsg}}
-                    </td>
-                    <td>
-                        {{record.timestamp | dateFormatter}}
-                    </td>
-                </tr>
+                <tbody>
+                    <tr ng-repeat="record in records">
+                        <td>
+                            <span class="{{record.type}}_icon"></span>
+                            <span ng-if="record.type === 'deposit'">入金</span>
+                            <span ng-if="record.type === 'withdraw'">出金</span>                    
+                        </td>
+                        <td>
+                            {{record.code}}
+                        </td>
+                        <td>
+                            {{record.amount | currency}}
+                        </td>
+                        <td>
+                            {{record.statusMsg}}
+                        </td>
+                        <td>
+                            {{record.timestamp | dateFormatter}}
+                        </td>
+                    </tr>
+                </tbody>
             </table>
             <p class="btn-loading" ng-show="moreRecords" ng-click="getMoreRecords()" tw-loading-more>
                 <span class="btn-loading__caption">
