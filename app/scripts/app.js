@@ -44,7 +44,10 @@ angular
                             return configParam;
                         }
 
-                        //add by fwb
+                        if (configParam.url ==='/files/pub_v1.json') {
+                            return configParam;
+                        }
+
                         if(/^\/communicate/.test(configParam.url)) {
                             return configParam;
                         }

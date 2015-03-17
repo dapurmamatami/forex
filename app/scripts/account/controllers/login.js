@@ -18,17 +18,22 @@
         $scope.eliminateErr = eliminateErr;
 
         function login() {
-            account.login($scope.account.id, $scope.account.password).then(function (data) {
-                console.info(data);
 
-                if (!data.is_succ) {
+            // 首先对 password 加密
+            account.encrypt($scope.account.password).then(function (textEnc) {
 
-                    if (data.error_msg === '用户名或密码错误') {
-                        $scope.account.correct = false;
-                        return;
-                    }
-                } else {
-                    $state.go('personal.communicate_info');
+                if (textEnc) {
+                    account.login($scope.account.id, textEnc).then(function (data) {
+
+                        if (!data.is_succ) {
+
+                            if (data.error_msg === '用户名或密码错误') {
+                                $scope.account.correct = false;
+                            }
+                        } else {
+                            $state.go('personal.communicate_info');
+                        }
+                    });
                 }
             });
         }

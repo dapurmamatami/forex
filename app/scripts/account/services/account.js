@@ -35,7 +35,8 @@
             logout: logout,
             registerDemo: registerDemo,
             verifyCode: verifyCode,
-            setNewPwd: setNewPwd
+            setNewPwd: setNewPwd,
+            encrypt: encrypt
         };
         return service;
 
@@ -460,6 +461,21 @@
                 code: verifyCode,
                 new_pwd: newPwd
             });
-        }   
+        }
+
+        /**
+         * Account Service 加密
+         * 
+         * @method encrypt
+         */
+        function encrypt(text) {
+            return $http.get('/files/pub_v1.json').then(function (data) {
+                var crypt = new JSEncrypt();
+                var key = data;
+                crypt.setKey(key);
+                var enc = crypt.encrypt(text);
+                return enc;
+            });
+        }
     }
 })();
