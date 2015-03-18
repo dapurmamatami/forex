@@ -51,9 +51,9 @@
     width: 140px;
     height: 40px;
 }
-.logo-color {
+.logo-white {
     @extend .logo;
-    //@include wd-image('logo-color.png');
+    @include img-normal($image_path + "logo-white.png");
 }
 
 .logo-gray {

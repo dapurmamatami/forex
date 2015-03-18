@@ -2,7 +2,7 @@
     <div class="row">
 
         <div class="col-xs-4">
-            <img class="copy_modal__photo" ng-src="{{copiedTrader.xsAvatar}}">
+            <img class="copy_modal__photo" ng-src="{{copiedTrader.smAvatar}}">
             <div class="copy_modal__copy_type" ng-class="{demo: copyType === 'demo', real: copyType === 'real'}"> 
             </div>
         </div>
@@ -32,20 +32,14 @@
                 
                 <form name="copyForm" novalidate>
                     
-                    <div class="form-group" ng-if="copyType === 'demo'">
-                        <label>模拟复制金额</label>
-
-                        <div class="copy_modal__group">
-                            <button class="btn">-</button>
-                            <input class="form-control" 
-                                   name="copyAmount"
-                                   type="text"
-                                   required
-                                   ng-model="demoCopy.amount"
-                                   ng-pattern="/^(?!0+(?:\.0+)?$)(?:[1-9]\d*|0)(?:\.\d{1,2})?$/">       
-                            <button class="btn">+</button>
-                        </div>
-
+                    <div class="form-inline" ng-if="copyType === 'demo'">
+                        <label>模拟复制金额（美元）</label>
+                        <input class="form-control" 
+                               name="copyAmount"
+                               type="text"
+                               required
+                               ng-model="demoCopy.amount"
+                               ng-pattern="/^(?!0+(?:\.0+)?$)(?:[1-9]\d*|0)(?:\.\d{1,2})?$/">
                         <div ng-show="copyForm.copyAmount.$dirty">
                             <p class="alert alert-danger" ng-show="copyForm.copyAmount.$error.required">
                                 请填写复制金额
@@ -62,20 +56,14 @@
                         </p>
                     </div>
 
-                    <div class="form-group" ng-if="copyType === 'real'">
-                        <label>真实复制金额</label>
-
-                        <div class="copy_modal__group">
-                            <button class="btn">-</button>
-                            <input class="form-control" 
-                                   name="copyAmount"
-                                   type="text"
-                                   required
-                                   ng-model="realCopy.amount"
-                                   ng-pattern="/^(?!0+(?:\.0+)?$)(?:[1-9]\d*|0)(?:\.\d{1,2})?$/">       
-                            <button class="btn">+</button>
-                        </div>
-
+                    <div class="form-inline" ng-if="copyType === 'real'">
+                        <label>真实复制金额（美元）</label>
+                        <input class="form-control" 
+                               name="copyAmount"
+                               type="text"
+                               required
+                               ng-model="realCopy.amount"
+                               ng-pattern="/^(?!0+(?:\.0+)?$)(?:[1-9]\d*|0)(?:\.\d{1,2})?$/">
                         <div ng-show="copyForm.copyAmount.$dirty">
                             <p class="alert alert-danger" ng-show="copyForm.copyAmount.$error.required">
                                 请填写复制金额
@@ -102,7 +90,7 @@
             </p>
             <p class="copy_modal__useable">
                 当前可用复制金额：
-                <span>${{copyType === 'demo' ? demoCopy.balance : realCopy.balance}}</span>
+                <span>{{copyType === 'demo' ? demoCopy.balance : realCopy.balance | currency}}</span>
             </p>
 
             <p class="copy_modal__cancel">
@@ -116,6 +104,7 @@
         </div>
 
         <a class="copy_modal__help" href="">
+            <i class="fa fa-search"></i>
             查看详细规则
         </a>
         <br>

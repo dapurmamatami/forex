@@ -34,6 +34,7 @@
 
     @include e(copy_type-switch) {
         font-size: 15px;
+        font-weight: 700;
         color: $brand-primary;
 
         &:hover {
@@ -55,35 +56,15 @@
 
     @include e(money) {
         padding: 10px 0;
-        line-height: 35px;
         
-        .alert.alert-danger {
+        .alert-danger {
             padding: 5px;
-            margin: 0px;
-        }    
+            margin: 5px 0;
+        }
 
-        @include e(group, $copy_modal) {
-            display:inline-block;
-            vertical-align: top;
-
-            &:after {
-                display: block;
-                content: '';
-                clear: both;
-            }
-            
-            .btn {
-                float: left;
-            }
-            
+        .form-inline {
             .form-control {
-                position: relative;
-                float: left;
-                display: inline-block;
-                width: 96px;
-                margin-left: -2px;
-                margin-right: -2px;
-                border-radius: 0;
+                width: 100px;
             }
         }
     }
@@ -103,8 +84,5 @@
         text-align: right;
         color: $brand-danger;
         cursor: pointer;
-
-        &:hover {
-        }
     }
 }

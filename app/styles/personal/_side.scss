@@ -210,6 +210,11 @@
             vertical-align: top;
             width: 35%;
 
+            &:hover,
+            &:focus {
+                text-decoration: none;
+            }
+
             h3 {
                 margin-top: 0;
                 font-weight: 700;
@@ -219,7 +224,6 @@
                 font-size: 13px;
                 color: $gray-lighter;
             }
-
         }
 
         @include e(copy) {
@@ -236,22 +240,22 @@
     }
 
     @include b(copy_btn) {
+        @extend .btn;
+        @extend .btn-primary;
         width: 100px;
-        padding: 3px;
-        border: none;
-        @include img-normal($image_path + 'copy-bg.png');
+        font-size: 16px;
+        @include gradient-vertical($brand-light-primary, $brand-dark-primary);
 
         &:hover {
-            background: $brand-dark;
+            background: $brand-dark-primary;
         }
 
         @include e(icon) {
             display: inline-block;
             vertical-align: middle;
-            width: 32px;
-            height: 26px;
+            width: 20px;
+            height: 20px;
             @include img-normal($image_path + 'copy_follow.png');
-            background-position: 0 0;
         }
     }
 
@@ -260,23 +264,24 @@
 
         @include e(icon) {
             @extend .copy_btn__icon;
-
-            background-position: -32px 0;
+            background-position: -20px 0;
         }
     }
 
     @include b(follow_btn) {
-        @extend .copy_btn;
-        border: none;
-        @include img-normal($image_path + 'follow-bg.png');
-        
+        @extend .btn;
+        @extend .btn-default;
+        width: 100px;
+        font-size: 16px;
+        @include gradient-vertical($gray-lightest, $brand-light-border);
+
         &:hover {
-            background: #ddd;
+            background: $brand-light-border;
         }
 
         @include e(icon) {
            @extend .copy_btn__icon;
-           background-position: 0 -26px; 
+           background-position: 0 -20px; 
         }
     }
 
@@ -285,8 +290,7 @@
 
         @include e(icon) {
             @extend .follow_btn__icon;
-            background-position: -32px -26px;
+            background-position: -20px -20px;
         }
     }
-
 }

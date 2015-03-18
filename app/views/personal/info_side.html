@@ -86,12 +86,12 @@
     </div>
     <div class="user_info__panel">
         <div class="social_pnl">
-            <div class="social_pnl__counter">
+            <a class="social_pnl__counter" ng-href="#/invest/{{user.userCode}}/relationship?type=copier">
                 <h3>{{user.copierSum}}</h3>
                 <span>跟随</span>
-            </div>
+            </a>
             <div class="social_pnl__copy">
-                <button class="copy_btn btn btn-primary" ng-show="!user.isCopy" ng-click="openCopyModal('sm')">
+                <button class="copy_btn" ng-show="!user.isCopy" ng-click="openCopyModal('sm')">
                     <i class="copy_btn__icon"></i>
                     复制
                 </button>
@@ -102,10 +102,10 @@
             </div>
         </div>
         <div class="social_pnl">
-            <div class="social_pnl__counter">
+            <a class="social_pnl__counter" ng-href="#/invest/{{user.userCode}}/relationship?type=fan">
                 <h3>{{user.fanSum}}</h3>
                 <span>粉丝</span>
-            </div>
+            </a>
             <div class="social_pnl__follow">
                 <button class="follow_btn btn btn-default" ng-show="!user.isFollow" ng-click="follow()">
                     <i class="follow_btn__icon"></i>关注
