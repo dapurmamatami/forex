@@ -200,15 +200,15 @@ angular
                   $stateParams.subPage = $stateParams.subPage || 'currency';
                   return 'views/class/' + $stateParams.subPage + '.html';
                 }
-                //,
-                //controllerProvider:function($stateParams){
-                //  var ctrlPrefix = 'Class';
-                //  var ctrlSuffix = 'Controller';
-                //  var subPage = $stateParams.subPage || 'currency';
-                //  var ctrlRoot = modifyCtrlName(subPage);
-                //  var ctrlName = ctrlPrefix + ctrlRoot + ctrlSuffix;
-                //  return ctrlName;
-                //}
+                ,
+                controllerProvider:function($stateParams){
+                  var ctrlPrefix = 'Class';
+                  var ctrlSuffix = 'Controller';
+                  var subPage = $stateParams.subPage || 'currency';
+                  var ctrlRoot = modifyCtrlName(subPage);
+                  var ctrlName = ctrlPrefix + ctrlRoot + ctrlSuffix;
+                  return ctrlName;
+                }
               }
             }
           })
@@ -291,7 +291,7 @@ angular
                     }
                 }
             })
-            
+
             .state('setting', {
                 views: {
                     '@': {
@@ -303,7 +303,7 @@ angular
                         controller: 'NavbarController'
                     },
                     'sidebar@setting': {
-                        templateUrl: 'views/setting/sidebar.html',
+                        templateUrl: 'views/setting/sidebar.html'
                     },
                     'ft@setting': {
                         templateUrl: 'views/layout/footer.html'
@@ -318,7 +318,7 @@ angular
                         controller: 'SettingEmailVerifyController'
                     }
                 }
-            })    
+            })
             .state('setting.subPage', {
                 url: '/setting/:subPage',
                 authenticate: true,
@@ -351,7 +351,7 @@ angular
                         controller: 'NavbarController'
                     },
                     'sidebar@money': {
-                        templateUrl: 'views/money/sidebar.html',
+                        templateUrl: 'views/money/sidebar.html'
                     },
                     'ft@money': {
                         templateUrl: 'views/layout/footer.html'
@@ -385,7 +385,7 @@ angular
                         templateUrl: 'views/layout/layout-1.html'
                     },
                     'hd@account': {
-                        templateUrl: 'views/layout/header.html',
+                        templateUrl: 'views/layout/header.html'
                     },
                     'ft@account': {
                         templateUrl: 'views/layout/footer-sm.html'
@@ -449,8 +449,8 @@ angular
                 return newName;
             }
     }])
-    
-    .run(['$rootScope', '$state', '$stateParams', 'authorization', 
+
+    .run(['$rootScope', '$state', '$stateParams', 'authorization',
             function ($rootScope, $state, $stateParams, authorization) {
 
         $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams) {
@@ -463,8 +463,8 @@ angular
         });
 
         $rootScope.$on('$stateChangeSuccess', function () {
-        });        
-                
+        });
+
     }]);
 
 
