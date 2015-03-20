@@ -15,25 +15,29 @@
                 </li>
             </ul>
         </div>
+
     </div>
-    <hr />
-    <div class = "publisharea" ng-controller="PersonalTopicPublishController">
-        <img class="communicateinfo__user-icon" src="{{personal.smAvatar}}"></img>
-        <div class="clearTop topicOrComment">
-            <textarea  name="inputContent" ng-model="inputContent" ng-change="matchTopicContent()" prompt-special-input></textarea>
-            <div class = "topicOrComment__doToast" ng-class="showOrNo" >
-                发表成功！
-            </div>
-            <div >
-            </div>
-            <div class = "do_style" >
-                <span class="do_style__remain">剩余 {{tRemainSum}}/1024 字</span>
-                <a class="do_style__publish" ng-click="publishTopic()">发表我的看法 </a>
+   <hr />
+    <div  ng-show="!isSummary" ng-controller="PersonalTopicPublishController">
+        <div class = "publisharea">
+            <img class="communicateinfo__user-icon" src="{{personal.smAvatar}}"></img>
+            <div class="clearTop topicOrComment">
+                <textarea  name="inputContent" ng-model="inputContent" ng-change="matchTopicContent()" prompt-special-input></textarea>
+                <div class = "topicOrComment__doToast" ng-class="showOrNo" >
+                    发表成功！
+                </div>
+                <div >
+                </div>
+                <div class = "do_style" >
+                    <span class="do_style__remain">剩余 {{tRemainSum}}/1024 字</span>
+                    <a class="do_style__publish" ng-click="publishTopic()">发表我的看法 </a>
+                </div>
             </div>
         </div>
+        <hr />
     </div>
 
-    <hr />
+
     <div class = "communicatelist" ng-repeat="item in mCdata">
         <div ng-if = "item['topic_type']==0" ng-controller="PersonalCommunicateDoController">
             <div class="communicate" ng-init="mData = item">

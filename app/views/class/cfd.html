@@ -2,66 +2,43 @@
 
   <div class="table_content_head">
     <h3>CFD</h3>
-    <span >更新时间：2015-03-04 12:00 GMT</span>
+    <span >更新时间：{{mData.timestamp | dateFormatter}} GMT</span>
   </div>
   <div class="table_content_data">
-    <table class="table table-striped" >
-      <thead>
-      <tr>
-        <th>交易品种</th>
-        <th>卖出价</th>
-        <th>买入价</th>
-        <th class="table_column_greem">热度<span class="caret"></span></th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td>
-          <div class="cfd_basic">
-            <img class="icon-forex-dax"></img>
-            <div class="class_basic_info">
-              <p class="class_basic_info__name">DAX</p>
-              <p class="class_basic_info__addr">法兰克福指数期货</p>
-            </div>
-          </div>
-        </td>
-        <td>
-          0.81362
-        </td>
-        <td>
-          0.81402
-        </td>
+      <table class="table table-striped" >
+          <thead>
+          <tr>
+              <th>交易品种</th>
+              <th>卖出价</th>
+              <th>买入价</th>
+              <th class="table_column_greem">热度<span class="caret"></span></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr ng-repeat="item in mData.data">
+              <td>
+                <div class="cfd_basic">
+                  <img class="icon-forex-{{item.symbol.toLowerCase()}}"></img>
+                  <div class="class_basic_info">
+                    <p class="class_basic_info__name">{{item.symbol | symbolBeauty}}</p>
+                    <p class="class_basic_info__addr">{{item.symbol | symbolToCn}}</p>
+                  </div>
+                </div>
+            </td>
+            <td>
+              {{item.ask}}
+            </td>
+            <td>
+              {{item.bid}}
+            </td>
 
-        <td class="table_greem_border">
-          +20.64%
-        </td>
-      </tr>
+            <td class="table_greem_border">
+              {{item.rate}}%
+            </td>
+          </tr>
+          </tbody>
 
-
-      <tr>
-        <td>
-          <div class="cfd_basic">
-            <img class="icon-forex-ffi"></img>
-            <div class="class_basic_info">
-              <p class="class_basic_info__name">FFI</p>
-              <p class="class_basic_info__addr">伦敦金融时报指数期货</p>
-            </div>
-          </div>
-        </td>
-        <td>
-          102.844
-        </td>
-        <td>
-          102.904
-        </td>
-
-        <td class="table_greem_border table_buttom_border">
-          +17.17%
-        </td>
-      </tr>
-      </tbody>
-
-    </table>
+      </table>
   </div>
 
 </div>

@@ -1,11 +1,3 @@
-.navbar-nav.navbar-right {
-    a:hover,
-    a:focus,
-    a:active {
-        border-bottom-color: transparent;
-    }
-}
-
 .dropdown.open {
     a.nav_personal {
         background-color: $brand-white !important;
@@ -14,22 +6,6 @@
     a.nav_msg{
       background-color: $brand-white !important;
       color: $gray-dark !important;
-    }
-}
-
-@include b(nav_msg){
-    position: relative;
-    
-    @include e(pic){
-        width:30px;
-        height:20px;
-    }
-    
-    @include e(tip){
-        z-index: 99;
-        position:absolute;
-        top:8px;
-        right:8px;
     }
 }
 @include b(nav_drop_msg){
@@ -154,7 +130,7 @@
         color: $gray-dark;
         border-top: 1px solid $brand-border-color;
         border-bottom: 1px solid $brand-border-color;
-        
+
         &:first-child {
             border-right: 1px solid $brand-border-color;
         }
@@ -178,7 +154,7 @@
 @include b(nav_logout) {
     background-color: $gray-lightest;
     text-align: center;
-    
+
     a {
         line-height: 35px;
         font-weight: 700;

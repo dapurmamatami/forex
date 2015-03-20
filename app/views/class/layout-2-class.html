@@ -1,0 +1,19 @@
+<div class="layout-2" ng-attr-id="{{moduleId}}">
+  <div class="hd" ui-view="hd" >
+
+  </div>
+  <div class="bd_col_2">
+    <div class="row">
+      <div class="bd_col__210" ui-view="lsider">
+      </div>
+      <div class="bd_col_2__750">
+        <div ng-class="layoutContent" ui-view="content">
+      </div>
+        <div ng-class="layoutSide" ui-view="rsider">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ft" ui-view="ft">
+  </div>
+</div>

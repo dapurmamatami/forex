@@ -117,6 +117,11 @@
                 @extend .bd_col_2__sidebar;
                 width: 230px;
             }
+            @include m(210){
+                @extend .bd_col_2__sidebar;
+                width: 210px;
+            }
+
         }
 
         @include e(content) {
@@ -127,6 +132,10 @@
             @include m(sm) {
                 @extend .bd_col_2__content;
                 width: 730px;
+            }
+            @include m(750) {
+              @extend .bd_col_2__content;
+              width: 750px;
             }
         }
     }
@@ -141,13 +150,13 @@
         width: $container-main;
         @include e(sidebar) {
             @extend .col-lg-3;
-            width: 190px;
+            width: 200px;
             padding: 0;
         }
 
         @include e(content) {
             @extend .col-lg-6;
-            width: 520px;
+            width: 550px;
             padding: 0;
         }
 
