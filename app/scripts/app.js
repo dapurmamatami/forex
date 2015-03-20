@@ -199,6 +199,14 @@ angular
                 templateUrl:function($stateParams){
                   $stateParams.subPage = $stateParams.subPage || 'currency';
                   return 'views/class/' + $stateParams.subPage + '.html';
+                },
+                controllerProvider:function($stateParams){
+                 var ctrlPrefix = 'Class';
+                 var ctrlSuffix = 'Controller';
+                 var subPage = $stateParams.subPage || 'currency';
+                 var ctrlRoot = modifyCtrlName(subPage);
+                 var ctrlName = ctrlPrefix + ctrlRoot + ctrlSuffix;
+                 return ctrlName;
                 }
                 ,
                 controllerProvider:function($stateParams){
