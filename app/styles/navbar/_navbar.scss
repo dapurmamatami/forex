@@ -8,6 +8,23 @@
       color: $gray-dark !important;
     }
 }
+
+@include b(nav_msg){
+    position: relative;
+    
+    @include e(pic){
+        width:30px;
+        height:20px;
+    }
+    
+    @include e(tip){
+        z-index: 99;
+        position:absolute;
+        top:8px;
+        right:8px;
+    }
+}
+
 @include b(nav_drop_msg){
     left: auto !important;
     right: -1px;

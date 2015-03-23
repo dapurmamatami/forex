@@ -199,6 +199,14 @@ angular
                 templateUrl:function($stateParams){
                   $stateParams.subPage = $stateParams.subPage || 'currency';
                   return 'views/class/' + $stateParams.subPage + '.html';
+                },
+                controllerProvider:function($stateParams){
+                 var ctrlPrefix = 'Class';
+                 var ctrlSuffix = 'Controller';
+                 var subPage = $stateParams.subPage || 'currency';
+                 var ctrlRoot = modifyCtrlName(subPage);
+                 var ctrlName = ctrlPrefix + ctrlRoot + ctrlSuffix;
+                 return ctrlName;
                 }
                 ,
                 controllerProvider:function($stateParams){
@@ -483,6 +491,9 @@ angular
             function ($rootScope, $state, $stateParams, authorization) {
 
         $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams) {
+            
+            // 在线客服是否显示
+            $rootScope.floatBtnShow = true;
             $rootScope.toState = toState;
             $rootScope.toStateParams = toStateParams;
 
