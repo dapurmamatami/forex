@@ -462,6 +462,9 @@ angular
             function ($rootScope, $state, $stateParams, authorization) {
 
         $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams) {
+            
+            // 在线客服是否显示
+            $rootScope.floatBtnShow = true;
             $rootScope.toState = toState;
             $rootScope.toStateParams = toStateParams;
 

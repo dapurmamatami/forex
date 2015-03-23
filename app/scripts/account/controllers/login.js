@@ -6,9 +6,9 @@
         .module('tigerwitPersonalApp')
         .controller('AccountLoginController', AccountLoginController);
 
-    AccountLoginController.$inject = ['$scope', '$state', 'account'];
+    AccountLoginController.$inject = ['$rootScope', '$scope', '$state', 'account'];
 
-    function AccountLoginController($scope, $state, account) {
+    function AccountLoginController($rootScope, $scope, $state, account) {
         $scope.account = {
             id: '',
             password: '',
@@ -16,6 +16,8 @@
         };
         $scope.login = login;
         $scope.eliminateErr = eliminateErr;
+
+        $rootScope.floatBtnShow = false;
 
         function login() {
 
