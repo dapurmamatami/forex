@@ -1,48 +1,6 @@
 @include b(asset_curve) {
     padding: 5px 30px 30px;
 
-    .dropdown {
-        float:right;
-
-        .dropdown-menu {
-            width: 120px;
-            min-width: 120px;
-            margin: -1px 0 0;
-            padding:0;
-            border-bottom-left-radius: 4px;
-            border-bottom-right-radius: 4px;
-
-            >li {
-                border-bottom: 1px solid lighten($brand-border-color, 10%);
-
-                >a {
-                    padding: 6px 20px;
-
-                    &:hover {
-                        text-decoration: none;
-                        background-color: darken(#fff, 10%);
-                    }
-                    &.active {
-                        background-color: darken(#fff, 10%);
-                    }
-                }
-            }
-        }
-    }
-
-    .btn-default {
-        width: 120px;
-        border-color: $brand-border-color;
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
-        font-weight: 700;
-
-
-        &:focus {
-            outline: none;
-        }
-    }
-
     @include e(title) {
         float: left;
         font-weight: 700;

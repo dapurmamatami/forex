@@ -10,6 +10,7 @@
     function stock($http) {
         var service = {
             getEquityReport: getEquityReport,
+            getSymbolDetail: getSymbolDetail,
             getSummaryReport: getSummaryReport,
             getHistory: getHistory
         };
@@ -36,6 +37,23 @@
                     period: period,
                     tiger_source: accountType,
                     cros_user: userCode
+                }
+            });
+        }
+
+        /*
+         * Stock Service 获取外汇价格变化曲线
+         *
+         * @method getSymbolDetail
+         * @param {String} symbol 外汇名  
+         * @param {String} period 距离当前的天数
+         * }
+         */
+        function getSymbolDetail(symbol, period) {
+            return $http.get('/symbol_detail', {
+                params: {
+                    symbol: symbol,
+                    period: period
                 }
             });
         }

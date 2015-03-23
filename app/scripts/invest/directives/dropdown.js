@@ -20,9 +20,7 @@
 
                 $document.bind('click', function (event) {
                     var isClickeElementChildOfPopup = element.find(event.target).length > 0;
-                    if (isClickeElementChildOfPopup) {
-                        return;
-                    }
+                    if (isClickeElementChildOfPopup) return;
                     scope.dropdownShow = false;
                     scope.$apply();
                 });
