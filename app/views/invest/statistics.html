@@ -2,36 +2,36 @@
 <div class="asset_curve">
     <div class="row">
         <h4 class="asset_curve__title">
-            {{currentPeriod}}的资产变化曲线
+            {{period.valShow}}的资产变化曲线
         </h4>
-        <div class="dropdown"  tw-dropdown>
-            <button class="btn btn-default" ng-click="toggleDropdown()" >
-                {{currentPeriod}}
+        <div class="line_chart_dropdown"  tw-dropdown>
+            <button class="line_chart_dropdown__btn" ng-click="toggleDropdown()" >
+                {{period.valShow}}
                 <i class="caret"></i>
             </button>
-            <ul class="dropdown-menu" ng-class="{'show': dropdownShow}">
+            <ul class="line_chart_dropdown__menu" ng-class="{'show': dropdownShow}">
                 <li>
-                    <a href="" ng-click="repaintChart(7, '近 1 周内')" ng-class="{'active':  currentPeriod === '近 1 周内'}">
+                    <a href="" ng-click="paintChart(7, '近 1 周内')" ng-class="{'active':  period.valShow === '近 1 周内'}">
                         近 1 周内
                     </a>
                 </li>
                 <li>
-                    <a href="" ng-click="repaintChart(30, '近 1 个月内')" ng-class="{'active':  currentPeriod === '近 1 个月内'}">
+                    <a href="" ng-click="paintChart(30, '近 1 个月内')" ng-class="{'active':  period.valShow === '近 1 个月内'}">
                         近 1 个月内
                     </a>
                 </li>
                 <li> 
-                    <a href="" ng-click="repaintChart(90, '近 3 个月内')" ng-class="{'active':  currentPeriod === '近 3 个月内'}">
+                    <a href="" ng-click="paintChart(90, '近 3 个月内')" ng-class="{'active':  period.valShow === '近 3 个月内'}">
                         近 3 个月内
                     </a>
                 </li>
                 <li>
-                    <a href="" ng-click="repaintChart(180, '近 6 个月内')" ng-class="{'active':  currentPeriod === '近 6 个月内'}">
+                    <a href="" ng-click="paintChart(180, '近 6 个月内')" ng-class="{'active':  period.valShow === '近 6 个月内'}">
                         近 6 个月内
                     </a>
                 </li>
                 <li>
-                    <a href="" ng-click="repaintChart(365, '近 1 年内')" ng-class="{'active':  currentPeriod === '近 1 年内'}">
+                    <a href="" ng-click="paintChart(360, '近 1 年内')" ng-class="{'active':  period.valShow === '近 1 年内'}">
                         近 1 年内
                     </a>
                 </li>

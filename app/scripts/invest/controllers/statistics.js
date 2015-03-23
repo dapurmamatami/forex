@@ -8,53 +8,45 @@
     InvestStatisticsController.$inject = ['$scope', '$state', 'stock'];
     
     function InvestStatisticsController($scope, $state, stock) {
+        $scope.chartType = 'money';
+        $scope.period = {
+            value: '',
+            valShow: ''
+        };
         $scope.currentPeriod = '';
-        $scope.repaintChart = repaintChart;
+        $scope.paintChart = paintChart;
         
-        if (!$scope.userType.isPersonal) {
-            $scope.currentPeriod = '近 1 周 内';
-
-            stock.getEquityReport(7, 'real', $scope.userType.code).then(function (data) {
-                $scope.$broadcast('paintLineChart', data.data);
-                $scope.$broadcast('hideLoadingImg');
-            });
-
-            stock.getSummaryReport('real', $scope.userType.code).then(function (data) {
-                $scope.summary = data;
-                $scope.$broadcast('paintDonutChart', data);
-            });
-
-        } else {
+        if ($scope.userType.isPersonal) {
+            
             // 监听 $scope.$parent.accountType 值的变化，重新请求数据
             $scope.$watch(function () {
                 return $scope.$parent.accountType;
             }, function () {
-                $scope.currentPeriod = '近 1 周 内';
-                
-                stock.getEquityReport(7, $scope.$parent.accountType.key).then(function (data) {
-                    $scope.$broadcast('hideLoadingImg');
-                    $scope.$broadcast('paintLineChart', data.data);    
-                });
-
-                stock.getSummaryReport($scope.accountType.key).then(function (data) {
-                    $scope.summary = data;
-                    $scope.$broadcast('paintDonutChart', data);
-                });   
+                paintChart(7, '近 1 周内'); 
+                getSummaryReport(); 
             }, true);
+        } else {
+            $scope.accountType.key = 'real';
+            paintChart(7, '近 1 周内');    
+            getSummaryReport();
         }
 
-        function repaintChart(number, currentPeriod) {
-            $scope.currentPeriod = currentPeriod;
+        function paintChart(value, valShow) {
+            $scope.period.value = value;
+            $scope.period.valShow = valShow;
+            stock.getEquityReport($scope.period.value, $scope.accountType.key, 
+                    $scope.userType.code).then(function (data) {
+                $scope.$broadcast('paintLineChart', data.data);
+                $scope.$broadcast('hideLoadingImg');
+            });
+        }
 
-            if (!$scope.userType.isPersonal) {
-                stock.getEquityReport(number, 'real', $scope.userType.code).then(function (data) {
-                    $scope.$broadcast('paintLineChart', data.data);
-                });
-            } else {
-                stock.getEquityReport(number, $scope.$parent.accountType.key).then(function (data) {     
-                    $scope.$broadcast('paintLineChart', data.data);
-                });
-            }
+        function getSummaryReport() {
+            stock.getSummaryReport($scope.accountType.key, $scope.userType.code).
+                    then(function (data) {
+                $scope.summary = data;
+                $scope.$broadcast('paintDonutChart', data);        
+            });
         }      
     }
 })();
