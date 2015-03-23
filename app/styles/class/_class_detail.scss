@@ -1,17 +1,15 @@
 @include b(class_detail_layout_center){
     float:left;
     width:550px;
-    border: 1px solid $brand-border-color;
+    border-right: 1px solid $brand-border-color;
     background: $brand-white;
     padding:5px;
-    margin-left: 20px;
-
 }
 @include b(class_detail_layout_sider){
     float:left;
     width:180px;
-    border: 1px solid $brand-border-color;
-    border-left: none;
+//    border: 1px solid $brand-border-color;
+//    border-left: none;
 }
 @include b(class){
     @include b(class_up){
@@ -25,7 +23,8 @@
         }
         @include e(name){
             text-align: center;
-            color:$gray;
+            font-size: 16px;
+            color:$gray-lighter;
         }
         @include b(class_forex_icon){
             width:148px;
@@ -34,7 +33,7 @@
     }
     @include b(class_center){
         margin-top: 30px;
-
+        border-bottom: 1px solid $brand-border-color;;
         @include e(action){
             font-size: 16px;
             margin-left: 20px;
@@ -44,9 +43,71 @@
                 font-weight: 600;
             }
         }
+        @include e(time){
+            margin-top: 20px;
+            font-size: 12px;
+            color:$gray-lighter;
+        }
 
     }
+    @include b(class_down){
+        padding:15px;
+        margin-top: 10px;
+        @include e(title){
+            font-weight: 800;
+        }
+        @include b(class_down_hot){
+            margin-top: 10px;
+            border-bottom: 1px solid $brand-border-color;
+            overflow: hidden;
+            @include e(icon){
+                float:left;
+                width:48px;
+                height:48px;
+            }
+            @include b(class_down_info){
+                float:right;
+                @include e(name){
+                    font-size: 16px;
+                    font-weight: 600;
+                    color:$brand-primary;
+                }
+                @include e(addr){
+                  color:$gray-lighter;
+                  margin-left: 5px;
+                }
+            }
+        }
+    }
+    @include b(class_rsider){
 
+        @include b(class_rsider_title){
+            margin-top: 30px;
+            margin-left: 10px;
+            border-bottom: 1px solid $brand-border-color;
+            p{
+                font-weight: 600;
+                font-size: 16px;
+                margin-left: 10px;
+            }
+        }
+        @include b(class_rsider_list){
+            padding: 10px;
+            @include e(item){
+                margin-left: 10px;
+
+                img{
+                    width: 40px;
+                    height: 30px;
+                    padding: 3px;
+                }
+                span{
+                    font-size: 16px;
+                }
+            }
+        }
+
+    }
 
 }
 

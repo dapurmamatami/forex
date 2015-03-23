@@ -224,7 +224,8 @@ angular
                 controller: 'NavbarController'
               },
               'content@class.detail':{
-                templateUrl: 'views/class/classdetail/detail.html'
+                templateUrl: 'views/class/classdetail/detail.html',
+                controller: 'ClassDetailController'
               },
               'lsider@class.detail':{
                 templateUrl: 'views/class/classdetail/lsider.html',
