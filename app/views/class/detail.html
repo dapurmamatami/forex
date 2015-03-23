@@ -1,0 +1,158 @@
+<div>
+  <div  class="class_center_title">
+
+        <p class="class_center_title__symbol">EUR/USD</p>
+        <p class="class_center_title__name">欧元/美元</p>
+
+  </div>
+  <div class="class_center_line">
+
+  </div>
+  <div class="class_center_communicate">
+      <p class="class_center_communicate__title">相关话题</p>
+      <div  ng-show="!isSummary" ng-controller="PersonalTopicPublishController">
+          <div class = "publisharea">
+              <img class="communicateinfo__user-icon" src="{{personal.smAvatar}}">
+              <div class="clearTop topicOrComment">
+                  <textarea  name="inputContent" ng-model="inputContent" ng-change="matchTopicContent()" prompt-special-input></textarea>
+                  <div class = "topicOrComment__doToast" ng-class="showOrNo" >
+                    发表成功！
+                  </div>
+                  <div >
+                  </div>
+                  <div class = "do_style" >
+                    <span class="do_style__remain">剩余 {{tRemainSum}}/1024 字</span>
+                    <a class="do_style__publish" ng-click="publishTopic()">发表我的看法 </a>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div>
+          <div class = "communicatelist" ng-repeat="item in mCdata">
+              <div ng-if = "item['topic_type']==0" ng-controller="PersonalCommunicateDoController">
+                  <div class="communicate" ng-init="mData = item">
+                      <img class = "communicateinfo__user-icon" src="/avatar/{{mData.publisher_id}}_50.jpg">
+                      <div class="communicate-text">
+                          <span class = "focus_name" ng-click="skipToSummary(mData.publisher_id)">{{mData['publisher_name']}}</span>
+                          <tw-content-show info = "mData['content']"></tw-content-show>
+                          <div>
+                            <span class = "communicateinfo__ptime">{{mData['ptime'] | startNow }}前</span>
+                              <div class = "communicateinfo__other_info">
+                                <span ng-click="doSupport(mData)">赞({{mData['support_sum']}}) </span>|
+                                <span ng-show="isSelf" ng-click="doTransmit(mData)"> 转发({{mData['tramsmit_sum']}}) |</span>
+                                <span ng-click="showDropComment()"> 评论({{mData['comment_sum']}}) </span>|
+                                <span ng-click="skipDetail(mData.topicid)"> 详情</span>
+                              </div>
+                          </div>
+
+                          <div class="topicOrComment" ng-show="commentShowToggle">
+                              <textarea ng-model="inputContent" ng-change="matchCommentContent()"></textarea>
+                              <div class = "topicOrComment__doToast" ng-class="showOrNo">
+                                {{toastMsg}}
+                              </div>
+                              <div class = "topicOrComment__dostyl" >
+                                <span>剩余 {{tRemainSum}}/1024 字</span>
+                                <a  class="do_style__publish" ng-click="doComment()"> 评论 </a>
+                              </div>
+                          </div>
+                    </div>
+                </div>
+                <hr />
+             </div>
+
+
+              <div ng-if = "item['topic_type']==1" ng-controller="PersonalCommunicateDoController">
+                  <div class="communicate" ng-init="mData = item">
+                      <img class = "communicateinfo__user-icon" src="/avatar/{{mData.publisher_id}}_50.jpg">
+                      <div class="communicate-out">
+                        <div>
+                          <span class="focus_name"  ng-click="skipToSummary(mData.relation.publisher_id)">{{mData['relation']['username']}}</span>
+                          <span> 手动平仓 </span>
+                          <span class="focus_name">{{mData['relation']['out_type']}}</span>
+                          <p class = "communicateinfo__ptime">{{mData['ptime'] | startNow}}前</p>
+                        </div>
+                        <div class = "outinfo">
+                          <img class = "outinfo__icon" ng-src="/images/forex_icon/{{mData['relation']['out_type']|lowercase}}@2x.png">
+                          <div class = "base_info">
+                            <p class="base_info__name">{{mData['relation']['out_type']}}</p>
+                            <p class="communicateinfo__ptime base_info__htime">持仓7小时23分钟</p>
+                          </div>
+                          <span class = "outinfo__profit" >{{mData['relation']['profit_point']}}%</span>
+                        </div>
+                        <div class = "communicateinfo__other_info">
+                          <span ng-click="doSupport(mData.topicid)">赞({{mData['support_sum']}}) </span>|
+                          <span ng-click="showDropComment()"> 评论({{mData['comment_sum']}}) </span>|
+                          <span ng-click="skipDetail(mData.topicid)"> 详情</span>
+                        </div>
+                      </div>
+
+                      <div class="topicOrComment" ng-show="commentShowToggle">
+                        <textarea ng-model="inputContent"></textarea>
+                        <div class = "topicOrComment__doToast" ng-class = "showOrNo">
+                          {{toastMsg}}
+                        </div>
+                        <div class = "topicOrComment__dostyl" >
+                          <span>剩余 1024/1024 字</span>
+                          <a ng-click="doComment()"> 评论 </a>
+                        </div>
+                      </div>
+                  </div>
+                  <hr/>
+              </div>
+              <div ng-if="item['topic_type']==3" ng-controller="PersonalCommunicateDoController" >
+
+                  <div class="communicate" ng-init="mData = item">
+                      <img class = "communicateinfo__user-icon" src="/avatar/{{mData.publisher_id}}_50.jpg">
+                      <div class="communicate-text">
+                          <span class = "focus_name" ng-click="skipToSummary(mData.publisher_id)">{{mData['publisher_name']}}</span>
+                          <p class = "communicateinfo__ptime">{{mData['ptime'] | startNow}}前</p>
+                          <tw-content-show info = "mData['content']"></tw-content-show>
+                          <div class="tramsmit">
+                            <span class = "tramsmit__focus_name" ng-click="skipToSummary(mData.relation.publisher_id)">{{mData['relation']['publisher_name']}}</span>
+                            <tw-content-show class = "tramsmit__content" info="mData['relation']['content']"></tw-content-show>
+                            <div>
+                              <span class = "tramsmit__ptime">{{mData['relation']['ptime'] | startNow }}前</span>
+                              <div class = "tramsmit_other_info">
+                                <span ng-click="doSupport(mData.relation)">赞({{mData['relation']['support_sum']}}) </span>|
+                                <span ng-show="isSelf" ng-click="doTransmit(mData.relation)"> 转发({{mData['relation']['tramsmit_sum']}}) |</span>
+                                <span ng-click="skipDetail(mData.relation.topicid)"> 评论({{mData['relation']['comment_sum']}}) </span>|
+                                <span ng-click="skipDetail(mData.relation.topicid)"> 详情</span>
+                              </div>
+                            </div>
+                          </div>
+
+
+                          <div>
+                            <div class = "communicateinfo__other_info">
+                              <span ng-click="doSupport(mData)">赞({{mData['support_sum']}}) </span>|
+                              <span ng-click="showDropComment()"> 评论({{mData['comment_sum']}}) </span>|
+                              <span ng-click="skipDetail(mData.topicid)"> 详情</span>
+                            </div>
+                          </div>
+
+                          <div class="topicOrComment" ng-show="commentShowToggle">
+                            <textarea ng-model="inputContent" ng-change="matchCommentContent()"></textarea>
+                            <div class = "topicOrComment__doToast" ng-class="showOrNo">
+                              {{toastMsg}}
+                            </div>
+                            <div class = "topicOrComment__dostyl" >
+                              <span>剩余 {{tRemainSum}}/1024 字</span>
+                              <a  class="do_style__publish" ng-click="doComment()"> 评论 </a>
+                            </div>
+                          </div>
+                      </div>
+                  </div>
+                <hr/>
+              </div>
+          </div>
+          <div class="btn-loading" ng-show="anyMore" ng-click="loadMore()" tw-loading-more>
+                  <span class="btn-loading__caption">
+                      点击加载更多...
+                  </span>
+            <span class="btn-loading__icon"></span>
+          </div>
+
+      </div>
+  </div>
+
+</div>

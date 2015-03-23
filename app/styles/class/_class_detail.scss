@@ -31,7 +31,7 @@
             height:105px;
         }
     }
-    @include b(class_center){
+    @include b(class_middle){
         margin-top: 30px;
         border-bottom: 1px solid $brand-border-color;;
         @include e(action){
@@ -106,8 +106,30 @@
                 }
             }
         }
-
     }
+    @include b(class_center){
+
+        @include b(class_center_title){
+            padding:20px;
+            @include e(symbol){
+                font-size: 30px;
+                font-weight: 600;
+                margin-top: 10px;
+            }
+            @include e(name){
+
+            }
+        }
+        @include b(class_center_communicate){
+            padding:20px;
+            @include e(title){
+                font-size: 18px;
+                font-weight: 600;
+                margin-bottom: 20px;
+            }
+        }
+    }
+
 
 }
 

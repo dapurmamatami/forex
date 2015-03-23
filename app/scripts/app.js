@@ -232,15 +232,15 @@ angular
                 controller: 'NavbarController'
               },
               'content@class.detail':{
-                templateUrl: 'views/class/classdetail/detail.html',
+                templateUrl: '../views/class/detail.html',
                 controller: 'ClassDetailController'
               },
               'lsider@class.detail':{
-                templateUrl: 'views/class/classdetail/lsider.html',
+                templateUrl: '../views/class/lsider.html',
                 controller:''
               },
               'rsider@class.detail':{
-                templateUrl: 'views/class/classdetail/rsider.html',
+                templateUrl: '../views/class/rsider.html',
                 controller:''
               },
               'ft@class.detail': {
@@ -491,7 +491,7 @@ angular
             function ($rootScope, $state, $stateParams, authorization) {
 
         $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams) {
-            
+
             // 在线客服是否显示
             $rootScope.floatBtnShow = true;
             $rootScope.toState = toState;
