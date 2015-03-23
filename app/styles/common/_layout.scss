@@ -117,12 +117,13 @@
                 @extend .bd_col_2__sidebar;
                 width: 230px;
             }
-            @include m(210){
-                @extend .bd_col_2__sidebar;
-                width: 210px;
+            @include m(200){
+              @extend .col-lg-3;
+              width: 200px;
+              padding: 0;
             }
-
         }
+
 
         @include e(content) {
             @extend .col-lg-9;
@@ -134,8 +135,9 @@
                 width: 730px;
             }
             @include m(750) {
-              @extend .bd_col_2__content;
-              width: 750px;
+                @extend .col-lg-9;
+                width: 750px;
+                padding: 0;
             }
         }
     }

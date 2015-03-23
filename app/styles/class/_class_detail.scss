@@ -1,1 +1,52 @@
+@include b(class_detail_layout_center){
+    float:left;
+    width:550px;
+    border: 1px solid $brand-border-color;
+    background: $brand-white;
+    padding:5px;
+    margin-left: 20px;
+
+}
+@include b(class_detail_layout_sider){
+    float:left;
+    width:180px;
+    border: 1px solid $brand-border-color;
+    border-left: none;
+}
+@include b(class){
+    @include b(class_up){
+        padding: 20px;
+        border-bottom: 1px solid $brand-border-color;;
+        @include e(sysbol){
+            text-align: center;
+            font-size: 24px;
+            font-weight: 700;
+            margin-top: 30px;
+        }
+        @include e(name){
+            text-align: center;
+            color:$gray;
+        }
+        @include b(class_forex_icon){
+            width:148px;
+            height:105px;
+        }
+    }
+    @include b(class_center){
+        margin-top: 30px;
+
+        @include e(action){
+            font-size: 16px;
+            margin-left: 20px;
+            @include m(price){
+                margin-left: 5px;
+                font-size: 22px;
+                font-weight: 600;
+            }
+        }
+
+    }
+
+
+}
 

@@ -5,8 +5,13 @@
       .module('tigerwitPersonalApp')
       .controller('ClassCfdController',ClassCfdController);
 
-    ClassCfdController.$inject = ['$scope','$http'];
-    function ClassCfdController($scope,$http){
+    ClassCfdController.$inject = ['$scope','$http','$state'];
+    function ClassCfdController($scope,$http,$state){
+        $scope.linkDetail = linkDetail;
+        function linkDetail(className){
+
+          $state.go('class.detail',{className:className});
+        }
         function getCfd(){
             $http.get('/symbol_list',{
               params:{
@@ -17,6 +22,10 @@
                 $scope.mData = data;
             })
         }
-        getCfd()
+
+
+      getCfd();
+
+
   }
 })();

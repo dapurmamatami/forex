@@ -4,8 +4,8 @@
       .module('tigerwitPersonalApp')
       .controller('ClassPreciousMetalController',ClassPreciousMetalController);
 
-    ClassPreciousMetalController.$inject = ['$scope','$http'];
-    function ClassPreciousMetalController($scope,$http) {
+    ClassPreciousMetalController.$inject = ['$scope','$http','$state'];
+    function ClassPreciousMetalController($scope,$http,$state) {
 
         $scope.getPrecious_metal = getPrecious_metal;
         function getPrecious_metal() {
@@ -18,6 +18,11 @@
                $scope.mData = data;
             })
         }
+        $scope.linkDetail = linkDetail;
+        function linkDetail(className){
+
+          $state.go('class.detail',{className:className});
+        }
         getPrecious_metal();
     }
-})()
+})();

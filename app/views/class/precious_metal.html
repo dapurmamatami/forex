@@ -20,7 +20,7 @@
                   <div class="gold_basic">
                     <img class="icon-forex-{{item.symbol.toLowerCase()}}" >
                     <div class="class_basic_info">
-                        <p class="class_basic_info__name">{{item.symbol | symbolBeauty}}</p>
+                        <a class="class_basic_info__name" ng-click="linkDetail(item.symbol)">{{item.symbol | symbolBeauty}}</a>
                         <p class="class_basic_info__addr">{{item.symbol | symbolToCn}}</p>
                     </div>
                   </div>

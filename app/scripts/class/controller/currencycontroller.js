@@ -5,11 +5,15 @@
       .module('tigerwitPersonalApp')
       .controller('ClassCurrencyController',ClassCurrencyController);
 
-    ClassCurrencyController.$inject = ['$scope','$http']
+    ClassCurrencyController.$inject = ['$scope','$http','$state']
 
-    function ClassCurrencyController($scope,$http){
+    function ClassCurrencyController($scope,$http,$state){
 
           $scope.getCurrency= getCurrency;
+          $scope.linkDetail = linkDetail;
+          function linkDetail(className){
+            $state.go('class.detail',{className:className});
+          }
           function getCurrency(){
 
               $http.get('/symbol_list',{

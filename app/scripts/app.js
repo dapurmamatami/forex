@@ -212,6 +212,34 @@ angular
               }
             }
           })
+          .state('class.detail',{
+            url:'/class/detail/:className',
+            views:{
+              '@':{
+                templateUrl:'views/class/layout-2-class.html',
+                controller:'PersonalInfoController'
+              },
+              'hd@class.detail': {
+                templateUrl: 'views/navbar/navbar-logined.html',
+                controller: 'NavbarController'
+              },
+              'content@class.detail':{
+                templateUrl: 'views/class/classdetail/detail.html'
+              },
+              'lsider@class.detail':{
+                templateUrl: 'views/class/classdetail/lsider.html',
+                controller:''
+              },
+              'rsider@class.detail':{
+                templateUrl: 'views/class/classdetail/rsider.html',
+                controller:''
+              },
+              'ft@class.detail': {
+                templateUrl: 'views/layout/footer.html'
+              }
+            }
+          })
+
             .state('message', {
                 url:'/message/:type_message',
                 authenticate: true,
