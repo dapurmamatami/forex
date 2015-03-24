@@ -1,13 +1,13 @@
 <div>
   <div  class="class_center_title">
 
-        <p class="class_center_title__symbol">EUR/USD</p>
-        <p class="class_center_title__name">欧元/美元</p>
+        <p class="class_center_title__symbol">{{symbol}}</p>
+        <p class="class_center_title__name">{{symbol |symbolToCn}}</p>
 
   </div>
   <div class="class_center_line">
       <div class="line_chart_dropdown"  tw-dropdown>
-          <button class="line_chart_dropdown__btn" ng-click="toggleDropdown()" >
+          <button class="line_chart_dropdown__btn class_center_line__btn" ng-click="toggleDropdown()" >
               {{forex.period.valShow}}
               <i class="caret"></i>
           </button>
@@ -39,9 +39,9 @@
               </li>
           </ul>
       </div>
-      <h3>
+      <h4 class="class_center_line__title">
         {{forex.period.valShow}}的价格变化曲线
-      </h3>
+      </h4>
       <div tw-line-chart></div>
   </div>
   <div class="class_center_communicate">
@@ -62,6 +62,7 @@
                   </div>
               </div>
           </div>
+        <hr />
       </div>
       <div>
           <div class = "communicatelist" ng-repeat="item in mCdata">

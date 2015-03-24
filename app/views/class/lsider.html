@@ -1,11 +1,11 @@
-<div>
+<div class="class_lsider">
     <div class="class_up">
         <img class="class_forex_icon" ng-src="images/forex_icon/eurusd@2x.png">
         <p class="class_up__sysbol">
-          EUR/USD
+          {{symbol}}
         </p>
         <p class="class_up__name">
-          欧元美元
+          {{symbol |symbolToCn}}
         </p>
 
     </div>
@@ -23,14 +23,14 @@
     <div class="class_down">
         <p class="class_down__title">热门投资者</p>
 
-        <div class="class_down_hot">
-            <img class="class_down_hot__icon" src="../../ngsrc/woman.png">
+        <div class="class_down_hot" ng-repeat="item in hotList">
+            <img class="class_down_hot__icon" src="/avatar/{{item.user_code}}_50.jpg">
             <div class="class_down_info">
                 <p class="class_down_info__name">
-                    Rosario Galati
+                    {{item.username}}
                 </p>
                 <p class="class_down_info__addr">
-                    北京,朝阳
+                    {{item.region_cn.world_name}},{{item.region_cn.state_name}}
                 </p>
             </div>
         </div>
