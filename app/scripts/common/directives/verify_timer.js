@@ -17,11 +17,13 @@
             template: 
                 '<span>' + 
                     '<span ng-show="timer.start">' + '获取验证码' + '</span>' +        
-                    '<span ng-show="timer.running">' + '{{timer.seconds}}' + '</span>' + 
+                    '<span ng-show="timer.running">' + '{{timer.seconds}}' + ' 秒</span>' + 
                     '<span ng-show="timer.restart">' + '重新获取' + '</span>' + 
                 '</span>',
             link: function (scope, element, attrs) {
-                var seconds = 4;
+                var seconds = 4,
+                    phoneValid = false;
+
                 scope.timer = {
                     seconds: seconds,
                     start: true,
@@ -29,14 +31,21 @@
                     restart: false
                 };  
 
+                scope.$on('phoneValid', function () {
+                    phoneValid = true;
+                });
+
                 element.bind('click', function () {
 
-                    if (scope.timer.start || scope.timer.restart) {
-                        element.attr('disabled', true);
-                        scope.timer.start = false;
-                        scope.timer.running = true;
-                        scope.timer.restart = false;
-                        updateTime(); 
+                    if (phoneValid) {
+
+                        if (scope.timer.start || scope.timer.restart) {
+                            element.attr('disabled', true);
+                            scope.timer.start = false;
+                            scope.timer.running = true;
+                            scope.timer.restart = false;
+                            updateTime(); 
+                        }
                     }
                 });
 
