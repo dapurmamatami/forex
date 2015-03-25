@@ -1,5 +1,5 @@
 <div class="account_register">
-    <div class="account_register__step" ng-if="step === 1">
+    <div class="account_register__step" ng-show="step === 1">
         <div class="modal-header">
             <button class="close" ng-click="closeModal()">X</button>
             <span class="account_register__step_tip">
@@ -14,7 +14,7 @@
                 <div class="col-xs-5 text-center">
                     <div class="account_register__photo_logo"></div>
                 </div>
-                <div class="col-xs-7 mg-tp-15">
+                <div class="col-xs-7">
                     <form name="formStep1" novalidate>
                         <div class="form-group">
                             <label>真实姓名</label>
@@ -23,13 +23,15 @@
                                    type="text"
                                    required
                                    ng-model="account.name"
-                                   ng-pattern="/^[\u4e00-\u9fa5\.]{2,20}$/">
-                            <div ng-show="formStep1.name.$dirty">
+                                   ng-pattern="/^[\u4e00-\u9fa5\.]{2,20}$/"
+                                   ng-focus="hideErr('name')"
+                                   ng-blur="showErr('name')">
+                            <div ng-show="formErr.name">
                                 <p class="alert alert-danger" ng-show="formStep1.name.$error.required">
                                     请填写姓名
                                 </p>
                                 <p class="alert alert-danger" ng-show="formStep1.name.$error.pattern">
-                                    名字为 2-20 个汉字以及 . 号
+                                    姓名为 2-20 个汉字以及 . 号
                                 </p>
                             </div>
                         </div>
@@ -41,8 +43,9 @@
                                    required 
                                    ng-model="account.id.number"
                                    ng-pattern="/(^\d{15}$)|(^\d{17}([0-9]|X)$)/"
-                                   ng-focus="eliminateErr()">
-                            <div ng-show="formStep1.idNumber.$dirty">
+                                   ng-focus="hideErr('idNumber')"
+                                   ng-blur="showErr('idNumber')">
+                            <div ng-show="formErr.idNumber">
                                 <p class="alert alert-danger" ng-show="formStep1.idNumber.$error.required">
                                     请填写身份证号
                                 </p>
@@ -70,7 +73,7 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button class="btn btn-primary" ng-disabled="formStep1.$invalid || account.id.existence || !account.id.valid" ng-click="submitFormStep1()">
+            <button class="btn btn-primary" ng-click="submitFormStep1()">
                 下一步
             </button>
         </div>

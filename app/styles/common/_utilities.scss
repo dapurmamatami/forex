@@ -45,21 +45,18 @@
 }
 
 .logo{
-    display: block;
+    display: inline-block;
     margin: 0;
     padding: 0;
-    width: 140px;
-    height: 40px;
+    width: 207px;
+    height: 34px;
+    @include img-retina($image_path + "logo.png", $image_path + "logo@2x.png", 207px, 34px)
 }
 .logo-white {
     @extend .logo;
+    width: 140px;
+    height: 40px;
     @include img-normal($image_path + "logo-white.png");
-}
-
-.logo-gray {
-    @extend .logo;
-    @include background_image_url('logo-gray.png');
-    background-repeat: no-repeat;
 }
 
 .color-danger {

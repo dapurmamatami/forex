@@ -25,13 +25,17 @@
             income: '',
             experience: ''
         };
+        $scope.formErr = {
+            name: false,
+            idNumber: false
+        };
         $scope.closeModal = closeModal;
-        $scope.eliminateErr = eliminateErr;
         $scope.submitFormStep1 = submitFormStep1;
         $scope.submitFormStep2 = submitFormStep2;
         $scope.submitFormStep3 = submitFormStep3;
         $scope.gotoDeposit = gotoDeposit;
-
+        $scope.hideErr = hideErr;
+        $scope.showErr = showErr;
         
         //确定显示第几步
         $scope.step = registerStep;
@@ -84,10 +88,6 @@
             
         }
 
-        function eliminateErr() {
-            registerReal.eliminateErr($scope.account.id);
-        }
-
         function submitFormStep2() {
             goNextStep();
         }
@@ -101,6 +101,18 @@
         function gotoDeposit() {
             closeModal();
             $state.go('money.subPage', {subPage: 'deposit'});
+        }
+
+        function hideErr(name) {
+            $scope.formErr[name] = false;
+
+            if (name === 'idNumber') {
+                registerReal.eliminateErr($scope.account.id);
+            }
+        }
+
+        function showErr(name) {
+            $scope.formErr[name] = true;
         }
 
     }

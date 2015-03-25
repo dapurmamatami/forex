@@ -94,9 +94,18 @@
         line-height: 34px;
     }
 
-    .alert-danger {
+    @include e(bottom_alert) {
+        @extend .alert;
+        @extend .alert-danger;
         padding: 5px;
         margin-top: 5px;
+        margin-bottom: 0;
+    }
+
+    @include e(right_alert) {
+        @extend .alert;
+        @extend .alert-danger;
+        padding: 5px;
         margin-bottom: 0;
     }
 }

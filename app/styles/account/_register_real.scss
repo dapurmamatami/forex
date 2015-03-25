@@ -11,22 +11,29 @@
     .modal-header {
         border-bottom: none;
     }
+    
     .modal-body {
         label {
             font-size: 16px;
             color: $gray-light;
         }
     }
+    
     .modal-footer {
         padding-top: 0;
         border-top: none;
         text-align: center;
     }
+    
     .btn-primary {
         font-size: 16px;
         font-weight: 700;
         padding: 8px 50px;
         
+        &[disabled] {
+            border-color: darken($gray-light, 10%);
+            background-color: $gray-light;
+        }
     }
 
     .alert {
@@ -40,8 +47,8 @@
     }
 
     @include e(photo_logo) {
-        width: 200px;
-        height: 180px;
+        width: 142px;
+        height: 127px;
         margin: 0 auto;
         @include img-normal($account_path + "photo.png");
         background-repeat: no-repeat;

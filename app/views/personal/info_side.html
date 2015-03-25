@@ -54,10 +54,10 @@
         <h5 class="real_account__title">开通真实账户进行交易</h5>
         <p class="real_account__percent">
             当前进度 
-            <span ng-if="personal.step === 1">0%</span>
-            <span ng-if="personal.step === 2">30%</span>
-            <span ng-if="personal.step === 3">70%</span>
-            <span ng-if="personal.step === 4">100%</span>
+            <span ng-show="registerRealStep === 1">0%</span>
+            <span ng-show="registerRealStep === 2">30%</span>
+            <span ng-show="registerRealStep === 3">70%</span>
+            <span ng-show="registerRealStep === 4">100%</span>
         </p>
         <button class="btn btn-primary" ng-click="registerReal()">
             开通真实账户

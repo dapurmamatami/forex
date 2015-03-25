@@ -10,6 +10,7 @@
 
     function PersonalInfoController($location, $scope, $timeout, $modal, $cookieStore, $state, 
             $q, config, account, money, communicate, copy) {
+        $scope.registerRealStep = 1;
         $scope.userType = {
             code:'',
             isPersonal:true
@@ -52,10 +53,9 @@
     
         // 获取开通真实账户的进度信息
         account.getStepInfo('ReliableInformation').then(function (data) {
-            
+    
             if (data.is_succ) {
-                $scope.personal.step = data.progress + 1;
-                return data.progress + 1;
+                $scope.registerRealStep = data.progress + 1;
             }
         });
 
@@ -87,7 +87,7 @@
                 size: size,
                 resolve: {
                     registerStep: function () {
-                        return $scope.personal.step;
+                        return $scope.registerRealStep;
                     }
                 }
             });

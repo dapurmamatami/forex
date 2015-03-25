@@ -6,7 +6,7 @@
             line-height: 1.5;
         }
 
-        span {
+        a {
             font-weight: 700;
             color: $brand-primary;
         }    
@@ -29,6 +29,10 @@
         background-position: 50%;
     }
 
+    @include e(title) {
+        font-weight: 700;
+    }
+
     @include e(tip) {
         margin-top: 30px;
         margin-bottom: 50px;
@@ -36,7 +40,7 @@
 
     @include e(register_real) {
         float: right;
-        margin: 15px 60px 0 0;
+        margin: 15px 50px 0 0;
         font-size: 15px;
         font-weight: 700;
         color: $brand-primary;

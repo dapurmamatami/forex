@@ -21,7 +21,8 @@
             emailExist: false,  // 邮箱是否认证
             password: '',
             confirmPwd: '',     // 确认密码
-            forkCode: ''        // 邀请码（可选）
+            forkCode: '',        // 邀请码（可选）
+            agreement: true
         }
         $scope.formErr = {
             username: false,

@@ -21,7 +21,7 @@
                     '<span ng-show="timer.restart">' + '重新获取' + '</span>' + 
                 '</span>',
             link: function (scope, element, attrs) {
-                var seconds = 4,
+                var seconds = 31,
                     phoneValid = false;
 
                 scope.timer = {
