@@ -232,14 +232,14 @@ angular
                 controller: 'NavbarController'
               },
               'content@class.detail':{
-                templateUrl: '../views/class/detail.html',
+                templateUrl: 'views/class/detail.html',
               },
               'lsider@class.detail':{
-                templateUrl: '../views/class/lsider.html',
+                templateUrl: 'views/class/lsider.html',
                 controller:''
               },
               'rsider@class.detail':{
-                templateUrl: '../views/class/rsider.html',
+                templateUrl: 'views/class/rsider.html',
                 controller:''
               },
               'ft@class.detail': {
