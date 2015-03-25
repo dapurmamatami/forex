@@ -6,13 +6,12 @@
         .module('tigerwitPersonalApp')
         .controller('AccountForgetController', AccountForgetController);
 
-    AccountForgetController.$inject = ['$scope', 'account'];
-    function AccountForgetController($scope, account) {
+    AccountForgetController.$inject = ['$rootScope', '$scope', 'account'];
+    function AccountForgetController($rootScope, $scope, account) {
         $scope.step = 1;
         $scope.phone = {
             number:'',
             existence: true,  // 号码是否注册
-            infoBack: false,
             verifyCode: '',
             correct: true     // 验证码是否正确
         };
@@ -20,44 +19,50 @@
             newPwd: '',
             confirmPwd: ''
         };
+        $scope.formErr = {
+            phone: false,
+            verifyCode: false,
+            newPwd: false,
+            confirmPwd: false
+        };
         $scope.goNextStep = goNextStep;
-        $scope.checkExist = checkExist;
-        $scope.eliminateErr = eliminateErr;
+
+        $scope.hideErr = hideErr;
+        $scope.showErr = showErr;
         $scope.getVerifyCode = getVerifyCode;
         $scope.submitFormStep1 = submitFormStep1;
         $scope.submitFormStep2 = submitFormStep2;
+        var phoneValid = false;
+
+        $rootScope.floatBtnShow = false;
+
+        $scope.$on('phoneValid', function () {
+            phoneValid = true;
+        });
 
         // 检查手机号码是否已经认证过
-        function checkExist() {
-            if ($scope.phone.number === undefined || $scope.phone.number === '') return;
+        function checkExist(prop) {
+            if ($scope[prop].number === undefined || $scope[prop].number === '') {
+                $scope[prop].existence = true;
+                return;
+            };
 
-            account.checkExist($scope.phone.number).then(function (data) {
-                $scope.phone.infoBack = true;
+            account.checkExist($scope[prop].number).then(function (data) {
 
                 if (data.data) {
-                    $scope.phone.existence = true;
+                    $scope[prop].existence = true;
+                    $scope.$broadcast('phoneValid');
                 } else {
-                    $scope.phone.existence = false;
+                    $scope[prop].existence = false;
                 }
             });
 
         }
 
-        function eliminateErr(message) {
-            
-            if (message === 'phone is not existent') {
-                $scope.phone.infoBack = false;
-                $scope.phone.existence = true;
-            }
-
-            if (message === 'verify code is incorrect') {
-                $scope.phone.correct = true;
-            }
-
-        }
-
         function getVerifyCode() {
-            account.getVerifyCode($scope.phone.number, true);
+            if (phoneValid) {
+                account.getVerifyCode($scope.phone.number, true);
+            }
         }
 
         function goNextStep() {
@@ -65,6 +70,12 @@
         }
 
         function submitFormStep1() {
+            
+            if ($scope.formStep1.$invalid) {
+                $scope.formErr.phone = true;
+                $scope.formErr.verifyCode = true;
+                return;
+            }
             account.verifyCode($scope.phone.number, $scope.phone.verifyCode).then(function (data) {
 
                 if (!data.is_succ) {
@@ -80,6 +91,13 @@
         }
 
         function submitFormStep2() {
+
+            if ($scope.formStep2.$invalid) {
+                $scope.formErr.newPwd = true;
+                $scope.formErr.confirmPwd = true;
+                return;
+            }
+
             account.setNewPwd($scope.phone.number, $scope.phone.verifyCode, 
                     $scope.password.newPwd).then(function (data) {
                 
@@ -87,6 +105,22 @@
                     goNextStep();
                 }        
             });
+        }
+
+        function hideErr(name) {
+            $scope.formErr[name] = false;
+
+            if (name === 'verifyCode') {
+                $scope.phone.correct = true;
+            }
+        }
+
+        function showErr(name) {
+            $scope.formErr[name] = true;
+
+            if (name === 'phone') {
+                checkExist('phone');
+            }
         }
 
     }
