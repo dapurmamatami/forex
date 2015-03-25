@@ -9,8 +9,8 @@
     function ClassCfdController($scope,$http,$state){
         $scope.linkDetail = linkDetail;
         function linkDetail(className){
-
-          $state.go('class.detail',{className:className});
+            window.symbol_detail_single = $scope.mData;
+            $state.go('class.detail',{className:className});
         }
         function getCfd(){
             $http.get('/symbol_list',{
@@ -18,7 +18,6 @@
                 tab:3
               }
             }).then(function(data){
-                console.info(data)
                 $scope.mData = data;
             })
         }

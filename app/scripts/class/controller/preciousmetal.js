@@ -14,14 +14,14 @@
                   tab: 2
                 }
             }).then(function (data) {
-               console.info(data);
                $scope.mData = data;
             })
         }
         $scope.linkDetail = linkDetail;
         function linkDetail(className){
+            window.symbol_detail_single = $scope.mData;
+            $state.go('class.detail',{className:className});
 
-          $state.go('class.detail',{className:className});
         }
         getPrecious_metal();
     }

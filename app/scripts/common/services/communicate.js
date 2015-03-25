@@ -25,7 +25,8 @@
               getMessageInfo: getMessageInfo,
               visitedMessage: visitedMessage,
               delMessage: delMessage,
-              loadMoreMessage:loadMoreMessage
+              loadMoreMessage:loadMoreMessage,
+              getSymbolInfo:getSymbolInfo
           };
           return service;
 
@@ -203,6 +204,18 @@
                 })
             }
 
+            /**
+             *  获取与相关外汇品类相关的话题列表
+             * @param symbol
+             * @param startIndex
+             * @returns {*|HttpPromise}
+             */
+            function getSymbolInfo(symbol,startIndex){
+                return topicHttp.get('/getsymbolinfo',{
+                symbol:symbol,
+                startIndex:startIndex
+              });
+            }
             function unvisitedMessage(user_code){
                 return topicHttp.post('message',{
                     protocal:'unvisited',
@@ -212,6 +225,7 @@
                 })
 
             }
+
 
           /**
            * 获取Message详细信息

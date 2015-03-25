@@ -12,7 +12,8 @@
             getEquityReport: getEquityReport,
             getSymbolDetail: getSymbolDetail,
             getSummaryReport: getSummaryReport,
-            getHistory: getHistory
+            getHistory: getHistory,
+            getSymbolHotList: getSymbolHotList
         };
         return service;
 
@@ -20,12 +21,12 @@
          * Stock Service 获取资产的净值的变化率
          *
          * @method getEquityReport
-         * @param {String} period 距离当前的天数 
-         * @param {String} accountType 值为 'demo' or 'real'   
+         * @param {String} period 距离当前的天数
+         * @param {String} accountType 值为 'demo' or 'real'
          * @param {String} userCode 用户的 user code
          * @return {Object} {
          *   data: [{
-         * 
+         *
          *   }],
          *   error_msg: '',
          *   is_succ: true / false
@@ -45,7 +46,7 @@
          * Stock Service 获取外汇价格变化曲线
          *
          * @method getSymbolDetail
-         * @param {String} symbol 外汇名  
+         * @param {String} symbol 外汇名
          * @param {String} period 距离当前的天数
          * }
          */
@@ -62,8 +63,8 @@
          * Stock Service 获取资产概况
          *
          * @method getSummaryReport
-         * @param {String} period 距离当前的天数 
-         * @param {String} accountType 值为 'demo' or 'real'   
+         * @param {String} period 距离当前的天数
+         * @param {String} accountType 值为 'demo' or 'real'
          * @param {String} userCode 用户的 user code
          * @return {Object} {
          *   total_profit_rate 盈利率
@@ -139,6 +140,21 @@
             return $http.get('/get_history', {
                 params: newArgu
             });
+         }
+
+      /**
+       *  获取品类详情页面的热门投资者列表
+       * @param symbol
+       * @returns {HttpPromise}
+       */
+         function getSymbolHotList(symbol){
+
+           return $http.get('/symbol_master',{
+              params:{
+                  symbol:symbol
+              }
+           })
+
          }
     }
 })();

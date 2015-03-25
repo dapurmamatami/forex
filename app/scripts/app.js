@@ -233,7 +233,6 @@ angular
               },
               'content@class.detail':{
                 templateUrl: '../views/class/detail.html',
-                controller: 'ClassDetailController'
               },
               'lsider@class.detail':{
                 templateUrl: '../views/class/lsider.html',

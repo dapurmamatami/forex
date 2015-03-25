@@ -12,7 +12,8 @@
           $scope.getCurrency= getCurrency;
           $scope.linkDetail = linkDetail;
           function linkDetail(className){
-            $state.go('class.detail',{className:className});
+              window.symbol_detail_single = $scope.mData;
+              $state.go('class.detail',{className:className});
           }
           function getCurrency(){
 
@@ -21,7 +22,6 @@
                       tab:1
                   }
                 }).then(function(data){
-                  console.info(data)
                   $scope.mData = data;
               })
           }

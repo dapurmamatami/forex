@@ -11,125 +11,138 @@
 //    border: 1px solid $brand-border-color;
 //    border-left: none;
 }
-@include b(class){
-    @include b(class_up){
-        padding: 20px;
+@include b(class_lsider) {
+    padding: 10px;
+    @include b(class_up) {
         border-bottom: 1px solid $brand-border-color;;
-        @include e(sysbol){
-            text-align: center;
-            font-size: 24px;
-            font-weight: 700;
-            margin-top: 30px;
+        @include e(sysbol) {
+          text-align: center;
+          font-size: 24px;
+          font-weight: 700;
+          margin-top: 30px;
         }
-        @include e(name){
-            text-align: center;
-            font-size: 16px;
-            color:$gray-lighter;
+        @include e(name) {
+          text-align: center;
+          font-size: 16px;
+          color: $gray-lighter;
         }
-        @include b(class_forex_icon){
-            width:148px;
-            height:105px;
+        @include b(class_forex_icon) {
+          width: 148px;
+          height: 105px;
         }
     }
-    @include b(class_middle){
-        margin-top: 30px;
-        border-bottom: 1px solid $brand-border-color;;
-        @include e(action){
-            font-size: 16px;
-            margin-left: 20px;
-            @include m(price){
-                margin-left: 5px;
-                font-size: 22px;
-                font-weight: 600;
-            }
+    @include b(class_middle) {
+      margin-top: 30px;
+      border-bottom: 1px solid $brand-border-color;;
+      @include e(action) {
+        font-size: 16px;
+        margin-left: 20px;
+        @include m(price) {
+          margin-left: 5px;
+          font-size: 22px;
+          font-weight: 600;
         }
-        @include e(time){
-            margin-top: 20px;
-            font-size: 12px;
-            color:$gray-lighter;
-        }
+      }
+      @include e(time) {
+        margin-top: 20px;
+        font-size: 12px;
+        color: $gray-lighter;
+      }
 
     }
-    @include b(class_down){
-        padding:15px;
+    @include b(class_down) {
+        padding: 10px;
         margin-top: 10px;
-        @include e(title){
-            font-weight: 800;
+        @include e(title) {
+          font-weight: 800;
         }
-        @include b(class_down_hot){
+        @include b(class_down_hot) {
             margin-top: 10px;
             border-bottom: 1px solid $brand-border-color;
             overflow: hidden;
-            @include e(icon){
-                float:left;
-                width:48px;
-                height:48px;
+            @include e(icon) {
+              float: left;
+              width: 48px;
+              height: 48px;
             }
-            @include b(class_down_info){
-                float:right;
-                @include e(name){
-                    font-size: 16px;
-                    font-weight: 600;
-                    color:$brand-primary;
+            @include b(class_down_info) {
+                float: right;
+                @include e(name) {
+                  font-size: 16px;
+                  font-weight: 600;
+                  color: $brand-primary;
                 }
-                @include e(addr){
-                  color:$gray-lighter;
+                @include e(addr) {
+                  color: $gray-lighter;
                   margin-left: 5px;
                 }
             }
         }
     }
-    @include b(class_rsider){
+    @include b(class_rsider) {
 
-        @include b(class_rsider_title){
+        @include b(class_rsider_title) {
             margin-top: 30px;
             margin-left: 10px;
             border-bottom: 1px solid $brand-border-color;
-            p{
+            p {
                 font-weight: 600;
                 font-size: 16px;
                 margin-left: 10px;
             }
-        }
-        @include b(class_rsider_list){
-            padding: 10px;
-            @include e(item){
-                margin-left: 10px;
-
-                img{
+            }
+            @include b(class_rsider_list) {
+                padding: 10px;
+                @include e(item) {
+                  margin-left: 10px;
+                  img {
                     width: 40px;
-                    height: 30px;    @include b(class_center){
-
-                  padding: 3px;
-                }
-                span{
+                    height: 30px;
+                  }
+                  span {
                     font-size: 16px;
+                  }
                 }
-            }
-        }
+          }
     }
+    @include b(class_center) {
 
-        @include b(class_center_title){
-            padding:20px;
-            @include e(symbol){
-                font-size: 30px;
-                font-weight: 600;
-                margin-top: 10px;
+        @include b(class_center_title) {
+            padding: 20px;
+            @include e(symbol) {
+              font-size: 30px;
+              font-weight: 600;
+              margin-top: 10px;
             }
-            @include e(name){
+            @include e(name) {
 
             }
         }
-        @include b(class_center_communicate){
-            padding:20px;
+        @include b(class_center_communicate) {
+            padding: 20px;
+            @include e(title) {
+              font-size: 18px;
+              font-weight: 600;
+              margin-bottom: 20px;
+            }
+            hr {
+                border: 0 ;
+                background-color:$brand-border-color;
+                height:1px;
+                margin-top: 20px;
+                clear:both;
+            }
+        }
+        @include b(class_center_line){
             @include e(title){
-                font-size: 18px;
-                font-weight: 600;
-                margin-bottom: 20px;
+                margin-left: 10px;
+            }
+            @include e(btn){
+                margin-right: 10px;
             }
         }
-    }
 
+    }
 
 }
 

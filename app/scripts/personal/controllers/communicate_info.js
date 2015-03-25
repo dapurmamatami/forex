@@ -75,7 +75,6 @@
           var startIndex = $scope.mCdata.length;
           communicate.hotInvester(startIndex)
               .then(function(data){
-                  console.log(data);
                   if(data.statecode){
                      $scope.mCdata = $scope.mCdata.concat(data.data);
                       if(data.data.length<10){
