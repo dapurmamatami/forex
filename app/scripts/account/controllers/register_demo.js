@@ -35,8 +35,13 @@
         $scope.hideErr = hideErr;
         $scope.getVerifyCode = getVerifyCode;
         $scope.registerReal = registerReal;
+        var phoneValid = false;
 
         $rootScope.floatBtnShow = false;
+
+        $scope.$on('phoneValid', function () {
+            phoneValid = true;
+        });
 
         function checkExist(prop) {
             var tmp;
@@ -99,9 +104,10 @@
         }
 
         function getVerifyCode() {
-            $scope.$on('phoneValid', function () {
+            
+            if (phoneValid) {
                 account.getVerifyCode($scope.account.phone);
-            });
+            }
         }
 
         // 注册真实账户

@@ -25,6 +25,7 @@
             status: 0,
             message: '正常'
         };
+        
         $rootScope.floatBtnShow = false;
 
         function login() {
