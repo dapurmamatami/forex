@@ -1,0 +1,15 @@
+<div class="layout-msg">
+  <div class="hd" ui-view="hd">
+  </div>
+  <div class="bd_col_2" ng-controller="MessageController">
+    <div class="row">
+      <div class="msg_menu" ui-view="sidebar">
+      </div>
+      <div class="msg_content" ui-view="content">
+
+      </div>
+    </div>
+  </div>
+  <div class="ft" ui-view="ft">
+  </div>
+</div>
