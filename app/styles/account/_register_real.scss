@@ -82,6 +82,11 @@
             color: $gray-light;
         }
 
+        h5 {
+            line-height: 1.4;
+            font-size: 16px;
+        }
+
         @include e(warning, $account_register) {
             margin-top: 20px;
             font-size: 16px;
