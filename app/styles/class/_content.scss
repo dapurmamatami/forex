@@ -29,11 +29,11 @@
 @include b(class_basic_info){
     margin-left: 20px;
     float:left;
+    text-align: left;
     @include e(name){
         color:$brand-primary;
         font-size: 19px;
         font-weight: 700;
-        text-align: left;
         &:hover{
             cursor: pointer;
         }

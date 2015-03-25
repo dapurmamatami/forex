@@ -38,7 +38,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown" ng-class="{open: msg_show}" ng-mouseenter="showMsg()" ng-mouseleave="hideMsg()">
                     <a class="nav_msg" href="">
-                        <img class = "nav_msg__pic" ng-src="ngsrc/icon_mail.png">
+                        <img class = "nav_msg__pic" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg'}">
                         <img class = "nav_msg__tip" ng-src="ngsrc/icon_mail_tip.png" ng-show="hasMsg">
                     </a>
 
@@ -89,7 +89,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="social_counter">
                             <a class="social_counter__counter_itm" ng-href="#/invest/{{personal.user_code}}/relationship?type=copiedTrader">
                                 <h4>{{personal.copiedTraderSum}}</h4>
@@ -110,7 +110,7 @@
                                 <span class="social_counter__divider"></span>
                             </a>
                         </div>
-                        
+
                         <div class="nav_money">
                             <p class="nav_money__number">
                                 {{realEquityInfo.equity || 0 | currency}}

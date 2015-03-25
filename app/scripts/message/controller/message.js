@@ -35,13 +35,14 @@
             $scope.msg_type = type;
         }
         function getMessageInfo(item){
-            switchMessageData(item);
+
             communicate.getMessageInfo(0,10).then(function(data){
                 if(data.statecode){
                   $scope.unvisited_sys = data.data.unvisited_sum.sys_unvisited_sum;
                   $scope.unvisited_user = data.data.unvisited_sum.user_unvisited_sum;
                   $scope.sys_message = data.data.sys;
                   $scope.user_message = data.data.user;
+                  switchMessageData(item);
                 }
             });
         }

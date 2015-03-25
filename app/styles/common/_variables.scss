@@ -7,14 +7,14 @@ $bootstrap-sass-asset-helper: false !default;
 
 //== Colors
 $gray-dark:              lighten(#000, 20%) !default;   // #333
-$gray-light:             #666 !default; 
-$gray-lighter:           #999 !default; 
+$gray-light:             #666 !default;
+$gray-lighter:           #999 !default;
 $gray-lightest:          #f5f5f5 !default;
 
 $brand-primary:         #008acd !default;
 $brand-light-primary:   #009de7 !default;
 $brand-light:		    #009de7 !default; // 不用了
-$brand-dark-primary:    #0074ae !default;  
+$brand-dark-primary:    #0074ae !default;
 $brand-dark:            #0074ae !default; // 不用了
 $brand-white:           #fff !default;
 $brand-danger:          #cc3300 !default;
@@ -25,7 +25,7 @@ $brand-warning:         #C7B92A !default;
 $brand-yellow:          #C7B92A !default; // 不用了
 $brand-border:          #ccc !default;
 $brand-border-color:    #ccc !default;    // 不用了
-$brand-light-border:    #ddd !default;  
+$brand-light-border:    #ddd !default;
 $brand-border-light:    #ddd !default;    // 不用了
 
 $gray-darker:           lighten(#000, 13.5%) !default; // #222
@@ -43,7 +43,7 @@ $forex_icon_path:        "../images/forex_icon/";
 $flag_icon_path:         "../images/flag_icon/";
 $bank_icon_path:         "../images/bank_icon/";
 $money_icon_path:        "../images/money_icon/";
-$progress_bar_path:      "../images/progress_bar/";     
+$progress_bar_path:      "../images/progress_bar/";
 
 //== Scaffolding
 //
@@ -196,7 +196,7 @@ $input-border-radius-large:      $border-radius-large !default;
 $input-border-radius-small:      $border-radius-small !default;
 
 //** Border color for inputs on focus
-$input-border-focus:             $brand-light; 
+$input-border-focus:             $brand-light;
 $input-border-focus:             #66afe9 !default;
 
 //** Placeholder text color

@@ -17,7 +17,7 @@
         border-bottom: 1px solid $brand-border-color;;
         @include e(sysbol) {
           text-align: center;
-          font-size: 24px;
+          font-size: 30px;
           font-weight: 700;
           margin-top: 30px;
         }
@@ -92,16 +92,26 @@
             }
             }
             @include b(class_rsider_list) {
-                padding: 10px;
-                @include e(item) {
-                  margin-left: 10px;
-                  img {
-                    width: 40px;
-                    height: 30px;
-                  }
-                  span {
-                    font-size: 16px;
-                  }
+                @include b(class_rsider_item) {
+                    margin-left: 10px;
+                    padding:10px;
+                    & .icon {
+                        width: 40px;
+                        height: 30px;
+                        padding: 5px;
+                    }
+                    & .name {
+                      margin-left: 5px;
+                      font-size: 14px;
+                      color: $gray-light;
+                    }
+                    &:hover{
+                        cursor:pointer;
+                        background: $brand-primary;
+                        & .name{
+                            color: $brand-white;
+                        }
+                    }
                 }
           }
     }
@@ -110,20 +120,20 @@
         @include b(class_center_title) {
             padding: 20px;
             @include e(symbol) {
-              font-size: 30px;
-              font-weight: 600;
-              margin-top: 10px;
+                font-size: 32px;
+                font-weight: 600;
+                margin-top: 10px;
             }
             @include e(name) {
-
+                font-size: 16px;
             }
         }
         @include b(class_center_communicate) {
             padding: 20px;
             @include e(title) {
-              font-size: 18px;
-              font-weight: 600;
-              margin-bottom: 20px;
+                font-size: 18px;
+                font-weight: 600;
+                margin-bottom: 20px;
             }
             hr {
                 border: 0 ;

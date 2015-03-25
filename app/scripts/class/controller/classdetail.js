@@ -49,6 +49,25 @@
                 }
             });
         }
+        function getSymbolPrice(){
+            stock.getSymbolPrice($scope.symbol).then(function(data){
+                if(data.is_succ){
+                    console.info(data)
+                    $scope.priceData = data;
+                }
+            })
+
+        }
+        function getSymbolRelative(){
+            stock.getSymbolRelative($scope.symbol).then(function(data){
+                if(data.is_succ){
+                    console.info(data.data)
+                    $scope.RelativeData = data.data
+                }
+            })
+        }
+        getSymbolPrice();
+        getSymbolRelative()
         getSymbolHotList()
         getSymbolInfo(0);
     }

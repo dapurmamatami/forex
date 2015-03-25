@@ -13,7 +13,9 @@
             getSymbolDetail: getSymbolDetail,
             getSummaryReport: getSummaryReport,
             getHistory: getHistory,
-            getSymbolHotList: getSymbolHotList
+            getSymbolHotList: getSymbolHotList,
+            getSymbolPrice:getSymbolPrice,
+            getSymbolRelative:getSymbolRelative
         };
         return service;
 
@@ -156,5 +158,25 @@
            })
 
          }
+
+        /**
+         * 获取品类实时价格
+         * @param symbol
+         * @returns {HttpPromise}
+         */
+          function getSymbolPrice(symbol){
+              return $http.get('/symbol_price',{
+                  params:{
+                      symbol:symbol
+                  }
+              })
+          }
+          function getSymbolRelative(symbol){
+              return $http.get('/symbol_relative',{
+                  params:{
+                      symbol:symbol
+                  }
+              })
+          }
     }
 })();

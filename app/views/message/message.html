@@ -8,7 +8,7 @@
       <img ng-src="ngsrc/u59.png" class=" msg_main__icon" ng-if="item['visited']">
       <div class="msg_main_content">
           <span class="msg_main_content__tip" ng-show="!item['visited']">[新消息]</span>
-          <span class="msg_main_content__de" ng-class="content_visited:!item['visited']">{{item.content}}</span>
+          <span class="msg_main_content__de" ng-class="{content_visited:!item['visited']}" ng-bind-html="item.content"></span>
           <div class="msg_other">
               <a class="msg_other__del" ng-click="deleteMessage($index,item.id)">删除</a>
               <span class="msg_other__ctime">{{item.ctime}}</span>

@@ -253,7 +253,7 @@ angular
                 authenticate: true,
                 views:{
                     '@':{
-                        templateUrl:'views/layout/layout-msg.html',
+                        templateUrl:'../views/message/layout-msg.html',
                         controller:'PersonalInfoController'
                     },
                     'hd@message': {

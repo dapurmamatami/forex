@@ -4,10 +4,9 @@
     </div>
 
     <div class="class_rsider_list">
-        <div class="class_rsider_list__item">
-            <img src="../../images/forex_icon/euraud.png">
-            <span> EUR/CHF</span>
-
+        <div class="class_rsider_item" ng-repeat="item in RelativeData">
+            <span class="icon-forex-{{item.toLowerCase()}} icon"></span>
+            <span class="name">{{item}}</span>
         </div>
     </div>
 

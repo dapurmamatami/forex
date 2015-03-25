@@ -11,13 +11,13 @@
     </div>
     <div class="class_middle">
         <div>
-            <span class="class_middle__action">卖出:</span><span class="class_middle__action-price">1.22625</span>
+            <span class="class_middle__action">卖出:</span><span class="class_middle__action-price">{{priceData.ask}}</span>
         </div>
         <div>
-            <span class="class_middle__action">买入:</span><span class="class_middle__action-price">1.22645</span>
+            <span class="class_middle__action">买入:</span><span class="class_middle__action-price">{{priceData.bid}}</span>
         </div>
         <p class = "class_middle__time">
-          更新时间:2014/12/24 12:23 GMT
+          更新时间:{{priceData.timestamp | dateFormatter}} GMT
         </p>
     </div>
     <div class="class_down">

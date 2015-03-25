@@ -8,15 +8,18 @@
       color: $gray-dark !important;
     }
 }
-
+.open .nav_msg__pic{
+    @include img-normal($image_path + "icon_mail_hoverm.png");
+}
 @include b(nav_msg){
     position: relative;
-    
+
     @include e(pic){
         width:30px;
         height:20px;
+        @include img-normal($image_path + "icon_mailm.png");
+
     }
-    
     @include e(tip){
         z-index: 99;
         position:absolute;
