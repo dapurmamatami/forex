@@ -67,6 +67,10 @@
     color: $brand-info;
 }
 
+.mg-0 {
+    margin: 0 !important;
+}
+
 .mg-tp-15 {
     margin-top: 15px;
 }
@@ -112,12 +116,21 @@
     padding-bottom: 20px;
 }
 
+
 .pd-lf-0 {
     padding-left: 0 !important;
 }
 
+.pd-lf-15 {
+    padding-left: 15px !important;
+}
+
 .pd-rg-0 {
     padding-right: 0 !important;
+}
+
+.pd-rg-15 {
+    padding-right: 15px !important;
 }
 
 .close {

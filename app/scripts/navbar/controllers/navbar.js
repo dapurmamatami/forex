@@ -12,12 +12,16 @@
             prefix: ''
         };
         $scope.infoShow = false;
-        $scope.showInfo = showInfo;
-        $scope.hideInfo =hideInfo;
+        $scope.dropdownShow = {
+            more: false,
+            info: false
+        };
         $scope.showMsg =showMsg;
         $scope.hideMsg = hideMsg;
         $scope.select = select;
         $scope.logout = logout;
+        $scope.showDropdown = showDropdown;
+        $scope.hideDropdown = hideDropdown;
 
         $scope.sys_unvisited_sum = $cookieStore.get('sys_unvisited_sum');
         $scope.user_unvisited_sum =  $cookieStore.get('user_unvisited_sum');
@@ -54,6 +58,14 @@
           //$location.path('/message');
 
             $state.go('message',{type_message:type})
+        }
+
+        function showDropdown(prop) {
+            $scope.dropdownShow[prop] = true;
+        }
+
+        function hideDropdown(prop) {
+            $scope.dropdownShow[prop] = false;
         }
 
     }

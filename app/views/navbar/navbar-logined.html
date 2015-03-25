@@ -1,143 +1,178 @@
-<div class="navbar navbar-inverse">
-    <div class="container-main">
-        <div class="row">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">
-                    <h1 class="logo-white"></h1>
-                </a>
-            </div>
+<div class="top_navbar">
+    <div class="navbar navbar-inverse">
+        <div class="container-main">
+            <div class="row">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">
+                        <h1 class="logo-white"></h1>
+                    </a>
+                </div>
 
-            <ul class="nav navbar-nav">
-                <li>
-                    <a href="#/personal" ng-class="{'active':  currentUrl.prefix === 'personal' || currentUrl.prefix === 'invest'}">
-                        个人中心
-                    </a>
-                </li>
-                <li>
-                    <a ui-sref="master.subPage" ng-class="{'active':  currentUrl.prefix === 'master'}">
-                        交易高手
-                    </a>
-                </li>
-                <li>
-                  <a ui-sref="class.subPage" ng-class="{'active':  currentUrl.prefix === 'class'}">
-                        交易品种
-                  </a>
-                </li>
-                <li>
-                    <a ui-sref="money.subPage" ng-class="{'active':  currentUrl.prefix === 'money'}">
-                        资金管理
-                    </a>
-                </li>
-                <li>
-                    <a ui-sref="setting.subPage" ng-class="{'active':  currentUrl.prefix === 'setting'}">
-                        设置
-                    </a>
-                </li>
-            </ul>
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#/personal" ng-class="{'active':  currentUrl.prefix === 'personal' || currentUrl.prefix === 'invest'}">
+                            个人中心
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="master.subPage" ng-class="{'active':  currentUrl.prefix === 'master'}">
+                            交易高手
+                        </a>
+                    </li>
+                    <li>
+                      <a ui-sref="class.subPage" ng-class="{'active':  currentUrl.prefix === 'class'}">
+                            交易品种
+                      </a>
+                    </li>
+                    <li>
+                        <a ui-sref="money.subPage" ng-class="{'active':  currentUrl.prefix === 'money'}">
+                            资金管理
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="setting.subPage" ng-class="{'active':  currentUrl.prefix === 'setting'}">
+                            设置
+                        </a>
+                    </li>
+                    <li class="dropdown" ng-class="{open: dropdownShow.more}" ng-mouseover="showDropdown('more')" ng-mouseleave="hideDropdown('more')">
+                        <a class="nav_more" href="">
+                            更多
+                            <i class="fa fa-sort-down"></i>
+                        </a>
 
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown" ng-class="{open: msg_show}" ng-mouseenter="showMsg()" ng-mouseleave="hideMsg()">
-                    <a class="nav_msg" href="">
-                        <img class = "nav_msg__pic" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg'}">
-                        <img class = "nav_msg__tip" ng-src="ngsrc/icon_mail_tip.png" ng-show="hasMsg">
-                    </a>
+                        <div class="dropdown-menu nav_more_detail">
+                            <ul>
+                                <li>
+                                    <a href="">
+                                        新手指南
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        新手指南
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        新手指南
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        新手指南
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
 
-                    <div class="dropdown-menu nav_drop_msg">
-                        <ul>
-                            <li class="nav_drop_msg__item" ng-click="select('user')">
-                                <span>查看我的消息</span>
-                                <span ng-if="user_unvisited_sum">
-                                    ({{user_unvisited_sum}})
-                                </span>
-                            </li>
-                            <li class="nav_drop_msg__item" ng-click="select('sys')">
-                                <span>查看系统消息</span>
-                                <span ng-if="sys_unvisited_sum">
-                                    ({{sys_unvisited_sum}})
-                                </span>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown" ng-class="{open: msg_show}" ng-mouseenter="showMsg()" ng-mouseleave="hideMsg()">
+                        <a class="nav_msg" href="">
+                            <img class = "nav_msg__pic" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg'}">
+                            <img class = "nav_msg__tip" ng-src="ngsrc/icon_mail_tip.png" ng-show="hasMsg">
+                        </a>
 
-                <li>
-                    <a class="pd-lf-0 pd-rg-0" href="">|</a>
-                </li>
+                        <div class="dropdown-menu nav_drop_msg">
+                            <ul>
+                                <li class="nav_drop_msg__item" ng-click="select('user')">
+                                    <span>查看我的消息</span>
+                                    <span ng-if="user_unvisited_sum">
+                                        ({{user_unvisited_sum}})
+                                    </span>
+                                </li>
+                                <li class="nav_drop_msg__item" ng-click="select('sys')">
+                                    <span>查看系统消息</span>
+                                    <span ng-if="sys_unvisited_sum">
+                                        ({{sys_unvisited_sum}})
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
 
-                <li class="dropdown" ng-class="{open: infoShow}" ng-mouseover="showInfo()" ng-mouseleave="hideInfo()">
-                    <a class="nav_personal" ng-href="#/invest/{{personal.user_code}}/summary">
-                        <img class="nav_personal__photo" ng-src="{{personal.xsAvatar}}" alt="**">
-                        <span class="nav_personal__name">{{personal.username}}</span>
-                        <i class="fa fa-sort-down"></i>
-                    </a>
-                    <div class="dropdown-menu nav_personal_detail">
-                        <div class="nav_personal_detail__basic">
-                            <div class="row">
-                                <div class="col-xs-4">
-                                    <img class="nav_personal_detail__photo" ng-src="{{personal.mdAvatar}}" alt="**">
-                                </div>
-                                <div class="col-xs-8">
-                                    <p class="nav_personal_detail__name">
-                                        {{personal.username}}
-                                    </p>
-                                    <div class="nav_personal_detail__id">
-                                        真实账号： {{personal.real_id}}
+                    <li>
+                        <a class="pd-lf-0 pd-rg-0" href="">|</a>
+                    </li>
+
+                    <li class="dropdown" ng-class="{open: dropdownShow.info}" ng-mouseover="showDropdown('info')" ng-mouseleave="hideDropdown('info')">
+                        <a class="nav_personal" ng-href="#/invest/{{personal.user_code}}/summary">
+                            <img class="nav_personal__photo" ng-src="{{personal.xsAvatar}}" alt="**">
+                            <span class="nav_personal__name">{{personal.username}}</span>
+                            <i class="fa fa-sort-down"></i>
+                        </a>
+                        
+                        <div class="dropdown-menu nav_personal_detail">
+                            <div class="nav_personal_detail__basic">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <img class="nav_personal_detail__photo" ng-src="{{personal.mdAvatar}}" alt="**">
                                     </div>
-                                    <div class="nav_personal_detail__id">
-                                        模拟账号： {{personal.demo_id}}
+                                    <div class="col-xs-8">
+                                        <p class="nav_personal_detail__name">
+                                            {{personal.username}}
+                                        </p>
+                                        <div class="nav_personal_detail__id">
+                                            真实账号： {{personal.real_id}}
+                                        </div>
+                                        <div class="nav_personal_detail__id">
+                                            模拟账号： {{personal.demo_id}}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="social_counter">
-                            <a class="social_counter__counter_itm" ng-href="#/invest/{{personal.user_code}}/relationship?type=copiedTrader">
-                                <h4>{{personal.copiedTraderSum}}</h4>
-                                <p>复制</p>
-                            </a>
-                            <a class="social_counter__counter_itm" ng-href="#/invest/{{personal.user_code}}/relationship?type=copier">
-                                <h4>{{personal.copierSum}}</h4>
-                                <p>跟随</p>
-                                <span class="social_counter__divider"></span>
-                            </a>
-                            <a class="social_counter__counter_itm" ng-href="#/invest/{{personal.user_code}}/relationship?type=following">
-                                <h4>{{personal.followingSum}}</h4>
-                                <p>关注</p>
-                            </a>
-                             <a class="social_counter__counter_itm" ng-href="#/invest/{{personal.user_code}}/relationship?type=fan">
-                                <h4>{{personal.fanSum}}</h4>
-                                <p>粉丝</p>
-                                <span class="social_counter__divider"></span>
-                            </a>
-                        </div>
+                            <div class="social_counter">
+                                <a class="social_counter__counter_itm" ng-href="#/invest/{{personal.user_code}}/relationship?type=copiedTrader">
+                                    <h4>{{personal.copiedTraderSum}}</h4>
+                                    <p>复制</p>
+                                </a>
+                                <a class="social_counter__counter_itm" ng-href="#/invest/{{personal.user_code}}/relationship?type=copier">
+                                    <h4>{{personal.copierSum}}</h4>
+                                    <p>跟随</p>
+                                    <span class="social_counter__divider"></span>
+                                </a>
+                                <a class="social_counter__counter_itm" ng-href="#/invest/{{personal.user_code}}/relationship?type=following">
+                                    <h4>{{personal.followingSum}}</h4>
+                                    <p>关注</p>
+                                    <span class="social_counter__divider"></span>
+                                </a>
+                                 <a class="social_counter__counter_itm" ng-href="#/invest/{{personal.user_code}}/relationship?type=fan">
+                                    <h4>{{personal.fanSum}}</h4>
+                                    <p>粉丝</p>
+                                    <span class="social_counter__divider"></span>
+                                </a>
+                            </div>
 
-                        <div class="nav_money">
-                            <p class="nav_money__number">
-                                {{realEquityInfo.equity || 0 | currency}}
-                            </p>
-                            <h5 class="nav_money__title">当前净值：</h5>
-                            <p class="nav_money__time">
-                                数据更新于
-                                <span>2014/12/08 13:34</span>
-                                GMT
-                            </p>
+                            <div class="nav_money">
+                                <p class="nav_money__number">
+                                    {{realEquityInfo.equity || 0 | currency}}
+                                </p>
+                                <h5 class="nav_money__title">当前净值：</h5>
+                                <p class="nav_money__time">
+                                    数据更新于
+                                    <span>2014/12/08 13:34</span>
+                                    GMT
+                                </p>
+                            </div>
+                            <div class="money_transfer">
+                                <a class="money_transfer__deposit" href="#/money/deposit">
+                                    入金
+                                </a>
+                                <a class="money_transfer__withdraw" href="#/money/withdraw">
+                                    出金
+                                </a>
+                            </div>
+                            <div class="nav_logout">
+                                <a href="" ng-click="logout()">
+                                    <i class="fa fa-sign-out"></i>退出
+                                </a>
+                            </div>
                         </div>
-                        <div class="money_transfer">
-                            <a class="money_transfer__deposit" href="#/money/deposit">
-                                入金
-                            </a>
-                            <a class="money_transfer__withdraw" href="#/money/withdraw">
-                                出金
-                            </a>
-                        </div>
-                        <div class="nav_logout">
-                            <a href="" ng-click="logout()">
-                                <i class="fa fa-sign-out"></i>退出
-                            </a>
-                        </div>
-                    </div>
-                </li>
-            </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>

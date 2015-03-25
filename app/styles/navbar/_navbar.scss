@@ -1,16 +1,55 @@
-.dropdown.open {
-    a.nav_personal {
-        background-color: $brand-white !important;
-        color: $gray-dark !important;
+@include b(top_navbar) {
+    
+    .navbar.navbar-inverse {
+        
+        .navbar-header > a {
+            padding-bottom: 10px;
+        }
+
+        .nav.navbar-nav > li > a {
+            margin: 0 10px;
+            padding: 15px 5px 10px;
+            font-weight: 700;
+        }
+
+        .nav.navbar-nav.navbar-right > li > a {
+            padding: 15px 15px 10px;
+            margin: 0;
+        }
     }
-    a.nav_msg{
-      background-color: $brand-white !important;
-      color: $gray-dark !important;
+
+    .dropdown-menu {
+        top: 44px !important;
+        left: auto !important;
+        right: -1px;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+
+    .dropdown.open {
+        
+        a.nav_more {
+            background-color: $brand-white !important;
+            color: $gray-dark !important;
+        }
+        
+        a.nav_personal {
+            background-color: $brand-white !important;
+            color: $gray-dark !important;
+        }
+
+        a.nav_msg{
+          background-color: $brand-white !important;
+          color: $gray-dark !important;
+        }
     }
 }
+
 .open .nav_msg__pic{
     @include img-normal($image_path + "icon_mail_hoverm.png");
 }
+
 @include b(nav_msg){
     position: relative;
 
@@ -53,6 +92,48 @@
     }
 }
 
+@include b(nav_more) {
+    margin: 0 !important;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    border-bottom: none !important;
+}
+
+@include b(nav_more_detail) {
+
+    ul {
+
+        li {
+            
+
+            &:hover {
+                
+            }
+
+            a {
+                display: block;
+                padding: 10px 15px;
+                border-bottom: 1px solid $brand-border;
+                color: $gray-dark;
+
+                &:last-child {
+                    border-bottom: none;
+                }
+
+                &:hover {
+                    background-color: $brand-light-primary;
+                    color: #fff;
+                    text-decoration: none;
+                }
+
+
+            }
+        }
+    }
+
+}
+
+
 @include b(nav_personal) {
     text-align: right;
     border-bottom: none !important;
@@ -74,13 +155,8 @@
 }
 
 @include b(nav_personal_detail) {
-    left: auto !important;
-    right: -1px;
     width: 250px;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-
+    
     .row {
         margin-left: -5px;
         margin-right: -5px;
@@ -92,13 +168,21 @@
         }
     }
 
+    .social_counter {
+        
+        .social_counter__counter_itm {
+            width: 25%;
+        }
+    }
+
     @include e(basic) {
-        padding:5px;
+        padding: 10px;
     }
 
     @include e(photo) {
         width: 70px;
         height: 70px;
+        border: 1px solid $brand-border;
     }
 
     @include e(name) {
@@ -111,7 +195,6 @@
     @include e(id) {
         color: $gray-light;
     }
-
 }
 
 @include b(nav_money) {

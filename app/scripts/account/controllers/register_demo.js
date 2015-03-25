@@ -84,6 +84,7 @@
                 $scope.formErr.username = true;
                 $scope.formErr.phone = true;
                 $scope.formErr.verifyCode = true;
+                $scope.formErr.email = true;
                 $scope.formErr.password = true;
                 $scope.formErr.confirmPwd = true;
                 return;
