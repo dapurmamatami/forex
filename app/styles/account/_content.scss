@@ -41,12 +41,52 @@
     }
 }
 
+
 @include b(progress_bar) {
-    position: relative;
-    display: inline-block;
-    width: 300px;
-    height: 10px;
-    @include img-normal($progress_bar_path + "line.png");
-    background-repeat: no-repeat;
-    background-position: 50%;
+
+    @include e(step) {
+        position: relative;
+        float: right;
+        display: inline-block;
+        width: 300px;
+        height: 8px;
+
+        @include m(1) {
+            @extend .progress_bar__step;
+            @include img-normal($progress_bar_path + "step-1.png");
+        }
+
+        @include m(2) {
+            @extend .progress_bar__step;
+            @include img-normal($progress_bar_path + "step-2.png");
+        }
+
+        @include m(3) {
+            @extend .progress_bar__step;
+            @include img-normal($progress_bar_path + "step-3.png");
+        }
+    }
+
+    @include e(tip) {
+        position: absolute;
+        top: 8px;
+        width: 100px;
+        text-align: center;
+        font-weight: 700;
+
+        @include m(1) {
+            @extend .progress_bar__tip;
+            left: 0;
+        }
+
+        @include m(2) {
+            @extend .progress_bar__tip;
+            left: 33%;
+        }
+
+        @include m(3) {
+            @extend .progress_bar__tip;
+            left: 66%;
+        }
+    }
 }

@@ -33,6 +33,7 @@
             white-space: nowrap;
             text-overflow: ellipsis;
             font-size: 30px;
+            font-weight: 700;
             overflow:hidden;
 
         }
@@ -51,7 +52,7 @@
         }
 
         @include e(detail, $MT4) {
-            text-align: right;
+            
             span {
                 font-size: 16px;
                 font-weight: 700;
@@ -78,6 +79,7 @@
             }
             
             >h4 {
+                font-size: 20px;
                 font-weight: 700;
                 color: $brand-primary;
             }

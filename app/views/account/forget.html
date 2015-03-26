@@ -1,9 +1,18 @@
 <div class="account_ctn">
+    <div class="progress_bar__step-{{step}}">
+        <span class="progress_bar__tip-1">
+            验证手机号码
+        </span>
+        <span class="progress_bar__tip-2">
+            重置密码
+        </span>
+        <span class="progress_bar__tip-3">
+            完成
+        </span>
+    </div>
+
     <h4 class="account_ctn__title">
         找回密码
-        <span>
-            ({{step}}/3)
-        </span>
     </h4>
 
     <form name="formStep1" novalidate ng-show="step === 1">
