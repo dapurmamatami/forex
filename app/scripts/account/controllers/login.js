@@ -6,11 +6,12 @@
         .module('tigerwitPersonalApp')
         .controller('AccountLoginController', AccountLoginController);
 
-    AccountLoginController.$inject = ['$rootScope', '$scope', '$state', 'account'];
+    AccountLoginController.$inject = ['$rootScope', '$scope', '$state', 'account', 'validator'];
 
-    function AccountLoginController($rootScope, $scope, $state, account) {
+    function AccountLoginController($rootScope, $scope, $state, account, validator) {
         $scope.account = {
             id: '',
+            idReg: validator.regType.phone.reg,
             password: '',
             correct: true
         };

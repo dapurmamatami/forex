@@ -6,16 +6,16 @@
         .module('tigerwitPersonalApp')
         .controller('SettingPhoneController', SettingPhoneController);
 
-    SettingPhoneController.$inject = ['$scope', '$state', '$modalInstance', 'account'];
+    SettingPhoneController.$inject = ['$scope', '$state', '$modalInstance', '$q', 'account', 'validator'];
 
-    function SettingPhoneController($scope, $state, $modalInstance, account) {
+    function SettingPhoneController($scope, $state, $modalInstance, $q, account, validator) {
         $scope.step = 1;
         $scope.phone = {
             oldNumber: '',
             correct: true,     // 原手机号码是否正确
             newNumber: '',
-            existence: false,   // 新手机号码是否已经认证
-            infoBack: false     // 检查新手机号码是否已经认证的方法返回的信息
+            newNumberReg: validator.regType.phone.reg,
+            existence: false   // 新手机号码是否已经认证
         };
         $scope.password = {
             number: '',
@@ -25,13 +25,19 @@
             number: '',
             correct: true
         };
+        $scope.formErr = {
+            oldPhone: false,
+            password: false,
+            verifyCode: false
+        };
+
         $scope.submitFormStep1 = submitFormStep1;
-        $scope.checkExistence = checkExistence;
         $scope.getVerifyCode = getVerifyCode;
         $scope.submitFormStep2 = submitFormStep2;
-        $scope.eliminateErr = eliminateErr;
         $scope.closeModal = closeModal;
         $scope.gotoLogin = gotoLogin;
+        $scope.hideErr = hideErr;
+        $scope.showErr = showErr;
         var token = '';
 
         function submitFormStep1() {
@@ -59,17 +65,26 @@
         }
 
         // 检查新手机号码是否已经认证过
-        function checkExistence() {
-            if ($scope.phone.newNumber === undefined || $scope.phone.newNumber === '') return;
-            account.checkExist($scope.phone.newNumber).then(function (data) {
+        function checkExist() {
+            var deferred = $q.defer();
+            deferred.resolve(false);
+            var tmp = deferred.promise;
+
+
+            if ($scope.phone.newNumber === undefined || $scope.phone.newNumber === '') {
+                $scope.phone.existence = false;
+                return tmp;
+            };
+            return account.checkExist($scope.phone.newNumber).then(function (data) {
 
                 if (data.is_succ) {
-                    $scope.phone.infoBack = true;
 
                     if (data.data) {
                         $scope.phone.existence = true;
+                        return false;
                     } else {
                         $scope.phone.existence = false;
+                        return true;
                     }
                 }
             });
@@ -77,7 +92,12 @@
         }
 
         function getVerifyCode() {
-            account.getVerifyCode($scope.phone.newNumber);
+            checkExist().then(function (data) {
+                if (data) {
+                    $scope.startTimer();
+                    account.getVerifyCode($scope.phone.newNumber);
+                }
+            });
         }
 
         function submitFormStep2() {
@@ -96,26 +116,6 @@
             });
         }
 
-        function eliminateErr(message) {
-
-            if (message === 'phone is incorrect') {
-                $scope.phone.correct = true;
-            }
-
-            if (message === 'password is incorrect') {
-                $scope.password.correct = true;
-            }
-
-            if (message === 'phone is existent') {
-                $scope.phone.existence = false;
-                $scope.phone.infoBack = false;
-            }
-
-            if (message === 'verify code is incorrect') {
-                $scope.verifyCode.correct = true;
-            }
-        }
-
         function closeModal() {
             $modalInstance.close();
         }
@@ -123,6 +123,30 @@
         function gotoLogin() {
             closeModal()
             $state.go('account.login');
+        }
+
+        function hideErr(name) {
+            $scope.formErr[name] = false;
+
+            if (name === 'oldPhone') {
+                $scope.phone.correct = true;
+            }
+
+            if (name === 'password') {
+                $scope.password.correct = true;
+            }
+
+            if (name === 'newPhone') {
+                $scope.phone.existence = false;
+            }
+
+            if (name === 'verifyCode') {
+                $scope.verifyCode.correct = true;
+            }
+        }
+
+        function showErr(name) {
+            $scope.formErr[name] = true;
         }
     }
 })();
