@@ -13,26 +13,27 @@
             </div>
             <div class="col-xs-5">
                 <input class="form-control" 
-                       name="phone" 
+                       name="number" 
                        type="text"
                        required
                        ng-model="phone.number"
-                       ng-pattern="/^(0|86|17951)?(13[0-9]|14[57]|15[0-35-9]|17[678]|18[0-9])[0-9]{8}$/"
-                       ng-focus="hideErr('phone')"
-                       ng-blur="showErr('phone')">
-                <div ng-show="formErr.phone">
-                    <p class="alert alert-danger" ng-show="formStep1.phone.$error.required">
+                       ng-pattern="phone.numberReg"
+                       ng-focus="hideErr('number')"
+                       ng-blur="showErr('number')">
+                <div ng-show="formErr.number">
+                    <p class="form_row__bottom_alert" ng-show="formStep1.number.$error.required">
                         请输入手机号码
                     </p>
-                    <p class="alert alert-danger" ng-show="formStep1.phone.$error.pattern">
+                    <p class="form_row__bottom_alert" ng-show="formStep1.number.$error.pattern">
                         输入的手机号码格式不正确
                     </p>
-                    <p class="alert alert-danger" ng-show="!phone.existence">
+                    <p class="form_row__bottom_alert" ng-show="!phone.existence">
                         该手机号码尚未注册
                     </p>
                 </div>
             </div>
         </div>
+
         <div class="row form_row">
             <div class="col-xs-2 text-right">
                 <label>验证码</label>
@@ -46,16 +47,16 @@
                        ng-focus="hideErr('verifyCode')"
                        ng-blur="showErr('verifyCode')">
                 <div ng-show="formErr.verifyCode">
-                    <p class="alert alert-danger" ng-show="formStep1.verifyCode.$error.required">
+                    <p class="form_row__bottom_alert" ng-show="formStep1.verifyCode.$error.required">
                         请输入验证码
                     </p>
-                    <p class="alert alert-danger" ng-show="!phone.correct">
+                    <p class="form_row__bottom_alert" ng-show="!phone.correct">
                         验证码错误
                     </p>
                 </div>
             </div>
             <div class="col-xs-2">
-                <span class="verify_timer_btn" tw-verify-timer  ng-click="getVerifyCode()">
+                <span class="verify_timer_btn" tw-verify-timer start-timer="startTimer" ng-click="getVerifyCode()">
                 </span>
             </div>
         </div>
@@ -83,15 +84,16 @@
                        ng-focus="hideErr('newPwd')"
                        ng-blur="showErr('newPwd')">
                 <div ng-show="formErr.newPwd">
-                    <p class="alert alert-danger" ng-show="formStep2.newPwd.$error.required">
+                    <p class="form_row__bottom_alert" ng-show="formStep2.newPwd.$error.required">
                         请输入新密码
                     </p>
-                    <p class="alert alert-danger" ng-show="formStep2.newPwd.$error.twPwdValid">
+                    <p class="form_row__bottom_alert" ng-show="formStep2.newPwd.$error.twPwdValid">
                         6-15 个字符，可由大写字母，小写字母，数字，符号（有限制）组成，且至少包含其中2项
                     </p>
                 </div>
             </div>
         </div>
+
         <div class="row form_row">
             <div class="col-xs-2 text-right">
                 <label>确认密码</label>
@@ -107,10 +109,10 @@
                        ng-focus="hideErr('confirmPwd')"
                        ng-blur="showErr('confirmPwd')">
                 <div ng-show="formErr.confirmPwd">
-                    <p class="alert alert-danger" ng-show="formStep2.confirmPwd.$error.required">
+                    <p class="form_row__bottom_alert" ng-show="formStep2.confirmPwd.$error.required">
                         请再次输入新密码
                     </p>
-                    <p class="alert alert-danger" ng-show="formStep2.confirmPwd.$error.twConfirmPwd">
+                    <p class="form_row__bottom_alert" ng-show="formStep2.confirmPwd.$error.twConfirmPwd">
                         输入的新密码不正确
                     </p>
                 </div>    

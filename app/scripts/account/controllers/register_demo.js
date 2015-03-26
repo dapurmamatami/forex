@@ -6,19 +6,22 @@
         .module('tigerwitPersonalApp')
         .controller('AccountRegisterDemoController', AccountRegisterDemoController);
 
-    AccountRegisterDemoController.$inject = ['$rootScope', '$scope', '$state', 'account'];
+    AccountRegisterDemoController.$inject = ['$rootScope', '$scope', '$state', '$q', 'account', 'validator'];
 
-    function AccountRegisterDemoController($rootScope, $scope, $state, account) {
+    function AccountRegisterDemoController($rootScope, $scope, $state, $q, account, validator) {
         $scope.step = 1;
         $scope.account = {
             username: '',
             usernameExist: false,   // 昵称是否存在
+            usernameReg: validator.regType.username.reg,
             phone: '',
             phoneExist: false,  // 手机号是否已注册
+            phoneReg: validator.regType.phone.reg,
             verifyCode: '',
             codeCorrect: true,  // 验证码是否正确
             email: '',
             emailExist: false,  // 邮箱是否认证
+            emailReg: validator.regType.email.reg,
             password: '',
             confirmPwd: '',     // 确认密码
             forkCode: '',        // 邀请码（可选）
@@ -36,20 +39,18 @@
         $scope.hideErr = hideErr;
         $scope.getVerifyCode = getVerifyCode;
         $scope.registerReal = registerReal;
-        var phoneValid = false;
 
         $rootScope.floatBtnShow = false;
 
-        $scope.$on('phoneValid', function () {
-            phoneValid = true;
-        });
-
+        // return a promise object is for prop='phone'
         function checkExist(prop) {
-            var tmp;
+            var deferred = $q.defer();
+            deferred.resolve(false);
+            var tmp = deferred.promise;
 
             if ($scope.account[prop] === undefined || $scope.account[prop] === '') {
                 $scope.account[prop + 'Exist'] = false;
-                return;
+                return tmp;
             }
 
             if (prop === 'username') {
@@ -57,30 +58,25 @@
             } else {
                 tmp = account.checkExist($scope.account[prop]);
             }
-            tmp.then(function (data) {
+            return tmp.then(function (data) {
 
                 if (data.is_succ) {
 
                     if (data.data) {
                         $scope.account[prop + 'Exist'] = true;
+                        return false;
                     } else {
                         $scope.account[prop + 'Exist'] = false;
-
-                        if (prop === 'phone') {
-                            $scope.$broadcast('phoneValid');
-                        }
+                        return true;
                     }
                 }
             });
         }
 
         function registerDemo() {
-            var prop;
 
             if ($scope.registerForm.$invalid || $scope.account.usernameExist || 
                     $scope.account.phoneExist || $scope.account.emailExist) {
-                
-
                 $scope.formErr.username = true;
                 $scope.formErr.phone = true;
                 $scope.formErr.verifyCode = true;
@@ -95,7 +91,7 @@
 
                 if (!data.is_succ) {
 
-                    if (data.error_msg === '验证码不正确') {
+                    if (data.error_msg === '验证码不正确' || data.error_msg === '请先发送验证码') {
                         $scope.account.codeCorrect = false;
                         return;
                     }
@@ -106,10 +102,14 @@
         }
 
         function getVerifyCode() {
-            
-            if (phoneValid) {
-                account.getVerifyCode($scope.account.phone);
-            }
+
+            // 检查手机号码是否已经存在
+            checkExist('phone').then(function (data) {
+                if (data) {
+                    $scope.startTimer();
+                    account.getVerifyCode($scope.account.phone);
+                }
+            });
         }
 
         // 注册真实账户
@@ -119,15 +119,23 @@
 
         function hideErr(name) {
             $scope.formErr[name] = false;
+
+            if (name === 'verifyCode') {
+                $scope.account.codeCorrect = true;
+            }
+
+            if (name === 'phone') {
+                $scope.account.phoneExist = false;
+            }
         }
 
         function showErr(name) {
             $scope.formErr[name] = true;
 
-            if (name === 'username' || name === 'phone' || name === 'email') {
+            // 这里不检查手机号码是否存在，在 getVerifyCode 方法中检查
+            if (name === 'username' || name === 'email') {
                 checkExist(name);
             }
-
         }
     }
 })();

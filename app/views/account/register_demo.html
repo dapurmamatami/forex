@@ -16,7 +16,7 @@
                            type="text"
                            required
                            ng-model="account.username"
-                           ng-pattern="/^[\u4e00-\u9fa5a-zA-Z\d]{4,20}$/"
+                           ng-pattern="account.usernameReg"
                            ng-blur="showErr('username')"
                            ng-focus="hideErr('username')">
                 </div>
@@ -46,7 +46,7 @@
                            type="text"
                            required
                            ng-model="account.phone"
-                           ng-pattern="/^(0|86|17951)?(13[0-9]|14[57]|15[0-35-9]|17[678]|18[0-9])[0-9]{8}$/"
+                           ng-pattern="account.phoneReg"
                            ng-focus="hideErr('phone')"
                            ng-blur="showErr('phone')">
                 </div>
@@ -80,7 +80,7 @@
                 </div>
 
                 <div class="col-xs-2">
-                    <span class="verify_timer_btn" tw-verify-timer ng-click="getVerifyCode()">
+                    <span class="verify_timer_btn" tw-verify-timer start-timer="startTimer" ng-click="getVerifyCode()">
                     </span>
                 </div>
 
@@ -107,7 +107,7 @@
                            type="text"
                            required
                            ng-model="account.email"
-                           ng-pattern="/^\w+([-.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/"
+                           ng-pattern="account.emailReg"
                            ng-focus="hideErr('email')"
                            ng-blur="showErr('email')">
                 </div>

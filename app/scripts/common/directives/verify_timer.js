@@ -12,8 +12,10 @@
     function twVerifyTimer($timeout) {
         return {
             restrict: 'A',
-            scope: {},
             replace: true,
+            scope: {
+                startTimer: '='
+            },
             template: 
                 '<span>' + 
                     '<span ng-show="timer.start">' + '获取验证码' + '</span>' +        
@@ -21,21 +23,19 @@
                     '<span ng-show="timer.restart">' + '重新获取' + '</span>' + 
                 '</span>',
             link: function (scope, element, attrs) {
-                var seconds = 31,
-                    phoneValid = false;
-
+                var totalSeconds = 31;
+                
                 scope.timer = {
-                    seconds: seconds,
+                    seconds: totalSeconds,
                     start: true,
                     running: false,
                     restart: false
-                };  
+                };
 
-                scope.$on('phoneValid', function () {
-                    phoneValid = true;
-                });
+                // 在 controller 中可以访问该方法  
+                scope.startTimer = startTimer;
 
-                element.bind('click', function () {
+                /*element.bind('click', function () {
 
                     if (phoneValid) {
 
@@ -47,7 +47,18 @@
                             updateTime(); 
                         }
                     }
-                });
+                });*/
+
+                function startTimer() {
+                    
+                    if (scope.timer.start || scope.timer.restart) {
+                        element.attr('disabled', true);
+                        scope.timer.start = false;
+                        scope.timer.running = true;
+                        scope.timer.restart = false;
+                        updateTime(); 
+                    }
+                }
 
                 function updateTime() {
 
@@ -55,7 +66,7 @@
                         scope.timer.start = false;
                         scope.timer.running = false;
                         scope.timer.restart = true;
-                        scope.timer.seconds = seconds;
+                        scope.timer.seconds = totalSeconds;
                         element.attr('disabled', false);
                         return;
                     }

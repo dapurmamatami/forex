@@ -105,9 +105,8 @@
 
         li {
             
-
-            &:hover {
-                
+            &:last-child > a {
+                border-bottom: none;
             }
 
             a {
@@ -115,10 +114,6 @@
                 padding: 10px 15px;
                 border-bottom: 1px solid $brand-border;
                 color: $gray-dark;
-
-                &:last-child {
-                    border-bottom: none;
-                }
 
                 &:hover {
                     background-color: $brand-light-primary;
