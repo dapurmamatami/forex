@@ -12,18 +12,18 @@
                         <label>当前密码</label>
                     </div>
                     <div class="col-xs-7">
-                        
                         <input class="form-control" 
                                name="oldPwd" 
                                type="password"
                                required
                                ng-model="password.oldPwd"
-                               ng-focus="eliminateError()">
-                        <div ng-show="pwdForm.oldPwd.$dirty">
-                            <p class="alert alert-danger" ng-show="pwdForm.oldPwd.$error.required">
+                               ng-focus="hideErr('oldPwd')"
+                               ng-blur="showErr('oldPwd')">
+                        <div ng-show="formErr.oldPwd">
+                            <p class="form_row__bottom_alert" ng-show="pwdForm.oldPwd.$error.required">
                                 请输入当前密码
                             </p>
-                            <p class="alert alert-danger" ng-show="!pwdCorrect">
+                            <p class="form_row__bottom_alert" ng-show="!password.correct">
                                 密码不正确
                             </p>
                         </div>
@@ -39,12 +39,14 @@
                                type="password"
                                required
                                ng-model="password.newPwd"
-                               tw-pwd-valid>
-                        <div ng-show="pwdForm.newPwd.$dirty">
-                            <p class="alert alert-danger" ng-show="pwdForm.newPwd.$error.required">
+                               tw-pwd-valid
+                               ng-focus="hideErr('newPwd')"
+                               ng-blur="showErr('newPwd')">
+                        <div ng-show="formErr.newPwd">
+                            <p class="form_row__bottom_alert" ng-show="pwdForm.newPwd.$error.required">
                                 请输入新密码
                             </p>
-                            <p class="alert alert-danger" ng-show="pwdForm.newPwd.$error.twPwdValid">
+                            <p class="form_row__bottom_alert" ng-show="pwdForm.newPwd.$error.twPwdValid">
                                 6-15 个字符，可由大写字母，小写字母，数字，符号（有限制）组成，且至少包含其中2项
                             </p>
                         </div>
@@ -61,12 +63,14 @@
                                required
                                ng-model="password.confirmPwd"
                                tw-confirm-pwd
-                               password="password.newPwd">
-                        <div ng-show="pwdForm.confirmPwd.$dirty">
-                            <p class="alert alert-danger" ng-show="pwdForm.confirmPwd.$error.required">
+                               password="password.newPwd"
+                               ng-focus="hideErr('confirmPwd')"
+                               ng-blur="showErr('confirmPwd')">
+                        <div ng-show="formErr.confirmPwd">
+                            <p class="form_row__bottom_alert" ng-show="pwdForm.confirmPwd.$error.required">
                                 请再次输入新密码
                             </p>
-                            <p class="alert alert-danger" ng-show="pwdForm.confirmPwd.$error.twConfirmPwd">
+                            <p class="form_row__bottom_alert" ng-show="pwdForm.confirmPwd.$error.twConfirmPwd">
                                 输入的新密码不正确
                             </p>
                         </div>    
@@ -75,7 +79,7 @@
             </form>
         </div>
         <div class="modal-footer">
-            <button class="btn btn-primary" ng-disabled="pwdForm.$invalid" ng-click="submitPwdForm()">
+            <button class="btn btn-primary"  ng-click="submitPwdForm()">
                 提交
             </button>
             <p class="setting_modal__change_tip">

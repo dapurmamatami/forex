@@ -1,7 +1,7 @@
 @include b(setting_content) {
     min-height: 600px;
     padding: 0 30px;
-    border: 1px solid $brand-border-color;
+    border: 1px solid $brand-border;
     background-color: $brand-white;
 
     label {
@@ -21,7 +21,7 @@
     @include e(title) {
         margin: 50px 0px 30px;
         padding-bottom: 15px;
-        border-bottom: 1px solid $brand-border-color;
+        border-bottom: 1px solid $brand-border;
     }
 
     @include e(add) {
@@ -63,10 +63,16 @@
         font-weight: 700;
     }
 
+    .btn-primary[disabled],
+    .btn-danger[disabled] {
+        border-color: darken($gray-light, 10%);
+        background-color: $gray-light;
+    }
+
     @include e(title) {
         margin: 0;
         padding: 0 20px 15px;
-        border-bottom: 1px solid $brand-border-color;
+        border-bottom: 1px solid $brand-border;
         font-weight: 700;
 
         span {
@@ -82,7 +88,7 @@
     @include e(change_tip) {
         margin-top: 15px;
         text-align: center;
-        color: $brand-red;
+        color: $brand-danger;
     }
 }
 

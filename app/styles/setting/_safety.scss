@@ -111,25 +111,3 @@
     background-color: $gray-light;
 }
 
-@include b(check_valid) {
-    display: inline-block;
-    line-height: 34px;
-    font-weight: 700;
-
-    @include e(check) {
-        color: $brand-primary;
-
-        &:hover {
-            cursor: pointer;
-        }
-    }
-
-    @include e(valid) {
-        color: $brand-success;
-    }
-
-    @include e(invalid) {
-        color: $brand-danger;
-    }
-}
-

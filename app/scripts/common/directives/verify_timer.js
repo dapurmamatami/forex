@@ -2,13 +2,13 @@
 (function () {
     'use strict';
 
-    // 获取手机验证码的计时器
     angular
         .module('tigerwitPersonalApp')
         .directive('twVerifyTimer', twVerifyTimer);
 
     twVerifyTimer.$inject = ['$timeout'];
 
+    // 获取手机验证码的计时器
     function twVerifyTimer($timeout) {
         return {
             restrict: 'A',
@@ -37,18 +37,16 @@
 
                 /*element.bind('click', function () {
 
-                    if (phoneValid) {
-
-                        if (scope.timer.start || scope.timer.restart) {
-                            element.attr('disabled', true);
-                            scope.timer.start = false;
-                            scope.timer.running = true;
-                            scope.timer.restart = false;
-                            updateTime(); 
-                        }
+                    if (scope.timer.start || scope.timer.restart) {
+                        element.attr('disabled', true);
+                        scope.timer.start = false;
+                        scope.timer.running = true;
+                        scope.timer.restart = false;
+                        updateTime(); 
                     }
                 });*/
-
+                
+                // 启动计时器
                 function startTimer() {
                     
                     if (scope.timer.start || scope.timer.restart) {
