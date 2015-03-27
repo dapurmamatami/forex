@@ -19,7 +19,7 @@
         $scope.skipToSummary = skipToSummary;
         $scope.openConfirmDeleteC = openConfirmDeleteC;
         $scope.doTransmit = doTransmit;
-        $scope.topicDetailData = {publisher_name:'helloworld'};
+        $scope.topicDetailData = {};
 
         function getTopicInfo(commentLength){
             communicate.topicDetail($scope.mTopicId ,commentLength)

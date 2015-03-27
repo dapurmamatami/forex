@@ -22,7 +22,7 @@
             timestamp: '',
         };
         $scope.paintChart = paintChart;
-
+        $scope.skipToMasterInvester = skipToMasterInvester;
         paintChart(7, '近 1 周内');
 
         function paintChart(value, valShow) {
@@ -32,6 +32,9 @@
             stock.getSymbolDetail($scope.forex.name, $scope.forex.period.value).then(function (data) {
                 $scope.$broadcast('paintLineChart', data.data);
             });
+        }
+        function skipToMasterInvester(){
+            $state.go('master.subPage',{subPage:'recommend'})
         }
         function getSymbolInfo(startIndex){
             var symbol = $scope.symbol;
@@ -52,7 +55,6 @@
         function getSymbolPrice(){
             stock.getSymbolPrice($scope.symbol).then(function(data){
                 if(data.is_succ){
-                    console.info(data)
                     $scope.priceData = data;
                 }
             })
@@ -61,7 +63,6 @@
         function getSymbolRelative(){
             stock.getSymbolRelative($scope.symbol).then(function(data){
                 if(data.is_succ){
-                    console.info(data.data)
                     $scope.RelativeData = data.data
                 }
             })
