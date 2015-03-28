@@ -114,7 +114,7 @@ angular
                         },
 
                     'sidebar-ad@personal': {
-                        templateUrl:'views/personal/ad_side.html',
+                        templateUrl:'views/personal/serve_side.html',
                         controller:''
                     }
                 }
