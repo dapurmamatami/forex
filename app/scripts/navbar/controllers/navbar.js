@@ -5,9 +5,9 @@
         .module('tigerwitPersonalApp')
         .controller('NavbarController', NavbarController);
 
-    NavbarController.$inject = ['$scope', '$state', '$cookieStore', 'account'];
+    NavbarController.$inject = ['$scope', '$state', '$cookieStore', 'account','communicate'];
 
-    function NavbarController($scope, $state, $cookieStore, account) {
+    function NavbarController($scope, $state, $cookieStore, account,communicate) {
         $scope.currentUrl = {
             prefix: ''
         };
@@ -23,14 +23,14 @@
         $scope.showDropdown = showDropdown;
         $scope.hideDropdown = hideDropdown;
 
-        $scope.sys_unvisited_sum = $cookieStore.get('sys_unvisited_sum');
-        $scope.user_unvisited_sum =  $cookieStore.get('user_unvisited_sum');
+        //$scope.sys_unvisited_sum = $scope.$parent.sys_unvisited_sum;
+        //$scope.user_unvisited_sum =  $scope.$parent.user_unvisited_sum;
         //$scope.prefix = $state.$current.url.prefix;
         $scope.currentUrl.prefix = $state.$current.url.source.split('/')[1];
 
         function logout() {
             account.logout().then(function (data) {
-                
+
                 if (data.is_succ) {
                     $state.go('account.login');
                 }
@@ -67,6 +67,5 @@
         function hideDropdown(prop) {
             $scope.dropdownShow[prop] = false;
         }
-
     }
 })();

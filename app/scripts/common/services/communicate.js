@@ -217,7 +217,7 @@
               });
             }
             function unvisitedMessage(user_code){
-                return topicHttp.post('message',{
+                return topicHttp.post('/message',{
                     protocal:'unvisited',
                     arguments:{
                         user_code:user_code

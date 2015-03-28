@@ -96,20 +96,20 @@
                     <li class="dropdown" ng-class="{open: msg_show}" ng-mouseenter="showMsg()" ng-mouseleave="hideMsg()">
                         <a class="nav_msg" href="">
                             <img class = "nav_msg__pic" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg'}">
-                            <img class = "nav_msg__tip" ng-src="ngsrc/icon_mail_tip.png" ng-show="hasMsg">
+                            <img class = "nav_msg__tip" ng-src="ngsrc/icon_mail_tip.png" ng-show="hasNewMsg">
                         </a>
 
                         <div class="dropdown-menu nav_drop_msg">
                             <ul>
                                 <li class="nav_drop_msg__item" ng-click="select('user')">
                                     <span>查看我的消息</span>
-                                    <span ng-if="user_unvisited_sum">
+                                    <span >
                                         ({{user_unvisited_sum}})
                                     </span>
                                 </li>
                                 <li class="nav_drop_msg__item" ng-click="select('sys')">
                                     <span>查看系统消息</span>
-                                    <span ng-if="sys_unvisited_sum">
+                                    <span >
                                         ({{sys_unvisited_sum}})
                                     </span>
                                 </li>
@@ -127,7 +127,7 @@
                             <span class="nav_personal__name">{{personal.username}}</span>
                             <i class="fa fa-sort-down"></i>
                         </a>
-                        
+
                         <div class="dropdown-menu nav_personal_detail">
                             <div class="nav_personal_detail__basic">
                                 <div class="row">

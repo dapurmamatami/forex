@@ -4,7 +4,7 @@
     height: 40px;
     vertical-align: middle;
     background-position: 50%;
-    
+
     @include m(audjpy) {
         @extend .icon-forex;
         @include img-retina($forex_icon_path + "audjpy.png", $forex_icon_path + "audjpy@2x.png", 55px, 40px);
@@ -117,6 +117,126 @@
         @extend .icon-forex;
         @include img-retina($forex_icon_path + "wtoil.png", $forex_icon_path + "wtoil@2x.png", 55px, 40px);
     }
+}
+.icon-forex-large {
+  display: inline-block;
+  width: 52px;
+  height: 40px;
+  vertical-align: middle;
+  background-position: 50%;
+
+  @include m(audjpy) {
+    @extend .icon-forex;
+    @include img-retina($forex_icon_path + "audjpy_large.png", $forex_icon_path + "audjpy_large@2x.png", 55px, 40px);
+  }
+  @include m(audusd) {
+    @extend .icon-forex;
+    @include img-retina($forex_icon_path + "audusd_large.png", $forex_icon_path + "audusd_large@2x.png", 55px, 40px);
+  }
+  @include m(chfjpy) {
+    @extend .icon-forex;
+    @include img-retina($forex_icon_path + "chfjpy_large.png", $forex_icon_path + "chfjpy_large@2x.png", 55px, 40px);
+  }
+  @include m(dax) {
+    @extend .icon-forex;
+    @include img-retina($forex_icon_path + "dax_large.png", $forex_icon_path + "dax_large@2x.png", 55px, 40px);
+  }
+  @include m(euraud) {
+    @extend .icon-forex;
+    @include img-retina($forex_icon_path + "euraud_large.png", $forex_icon_path + "euraud_large@2x.png", 55px, 40px);
+  }
+  @include m(eurchf) {
+    @extend .icon-forex;
+    @include img-retina($forex_icon_path + "eurchf_large.png", $forex_icon_path + "eurchf_large@2x.png", 55px, 40px);
+  }
+  @include m(eurgbp) {
+    @extend .icon-forex;
+    @include img-retina($forex_icon_path + "eurgbp_large.png", $forex_icon_path + "eurgbp_large@2x.png", 55px, 40px);
+  }
+  @include m(eurjpy) {
+    @extend .icon-forex;
+    @include img-retina($forex_icon_path + "eurjpy_large.png", $forex_icon_path + "eurjpy_large@2x.png", 55px, 40px);
+  }
+  @include m(eurusd) {
+    @extend .icon-forex;
+    @include img-retina($forex_icon_path + "eurusd_large.png", $forex_icon_path + "eurusd_large@2x.png", 55px, 40px);
+  }
+  @include m(ffi) {
+    @extend .icon-forex;
+    @include img-retina($forex_icon_path + "ffi_large.png", $forex_icon_path + "ffi_large@2x.png", 55px, 40px);
+  }
+  @include m(gbpchf) {
+    @extend .icon-forex;
+    @include img-retina($forex_icon_path + "gbpchf_large.png", $forex_icon_path + "gbpchf_large@2x.png", 55px, 40px);
+  }
+  @include m(gbpjpy) {
+    @extend .icon-forex;
+    @include img-retina($forex_icon_path + "gbpjpy_large.png", $forex_icon_path + "gbpjpy_large@2x.png", 55px, 40px);
+  }
+  @include m(gbpusd) {
+    @extend .icon-forex;
+    @include img-retina($forex_icon_path + "gbpusd_large.png", $forex_icon_path + "gbpusd_large@2x.png", 55px, 40px);
+  }
+  @include m(gold) {
+    @extend .icon-forex;
+    @include img-retina($forex_icon_path + "gold_large.png", $forex_icon_path + "gold_large@2x.png", 55px, 40px);
+  }
+  @include m(hsi) {
+    @extend .icon-forex;
+    @include img-retina($forex_icon_path + "hsi_large.png", $forex_icon_path + "hsi_large@2x.png", 55px, 40px);
+  }
+  @include m(mdj) {
+    @extend .icon-forex;
+    @include img-retina($forex_icon_path + "mdj_large.png", $forex_icon_path + "mdj_large@2x.png", 55px, 40px);
+  }
+  @include m(mnd) {
+    @extend .icon-forex;
+    @include img-retina($forex_icon_path + "mnd_large.png", $forex_icon_path + "mnd_large@2x.png", 55px, 40px);
+  }
+  @include m(msp) {
+    @extend .icon-forex;
+    @include img-retina($forex_icon_path + "msp_large.png", $forex_icon_path + "msp_large@2x.png", 55px, 40px);
+  }
+  @include m(nk) {
+    @extend .icon-forex;
+    @include img-retina($forex_icon_path + "nk_large.png", $forex_icon_path + "nk_large@2x.png", 55px, 40px);
+  }
+  @include m(nzdusd) {
+    @extend .icon-forex;
+    @include img-retina($forex_icon_path + "nzdusd_large.png", $forex_icon_path + "nzdusd_large@2x.png", 55px, 40px);
+  }
+  @include m(sfc) {
+    @extend .icon-forex;
+    @include img-retina($forex_icon_path + "sfc_large.png", $forex_icon_path + "sfc_large@2x.png", 55px, 40px);
+  }
+  @include m(silver) {
+    @extend .icon-forex;
+    @include img-retina($forex_icon_path + "silver_large.png", $forex_icon_path + "silver_large@2x.png", 55px, 40px);
+  }
+  @include m(usdcad) {
+    @extend .icon-forex;
+    @include img-retina($forex_icon_path + "usdcad_large.png", $forex_icon_path + "usdcad_large@2x.png", 55px, 40px);
+  }
+  @include m(usdchf) {
+    @extend .icon-forex;
+    @include img-retina($forex_icon_path + "usdchf_large.png", $forex_icon_path + "usdchf_large@2x.png", 55px, 40px);
+  }
+  @include m(usdhkd) {
+    @extend .icon-forex;
+    @include img-retina($forex_icon_path + "usdhkd_large.png", $forex_icon_path + "usdhkd_large@2x.png", 55px, 40px);
+  }
+  @include m(usdjpy) {
+    @extend .icon-forex;
+    @include img-retina($forex_icon_path + "usdjpy_large.png", $forex_icon_path + "usdjpy_large@2x.png", 55px, 40px);
+  }
+  @include m(usdx) {
+    @extend .icon-forex;
+    @include img-retina($forex_icon_path + "usdx_large.png", $forex_icon_path + "usdx_large@2x.png", 55px, 40px);
+  }
+  @include m(wtoil) {
+    @extend .icon-forex;
+    @include img-retina($forex_icon_path + "wtoil_large.png", $forex_icon_path + "wtoil_large@2x.png", 55px, 40px);
+  }
 }
 
 .icon-flag {
@@ -1006,6 +1126,6 @@
 
     @include m(icbc) {
         @extend .icon-bank;
-        @include img-normal($bank_icon_path + "icbc.png");    
-    }  
+        @include img-normal($bank_icon_path + "icbc.png");
+    }
 }
