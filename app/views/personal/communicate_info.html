@@ -44,7 +44,7 @@
                 <img class = "communicateinfo__user-icon" src="/avatar/{{mData.publisher_id}}_50.jpg">
                 <div class="communicate-text">
                     <span class = "focus_name" ng-click="skipToSummary(mData.publisher_id)">{{mData['publisher_name']}}</span>
-                    <tw-content-show info = "mData['content']"></tw-content-show>
+                    <tw-content-show info = "mData['content']" map = "mapKeyVal"></tw-content-show>
                     <div>
                         <span class = "communicateinfo__ptime">{{mData['ptime'] | startNow }}前</span>
                         <div class = "communicateinfo__other_info">

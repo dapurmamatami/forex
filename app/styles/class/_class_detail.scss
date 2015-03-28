@@ -78,6 +78,13 @@
                 }
             }
         }
+        @include b(class_down_btn){
+            text-align: center;
+            margin-top: 10px;
+            @include e(btn){
+                width: 140px;
+            }
+        }
     }
     @include b(class_rsider) {
 

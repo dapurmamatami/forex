@@ -1,6 +1,6 @@
 <div class="class_lsider">
     <div class="class_up">
-        <img class="class_forex_icon" ng-src="images/forex_icon/eurusd@2x.png">
+        <span class="class_forex_icon icon-forex-large-{{symbol.toLowerCase()}}"></span>
         <p class="class_up__sysbol">
           {{symbol}}
         </p>
@@ -33,6 +33,9 @@
                     {{item.region_cn.world_name}},{{item.region_cn.state_name}}
                 </p>
             </div>
+        </div>
+        <div class="class_down_btn">
+          <a class="class_down_btn__btn btn btn-primary" ng-click="skipToMasterInvester()">更多交易者</a>
         </div>
 
 

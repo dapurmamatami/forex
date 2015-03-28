@@ -5,10 +5,10 @@
         .module('tigerwitPersonalApp')
         .controller('PersonalInfoController', PersonalInfoController);
 
-    PersonalInfoController.$inject = ['$location','$scope', '$timeout','$modal', '$cookieStore', 
+    PersonalInfoController.$inject = ['$location','$scope', '$timeout','$modal', '$cookieStore',
             '$state', '$q','config', 'account', 'money', 'communicate', 'copy'];
 
-    function PersonalInfoController($location, $scope, $timeout, $modal, $cookieStore, $state, 
+    function PersonalInfoController($location, $scope, $timeout, $modal, $cookieStore, $state,
             $q, config, account, money, communicate, copy) {
         $scope.registerRealStep = 1;
         $scope.userType = {
@@ -50,10 +50,10 @@
                 $scope.demoEquityInfo = data;
             });
         });
-    
+
         // 获取开通真实账户的进度信息
         account.getStepInfo('ReliableInformation').then(function (data) {
-    
+
             if (data.is_succ) {
                 $scope.registerRealStep = data.progress + 1;
             }
@@ -76,6 +76,12 @@
             communicateService.getFFSum(userCode, userCode).then(function (data) {
                 personal.followingSum = data.data.attention_sum;
                 personal.fanSum = data.data.fans_sum;
+            });
+            //获取没有看过的消息数量
+            communicateService.unvisitedMessage($cookieStore.get('userCode')).then(function(data){
+                $scope.sys_unvisited_sum = data.data.sys_unvisited_sum;
+                $scope.user_unvisited_sum = data.data.user_unvisited_sum;
+                $scope.hasNewMsg = data.data.sys_unvisited_sum + data.data.user_unvisited_sum;
             });
         }
 

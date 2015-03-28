@@ -76,8 +76,9 @@
           communicate.hotInvester(startIndex)
               .then(function(data){
                   if(data.statecode){
-                     $scope.mCdata = $scope.mCdata.concat(data.data);
-                      if(data.data.length<10){
+                      $scope.mCdata = $scope.mCdata.concat(data.data.list);
+                      $scope.mapKeyVal = data.data.mapKeyVal;
+                      if($scope.mCdata.length<10){
                          $scope.anyMore = false;
                       }else{
                          $scope.anyMore = true;
@@ -99,8 +100,9 @@
           communicate.relationTopic($scope.userCode,startIndex)
               .then(function(data){
                   if(data.statecode){
-                      $scope.mCdata = $scope.mCdata.concat(data.data);
-                      if(data.data.length<10){
+                      $scope.mCdata = $scope.mCdata.concat(data.data.list);
+                      $scope.mapKeyVal = data.data.mapKeyVal;
+                      if($scope.mCdata.length<10){
                           $scope.anyMore = false;
                       }else{
                           $scope.anyMore = true;
@@ -161,7 +163,10 @@
                       $scope.showOrNo = 'cm-enter';
                       $scope.$parent.mCdata.unshift(data.data);
                       $timeout(function(){
-                         $scope.showOrNo = 'cm-leave';
+                          $scope.showOrNo = 'cm-leave';
+                          $timeout(function(){
+                            $scope.showOrNo = '';
+                          },1000);
                       },1000);
                   }
           },function(){});
@@ -238,10 +243,13 @@
                               $scope.toastMsg = "评论失败";
                               $scope.inputContent = $scope.tempContent;
                           }
-                              $scope.showOrNo = 'cm-enter';
+                          $scope.showOrNo = 'cm-enter';
+                          $timeout(function(){
+                              $scope.showOrNo = 'cm-leave';
                               $timeout(function(){
-                                 $scope.showOrNo = 'cm-leave';
-                            },1000);
+                                $scope.showOrNo = '';
+                              },1000);
+                          },1000);
                           },
                         function(data){
                             $scope.toastMsg = "评论失败";
