@@ -20,13 +20,25 @@
             number: '',
             correct: true
         };
+        $scope.formErr = {
+            oldEmail: false,
+            password: false,
+            newEmail: false
+        };
         $scope.submitFormStep1 = submitFormStep1;
         $scope.submitFormStep2 = submitFormStep2;
-        $scope.eliminateErr = eliminateErr;
         $scope.closeModal = closeModal;
+        $scope.showErr = showErr;
+        $scope.hideErr = hideErr;
         var token = '';
 
         function submitFormStep1() {
+
+            if ($scope.formStep1.$invalid) {
+                $scope.formErr.oldEmail = true;
+                $scope.formErr.password = true;
+                return;
+            }
             account.changeEmail($scope.email.oldNumber, $scope.password.number).then(function (data) {
 
                 if (!data.is_succ) {
@@ -50,8 +62,13 @@
         }
 
         function submitFormStep2() {
+
+            if ($scope.formStep2.$invalid) {
+                $scope.formErr.newEmail = true;
+                return;
+            }
             account.changeEmail(null, null, token, $scope.email.newNumber).then(function (data) {
-                console.info(data);
+ 
                 if (!data.is_succ) {
 
                     if (data.error_msg === '邮件已存在') {
@@ -65,20 +82,6 @@
             });
         }
 
-        function eliminateErr(message) {
-            if (message === 'email is incorrect') {
-                $scope.email.correct = true;
-            }
-
-            if (message === 'password is incorrect') {
-                $scope.password.correct = true;
-            }
-
-            if (message === 'email is existent') {
-                $scope.email.existence = false;
-            }
-        }
-
         function closeModal() {
 
             if ($scope.step === 3) {
@@ -90,6 +93,26 @@
                 });
             }
             $modalInstance.close();
+        }
+
+        function showErr(name) {
+            $scope.formErr[name] = true;
+        }
+
+        function hideErr(name) {
+            $scope.formErr[name] = false;
+
+            if (name === 'oldEmail') {
+                $scope.email.correct = true;
+            }
+
+            if (name === 'password') {
+                $scope.password.correct = true;
+            }
+
+            if (name === 'newEmail') {
+                $scope.email.existence = false;
+            }
         }
     }
 })();

@@ -27,6 +27,7 @@
         };
         $scope.formErr = {
             oldPhone: false,
+            newPhone: false,
             password: false,
             verifyCode: false
         };
@@ -41,6 +42,12 @@
         var token = '';
 
         function submitFormStep1() {
+
+            if ($scope.formStep1.$invalid) {
+                $scope.formErr.oldPhone = true;
+                $scope.formErr.password = true;
+                return;
+            }
             account.changePhone($scope.phone.oldNumber, $scope.password.number).then(function (data) {
 
                 if (!data.is_succ) {
@@ -101,6 +108,12 @@
         }
 
         function submitFormStep2() {
+
+            if ($scope.formStep2.$invalid) {
+                $scope.formErr.newPhone = true;
+                $scope.formErr.verifyCode = true;
+                return;
+            }
             account.changePhone(null, null, token, $scope.phone.newNumber, $scope.verifyCode.number).then(function (data) {
                 
                 if (!data.is_succ) {
@@ -108,9 +121,7 @@
                     if (data.error_msg === '验证码不正确') {
                         $scope.verifyCode.correct = false;
                     }
-                }
-
-                if (data.is_succ) {
+                } else {
                     $scope.step++;
                 }
             });

@@ -56,17 +56,14 @@
         margin-right: 20px;
     }
 
-    .btn-primary,
     .btn-danger {
-        padding: 6px 50px;
+        width: 254px;
         font-size: 16px;
         font-weight: 700;
     }
 
-    .btn-primary[disabled],
-    .btn-danger[disabled] {
-        border-color: darken($gray-light, 10%);
-        background-color: $gray-light;
+    .verify_timer_btn {
+        width: 100%;
     }
 
     @include e(title) {
@@ -87,12 +84,14 @@
 
     @include e(change_tip) {
         margin-top: 15px;
+        margin-bottom: 20px;
         text-align: center;
         color: $brand-danger;
     }
 }
 
 @include b(form_row) {
+    @extend .row;
     margin-bottom: 20px;
 
     label {
