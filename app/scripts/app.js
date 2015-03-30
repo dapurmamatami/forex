@@ -208,15 +208,6 @@ angular
                  var ctrlName = ctrlPrefix + ctrlRoot + ctrlSuffix;
                  return ctrlName;
                 }
-                ,
-                controllerProvider:function($stateParams){
-                  var ctrlPrefix = 'Class';
-                  var ctrlSuffix = 'Controller';
-                  var subPage = $stateParams.subPage || 'currency';
-                  var ctrlRoot = modifyCtrlName(subPage);
-                  var ctrlName = ctrlPrefix + ctrlRoot + ctrlSuffix;
-                  return ctrlName;
-                }
               }
             }
           })
@@ -253,7 +244,7 @@ angular
                 authenticate: true,
                 views:{
                     '@':{
-                        templateUrl:'../views/message/layout-msg.html',
+                        templateUrl:'views/message/layout-msg.html',
                         controller:'PersonalInfoController'
                     },
                     'hd@message': {
@@ -500,10 +491,6 @@ angular
                 authorization.authorize();
             }
         });
-
-        $rootScope.$on('$stateChangeSuccess', function () {
-        });
-
     }]);
 
 
