@@ -6,13 +6,15 @@
         .module('tigerwitPersonalApp')
         .directive('twAmountValid', twAmountValid);
 
+    twAmountValid.$inject = ['validator'];
+
     /*
      * 自定义表单验证
      *
      * 验证输入的金额是否满足最大值或者最小值的要求
      * 需要与其他验证规则共同使用
      */
-    function twAmountValid() {
+    function twAmountValid(validator) {
         return {
             require: '?ngModel',
             scope: {
@@ -20,9 +22,9 @@
                 maxAmount: '='
             },
             link: function (scope, element, attrs, controller) {
+                var REG = validator.regType.amount.reg;
+                
                 if (!controller) return;
-                var REG = /^(?!0+(?:\.0+)?$)(?:[1-9]\d*|0)(?:\.\d{1,2})?$/;
-
                 controller.$parsers.push(function (viewVal) {
 
                     // 如果其他验证规则（required、pattern）报错，则该验证规则不报错

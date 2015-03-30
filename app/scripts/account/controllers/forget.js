@@ -77,7 +77,7 @@
         function submitFormStep1() {
             
             if ($scope.formStep1.$invalid) {
-                $scope.formErr.phone = true;
+                $scope.formErr.number = true;
                 $scope.formErr.verifyCode = true;
                 return;
             }

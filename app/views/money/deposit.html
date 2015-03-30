@@ -14,7 +14,7 @@
                 <h2 class="deposit_pnl__title">
                     <i class="fa fa-dollar"></i>1000
                 </h2>
-                <a class="deposit_pnl__entry" href="" ng-click="deposit(1000)">
+                <a class="deposit_pnl__entry" href="" ng-click="depositFun(1000)">
                     选择入金
                     <i class="fa fa-angle-right"></i> 
                 </a>
@@ -26,7 +26,7 @@
                 <h2 class="deposit_pnl-red__title">
                     <i class="fa fa-dollar"></i>2000
                 </h2>
-                <a class="deposit_pnl-red__entry" href="" ng-click="deposit(2000)">
+                <a class="deposit_pnl-red__entry" href="" ng-click="depositFun(2000)">
                     选择入金
                     <i class="fa fa-angle-right"></i> 
                 </a>
@@ -38,7 +38,7 @@
                 <h2 class="deposit_pnl__title">
                     <i class="fa fa-dollar"></i>5000
                 </h2>
-                <a class="deposit_pnl__entry" href="" ng-click="deposit(5000)">
+                <a class="deposit_pnl__entry" href="" ng-click="depositFun(5000)">
                     选择入金
                     <i class="fa fa-angle-right"></i> 
                 </a>
@@ -69,25 +69,28 @@
                            type="text"
                            required
                            ng-model="deposit.amount"
-                           ng-pattern="/^(?!0+(?:\.0+)?$)(?:[1-9]\d*|0)(?:\.\d{1,2})?$/"
+                           ng-pattern="deposit.amountReg"
                            tw-amount-valid
-                           min-amount="deposit.minAmount">
+                           min-amount="deposit.minAmount"
+                           ng-focus="hideErr('amount')"
+                           ng-blur="showErr('amount')">
 
                     <span class="input-group-btn">
-                        <a class="btn btn-primary" href="" ng-disabled="depositForm.$invalid" ng-click="deposit()">
+                        <button class="btn btn-primary" ng-click="depositFun()">
                             入金
-                        </a>
+                        </button>
                     </span>
                 </div>
-                <div ng-show="depositForm.depositAmount.$dirty">
+
+                <div ng-show="formErr.amount">
                     <p class="alert alert-danger" ng-show="depositForm.depositAmount.$error.required">
                         请输入金额
                     </p>
                     <p class="alert alert-danger" ng-show="depositForm.depositAmount.$error.pattern">
-                        请输入正确的金额。只能为整数或者小数，小数点后最多两位数字
+                        {{deposit.amountTip}}
                     </p>
                     <p class="alert alert-danger" ng-show="depositForm.depositAmount.$error.twAmountValid">
-                        第一次入金最少 200 美元，以后每次入金最少 100 美元。
+                        入金金额最少为 {{deposit.minAmount}} 美元
                     </p>
                 </div>
             </form>
