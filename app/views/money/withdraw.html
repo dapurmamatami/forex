@@ -1,5 +1,5 @@
 <div tw-loading-img></div>
-<div class="money_content" ng-if="personal.verified" >
+<div class="money_content" ng-show="personal.verified" >
     <span class="withdraw_icon-lg"></span>
     <h3 class="money_content__title">
         从您的账户出金
@@ -10,31 +10,34 @@
 
     <div class="row">
         <div class="col-xs-6 form-inline">
-            <form name="withdrawForm">
+            <form name="withdrawForm" novalidate>
                 <div class="input-group">
                     <input class="form-control" 
                            name="withdrawAmount" 
                            type="text"
                            required
                            ng-model="withdraw.amount"
-                           ng-pattern="/^(?!0+(?:\.0+)?$)(?:[1-9]\d*|0)(?:\.\d{1,2})?$/"
+                           ng-pattern="withdraw.amountReg"
                            tw-amount-valid
-                           max-amount="realEquityInfo.balance">
+                           max-amount="realEquityInfo.balance"
+                           ng-focus="hideErr('withdrawAmount')"
+                           ng-blur="showErr('withdrawAmount')">
                     <span class="input-group-btn">
-                        <a class="btn btn-primary" href="" ng-disabled="withdrawForm.$invalid" ng-click="openWithdrawMdl()">
+                        <button class="btn btn-primary" ng-click="openWithdrawMdl()">
                             出金
-                        </a>
+                        </button>
                     </span>
                 </div>
-                <div ng-show="withdrawForm.withdrawAmount.$dirty">
+
+                <div ng-show="formErr.withdrawAmount">
                     <p class="alert alert-danger" ng-show="withdrawForm.withdrawAmount.$error.required">
                         请输入金额
                     </p>
                     <p class="alert alert-danger" ng-show="withdrawForm.withdrawAmount.$error.pattern">
-                        请输入正确的金额。只能为整数或者小数，小数点后最多两位数字
+                        {{withdraw.amountTip}}
                     </p>
                     <p class="alert alert-danger" ng-show="withdrawForm.withdrawAmount.$error.twAmountValid">
-                        输入的金额超出了可出金金额。
+                        输入的金额超出了可出金金额
                     </p>
                 </div>
             </form>

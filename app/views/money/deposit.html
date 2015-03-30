@@ -72,8 +72,8 @@
                            ng-pattern="deposit.amountReg"
                            tw-amount-valid
                            min-amount="deposit.minAmount"
-                           ng-focus="hideErr('amount')"
-                           ng-blur="showErr('amount')">
+                           ng-focus="hideErr('depositAmount')"
+                           ng-blur="showErr('depositAmount')">
 
                     <span class="input-group-btn">
                         <button class="btn btn-primary" ng-click="depositFun()">
@@ -82,7 +82,7 @@
                     </span>
                 </div>
 
-                <div ng-show="formErr.amount">
+                <div ng-show="formErr.depositAmount">
                     <p class="alert alert-danger" ng-show="depositForm.depositAmount.$error.required">
                         请输入金额
                     </p>

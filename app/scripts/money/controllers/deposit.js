@@ -20,7 +20,7 @@
             timestamp: ''
         };
         $scope.formErr = {
-            amount: false
+            depositAmount: false
         };
         $scope.depositFun = depositFun;
         $scope.hideErr = hideErr;
@@ -51,7 +51,7 @@
                 // 是手输金额
 
                 if ($scope.depositForm.$invalid) {
-                    $scope.formErr.amount = true;
+                    $scope.formErr.depositAmount = true;
                     return;
                 }
                 newAmount = Number($scope.deposit.amount).toFixed(2);

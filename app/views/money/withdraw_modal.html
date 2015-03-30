@@ -1,5 +1,6 @@
 <div class="withdraw_modal" ng-if="step === 1">
     <div class="modal-header">
+        <button class="close" ng-click="closeModal()">X</button>
         <h4 class="withdraw_modal__title">
             确认出金
             <span>（1/4）</span>
@@ -33,8 +34,9 @@
     </div>
 </div>
 
-<div class="withdraw_modal" ng-if="step === 2">
+<div class="withdraw_modal" ng-show="step === 2">
     <div class="modal-header">
+        <button class="close" ng-click="closeModal()">X</button>
         <h4 class="withdraw_modal__title">
             填写银行卡信息
             <span>（2/4）</span>
@@ -43,56 +45,60 @@
 
     <div class="modal-body">
        <form name="bankForm" novalidate>
-           <div class="row form_row">
-               <div class="col-xs-3 text-right">
+            <div class="form_row">
+                <div class="col-xs-4 text-right">
                    <label>账户姓名</label>
-               </div>
-               <div class="col-xs-7">
+                </div>
+                <div class="col-xs-6">
                    <label>{{realName}}</label>
-               </div>
-           </div>
+                </div>
+            </div>
 
-           <div class="row form_row">
-               <div class="col-xs-3 text-right">
+            <div class="form_row">
+                <div class="col-xs-4 text-right">
                    <label>银行卡卡号</label>
-               </div>
-               <div class="col-xs-7">
+                </div>
+                <div class="col-xs-6">
                     <input class="form-control"
                            name="cardNum"
                            type="text"
                            required
                            ng-model="card.number"
-                           ng-pattern="/^\d{16,19}$/">
-                    <div ng-show="bankForm.cardNum.$dirty">
-                        <p class="alert alert-danger" ng-show="bankForm.cardNum.$error.required">
-                            请输入银行卡号码
+                           ng-pattern="card.numberReg"
+                           ng-focus="hideErr('cardNum')"
+                           ng-blur="showErr('cardNum')">
+                    
+                    <div ng-show="formErr.cardNum">
+                        <p class="form_row__bottom_alert" ng-show="bankForm.cardNum.$error.required">
+                            请输入银行卡卡号
                         </p>
-                        <p class="alert alert-danger" ng-show="bankForm.cardNum.$error.pattern">
-                            请输入正确的银行卡号码（16-19 位数字）
+                        <p class="form_row__bottom_alert" ng-show="bankForm.cardNum.$error.pattern">
+                            {{card.numberTip}}
                         </p>
                     </div>
-               </div>
-           </div>
+                </div>
+            </div>
 
-           <div class="row form_row">
-                <div class="col-xs-3 text-right">
+            <div class="form_row">
+                <div class="col-xs-4 text-right">
                     <label>开户行</label>
                 </div>
-                <div class="col-xs-7">
+                <div class="col-xs-6">
                     <input class="form-control" 
                            name="bankAddr"
                            type="text"
                            required
-                           ng-model="card.bankAddr">
-                    <div ng-show="bankForm.bankAddr.$dirty">
-                        <p class="alert alert-danger" ng-show="bankForm.bankAddr.$error.required">
+                           ng-model="card.bankAddr"
+                           ng-focus="hideErr('bankAddr')"
+                           ng-blur="showErr('bankAddr')">
+
+                    <div ng-show="formErr.bankAddr">
+                        <p class="form_row__bottom_alert" ng-show="bankForm.bankAddr.$error.required">
                             请输入开户行
                         </p>
                     </div>
                     <p class="withdraw_modal__tip-danger">
-                        开户行请精确到支行
-                        <br/>
-                        例如：中国工商银行 北京分行 清华园支行
+                        开户行请精确到支行，例如：中国工商银行 北京分行 清华园支行
                     </p>
                 </div>
             </div>
@@ -100,7 +106,7 @@
     </div>
 
     <div class="modal-footer">
-        <button class="btn btn-primary" ng-disabled="bankForm.$invalid" ng-click="goNextStep()">
+        <button class="btn btn-danger" ng-click="goNextStep()">
             下一步
         </button>
     </div>
@@ -108,6 +114,7 @@
 
 <div class="withdraw_modal" ng-if="step === 3">
     <div class="modal-header">
+        <button class="close" ng-click="closeModal()">X</button>
         <h4 class="withdraw_modal__title">
             确认出金信息
             <span>（3/4）</span>
@@ -137,10 +144,10 @@
     </div>
 
     <div class="modal-footer">
-        <button class="btn btn-primary" ng-click="goPreStep()">
+        <button class="btn btn-primary withdraw_modal__equal_w" ng-click="goPreStep()">
             上一步
         </button>
-        <button class="btn btn-danger" ng-click="withdrawFun()">
+        <button class="btn btn-danger withdraw_modal__equal_w" ng-click="withdrawFun()">
             确认出金
         </button>
     </div>
@@ -148,6 +155,7 @@
 
 <div class="withdraw_modal" ng-if="step === 4">
     <div class="modal-header">
+        <button class="close" ng-click="closeModal()">X</button>
         <h4 class="withdraw_modal__title">
             出金操作完成
             <span>（4/4）</span>
@@ -159,7 +167,7 @@
     </div>
 
     <div class="modal-footer">
-        <button class="btn btn-primary" ng-click="closeModal()">
+        <button class="btn btn-danger" ng-click="closeModal()">
             完成
         </button>
     </div>

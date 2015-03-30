@@ -5,6 +5,11 @@
         float: right;
     }
 
+    .btn-primary {
+        font-size: 16px;
+        font-weight: 700;
+    }
+
     @include e(title) {
         @extend .setting_modal__title;
     }
@@ -27,5 +32,9 @@
             font-weight: 700;
             color: $gray;
         }
+    }
+
+    @include e(equal_w) {
+        width: 170px !important;
     }
 }
