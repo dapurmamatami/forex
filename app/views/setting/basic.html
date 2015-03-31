@@ -93,11 +93,19 @@
                             <label>个性签名</label>
                         </div>
                         <div class="col-xs-9">
-                            <textarea class="form-control"
-                                      name="signature"
-                                      row="3"
-                                      ng-model="signature">
-                            </textarea>
+                            <div class="publish_box">
+                                <textarea class="publish_box__textarea"
+                                          name="signature"
+                                          ng-model="signature"
+                                          tw-publish-box
+                                          watched-val="signature"
+                                          word-limit="50"
+                                          word-num="wordNum">
+                                </textarea>
+                                <span class="publish_box__word_limit">
+                                    {{wordNum}}/50 字
+                                </span>
+                            </div>
                         </div>
                     </div>
                     <button class="btn btn-primary" ng-disabled="basicInfoForm.$invalid" ng-click="submitForm()">

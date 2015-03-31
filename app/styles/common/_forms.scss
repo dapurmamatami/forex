@@ -626,3 +626,21 @@ input[type="checkbox"] {
     }
   }
 }
+
+@include b(publish_box) {
+    position: relative;
+    height: 80px;
+
+    @include e(textarea) {
+        @extend .form-control;
+        height: 50px;
+        resize: none;
+    }
+
+    @include e(word_limit) {
+        position: absolute;
+        top: 60px;
+        right: 0px;
+        color: $gray-lighter;
+    }
+}

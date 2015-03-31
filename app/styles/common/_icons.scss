@@ -326,6 +326,46 @@
         @include img-retina($flag_icon_path + "bf.png", $flag_icon_path + "bf@2x.png", 22px, 13px);
     }
 
+    @include m(bg) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "bg.png", $flag_icon_path + "bg@2x.png", 22px, 13px);
+    }
+
+    @include m(bh) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "bh.png", $flag_icon_path + "bh@2x.png", 22px, 13px);
+    }
+
+    @include m(bi) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "bi.png", $flag_icon_path + "bi@2x.png", 22px, 13px);
+    }
+
+    @include m(bj) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "bj.png", $flag_icon_path + "bj@2x.png", 22px, 13px);
+    }
+
+    @include m(bm) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "bm.png", $flag_icon_path + "bm@2x.png", 22px, 13px);
+    }
+
+    @include m(bn) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "bn.png", $flag_icon_path + "bn@2x.png", 22px, 13px);
+    }
+
+    @include m(bo) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "bo.png", $flag_icon_path + "bo@2x.png", 22px, 13px);
+    }
+
+    @include m(br) {
+        @extend .icon-flag;
+        @include img-retina($flag_icon_path + "br.png", $flag_icon_path + "br@2x.png", 22px, 13px);
+    }
+
     @include m(bs) {
         @extend .icon-flag;
         @include img-retina($flag_icon_path + "bs.png", $flag_icon_path + "bs@2x.png", 22px, 13px);

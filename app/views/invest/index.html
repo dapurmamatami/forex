@@ -1,13 +1,14 @@
 <div class="real_demo">
     <div class="row">
-        <div class="col-xs-9">
-            <h3 class="real_demo__name">
+        <div class="col-xs-9 real_demo__info">
+            <h3>
                 {{userType.isPersonal? personal.username: user.username}}
             </h3>
             <p>
                 {{userType.isPersonal? personal.signature: user.signature}}
             </p>
         </div>
+        
         <div class="col-xs-3" ng-show="personal.real_id && accountType.visible">
             <div class="real_demo__switch" ng-class="{real: accountType.key === 'real', demo: accountType.key === 'demo'}" ng-click="switchAccount()">
                 {{accountType.value}}账户数据
@@ -19,15 +20,15 @@
                 点击切换到模拟账户
             </p>
         </div>
+        
         <div class="col-xs-3" ng-show="!personal.real_id && accountType.visible">
             <div class="real_demo__switch demo">
                 模拟账户数据
             </div>
         </div>
-
-
     </div>
 </div>
+
 <ul class="invest_tab nav nav-tabs">
     <li class="invest_tab__item" ng-class="{active: childState === 'summary'}">
         <a ng-href="#/invest/{{userType.code}}/summary" >
