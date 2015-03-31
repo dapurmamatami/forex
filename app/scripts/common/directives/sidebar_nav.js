@@ -6,13 +6,11 @@
         .module('tigerwitPersonalApp')
         .directive('twSidebarNav', twSidebarNav);
 
-    twSidebarNav.$inject = ['$state'];
-
-    function twSidebarNav($state) {
+    function twSidebarNav() {
         return {
             restrict: 'A',
             scope: true,
-            controller: function ($scope) {
+            controller: function ($scope, $state) {
                 $scope.subPage = $state.params.subPage;
                 $scope.switchItem = switchItem;
 
