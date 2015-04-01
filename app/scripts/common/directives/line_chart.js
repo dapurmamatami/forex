@@ -14,7 +14,7 @@
             },
             template: 
                 '<div id="chart" class="line_chart">' +
-                    '<img src="ngsrc/ajax-loading.gif">' + 
+                    '<img class="line_chart__loading_img" src="ngsrc/ajax-loading.gif">' + 
                 '</div>',
             link: function (scope, element, attrs) {
                 // scope.chartType 线形图类型
@@ -86,8 +86,9 @@
                                 useHTML: true,
                                 formatter: function () {
                                     var dateStamp = new Date(this.x);
-                                    var date = dateStamp.getFullYear() + '/' + (dateStamp.getMonth() + 1) +
-                                            '/' + (dateStamp.getDate());
+                                    var date = dateStamp.getFullYear() + '/' + 
+                                            (dateStamp.getMonth() + 1) +'/' + 
+                                            (dateStamp.getDate());
                                     return '<p class="line_chart__value-x">' + date + 
                                             '</p><p class="line_chart__value-y">' + 
                                             this.y + '%</p>';
