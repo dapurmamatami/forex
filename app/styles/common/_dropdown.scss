@@ -62,7 +62,7 @@
     }
 }
 
-.line_chart_dropdown {
+@include b(line_chart_dropdown) {
     @extend .dropdown;
     float: right;
 
@@ -106,5 +106,4 @@
             }
         }
     }
-
 }

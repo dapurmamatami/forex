@@ -2,7 +2,6 @@
     padding: 5px 30px 30px;
 
     @include e(title) {
-        float: left;
         font-weight: 700;
         color: $gray-light;
     }
@@ -17,12 +16,24 @@
 }
 
 @include b(line_chart) {
+    position: relative;
     margin-left: auto;
-    margin-right: auto;       
+    margin-right: auto;
+
+    @include e(loading_img) {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 50px;
+        height: 50px;
+        margin-top:-25px;
+        margin-left:-25px;
+    }
+
 }
 
-@include b(asset_summary) {
-    $asset_summary: &;
+@include b(trade_summary) {
+    $trade_summary: &;
 
     @include e(h_divider) {
         height: 1px;
@@ -32,48 +43,51 @@
 
     @include e(v_divider) {
         position: absolute;
-        top: 0;
+        top: 10px;
         width: 1px;
         height: 100px;
         background-color: $brand-border-color;
     }
+
     @include e(panel) {
+        padding: 0;
         text-align: center;
-
-        @include e(percent-profit, $asset_summary) {
-            font-size: 32px;
-            font-weight: 700;
-            color: $brand-green;
-        }
-
-        @include e(percent-deficit, $asset_summary) {
-            @extend .asset_summary__percent-profit;
-            color: $brand-red;
-        }
-
-        @include e(amount, $asset_summary) {
-            font-size: 32px;
-            font-weight: 700;
-        }
-
-        @include e(number, $asset_summary) {
-            font-size: 32px;
-            font-weight: 700;
-        }
-
-        @include e(tips, $asset_summary) {
-            color: $gray-lighter;
-        }
 
         >h4 {
             font-size: 16px;
             font-weight: 700;
         }
+
+        @include e(percent-profit, $trade_summary) {
+            font-size: 32px;
+            font-weight: 700;
+            color: $brand-success;
+        }
+
+        @include e(percent-deficit, $trade_summary) {
+            @extend .trade_summary__percent-profit;
+            color: $brand-danger;
+        }
+
+        @include e(amount, $trade_summary) {
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        @include e(number, $trade_summary) {
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        @include e(tips, $trade_summary) {
+            color: $gray-lighter;
+        }
+        
     }
 }
 
-@include b(transaction_data) {
-    $transaction_data: &;
+@include b(trade_data) {
+    $trade_data: &;
     padding: 15px;
 
     .col-xs-1 {
@@ -98,11 +112,11 @@
         color: $gray-light;
     }
 
-    @include e(graph) {
+    @include e(chart) {
         padding: 0;
     }
 
-    @include e(graph_intro) {
+    @include e(chart_intro) {
         padding-left: 0;
 
         h2 {
@@ -111,15 +125,12 @@
         }
     }
 
-    @include e(order) {
-        padding-bottom: 30px;
-    }
-    @include e(order_detail) {
+    @include e(detail) {
         padding-left: 50px;
         
-        @include e(profit_detail, $transaction_data) {
+        @include e(profit, $trade_data) {
             line-height: 40px;
-            border-bottom: 1px solid $brand-border-color;
+            border-bottom: 1px solid $brand-border;
             
             &:last-child {
                 border-bottom: none;
@@ -128,22 +139,36 @@
                 float: right;
                 font-size: 16px;
                 font-weight: 700;
-                color: $brand-green;
+                color: $brand-success;
             }
             
         }
 
-        @include e(deficit_detail, $transaction_data) {
+        @include e(deficit, $trade_data) {
             line-height: 40px;
-            border-bottom: 1px solid $brand-border-color;
+            border-bottom: 1px solid $brand-border;
         
             >span {
                 float: right;
                 font-size: 16px;
                 font-weight: 700;
-                color: $brand-red;
+                color: $brand-danger;
             }
             
         }
+    }
+}
+
+@include b(donut_chart) {
+    position: relative;
+    width: 150px;
+    margin-left: auto;
+    margin-right: auto;
+
+    @include e(loading_img) {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
     }
 }
