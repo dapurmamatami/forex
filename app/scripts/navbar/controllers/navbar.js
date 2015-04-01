@@ -5,9 +5,9 @@
         .module('tigerwitPersonalApp')
         .controller('NavbarController', NavbarController);
 
-    NavbarController.$inject = ['$scope', '$state', '$cookieStore', 'account','communicate'];
+    NavbarController.$inject = ['$scope', '$state', 'account'];
 
-    function NavbarController($scope, $state, $cookieStore, account,communicate) {
+    function NavbarController($scope, $state, account) {
         $scope.currentUrl = {
             prefix: ''
         };

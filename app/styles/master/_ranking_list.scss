@@ -20,7 +20,7 @@
         float:left;
         @include e(name){
             color:$brand-primary;
-
+            cursor:pointer;
         }
         @include e(addr){
             font-size:16px;

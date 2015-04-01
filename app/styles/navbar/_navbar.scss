@@ -1,7 +1,7 @@
 @include b(top_navbar) {
-    
+
     .navbar.navbar-inverse {
-        
+
         .navbar-header > a {
             padding-bottom: 10px;
         }
@@ -29,12 +29,12 @@
     }
 
     .dropdown.open {
-        
+
         a.nav_more {
             background-color: $brand-white !important;
             color: $gray-dark !important;
         }
-        
+
         a.nav_personal {
             background-color: $brand-white !important;
             color: $gray-dark !important;
@@ -105,7 +105,7 @@
     ul {
 
         li {
-            
+
             &:last-child > a {
                 border-bottom: none;
             }
@@ -121,8 +121,6 @@
                     color: #fff;
                     text-decoration: none;
                 }
-
-
             }
         }
     }
@@ -154,7 +152,7 @@
 
 @include b(nav_personal_detail) {
     width: 250px;
-    
+
     .row {
         margin-left: -5px;
         margin-right: -5px;
@@ -170,7 +168,7 @@
     }
 
     .social_counter {
-        
+
         .social_counter__counter_itm {
             width: 25%;
         }

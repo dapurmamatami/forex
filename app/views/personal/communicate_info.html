@@ -21,9 +21,9 @@
     <div  ng-show="!isSummary" ng-controller="PersonalTopicPublishController">
         <div class = "publisharea">
             <img class="communicateinfo__user-icon" src="{{personal.smAvatar}}">
-            <div class="clearTop topicOrComment">
+            <div class="clearTop topic_or_comment">
                 <textarea  name="inputContent" ng-model="inputContent" ng-change="matchTopicContent()" prompt-special-input></textarea>
-                <div class = "topicOrComment__doToast" ng-class="showOrNo" >
+                <div class = "topic_or_comment__doToast" ng-class="showOrNo" >
                     发表成功！
                 </div>
                 <div >
@@ -51,20 +51,20 @@
                             <span ng-click="doSupport(mData)">赞({{mData['support_sum']}}) </span>|
                             <span ng-show="isSelf" ng-click="doTransmit(mData)"> 转发({{mData['tramsmit_sum']}}) |</span>
                             <span ng-click="showDropComment()"> 评论({{mData['comment_sum']}}) </span>|
-                            <span ng-click="skipDetail(mData.topicid)"> 详情</span>
+                            <span ng-click="skipDetail(mData.topicid)"> 详情 {{inputChar}}</span>
                         </div>
                     </div>
-
-                    <div class="topicOrComment" ng-show="commentShowToggle">
-                        <textarea ng-model="inputContent" ng-change="matchCommentContent()"></textarea>
-                        <div class = "topicOrComment__doToast" ng-class="showOrNo">
-                            {{toastMsg}}
-                        </div>
-                        <div class = "topicOrComment__dostyl" >
-                            <span>剩余 {{tRemainSum}}/1024 字</span>
-                            <a  class="do_style__publish" ng-click="doComment()"> 评论 </a>
-                        </div>
-                    </div>
+                    <tw-publish input-char = 'inputChar' input-content="inputContent" toast-msg="toastMsg" ng-show="commentShowToggle" toast-show = 'showOrNo' do-comment="doComment()"></tw-publish>
+                    <!--<div class="topic_or_comment" ng-show="commentShowToggle">-->
+                        <!--<textarea ng-model="inputContent" ng-change="matchCommentContent()"></textarea>-->
+                        <!--<div class = "topic_or_comment__doToast" ng-class="showOrNo">-->
+                            <!--{{toastMsg}}-->
+                        <!--</div>-->
+                        <!--<div class = "topic_or_comment__dostyl" >-->
+                            <!--<span>剩余 {{tRemainSum}}/1024 字</span>-->
+                            <!--<a  class="do_style__publish" ng-click="doComment()"> 评论 </a>-->
+                        <!--</div>-->
+                    <!--</div>-->
                 </div>
             </div>
             <hr />
@@ -96,12 +96,12 @@
                     </div>
                 </div>
 
-                <div class="topicOrComment" ng-show="commentShowToggle">
+                <div class="topic_or_comment" ng-show="commentShowToggle">
                     <textarea ng-model="inputContent"></textarea>
-                    <div class = "topicOrComment__doToast" ng-class = "showOrNo">
+                    <div class = "topic_or_comment__doToast" ng-class = "showOrNo">
                         {{toastMsg}}
                     </div>
-                    <div class = "topicOrComment__dostyl" >
+                    <div class = "topic_or_comment__dostyl" >
                         <span>剩余 1024/1024 字</span>
                         <a ng-click="doComment()"> 评论 </a>
                     </div>
@@ -165,12 +165,12 @@
                         </div>
                     </div>
 
-                    <div class="topicOrComment" ng-show="commentShowToggle">
+                    <div class="topic_or_comment" ng-show="commentShowToggle">
                         <textarea ng-model="inputContent" ng-change="matchCommentContent()"></textarea>
-                        <div class = "topicOrComment__doToast" ng-class="showOrNo">
+                        <div class = "topic_or_comment__doToast" ng-class="showOrNo">
                             {{toastMsg}}
                         </div>
-                        <div class = "topicOrComment__dostyl" >
+                        <div class = "topic_or_comment__dostyl" >
                             <span>剩余 {{tRemainSum}}/1024 字</span>
                             <a  class="do_style__publish" ng-click="doComment()"> 评论 </a>
                         </div>

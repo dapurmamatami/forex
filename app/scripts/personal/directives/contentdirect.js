@@ -1,10 +1,11 @@
 (function(){
-  'use strict'
+  'use strict';
 
   angular
     .module('tigerwitPersonalApp')
     .directive('twContentShow',twContentShow);
-  function twContentShow() {
+  twContentShow.$inject = ['$state'];
+  function twContentShow($state) {
       return {
           restrict: 'E',
           scope:{
@@ -17,7 +18,7 @@
                         "</span>" +
                     "</p>",
           replace:true,
-          controller: function ($scope,$state) {
+          controller: function ($scope) {
 
               $scope.skipToSomeThing = skipToSomeThing ;
 
@@ -27,7 +28,6 @@
                   }else if(key.startsWith('@')){
                       $state.go('invest.subPage',{userCode:$scope.map[key],subPage:'summary'})
                   }
-
               }
 
               $scope.$watch('showContent',function(){

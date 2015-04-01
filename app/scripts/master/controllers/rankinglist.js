@@ -5,13 +5,14 @@
       .module('tigerwitPersonalApp')
       .controller('MasterRankingListController',MasterRankingListController);
 
-  MasterRankingListController.$inject=['$scope','$http']
+  MasterRankingListController.$inject=['$scope','$http','$state']
 
-      function MasterRankingListController($scope,$http){
+      function MasterRankingListController($scope,$http,$state){
           $scope.changeData=changeData;
           $scope.showMenu = showMenu;
           $scope.backMenu = backMenu;
           $scope.loadMore = loadMore ;
+          $scope.skipToUser = skipToUser;
 
           $scope.period = 7;
           $scope.head_title='最近 1 周';
@@ -22,6 +23,11 @@
           function backMenu() {
               $scope.showDropdown = false;
           }
+
+          function skipToUser(userCode){
+              $state.go('invest.subPage',{userCode:userCode,subPage:'summary'})
+          }
+
           function getMasterList(period,after){
               $scope.showDropdown = false;
               if(!$scope.listData){
@@ -33,7 +39,7 @@
                   count:10
               }}).then(function(data){
                   if(data.is_succ){
-                      console.info(data);
+                      //console.info(data);
                       $scope.listData = $scope.listData.concat(data.data);
                       $scope.timeStampe = data.timestamp;
                       if(data.data.length<10){
