@@ -1,4 +1,4 @@
-@include b(asset_curve) {
+@include b(line_chart_pnl) {
     padding: 5px 30px 30px;
 
     @include e(title) {
@@ -6,6 +6,19 @@
         font-weight: 700;
         color: $gray-light;
     }
+
+    @include e(chart) {
+        margin-top: 30px;
+
+        .line_chart {
+            width: 650px;
+        }
+    }
+}
+
+@include b(line_chart) {
+    margin-left: auto;
+    margin-right: auto;       
 }
 
 @include b(asset_summary) {

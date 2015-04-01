@@ -1,7 +1,7 @@
 <div tw-loading-img></div>
-<div class="asset_curve">
+<div class="line_chart_pnl">
     <div class="row">
-        <h4 class="asset_curve__title">
+        <h4 class="line_chart_pnl__title">
             {{period.valShow}}的资产变化曲线
         </h4>
         <div class="line_chart_dropdown"  tw-dropdown>
@@ -38,8 +38,8 @@
             </ul>
         </div>
     </div>
-    <div class="asset_curve__graph">
-        <div tw-line-chart></div>  
+    <div class="line_chart_pnl__chart">
+        <div tw-line-chart chart-type="0"></div>  
     </div>
 </div>
 
