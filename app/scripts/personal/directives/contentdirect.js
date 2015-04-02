@@ -10,7 +10,8 @@
           restrict: 'E',
           scope:{
               showContent: '=info',
-              map: '='
+              map: '=',
+              thatWas:'@was'
           },
           template: "<p>" +
                         "<span ng-repeat = 'cItem in contentArray' ng-if='cItem'>" +
@@ -33,17 +34,17 @@
               $scope.$watch('showContent',function(){
                   if(!$scope.showContent) return;
                   $scope.contentArray = [];
-                  $scope.contentArray = getContentArray($scope.contentArray,$scope.showContent);
+                  $scope.contentArray = getContentArray($scope.contentArray,$scope.showContent,$scope.thatWas);
               }
             ) ;
           }
       }
   }
-  function getContentArray(arrayContent, content) {
+  function getContentArray(arrayContent, content,thatWas) {
 
       var regex = /@\S+|\$\S+/g;
       var tail = '';
-      if(content.length>128){
+      if(content.length>128&&!thatWas){
           content = content.substring(0,128);
           tail = '...';
       }
