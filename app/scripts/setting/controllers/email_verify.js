@@ -9,12 +9,14 @@
     SettingEmailVerifyController.$inject = ['$scope', '$state'];
 
     function SettingEmailVerifyController($scope, $state) {
+        $scope.emailVerify = {};
+
         var queryVal = $state.params.success;
 
         if (queryVal === 'true') {
-            $scope.success = true;    
+            $scope.emailVerify.succVerify = true;    
         } else {
-            $scope.success = false;
+            $scope.emailVerify.succVerify = false;
         }
     }
 })();

@@ -69,15 +69,19 @@
                             <span class="account_safety__email">{{safetyInfo.email}}</span>
                             [我们将通过此邮件定期向您发送你的投资报告和相关资料]
                         </p>
-                        <div class="succ_tip" ng-show="succSend">
-                            <i class="fa fa-check"></i>邮件发送成功
-                        </div>
                     </div>
                     <div class="col-xs-3">
                         <span class="safety_verify">
-                            <span class="safety_verify__unfinished" ng-if="!safetyInfo.email_addr" ng-click="verifyEmail()">
-                                [未验证]
+                            <span ng-if="!safetyInfo.email_addr" >
+                                <span class="safety_verify__unfinished" ng-if="!emailVerify.succSend" ng-click="emailVerify.sendEmail()">
+                                    [未验证]
+                                </span>
+
+                                <span class="safety_verify__finished" ng-if="emailVerify.succSend">
+                                    已发送
+                                </span>
                             </span>
+                            
                             <span class="safety_verify__finished" ng-if="safetyInfo.email_addr">
                                 已验证
                             </span>

@@ -26,7 +26,7 @@
             changePhone: changePhone,
             changeEmail: changeEmail,
             getSafetyInfo: getSafetyInfo,
-            verifyEmail: verifyEmail,
+            sendEmail: sendEmail,
             getVerifyCode: getVerifyCode,
             login: login,
             logout: logout,
@@ -311,11 +311,11 @@
         }
 
         /**
-         * Account Service 验证邮箱
+         * Account Service 发邮件
          * 
-         * @method verifyEmail
+         * @method sendEmail
          */  
-        function verifyEmail() {
+        function sendEmail() {
             return $http.post('/send_mail');
         }
 

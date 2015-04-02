@@ -21,7 +21,7 @@
 
         @include e(high) {
             font-weight: 700;
-            color: $brand-green;
+            color: $brand-success;
         }
     }
 
@@ -32,11 +32,11 @@
         font-weight: 700;
 
         @include e(finished) {
-            color: $brand-green;
+            color: $brand-success;
         }
 
         @include e(unfinished) {
-            color: $gray-light;
+            color: $brand-primary;
 
             &:hover {
                 cursor: pointer;

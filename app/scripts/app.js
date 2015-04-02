@@ -428,6 +428,16 @@ angular
                     }
                 }
             })
+            .state('account.registerReal', {
+                url: '/account/register_real',
+                authenticate: true,
+                views: {
+                    'bd@account': {
+                        templateUrl: 'views/account/register_real.html',
+                        controller: 'AccountRegisterRealController'
+                    }
+                }
+            })
             .state('account.subPage', {
                 url: '/account/:subPage',
                 views: {

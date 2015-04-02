@@ -6,9 +6,9 @@
         .module('tigerwitPersonalApp')
         .controller('AccountRegisterRealController', AccountRegisterRealController);
 
-    AccountRegisterRealController.$inject = ['$scope', 'registerReal'];
+    AccountRegisterRealController.$inject = ['$scope', 'account', 'registerReal'];
 
-    function AccountRegisterRealController($scope, registerReal) {
+    function AccountRegisterRealController($scope, account, registerReal) {
         $scope.step = 1;
         $scope.account = {
             name: '',
@@ -35,6 +35,14 @@
         $scope.submitFormStep3 = submitFormStep3;
         $scope.hideErr = hideErr;
         $scope.showErr = showErr;
+
+        // 获取开通真实账户的进度信息
+        account.getStepInfo('ReliableInformation').then(function (data) {
+
+            if (data.is_succ) {
+                $scope.step = data.progress + 1;
+            }
+        });
 
         $scope.$on('uploadFormStart', function (event, data) {
             $scope.$apply(function () {

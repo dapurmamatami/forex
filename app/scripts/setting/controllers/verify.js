@@ -9,7 +9,7 @@
     SettingVerifyController.$inject = ['$scope', '$timeout', '$modal', 'account', 'registerReal'];
 
     function SettingVerifyController($scope, $timeout, $modal, accountService, registerReal) {
-        $scope.verifyStatus = 1;
+        $scope.verifyStatus = 0;
         $scope.account = {
             name: '',
             id: {
@@ -106,7 +106,7 @@
                 size: size,
                 resolve: {
                     registerStep: function () {
-                        return $scope.personal.step;
+                        return $scope.registerRealStep;
                     }
                 }
             });

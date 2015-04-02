@@ -9,12 +9,20 @@
     SettingSafetyController.$inject = ['$scope', '$timeout', '$modal', 'account'];
 
     function SettingSafetyController($scope, $timeout, $modal, account) {
-        $scope.succSend = false;
         $scope.safetyInfo = {};
+        // 邮箱验证
+        $scope.emailVerify = {  
+            succSend: false,   // 邮件是否已发送
+            status: 0,
+            statusMsg: '',
+            succVerify: false,    // 邮箱验证是否成功（在 SettingEmailVerifyController 中用） 
+            sendEmail: sendEmail
+        };
         $scope.openPwdModal = openPwdModal;
         $scope.openPhoneModal = openPhoneModal;
         $scope.openEmailModal = openEmailModal;
-        $scope.verifyEmail = verifyEmail;
+        $scope.sendEmail = sendEmail;
+        $scope.emailSendSucc = false;
 
         account.getSafetyInfo().then(function (data) {
             $scope.safetyInfo = data;
@@ -43,23 +51,50 @@
                 controller: 'SettingEmailController',
                 size: size,
                 resolve: {
-                    safetyInfo: function () {
-                        return $scope.safetyInfo
+                    passedScope: function () {
+                        return $scope;
                     }
                 }
             });
         }
 
-        // 往邮箱发送邮件
-        function verifyEmail() {
-            account.verifyEmail().then(function (data) {
+        function openEmailVerifyMdl(size) {
+            $modal.open({
+                templateUrl: 'views/setting/email_verify_modal.html',
+                controller: function ($scope, $modalInstance, emailVerify) {
+                    $scope.emailVerify = emailVerify;
+                    $scope.closeModal = closeModal;
 
-                if (data.is_succ) {
-                    $scope.succSend = true;
-                    $timeout(function () {
-                        $scope.succSend = false;
-                    }, 1000);
+                    function closeModal() {
+                        $modalInstance.dismiss();
+                    }
+                },
+                size: size,
+                resolve: {
+                    emailVerify: function () {
+                        return $scope.emailVerify;
+                    }
                 }
+            });
+        }
+
+        function sendEmail() {
+            account.sendEmail().then(function (data) {
+
+                if (!data.is_succ) {
+
+                    if (data.error_code === 1) {
+                        $scope.emailVerify.status = 1;
+                        $scope.emailVerify.statusMsg = '验证邮件发送次数过多，请稍后再试';
+                    }
+
+                    if (data.error_code === 2) {
+                        $scope.emailVerify.status = 2;
+                        $scope.emailVerify.statusMsg = '电子邮箱已验证';
+                    }
+                }
+
+                openEmailVerifyMdl();
             });
         }
 

@@ -77,6 +77,7 @@
                 personal.followingSum = data.data.attention_sum;
                 personal.fanSum = data.data.fans_sum;
             });
+            
             //获取没有看过的消息数量
             communicateService.unvisitedMessage($cookieStore.get('userCode')).then(function(data){
                 $scope.sys_unvisited_sum = data.data.sys_unvisited_sum;

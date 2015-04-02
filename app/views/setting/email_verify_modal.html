@@ -1,0 +1,67 @@
+<div class="setting_modal">
+    <div class="modal-header">
+        <h4 class="setting_modal__title">
+            验证邮箱
+        </h4>
+    </div>
+
+    <div ng-if="emailVerify.status === 0">
+        <div class="modal-body">
+            <h3 class="setting_modal__change_success">
+                认证邮件发送成功！
+            </h3>
+            <div class="row">
+                <div class="col-xs-8 col-xs-offset-2">
+                    <p class="setting_modal__change_tip">
+                        注意：我们向您的新邮箱发送了一封认证邮件，请查收您的邮箱，按邮件中操作进行认证。
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-danger" ng-click="closeModal()">
+                完成
+            </button>
+        </div>
+    </div>
+
+    <div ng-if="emailVerify.status === 1">
+        <div class="modal-body">
+            <h3 class="setting_modal__change_success">
+                认证邮件发送失败！
+            </h3>
+            <div class="row">
+                <div class="col-xs-8 col-xs-offset-2">
+                    <p class="setting_modal__change_tip">
+                        {{emailVerify.statusMsg}}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-danger" ng-click="closeModal()">
+                确定
+            </button>
+        </div>
+    </div>
+
+    <div ng-if="emailVerify.status === 2">
+        <div class="modal-body">
+            <h3 class="setting_modal__change_success">
+                认证邮件发送失败！
+            </h3>
+            <div class="row">
+                <div class="col-xs-8 col-xs-offset-2">
+                    <p class="setting_modal__change_tip">
+                        {{emailVerify.statusMsg}}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-danger" ng-click="closeModal()">
+                确定
+            </button>
+        </div>
+    </div>
+</div>

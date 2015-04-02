@@ -80,8 +80,9 @@
                                type="text"
                                required
                                ng-model="email.newNumber"
-                               ng-pattern="/^\w+([-.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/"
-                               ng-focus="eliminateErr('email is existent')">
+                               ng-pattern="email.newNumReg"
+                               ng-focus="hideErr('newEmail')" 
+                               ng-blur="showErr('newEmail')">
                         <div ng-show="formErr.newEmail">
                             <p class="form_row__bottom_alert" ng-show="formStep2.newEmail.$error.required">
                                 请输入新电子邮箱
@@ -91,6 +92,9 @@
                             </p>
                             <p class="form_row__bottom_alert" ng-show="email.existence">
                                 该电子邮箱已经验证过
+                            </p>
+                            <p class="form_row__bottom_alert" ng-show="email.excess">
+                                该电子邮箱发送邮件次数过多
                             </p>
                         </div>
                     </div>
@@ -112,10 +116,12 @@
             <h3 class="setting_modal__change_success">
                 邮箱修改成功！
             </h3>
-            <div class="col-xs-8 col-xs-offset-2">
-                <p class="setting_modal__change_tip">
-                    注意：我们向您的新邮箱发送了一封认证邮件，请查收您的邮箱，按邮件中操作进行认证。
-                </p>
+            <div class="row">
+                <div class="col-xs-8 col-xs-offset-2">
+                    <p class="setting_modal__change_tip">
+                        注意：我们向您的新邮箱发送了一封认证邮件，请查收您的邮箱，按邮件中操作进行认证。
+                    </p>
+                </div>
             </div>
         </div>
         <div class="modal-footer">

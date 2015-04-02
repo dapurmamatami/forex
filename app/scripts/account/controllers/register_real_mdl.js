@@ -5,10 +5,12 @@
         .module('tigerwitPersonalApp')
         .controller('AccountRegisterRealMdlController', AccountRegisterRealMdlController);
    
-    AccountRegisterRealMdlController.$inject = ['$scope','$state', '$modalInstance', 'registerStep', 'registerReal'];
+    AccountRegisterRealMdlController.$inject = ['$scope','$state', '$modalInstance', 
+            'registerStep', 'registerReal'];
     
 
-    function AccountRegisterRealMdlController($scope, $state, $modalInstance, registerStep, registerReal) {
+    function AccountRegisterRealMdlController($scope, $state, $modalInstance, 
+                registerStep, registerReal) {
         $scope.account = {
             name: '',
             id: {

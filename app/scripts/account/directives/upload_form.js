@@ -20,8 +20,8 @@
                     pick: element[0], //????/
                     accept: {
                         title: 'Images',
-                        extensions: 'jpg,jpeg,png',
-                        mimeTypes: 'images/jpeg, images/png'
+                        extensions: 'jpg,jpeg,png,gif',
+                        mimeTypes: 'images/jpeg,images/png,images/gif'
                     },
                     formData: {
                         face: attrs.face
