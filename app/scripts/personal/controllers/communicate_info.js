@@ -146,9 +146,9 @@
      * @type {number}
      */
 
-      $scope.tRemainSum = 0;
+      //$scope.tRemainSum = 0;
+      $scope.testD = 1;
       $scope.publishTopic = publishTopic;
-      $scope.matchTopicContent = matchTopicContent;
       function publishTopic(){
           if(!$scope.inputContent){
               return;
@@ -160,12 +160,12 @@
               $scope.userCode,$scope.inputContent,0)
               .then(function(data){
                   if(data.statecode){
-                      $scope.showOrNo = 'cm-enter';
+                      $scope.toastShow = 'cm-enter';
                       $scope.$parent.mCdata.unshift(data.data);
                       $timeout(function(){
-                          $scope.showOrNo = 'cm-leave';
+                          $scope.toastShow = 'cm-leave';
                           $timeout(function(){
-                            $scope.showOrNo = '';
+                              $scope.toastShow = '';
                           },1000);
                       },1000);
                   }
@@ -173,16 +173,6 @@
           $scope.tempTopicContent =$scope.inputContent;
           $scope.inputContent = "";
           $scope.tRemainSum = 0;
-      }
-
-
-      function matchTopicContent(){
-          var contentLength = $scope.inputContent.length;
-          if(contentLength>1024){
-              $scope.inputContent = $scope.inputContent.substring(0,1024);
-              return;
-          }
-          $scope.tRemainSum =contentLength;
       }
 
   }
@@ -207,23 +197,12 @@
               $scope.doComment = doComment;
               $scope.doSupport = doSupport;
               $scope.doTransmit = doTransmit;
-              $scope.matchCommentContent = matchCommentContent;
 
               $scope.skipToSummary = skipToSummary;
 
               function showDropComment(){
                   $scope.commentShowToggle = !$scope.commentShowToggle;
               }
-
-              function matchCommentContent(){
-                  var contentLength = $scope.inputContent.length;
-                  if(contentLength>1024){
-                      $scope.inputContent = $scope.inputContent.substring(0,1024);
-                      return;
-                  }
-                  $scope.tRemainSum =contentLength;
-              }
-
 
               function doComment(){
                   if(!$scope.inputContent){

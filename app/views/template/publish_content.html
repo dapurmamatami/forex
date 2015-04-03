@@ -1,0 +1,14 @@
+<div class="topic_or_comment">
+    <textarea id="textArea" ng-model="inputContent"   ng-change="matchCommentContent()"></textarea>
+    <div class = "topic_or_comment__doToast" ng-class="toastShow" >
+        <!--{{toastMsg}}-->
+        发表成功！！！
+    </div>
+
+
+    <div class = "do_style" >
+        <span class="do_style__remain">剩余 {{tRemainSum}}/1024 字</span>
+        <a class="do_style__publish" ng-click="doComment()">发表我的看法 </a>
+    </div>
+</div>
+

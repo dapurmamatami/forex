@@ -152,9 +152,8 @@
         ::selection{
           color:#FF0000;
         }
-        @include b(topicOrComment){
+        @include b(topic_or_comment){
             float:right;
-            min-height:88px;
             width:415px;
             position:relative;
             margin-top: 10px;
@@ -163,13 +162,19 @@
                min-height:50px ;
                max-height:70px;
                resize:none;
-
             }
             @include e(doToast){
              position: absolute;
              left:150px;
              top:50px;
              opacity:0;
+//             border: solid 1px #b7b7b7;
+            }
+            @include b(tip_drop_menu){
+                float:left;
+                display:block;
+                top:3px;
+                left:3px;
             }
 
             @include b(do_style){

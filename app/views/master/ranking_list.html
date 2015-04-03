@@ -47,13 +47,13 @@
                           <div class="ranking_user">
                               <img src="/avatar/{{item.user_code}}_50.jpg">
                               <div class="ranking_user_info">
-                                  <p class="ranking_user_info__name">{{item.username}}</p>
+                                  <a class="ranking_user_info__name" ng-click="skipToUser(item.user_code)">{{item.username}}</a>
                                   <p class="ranking_user_info__addr">{{item.region_cn.city_name}},{{item.region_cn.state_name}}</p>
                               </div>
                           </div>
                       </td>
                       <td>
-                         {{item.user_code}}
+                         {{item.copier_count}}
                       </td>
                       <td>
                           {{item.total_orders}}

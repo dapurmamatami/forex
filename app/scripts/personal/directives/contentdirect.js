@@ -1,15 +1,17 @@
 (function(){
-  'use strict'
+  'use strict';
 
   angular
     .module('tigerwitPersonalApp')
     .directive('twContentShow',twContentShow);
-  function twContentShow() {
+  twContentShow.$inject = ['$state'];
+  function twContentShow($state) {
       return {
           restrict: 'E',
           scope:{
               showContent: '=info',
-              map: '='
+              map: '=',
+              thatWas:'@was'
           },
           template: "<p>" +
                         "<span ng-repeat = 'cItem in contentArray' ng-if='cItem'>" +
@@ -17,7 +19,7 @@
                         "</span>" +
                     "</p>",
           replace:true,
-          controller: function ($scope,$state) {
+          controller: function ($scope) {
 
               $scope.skipToSomeThing = skipToSomeThing ;
 
@@ -27,23 +29,22 @@
                   }else if(key.startsWith('@')){
                       $state.go('invest.subPage',{userCode:$scope.map[key],subPage:'summary'})
                   }
-
               }
 
               $scope.$watch('showContent',function(){
                   if(!$scope.showContent) return;
                   $scope.contentArray = [];
-                  $scope.contentArray = getContentArray($scope.contentArray,$scope.showContent);
+                  $scope.contentArray = getContentArray($scope.contentArray,$scope.showContent,$scope.thatWas);
               }
             ) ;
           }
       }
   }
-  function getContentArray(arrayContent, content) {
+  function getContentArray(arrayContent, content,thatWas) {
 
       var regex = /@\S+|\$\S+/g;
       var tail = '';
-      if(content.length>128){
+      if(content.length>128&&!thatWas){
           content = content.substring(0,128);
           tail = '...';
       }

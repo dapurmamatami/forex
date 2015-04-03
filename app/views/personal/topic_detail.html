@@ -6,10 +6,10 @@
 
         <div class="topic-content">
             <span class = "focus_name" ng-click="skipToSummary(topicDetailData.publisher_id)">{{topicDetailData.publisher_name}}</span>
-            <tw-content-show ng-show="content"  info="content"></tw-content-show>
+            <tw-content-show  was='true' ng-show="content"  info="content"></tw-content-show>
             <div class="tramsmit" ng-if="topicDetailData.topic_type==3">
                 <span class = "tramsmit__focus_name">{{topicDetailData['relation']['publisher_name']}}</span>
-                <tw-content-show class = "tramsmit__content" info="topicDetailData['relation']['content']"></tw-content-show>
+                <tw-content-show   class = "tramsmit__content" info="topicDetailData['relation']['content']"></tw-content-show>
                 <div>
                     <span class = "tramsmit__ptime">{{topicDetailData['relation']['ptime'] | startNow }}前</span>
                     <div class = "tramsmit_other_info">
@@ -31,19 +31,20 @@
                 </div>
             </div>
 
+            <tw-publish input-content="inputContent" toast-msg="toastMsg"
+                        toast-show = 'showOrNo' do-comment="doComment()"></tw-publish>
 
 
-
-            <div class="topicOrComment">
-                <textarea ng-model="inputContent" ng-change="matchCommentContent()"></textarea>
-                <div class = "topicOrComment__doToast" ng-class="showOrNo">
-                    {{toastMsg}}
-                </div>
-                <div class = "do_style" >
-                    <span>剩余 {{tRemainSum}}/1024 字</span>
-                    <a class="do_style__publish" ng-click="doComment()"> 回复我的评论 </a>
-                </div>
-            </div>
+            <!--<div class="topicOrComment">-->
+                <!--<textarea ng-model="inputContent" ng-change="matchCommentContent()"></textarea>-->
+                <!--<div class = "topicOrComment__doToast" ng-class="showOrNo">-->
+                    <!--{{toastMsg}}-->
+                <!--</div>-->
+                <!--<div class = "do_style" >-->
+                    <!--<span>剩余 {{tRemainSum}}/1024 字</span>-->
+                    <!--<a class="do_style__publish" ng-click="doComment()"> 回复我的评论 </a>-->
+                <!--</div>-->
+            <!--</div>-->
         </div>
 
 
