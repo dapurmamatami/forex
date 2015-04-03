@@ -14,7 +14,6 @@
             name: '',
             id: {
                 number: '',
-                existence: false,
                 valid: true,
                 frontImgMsg: '',
                 frontImgStatus: 0,

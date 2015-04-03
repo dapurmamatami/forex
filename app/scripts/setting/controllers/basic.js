@@ -54,7 +54,7 @@
             if (!data.is_succ) {
                 return;
             }
-            $scope.signature = data.desc;
+            $scope.signature = data.desc || '';
             $scope.location.country.code = data.world_code;
 
             if (data.world_code === 'CN') {

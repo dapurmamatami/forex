@@ -20,22 +20,13 @@
 
         // 提交姓名和身份证号（以及fork code），并验证身份证号码是否有效
         function postNameId(account) {
-
-            // 首先验证身份证号码是否已经存在 
-            return checkIdExist(account.id).then(function (data) {
-
-                if (data) {
-                    return accountService.setInfo(account.name, account.id.number, account.forkCode).then(function (data) {
-                
-                        if (data.is_succ) {
-                            account.id.valid = true;
-                            return true;
-                        } else {
-                            account.id.valid = false;
-                            return false;
-                        }
-                    });
+            return accountService.setInfo(account.name, account.id.number, account.forkCode).then(function (data) {
+        
+                if (data.is_succ) {
+                    account.id.valid = true;
+                    return true;
                 } else {
+                    account.id.valid = false;
                     return false;
                 }
             });
@@ -56,7 +47,6 @@
         }
 
         function eliminateErr(id) {
-            id.existence = false;
             id.valid = true;
         }
 

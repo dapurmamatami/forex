@@ -14,7 +14,7 @@
             },
             link: function (scope, element) {
                 scope.wordNum = 0;
-                var wordLimit;
+                var wordLimit
 
                 if (scope.wordLimit) {
                     wordLimit = parseInt(scope.wordLimit);
@@ -22,10 +22,10 @@
 
                 scope.$watch('watchedVal', function (newVal, oldVal) {
                     if (newVal === oldVal) return;
-                    
+
                     scope.wordNum = newVal.length;    
 
-                    if (newVal.length > wordLimit) {
+                    if (scope.wordNum > wordLimit) {
                         scope.watchedVal = newVal.substring(0, wordLimit);
                     }
                 });
