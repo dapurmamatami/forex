@@ -4,8 +4,8 @@
   angular
     .module('tigerwitPersonalApp')
     .directive('twContentShow',twContentShow);
-  twContentShow.$inject = ['$state'];
-  function twContentShow($state) {
+  twContentShow.$inject = ['$state','$window'];
+  function twContentShow($state,$window) {
       return {
           restrict: 'E',
           scope:{
@@ -28,6 +28,8 @@
                       $state.go('class.detail',{className:$scope.map[key]})
                   }else if(key.startsWith('@')){
                       $state.go('invest.subPage',{userCode:$scope.map[key],subPage:'summary'})
+                  }else if(key.startsWith('http://')){
+                      $window.open(key);
                   }
               }
 
@@ -42,7 +44,7 @@
   }
   function getContentArray(arrayContent, content,thatWas) {
 
-      var regex = /@\S+|\$\S+/g;
+      var regex = /@\S+|\$\S+|http:\/\/\S+/g;
       var tail = '';
       if(content.length>128&&!thatWas){
           content = content.substring(0,128);
