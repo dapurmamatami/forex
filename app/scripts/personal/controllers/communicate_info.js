@@ -146,7 +146,7 @@
      * @type {number}
      */
 
-      //$scope.tRemainSum = 0;
+      $scope.tRemainSum = 0;
       $scope.testD = 1;
       $scope.publishTopic = publishTopic;
       function publishTopic(){
@@ -157,7 +157,7 @@
              return;
           }
           communicate.publishTopic(
-              $scope.userCode,$scope.inputContent,0)
+              $scope.personal.user_code,$scope.inputContent,0)
               .then(function(data){
                   if(data.statecode){
                       $scope.toastShow = 'cm-enter';
@@ -213,7 +213,7 @@
                   }
 
                   communicate.doComment(
-                      0,$cookieStore.get('userCode'),$scope.inputContent,$scope.mData.topicid)
+                      0,$scope.personal.user_code,$scope.inputContent,$scope.mData.topicid)
                       .then(function(data){
                           if(data.statecode){
                               $scope.toastMsg = "评论成功！";

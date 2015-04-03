@@ -23,6 +23,11 @@
         };
         $scope.paintChart = paintChart;
         $scope.skipToMasterInvester = skipToMasterInvester;
+        $scope.linkDetail = linkDetail;
+        function linkDetail(className){
+          window.symbol_detail_single = $scope.mData;
+          $state.go('class.detail',{className:className});
+        }
         paintChart(7, '近 1 周内');
 
         function paintChart(value, valShow) {
