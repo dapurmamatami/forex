@@ -11,29 +11,65 @@
     function AccountRegisterDemoController($rootScope, $scope, $state, $q, account, validator) {
         $scope.step = 1;
         $scope.account = {
-            username: '',
-            usernameExist: false,   // 昵称是否存在
-            usernameReg: validator.regType.username.reg,
-            phone: '',
-            phoneExist: false,  // 手机号是否已注册
-            phoneReg: validator.regType.phone.reg,
-            verifyCode: '',
-            codeCorrect: true,  // 验证码是否正确
-            email: '',
-            emailExist: false,  // 邮箱是否认证
-            emailReg: validator.regType.email.reg,
-            password: '',
-            confirmPwd: '',     // 确认密码
-            forkCode: '',        // 邀请码（可选）
+            //username: ,
+            //phone: ,
+            //verifyCode: ,
+            //email: ,
+            //password: ,
+            //confirmPwd: ,     // 确认密码
+            forkCode: '',       // 邀请码（可选）
             agreement: true
         }
+
+        // 前端错误，属性名与表单元素的 name 属性对应
         $scope.formErr = {
-            username: false,
-            phone: false,
-            verifyCode: false,
-            password: false,
-            confirmPwd: false
+            username: {
+                show: false,
+                tip: validator.regType.username.tip
+            },
+            phone: {
+                show: false,
+                reg: validator.regType.phone.reg
+            },
+            verifyCode: {
+                show: false
+            },
+            email: {
+                show: false,
+                reg: validator.regType.email.reg
+            },
+            password: {
+                show: false,
+                tip: validator.regType.password.tip
+            },
+            confirmPwd: {
+                show: false
+            }
         };
+        // 后端返回的错误，属性名与表单元素的 name 属性对应
+        $scope.backErr = {
+            username: {
+                show: false,
+                status: 0,    // 0、1、2
+                statusMsg: ''
+            },
+            phone: {
+                show: false,
+                status: 0,    // 0、1
+                statusMsg: ''
+            },
+            verifyCode: {
+                show: false,
+                status: 0,    // 0、1
+                statusMsg: ''
+            },
+            email: {
+                show: false,
+                status: 0,    // 0、1
+                statusMsg: ''
+            }
+        };
+
         $scope.registerDemo = registerDemo;
         $scope.showErr = showErr;
         $scope.hideErr = hideErr;
@@ -48,8 +84,7 @@
             deferred.resolve(false);
             var tmp = deferred.promise;
 
-            if ($scope.account[prop] === undefined || $scope.account[prop] === '') {
-                $scope.account[prop + 'Exist'] = false;
+            if ($scope.account[prop] === undefined) {
                 return tmp;
             }
 
@@ -63,10 +98,10 @@
                 if (data.is_succ) {
 
                     if (data.data) {
-                        $scope.account[prop + 'Exist'] = true;
+                        $scope.backErr[prop].status = 1;
+                        $scope.backErr[prop].statusMsg = '已存在';
                         return false;
                     } else {
-                        $scope.account[prop + 'Exist'] = false;
                         return true;
                     }
                 }
@@ -75,14 +110,18 @@
 
         function registerDemo() {
 
-            if ($scope.registerForm.$invalid || $scope.account.usernameExist || 
-                    $scope.account.phoneExist || $scope.account.emailExist) {
-                $scope.formErr.username = true;
-                $scope.formErr.phone = true;
-                $scope.formErr.verifyCode = true;
-                $scope.formErr.email = true;
-                $scope.formErr.password = true;
-                $scope.formErr.confirmPwd = true;
+            if ($scope.registerForm.$invalid || $scope.backErr.username.status !== 0 || 
+                    $scope.backErr.phone.status !== 0 || $scope.backErr.email.status !== 0) {
+                $scope.formErr.username.show = true;
+                $scope.backErr.username.show = true;
+                $scope.formErr.phone.show = true;
+                $scope.backErr.phone.show = true;
+                $scope.formErr.verifyCode.show = true;
+                $scope.backErr.verifyCode.show = true;
+                $scope.formErr.email.show = true;
+                $scope.backErr.email.show = true;
+                $scope.formErr.password.show = true;
+                $scope.formErr.confirmPwd.show = true;
                 return;
             }
 
@@ -91,9 +130,14 @@
 
                 if (!data.is_succ) {
 
-                    if (data.error_msg === '验证码不正确' || data.error_msg === '请先发送验证码') {
-                        $scope.account.codeCorrect = false;
-                        return;
+                    if (data.error_code === 10) {
+                        $scope.backErr.username.status = 2;
+                        $scope.backErr.username.statusMsg = '昵称包含敏感词汇，请修改';
+                    }
+
+                    if (data.error_code === 5 || data.error_code === 12) {
+                        $scope.backErr.verifyCode.status = 1;
+                        $scope.backErr.verifyCode.statusMsg = '验证码不正确';
                     }
                 } else {
                     $scope.step ++;
@@ -118,20 +162,22 @@
         }
 
         function hideErr(name) {
-            $scope.formErr[name] = false;
+            $scope.formErr[name].show = false;
 
-            if (name === 'verifyCode') {
-                $scope.account.codeCorrect = true;
-            }
-
-            if (name === 'phone') {
-                $scope.account.phoneExist = false;
+            if ($scope.backErr[name]) {
+                $scope.backErr[name].show = false;
+                $scope.backErr[name].status = 0;
+                $scope.backErr[name].statusMsg = '';
             }
         }
 
         function showErr(name) {
-            $scope.formErr[name] = true;
+            $scope.formErr[name].show = true;
 
+            if ($scope.backErr[name]) {
+                $scope.backErr[name].show = true;
+            }
+            
             // 这里不检查手机号码是否存在，在 getVerifyCode 方法中检查
             if (name === 'username' || name === 'email') {
                 checkExist(name);

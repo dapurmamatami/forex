@@ -21,7 +21,7 @@
                 
                 controller.$parsers.push(function (viewVal) {
                     
-                    if (typeof viewVal === 'undefined') {
+                    if (typeof viewVal === 'undefined' || typeof scope.password === 'undefined') {
                         controller.$setValidity('twConfirmPwd', true);
                         return viewVal;
                     }
@@ -31,7 +31,7 @@
                         return viewVal;
                     } else {
                         controller.$setValidity('twConfirmPwd', false);
-                        return viewVal;
+                        return undefined;
                     }
                 });
             }

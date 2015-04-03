@@ -15,8 +15,9 @@
                 reg: /(^\d{15}$)|(^\d{17}([0-9]|X)$)/
             },
             username: {
-                tip: '昵称长度为 4-30 位，由中文、英文以及数字组成',
-                reg: /^[\u4e00-\u9fa5a-zA-Z\d]{4,20}$/
+                tip: '4-20 个字符，由中文、英文、数字以及符号组成，符号为 ~!@#$%^&*()_+',
+                pattern: '^[\\u4e00-\\u9fa5a-zA-Z\\d~!@#$%^&*()_+～！＠＃＄％＾＆＊（）＿＋]*$', // 符号包括全角
+                ptnMagnify: '[\\u4e00-\\u9fa5～！＠＃＄％＾＆＊（）＿＋]' // 需要加大长度的字符
             },
             bankCardNum: {
                 tip: '银行卡卡号为 16-19 位数字',
@@ -35,9 +36,12 @@
                 //reg: '(^0\\.[0-9]{1,2}$)|(^[1-9][0-9]*\\.[0-9]{1,2}$)|(^[1-9][0-9]*$)'   
                 reg: /^(?!0+(?:\.0+)?$)(?:[1-9]\d*|0)(?:\.\d{1,2})?$/
             },
+            password: {
+                tip: '6-15 个字符，可由大写字母、小写字母、数字、符号（~!@#$%^&*()_+）组成，且至少包含其中2项'
+            },
             zh: {
                 tip: "请输入中文",
-                reg: /\u4e00-\u9fa5/
+                reg: /[\u4e00-\u9fa5]/
             },
             en: {
                 tip: "请输入英文",
@@ -51,20 +55,22 @@
 
         var service = {
             regType: regType,
-            isValidPwd: isValidPwd
+            isValidPwd: isValidPwd,
+            isValidTxt: isValidTxt
         };
         return service;
 
         /**
          * Validator Service 验证密码是否有效
+         * 
          * @method isValidPwd
          */
         function isValidPwd(str) {
-            var invalidReason = '',
+            var invalidMsg = '',
                 counter = 0;
 
             if (!/^[a-zA-Z0-9!@#$%^&*()_+]{6,15}$/.test(str)) {
-                invalidReason = '位数（6-15）不正确或者包含非法字符';
+                invalidMsg = '位数（6-15）不正确或者包含非法字符';
             }
 
             if (str.search(/\d/) != -1) {
@@ -84,13 +90,50 @@
             }
 
             if (counter < 2) {
-                invalidReason = '密码必须包含大写字母，小写字母，数字和符号其中两项';
+                invalidMsg = '密码必须包含大写字母，小写字母，数字和符号其中两项';
             }
 
-            if (invalidReason === '') {
+            if (invalidMsg === '') {
                 return true;
             } else {
                 return false;
+            }
+        }
+
+        /**
+         * Validator Service 验证输入的文本是否有效         
+         * 
+         * @method isValidTxt
+         * @param {String} inputStr 手输文本
+         * @param {String} pattern RegExp 的 pattern，匹配可输入的字符
+         * @param {String} ptnMagnify 匹配需要加大长度的字符，如汉字长度变为 2 或 3
+         * @param {Number} rate 需要加大长度的字符长度加大到多少（2 或 3）   
+         * @param {Number} minLen maxLen 最小长度和最大长度
+         */
+        function isValidTxt(inputStr, pattern, ptnMagnify, rate, minLen, maxLen) {
+            var length,
+                tmpLen,
+                reg,
+                regMagnify, 
+                invalidMsg = '';
+
+            reg = new RegExp(pattern, 'g');    
+            regMagnify = new RegExp(ptnMagnify, 'g');
+
+            if (!reg.test(inputStr)) {
+                invalidMsg = '包含非法字符';
+                return false;
+            }
+
+            length = inputStr.replace(regMagnify, '**').length;
+
+            if (length < minLen || length > maxLen) {
+                invalidMsg = '字符数不符合要求';
+                return false;
+            }
+            
+            if (invalidMsg === '') {
+                return true;
             }
         }
     }

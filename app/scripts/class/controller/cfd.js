@@ -9,7 +9,6 @@
     function ClassCfdController($scope,$http,$state){
         $scope.linkDetail = linkDetail;
         function linkDetail(className){
-            window.symbol_detail_single = $scope.mData;
             $state.go('class.detail',{className:className});
         }
         function getCfd(){

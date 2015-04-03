@@ -16,20 +16,28 @@
                            type="text"
                            required
                            ng-model="account.username"
-                           ng-pattern="account.usernameReg"
+                           tw-txt-valid
+                           prop-name="'username'"
+                           min-len="4"
+                           max-len="20"
                            ng-blur="showErr('username')"
                            ng-focus="hideErr('username')">
                 </div>
                 <div class="col-xs-4">
-                    <div ng-show="formErr.username">
+                    <div ng-show="formErr.username.show">
                         <p class="form_row__right_alert" ng-show="registerForm.username.$error.required">
                             请输入昵称
                         </p>
-                         <p class="form_row__right_alert" ng-show="registerForm.username.$error.pattern">
-                            昵称由 4-30 个中文、英文、数字字符组成
+                         <p class="form_row__right_alert" ng-show="registerForm.username.$error.twTxtValid">
+                            {{formErr.username.tip}}
                         </p>
-                        <p class="form_row__right_alert" ng-show="account.usernameExist">
+                    </div>
+                    <div ng-show="backErr.username.show">
+                        <p class="form_row__right_alert" ng-show="backErr.username.status === 1">
                             昵称已存在
+                        </p>
+                        <p class="form_row__right_alert" ng-show="backErr.username.status === 2">
+                            {{backErr.username.statusMsg}}
                         </p>
                     </div>
                 </div>
@@ -46,24 +54,27 @@
                            type="text"
                            required
                            ng-model="account.phone"
-                           ng-pattern="account.phoneReg"
+                           ng-pattern="formErr.phone.reg"
                            ng-focus="hideErr('phone')"
                            ng-blur="showErr('phone')">
                 </div>
                 <div class="col-xs-4">
-                    <div ng-show="formErr.phone">
+                    <div ng-show="formErr.phone.show">
                         <p class="form_row__right_alert" ng-show="registerForm.phone.$error.required">
                             请输入手机号码
                         </p>
                         <p class="form_row__right_alert" ng-show="registerForm.phone.$error.pattern">
                             输入手机号码格式不正确
                         </p>
-                        <p class="form_row__right_alert" ng-show="account.phoneExist">
-                            该手机号码已经注册
+                    </div>
+                    <div ng-show="backErr.phone.show">
+                        <p class="form_row__right_alert" ng-show="backErr.phone.status === 1">
+                            该手机号码已注册
                         </p>
                     </div>
                 </div>
             </div>
+            
             <div class="row form_row">
                 <div class="col-xs-2 text-right">
                     <label>验证码</label>
@@ -85,12 +96,14 @@
                 </div>
 
                 <div class="col-xs-4">
-                    <div ng-show="formErr.verifyCode">
+                    <div ng-show="formErr.verifyCode.show">
                         <p class="form_row__right_alert" ng-show="registerForm.verifyCode.$error.required">
                             请输入验证码
                         </p>
-                        <p class="form_row__right_alert" ng-show="!account.codeCorrect">
-                            验证码不正确
+                    </div>
+                    <div ng-show="backErr.verifyCode.show">
+                        <p class="form_row__right_alert" ng-show="backErr.verifyCode.status !== 0">
+                            {{backErr.verifyCode.statusMsg}}
                         </p>
                     </div>
                 </div>
@@ -107,21 +120,23 @@
                            type="text"
                            required
                            ng-model="account.email"
-                           ng-pattern="account.emailReg"
+                           ng-pattern="formErr.email.reg"
                            ng-focus="hideErr('email')"
                            ng-blur="showErr('email')">
                 </div>
 
                 <div class="col-xs-4">
-                    <div ng-show="formErr.email">
+                    <div ng-show="formErr.email.show">
                         <p class="form_row__right_alert" ng-show="registerForm.email.$error.required">
                             请输入电子邮箱
                         </p>
                         <p class="form_row__right_alert" ng-show="registerForm.email.$error.pattern">
                             输入的电子邮箱格式不正确
                         </p>
-                        <p class="form_row__right_alert" ng-show="account.emailExist">
-                            该电子邮箱已经注册
+                    </div>
+                    <div ng-show="backErr.email.show">
+                        <p class="form_row__right_alert" ng-show="backErr.email.status === 1">
+                            该电子邮箱已注册
                         </p>
                     </div>
                 </div>
@@ -144,12 +159,12 @@
                 </div>
 
                 <div class="col-xs-4">
-                    <div ng-show="formErr.password">
+                    <div ng-show="formErr.password.show">
                         <p class="form_row__right_alert" ng-show="registerForm.password.$error.required">
                             请输入密码
                         </p>
                         <p class="form_row__right_alert" ng-show="registerForm.password.$error.twPwdValid">
-                            6-15 个字符，可由大写字母，小写字母，数字，符号（有限制）组成，且至少包含其中2项
+                            {{formErr.password.tip}}                           
                         </p>
                     </div>
                 </div>
@@ -173,7 +188,7 @@
                 </div>
 
                 <div class="col-xs-4">
-                    <div ng-show="formErr.confirmPwd">
+                    <div ng-show="formErr.confirmPwd.show">
                         <p class="form_row__right_alert" ng-show="registerForm.confirmPwd.$error.required">
                             请再次输入密码
                         </p>
@@ -204,14 +219,24 @@
                             <input name="agreement"
                                    type="checkbox"
                                    checked
-                                   ng-required="account.agreement"
+                                   required
                                    ng-model="account.agreement">
                             同意并遵守 
-                            <a href="">风险纰漏</a>
+                            <a href="https://www.tigerwit.com/support/risk" target="_blank">
+                                风险披露
+                            </a>
                             和 
-                            <a href="">用户交易须知</a>
+                            <a href="https://www.tigerwit.com/support/notice" target="_blank">
+                                用户交易须知
+                            </a>
                         </label>
                     </div>
+                </div>
+
+                <div class="col-xs-4">
+                    <p class="form_row__right_alert" ng-show="registerForm.agreement.$error.required">
+                        请选择
+                    </p>
                 </div>
             </div>
 

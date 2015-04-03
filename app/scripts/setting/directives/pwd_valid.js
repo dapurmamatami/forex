@@ -30,7 +30,7 @@
                         return viewVal;
                     } else {
                         controller.$setValidity('twPwdValid', false);
-                        return viewVal;
+                        return undefined;
                     }
                 });
 
