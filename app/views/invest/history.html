@@ -36,7 +36,7 @@
                             <span class="order_item__exchange">
                                 {{order.cmd ? '卖出' : '买入'}}
                             </span>
-                            <a class="order_item__symbol" href="">
+                            <a class="order_item__symbol" ng-href="#/class/detail/{{order.symbol}}">
                                 {{order.symbol | symbolBeauty}}
                             </a>
                         </p>

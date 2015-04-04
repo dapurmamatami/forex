@@ -33,7 +33,9 @@
             }
         });
 
-
+        if (!$scope.userType.isPersonal) {
+            // 获取别人信息用户名和签名    
+        }
 
         function switchAccount() {
             $scope.$broadcast('showLoadingImg');

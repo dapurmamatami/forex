@@ -8,25 +8,27 @@
         return {
             restrict: 'A',
             scope: {
-                watchedVal: '=',
+                ngModel: '=',
                 wordLimit: '=',
                 wordNum: '='
             },
             link: function (scope, element) {
                 scope.wordNum = 0;
-                var wordLimit
+                var wordLimit,
+                    length;
 
                 if (scope.wordLimit) {
                     wordLimit = parseInt(scope.wordLimit);
                 }
 
-                scope.$watch('watchedVal', function (newVal, oldVal) {
+                scope.$watch('ngModel', function (newVal, oldVal) {
                     if (newVal === oldVal) return;
 
-                    scope.wordNum = newVal.length;    
+                    scope.wordNum = newVal.replace(/[\u4e00-\u9fa5]/g, '**').length;    
 
                     if (scope.wordNum > wordLimit) {
-                        scope.watchedVal = newVal.substring(0, wordLimit);
+                        length = newVal.length;
+                        scope.ngModel = newVal.substring(0, length - 1);
                     }
                 });
 
