@@ -4,7 +4,7 @@
     </div>
 
     <div class="class_rsider_list">
-        <div class="class_rsider_item" ng-repeat="item in RelativeData">
+        <div class="class_rsider_item" ng-repeat="item in RelativeData" ng-click="linkDetail(item)">
             <span class="icon-forex-{{item.toLowerCase()}} icon"></span>
             <span class="name">{{item}}</span>
         </div>

@@ -15,7 +15,8 @@
                 inputContent:'=',
                 toastShow:'=',
                 toastMsg:'=',
-                doComment:'&'
+                doComment:'&',
+                tRemainSum : '='
             },
 
             replace:true,
