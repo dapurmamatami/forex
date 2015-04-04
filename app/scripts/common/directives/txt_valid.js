@@ -15,7 +15,8 @@
      */
     function twTxtValid(validator) {
         return {
-            require: 'ngModel',
+            restrict: 'A',
+            require: '?ngModel',
             scope: {
                 propName: '=',
                 minLen: '=',
