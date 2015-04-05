@@ -64,8 +64,18 @@
                             <input class="form-control" 
                                    name="state"
                                    type="text"
+                                   placeholder="（可不填）"
                                    ng-if="noSelect"
-                                   ng-model="inputRegion.stateName">
+                                   ng-model="inputRegion.stateName"
+                                   tw-txt-valid
+                                   prop-name="'region'"
+                                   min-len="0"
+                                   max-len="20">
+                            <div ng-show="basicInfoForm.state.$dirty">
+                                <p class="alert alert-danger" ng-show="basicInfoForm.state.$error.twTxtValid">
+                                    {{inputRegion.errTip}}
+                                </p>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
@@ -84,8 +94,18 @@
                             <input class="form-control" 
                                    name="city"
                                    type="text"
+                                   placeholder="（可不填）"
                                    ng-if="noSelect"
-                                   ng-model="inputRegion.cityName">
+                                   ng-model="inputRegion.cityName"
+                                   tw-txt-valid
+                                   prop-name="'region'"
+                                   min-len="0"
+                                   max-len="20">
+                             <div ng-show="basicInfoForm.city.$dirty">
+                                <p class="alert alert-danger" ng-show="basicInfoForm.city.$error.twTxtValid">
+                                    {{inputRegion.errTip}}
+                                </p>
+                            </div>
                         </div>
                     </div>
                     <div class="row">

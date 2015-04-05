@@ -20,7 +20,6 @@
             forkCode: '',       // 邀请码（可选）
             agreement: true
         }
-
         // 前端错误，属性名与表单元素的 name 属性对应
         $scope.formErr = {
             username: {
@@ -69,7 +68,6 @@
                 statusMsg: ''
             }
         };
-
         $scope.registerDemo = registerDemo;
         $scope.showErr = showErr;
         $scope.hideErr = hideErr;

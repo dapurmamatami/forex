@@ -68,6 +68,13 @@
     .btn-primary {
         float: right;
     }
+
+    .alert-danger {
+        margin-top: 5px;
+        margin-bottom: 0;
+        padding: 5px;
+
+    }
 }
 
 @include b(succ_tip) {

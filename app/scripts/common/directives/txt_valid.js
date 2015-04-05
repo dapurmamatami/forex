@@ -27,8 +27,7 @@
                     minLen = scope.minLen,
                     maxLen = scope.maxLen,
                     pattern = validator.regType[propName].pattern,
-                    ptnMagnify = validator.regType[propName].ptnMagnify,
-                    rate = 2;
+                    dbcsPtn = validator.regType.dbcs.pattern;
 
                 controller.$parsers.push(function (viewVal) {
 
@@ -37,7 +36,7 @@
                         return undefined;
                     }
 
-                    if (validator.isValidTxt(viewVal, pattern, ptnMagnify, rate, 
+                    if (validator.isValidTxt(viewVal, pattern, dbcsPtn,
                             minLen, maxLen)) {
                         controller.$setValidity('twTxtValid', true);
                         return viewVal;

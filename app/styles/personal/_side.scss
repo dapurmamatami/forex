@@ -39,7 +39,10 @@
         }
 
         @include e(location) {
-
+            p {
+                text-overflow: ellipsis;
+                overflow: hidden;
+            }
         }
     }
 

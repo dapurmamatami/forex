@@ -5,9 +5,9 @@
         .module('tigerwitPersonalApp')
         .controller('SettingBasicController', SettingBasicController);
 
-    SettingBasicController.$inject = ['$scope', '$timeout', '$modal', 'account'];
+    SettingBasicController.$inject = ['$scope', '$timeout', '$modal', 'account', 'validator'];
 
-    function SettingBasicController($scope, $timeout, $modal, account) {
+    function SettingBasicController($scope, $timeout, $modal, account, validator) {
         $scope.succSave = false;
         $scope.sexes = [{
             nameZH: '男',
@@ -27,7 +27,8 @@
         };
         $scope.inputRegion = {
             stateName: '',
-            cityName: ''
+            cityName: '',
+            errTip: validator.regType.region.tip
         };
         $scope.signature = '';
         $scope.noSelect = false;  // 是否显示省、市的 select 元素
