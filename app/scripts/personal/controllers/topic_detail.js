@@ -20,7 +20,7 @@
         $scope.openConfirmDeleteC = openConfirmDeleteC;
         $scope.doTransmit = doTransmit;
         $scope.topicDetailData = {};
-
+        $scope.toastMsg = '发表成功';
         function getTopicInfo(commentLength){
             communicate.topicDetail($scope.mTopicId ,commentLength)
                 .then(function(data){
@@ -103,6 +103,10 @@
 
 
         function doSupport(){
+            if($scope.topicDetailData.publisher_id == parseInt($scope.personal.user_code)){
+                return;
+            }
+
             communicate.doSupportPoint(
               0,$cookieStore.get('userCode'),$scope.topicDetailData.topicid)
                 .then(function(data){

@@ -15,6 +15,7 @@
         $scope.unvisit_total_sum =$cookieStore.get('sys_unvisited_sum') + $cookieStore.get('user_unvisited_sum');
         $scope.msg_type = $state.params.type_message;
 
+
         function switchMessageData(type){
             if(type == 'sys'){
                 $scope.message_show_data = $scope.sys_message;
@@ -48,15 +49,15 @@
         }
         function updateMessages(data,type) {
             var visited_ids = [];
-            var visited_cache = [];
+            //var visited_cache = [];
             for (var x in data) {
                 var item = data[x];
                 if (!item.visited) {
                     visited_ids.push(item.id);
 
                 }
-              item.visited = 1;
-                visited_cache.push(item);
+                //item.visited = 1;
+                //visited_cache.push(item);
             }
 
             if (visited_ids.length>0) {

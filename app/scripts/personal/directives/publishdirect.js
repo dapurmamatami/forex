@@ -45,7 +45,9 @@
                 })
                 elem.find('#textArea').atwho({
                     at:"$",
-                    data:['AUDEUD','CHFJPY','CHFJPY','CHFJPY','CHFJPY','CHFJPY','CHFJPY']
+                    data:['USDJPY','EURUSD','EURGBP','USDCAD','GBPCHF','EURCHF','AUDUSD',
+                      'USDCHF','NZDUSD','GBPUSD','GBPJPY','EURAUD','CHFJPY','AUDJPY','SILVER','GOLD',
+                      'WTOil','USDX','SFC','NK','mSP','mND','mDJ','HSI','FFI','DAX']
                 })
             }
 

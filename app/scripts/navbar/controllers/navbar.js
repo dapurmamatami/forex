@@ -5,9 +5,9 @@
         .module('tigerwitPersonalApp')
         .controller('NavbarController', NavbarController);
 
-    NavbarController.$inject = ['$scope', '$state', 'account'];
+    NavbarController.$inject = ['$scope', '$state', 'account','communicate'];
 
-    function NavbarController($scope, $state, account) {
+    function NavbarController($scope, $state, account,communicate) {
         $scope.currentUrl = {
             prefix: ''
         };
@@ -22,6 +22,19 @@
         $scope.logout = logout;
         $scope.showDropdown = showDropdown;
         $scope.hideDropdown = hideDropdown;
+
+        $scope.$watch('personal',function(){
+            if(!$scope.personal) {return};
+
+          //获取没有看过的消息数量
+          communicate.unvisitedMessage($scope.personal.user_code).then(function(data){
+            $scope.sys_unvisited_sum = data.data.sys_unvisited_sum;
+            $scope.user_unvisited_sum = data.data.user_unvisited_sum;
+            $scope.hasNewMsg = data.data.sys_unvisited_sum + data.data.user_unvisited_sum;
+          });
+
+
+        });
 
         //$scope.sys_unvisited_sum = $scope.$parent.sys_unvisited_sum;
         //$scope.user_unvisited_sum =  $scope.$parent.user_unvisited_sum;
