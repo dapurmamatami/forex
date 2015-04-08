@@ -240,6 +240,10 @@
               }
 
               function doSupport(dataObj){
+                  if(dataObj.publisher_id == parseInt($scope.personal.user_code)){
+                      return;
+                  }
+
                   communicate.doSupportPoint(
                       0,$cookieStore.get('userCode'),dataObj.topicid)
                       .then(function(data){

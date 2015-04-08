@@ -19,6 +19,7 @@ angular
 
 
     .config(['$httpProvider', function ($httpProvider) {
+        'use strict';
         if (!$httpProvider.defaults.headers.get) {
             $httpProvider.defaults.headers.get = {};
         }
@@ -256,8 +257,7 @@ angular
                         controller:'MsgSideController'
                     },
                     'content@message':{
-                        templateUrl: 'views/message/message.html',
-                        controller:'MessageController'
+                        templateUrl: 'views/message/message.html'
                     },
                     'ft@message': {
                         templateUrl: 'views/layout/footer.html'
