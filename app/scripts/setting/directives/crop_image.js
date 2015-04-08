@@ -43,7 +43,6 @@
                     });
                 }, true);
 
-                
                 input.bind('change', function () {
                     var fileSize = this.files[0].size / (1024 * 1024);
 

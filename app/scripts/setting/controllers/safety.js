@@ -92,7 +92,9 @@
                         $scope.emailVerify.status = 2;
                         $scope.emailVerify.statusMsg = '电子邮箱已验证';
                     }
-                }
+                } else {
+                    $scope.emailVerify.succSend = true;
+                } 
 
                 openEmailVerifyMdl();
             });

@@ -12,7 +12,7 @@
                     只支持 jpg、png 的图片格式，大小控制在 2MB 以内。
                 </p>
                 <label class="btn btn-primary" for="input">
-                    <input id="input" class="upload_avatar__input" type="file" accept="image/jpeg,image/png,image/gif">
+                    <input id="input" class="upload_avatar__input" type="file" accept="image/jpeg,image/png">
                     选择图片
                 </label>
                 <div class="alert alert-danger" ng-show="!sizeLimit">
@@ -32,6 +32,6 @@
         </div>
     </div>
     <div ng-show="!support">
-        浏览器不支持上传头像功能，请使用 chrome
+        浏览器不支持上传头像功能，请使用 Chrome、Safari
     </div>
 </div>

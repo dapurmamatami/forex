@@ -99,19 +99,27 @@
     }
 }
 
-@include b(upload_form) {
+@include b(upload_image) {
+    
     @include e(front) {
         display: inline-block;
-        width: 250px;
+        width: 240px;
         height: 150px;
+        margin-bottom: 0;
         @include background_url('id_card-front.png');
+
+        &:hover {
+            cursor: pointer;
+        }
     }
 
     @include e(back) {
-        display: inline-block;
-        width: 250px;
-        height: 150px;
+        @extend .upload_image__front;
         @include background_url('id_card-back.png');
+    }
+
+    @include e(input) {
+        display: none !important;
     }
 
     @include e(image) {
