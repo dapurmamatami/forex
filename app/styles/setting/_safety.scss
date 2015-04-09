@@ -25,25 +25,6 @@
         }
     }
 
-    @include b(safety_verify) {
-        margin-right: 20px;
-        line-height: 100px;
-        font-size: 15px;
-        font-weight: 700;
-
-        @include e(finished) {
-            color: $brand-success;
-        }
-
-        @include e(unfinished) {
-            color: $brand-primary;
-
-            &:hover {
-                cursor: pointer;
-            }
-        }
-    }
-
     @include e(title) {
         line-height: 100px;
         text-align: center;
@@ -61,14 +42,34 @@
         }
     }
 
-    @include e(status) {
+    @include b(safety_verify) {
+        display: table-cell;
+        height: 100px;
+        vertical-align: middle;
+        font-size: 15px;
+        font-weight: 700;
 
+        @include e(tip) {
+            font-size: 15px;
+            font-weight: 700;
+        }
+        
+        @include e(finished) {
+            color: $brand-success;
+        }
+
+        @include e(unfinished) {
+            margin-left: 4px;
+            color: $brand-primary;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
     }
 
     @include e(operate) {
-        line-height: 100px;
-        font-size: 15px;
-        font-weight: 700;
+        @extend .safety_verify;
         color: $brand-primary;
 
         &:hover {

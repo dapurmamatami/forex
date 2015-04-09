@@ -76,10 +76,21 @@
             }
         }
 
-        @include e(copiedTrader) {
+        @include e(copied_trader) {
             font-size: 15px;
             font-weight: 700;
-            color: $brand-primary;   
+            color: $brand-primary;  
+
+            &:hover {
+                text-decoration: none;
+                color: $brand-dark-primary;
+            } 
+        }
+
+        @include e(holding_time) {
+            font-size: 15px;
+            font-weight: 700;
+            color: $brand-primary; 
         }
 
         @include e(price) {

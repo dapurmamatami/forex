@@ -41,8 +41,11 @@
                             </a>
                         </p>
                         <p>
-                            <span class="order_item__way">
+                            <span class="order_item__way" ng-if="order.username === null">
                                 {{['手动', '止损', '止盈', '强制'][order.liquidation_type] + '平仓'}}
+                            </span>
+                            <span class="order_item__way" ng-if="order.username !== null">
+                                复制平仓
                             </span>
                             <span class="order_item__time">
                                 {{order.bp | startNow}}前
@@ -50,10 +53,10 @@
                         </p>
                     </div>
                     <div class="col-xs-3">
-                        <span class="order_item__copiedTrader" ng-if="orderType === 'normal'">
+                        <a class="order_item__copied_trader" ng-href="#/invest/{{order.user_code}}/summary" ng-if="orderType === 'normal'">
                             {{order.username}}
-                        </span>
-                        <span class="order_item__copiedTrader" ng-if="orderType === 'not_copy'">
+                        </a>
+                        <span class="order_item__holding_time" ng-if="orderType === 'not_copy'">
                             {{order.time_delta | startNow}}
                         </span>
                     </div>
@@ -148,7 +151,8 @@
                                 </p>
                                 <p>
                                     <span class="order_item__way">
-                                        {{['手动', '止损', '止盈', '强制'][order.liquidation_type] + '平仓'}}
+                                        <!-- {{['手动', '止损', '止盈', '强制'][order.liquidation_type] + '平仓'}} -->
+                                        复制平仓
                                     </span>
                                     <span class="order_item__time">
                                         {{order.bp | startNow}}前
