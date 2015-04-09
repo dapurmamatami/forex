@@ -33,10 +33,7 @@
 
             // 获取 user（别人） 的信息
             account.getUserInfo($scope.userType.code).then(function (data) {
-
-                if (!data.is_succ) {
-                    return;
-                }
+                if (!data.is_succ)return;
                 $scope.user.username = data.username;
                 $scope.user.sex = data.sex;
                 $scope.user.copiedTraderSum = data.mycopy_count;
