@@ -15,7 +15,7 @@
                 var imagePath,
                     fileInput = element.find('input'),
                     face = fileInput.attr('id');
-              
+
                 fileInput.fileupload({
                     url: config.apiUrl + '/upload',
                     formData: {
@@ -23,13 +23,13 @@
                     },
                     done: function (e, data) {
                         console.info(data);
-                        imagePath = data.path;
+                        imagePath = '../ngsrc/man.png';
                         
-                        if ($('.upload_form__image', element).length === 1) {
-                            $('.upload_form__image', element).remove();
+                        if ($('.upload_image__image', element).length === 1) {
+                            $('.upload_image__image', element).remove();
                         }
-                        element.append('<img class="upload_form__image" src="' + 
-                                imagePath + '">');
+                        element.prepend('<img class="upload_image__image" src="' + 
+                                imagePath + '" alt="**">');
 
                         scope.$emit('uploadImageSuccess', {
                             face: face

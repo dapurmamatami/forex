@@ -16,7 +16,7 @@
             newNumber: '',
             newNumReg: validator.regType.email.reg,
             existence: false,  // 新邮箱是否已存在
-            excess: false      // 向新邮箱发邮件次数是否过多
+            excess: false      // 更改邮箱次数是否过多
         };
         $scope.password = {
             number: '',

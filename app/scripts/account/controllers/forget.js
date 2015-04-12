@@ -6,8 +6,10 @@
         .module('tigerwitPersonalApp')
         .controller('AccountForgetController', AccountForgetController);
 
-    AccountForgetController.$inject = ['$rootScope', '$scope', '$q', 'account', 'validator'];
-    function AccountForgetController($rootScope, $scope, $q, account, validator) {
+    AccountForgetController.$inject = ['$rootScope', '$scope', '$q', 
+            'account', 'validator'];
+    function AccountForgetController($rootScope, $scope, $q, account, 
+            validator) {
         $scope.step = 1;
         $scope.phone = {
             number:'',
@@ -42,7 +44,8 @@
             deferred.resolve(false);
             var tmp = deferred.promise;
 
-            if ($scope.phone.number === undefined || $scope.phone.number === '') {
+            if ($scope.phone.number === undefined || 
+                    $scope.phone.number === '') {
                 $scope.phone.existence = true;
                 return tmp;
             };
@@ -75,7 +78,6 @@
         }
 
         function submitFormStep1() {
-            
             if ($scope.formStep1.$invalid) {
                 $scope.formErr.number = true;
                 $scope.formErr.verifyCode = true;
@@ -85,7 +87,8 @@
 
                 if (!data.is_succ) {
 
-                    if (data.error_msg === '验证码不正确' || data.error_msg === '请先发送验证码') {
+                    if (data.error_msg === '验证码不正确' 
+                            || data.error_msg === '请先发送验证码') {
                         $scope.phone.correct = false;
                     }
                 } else {

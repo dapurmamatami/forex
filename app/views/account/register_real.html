@@ -85,16 +85,17 @@
     <div class="account_register">
         <div class="row">
             <div class="upload_image">
-                <div class="col-xs-6 text-center">
-                    <label class="upload_image__front" for="front" tw-upload-image>
+                <div class="col-xs-6">
+                    <div class="upload_image__front" tw-upload-image>
                         <input id="front" class="upload_image__input" name="files[]" type="file" accept="image/jpeg,image/png">
-                    </label>
+                    </div>
                 </div>
-                <div class="col-xs-6 text-center">
-                    <div class="upload_image__back" data-face="back" tw-upload-form >
-                    </div> 
+                <div class="col-xs-6">
+                    <div class="upload_image__front" tw-upload-image>
+                        <input id="back" class="upload_image__input" name="files[]" type="file" accept="image/jpeg,image/png">
+                    </div>
                 </div>
-                <div class="col-xs-6 text-center">
+                <div class="col-xs-6">
                     <div class="upload_image__tip">
                         <p class="alert alert-warning" ng-if="account.id.frontImgStatus === 1">
                             {{account.id.frontImgMsg}}
@@ -107,7 +108,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="col-xs-6 text-center">
+                <div class="col-xs-6">
                     <div class="upload_image__tip">
                         <p class="alert alert-warning" ng-if="account.id.backImgStatus === 1">
                             {{account.id.backImgMsg}}

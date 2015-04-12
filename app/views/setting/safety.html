@@ -74,7 +74,7 @@
                     </div>
                     <div class="col-xs-3 display-table">
                         <div class="safety_verify">
-                            <div ng-if="safetyInfo.email_addr" >
+                            <div ng-if="!safetyInfo.email_addr" >
                                 <h4 class="safety_verify__tip">未验证</h4>
                                 
                                 <span class="safety_verify__unfinished" ng-if="!emailVerify.succSend" ng-click="emailVerify.sendEmail()">
@@ -86,7 +86,7 @@
                                 </span>
                             </div>
                             
-                            <span class="safety_verify__finished" ng-if="!safetyInfo.email_addr">
+                            <span class="safety_verify__finished" ng-if="safetyInfo.email_addr">
                                 已验证
                             </span>
                         </div>

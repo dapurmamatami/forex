@@ -102,15 +102,14 @@
 @include b(upload_image) {
     
     @include e(front) {
-        display: inline-block;
+        position: relative;
+        display: block;
         width: 240px;
         height: 150px;
-        margin-bottom: 0;
+        margin-left: auto;
+        margin-right: auto;
         @include background_url('id_card-front.png');
-
-        &:hover {
-            cursor: pointer;
-        }
+        overflow: hidden;
     }
 
     @include e(back) {
@@ -119,7 +118,14 @@
     }
 
     @include e(input) {
-        display: none !important;
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+        font-size: 200px;
+        opacity: 0;
+        filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0);
+        cursor: pointer;
     }
 
     @include e(image) {
@@ -131,7 +137,9 @@
     }
 
     @include e(tip) {
-        width: 250px;
-        margin: 0 auto;
+        width: 240px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
     }
 }
