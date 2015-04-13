@@ -37,12 +37,12 @@
         }
 
         &.real {
-            @include img-retina($image_path + 'account_switch.png', $image_path + 'account_switch@2x.png', 175px, 43px);
+            @include img-retina($image_path + 'account_switch.png', $image_path + 'account_switch@2x.png', 175px, 93px);
             background-repeat: no-repeat;
             background-position: 0px -46px;
         }
         &.demo {
-            @include img-retina($image_path + 'account_switch.png', $image_path + 'account_switch@2x.png', 175px, 43px);
+            @include img-retina($image_path + 'account_switch.png', $image_path + 'account_switch@2x.png', 175px, 93px);
             background-repeat: no-repeat;
         }
     }
