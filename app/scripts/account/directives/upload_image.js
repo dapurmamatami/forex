@@ -28,7 +28,7 @@
                             $('.upload_image__image', element).remove();
                         }
                         element.prepend('<img class="upload_image__image" src="' + 
-                                imagePath + '" alt="**">');
+                                imagePath + '?timestamp=' + e.timeStamp + '" alt="**">');
 
                         scope.$emit('uploadImageSuccess', {
                             face: face

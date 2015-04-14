@@ -40,7 +40,7 @@
         
         //确定显示第几步
         $scope.step = registerStep;
-        
+
         $scope.$on('uploadImageStart', function (event, data) {
             $scope.$apply(function () {
                 $scope.account.id[data.face + 'ImgStatus'] = 1;
