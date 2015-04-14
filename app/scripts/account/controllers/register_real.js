@@ -9,7 +9,7 @@
     AccountRegisterRealController.$inject = ['$scope', 'account', 'registerReal'];
 
     function AccountRegisterRealController($scope, account, registerReal) {
-        $scope.step = 2;
+        $scope.step = 1;
         $scope.account = {
             name: '',
             id: {
@@ -36,12 +36,12 @@
         $scope.showErr = showErr;
 
         // 获取开通真实账户的进度信息
-        /*account.getStepInfo('ReliableInformation').then(function (data) {
+        account.getStepInfo('ReliableInformation').then(function (data) {
 
             if (data.is_succ) {
                 $scope.step = data.progress + 1;
             }
-        });*/
+        });
 
         $scope.$on('uploadImageStart', function (event, data) {
             $scope.$apply(function () {

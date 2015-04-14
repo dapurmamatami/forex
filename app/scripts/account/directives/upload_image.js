@@ -22,8 +22,7 @@
                         face: face
                     },
                     done: function (e, data) {
-                        console.info(data);
-                        imagePath = '../ngsrc/man.png';
+                        imagePath = JSON.parse(data.result).path;
                         
                         if ($('.upload_image__image', element).length === 1) {
                             $('.upload_image__image', element).remove();
@@ -37,8 +36,6 @@
 
                     },
                     fail: function (e, data) {
-                        console.info(e);
-                        console.info(data);
                         scope.$emit('uploadImageFail', {
                             face: face
                         });
