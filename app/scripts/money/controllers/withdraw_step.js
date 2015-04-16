@@ -6,15 +6,18 @@
         .module('tigerwitPersonalApp')
         .controller('MoneyWithdrawStepController', MoneyWithdrawStepController);
 
-    MoneyWithdrawStepController.$inject = ['$scope', '$modalInstance', 'money','personal', 'withdraw', 'validator'];
+    MoneyWithdrawStepController.$inject = ['$scope', '$modalInstance', 'money',
+            'personal', 'withdraw', 'validator'];
 
-    function MoneyWithdrawStepController($scope, $modalInstance, money, personal, withdraw, validator) {
-        $scope.step = 1;
+    function MoneyWithdrawStepController($scope, $modalInstance, money, personal, 
+            withdraw, validator) {
+        $scope.step = 2;
         $scope.realName = personal.realname;
         $scope.withdrawAmount = withdraw.amount;
         $scope.card = {
             bankAddr: '',
             number: '',
+            numShow: '',
             numberReg: validator.regType.bankCardNum.reg,
             numberTip: validator.regType.bankCardNum.tip
         };
@@ -37,6 +40,8 @@
                     $scope.formErr.cardNum = true;
                     $scope.formErr.bankAddr = true;
                     return;
+                } else {
+                    $scope.card.numShow = setSpaceInStr($scope.card.number);
                 }
             }
             $scope.step ++;
@@ -68,5 +73,27 @@
             $scope.formErr[name] = true;
         }
 
+        function setSpaceInStr(str) {
+            var strLen,
+                tmpStr,
+                tmpStrLen = 4,
+                tmpStrNum,
+                i,
+                resultStr = '';
+            
+            strLen = str.length;
+ 
+            if (strLen % tmpStrLen) {
+                tmpStrNum = parseInt(strLen / tmpStrLen) + 1;
+            } else {
+                tmpStrNum = parseInt(strLen / tmpStrLen);
+            } 
+             
+            for (i = 0; i < tmpStrNum * tmpStrLen; i = i + tmpStrLen) {
+                tmpStr = str.slice(i, i + tmpStrLen) + ' ';
+                resultStr = resultStr + tmpStr;
+            }
+            return resultStr;
+        }
     }
 })();

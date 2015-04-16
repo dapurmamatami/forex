@@ -470,7 +470,7 @@ angular
             });
 
             function modifyCtrlName(name) {
-                var strArray = name.split(/[-_]/i);
+                var strArray = name.split(/[-_]/g);
 
                 var i,
                     length = strArray.length,
