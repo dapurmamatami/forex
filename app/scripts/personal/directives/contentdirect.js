@@ -24,11 +24,11 @@
               $scope.skipToSomeThing = skipToSomeThing ;
 
               function skipToSomeThing(key){
-                  if(key.startsWith('$')){
-                      $state.go('class.detail',{className:$scope.map[key]})
-                  }else if(key.startsWith('@')){
-                      $state.go('invest.subPage',{userCode:$scope.map[key],subPage:'summary'})
-                  }else if(key.startsWith('http://')){
+                  if(/^\$/.test(key)){
+                      $state.go('class.detail',{className:key.substring(1)})
+                  }else if(/^@/.test(key)){
+                      $state.go('invest.subPage',{userCode:$scope.map[key.substring(1)],subPage:'summary'})
+                  }else if(/http\:\/\//.test(key)){
                       $window.open(key);
                   }
               }

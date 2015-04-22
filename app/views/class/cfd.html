@@ -18,7 +18,7 @@
           <tr ng-repeat="item in mData.data">
               <td>
                 <div class="cfd_basic">
-                  <span class="icon-forex-{{item.symbol.toLowerCase()}}" />
+                  <span class="cfd_basic__icon icon-forex-{{item.symbol.toLowerCase()}}" />
                   <div class="class_basic_info">
                     <a class="class_basic_info__name" ng-click="linkDetail(item.symbol)">{{item.symbol | symbolBeauty}}</a>
                     <p class="class_basic_info__addr">{{item.symbol | symbolToCn}}</p>

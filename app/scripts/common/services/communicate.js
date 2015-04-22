@@ -53,7 +53,7 @@
          */
 
           function publishTopic(publisher_id,content,bytramsmitid) {
-              return topicHttp.get('/publishtopic', {
+              return topicHttp.post('/publishtopic', {
                     publisher_id:publisher_id,
                     content:content,
                     bytramsmitid:bytramsmitid
@@ -126,7 +126,7 @@
              * @returns {HttpPromise}
              */
             function doComment(type,usercode,content,topicid){
-                return topicHttp.get('/docomment',
+                return topicHttp.post('/docomment',
                     {
                         type:type,
                         usercode:usercode,
