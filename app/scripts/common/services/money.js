@@ -123,27 +123,62 @@
                         record['timestamp'] = item['order_date'];
                         record['code'] = item['order_no'];   
 
+                        if (item['status'] === 2 || item['status'] === 3) {
+                            record['statusMsg'] = '入金中或入金失败';
+                            record['type'] = 'deposit';
+
+                        }
+
                         if (item['status'] === 4) {
 
-                            record['statusMsg'] = '确认支付成功';
+                            record['statusMsg'] = '成功';
                             record['type'] = 'deposit';
                         }
 
                         if (item['status'] === 5) {
 
-                            record['statusMsg'] = '开户赠金';
+                            record['statusMsg'] = '成功';
                             record['type'] = 'deposit';
                         }
 
                         if (item['status'] === 6) {
 
-                            record['statusMsg'] = '推荐好友赠金';
+                            record['statusMsg'] = '成功';
                             record['type'] = 'deposit';
+                        }
+
+
+                        if (item['status'] === -1) {
+
+                            record['statusMsg'] = '已提交';
+                            record['type'] = 'withdraw';
                         }
 
                         if (item['status'] === -2) {
 
-                            record['statusMsg'] = '出金处理完毕';
+                            record['statusMsg'] = '已撤销';
+                            record['type'] = 'withdraw';
+                        }
+
+
+                        if (item['status'] === -3) {
+
+                            record['statusMsg'] = '处理中';
+                            record['type'] = 'withdraw';
+                        }
+
+
+                        if (item['status'] === -4) {
+
+                            // 失败会有各种理由
+                            record['statusMsg'] = '失败';
+                            record['type'] = 'withdraw';
+                        }
+
+
+                        if (item['status'] === -5) {
+
+                            record['statusMsg'] = '成功';
                             record['type'] = 'withdraw';
                         }
 
