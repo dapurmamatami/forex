@@ -47,7 +47,13 @@
                                 继续充值
                             </a>
                         </td>
-                        <td ng-if="record.statusMsg !== '入金中或入金失败'">
+                        <td ng-if="record.statusMsg === '已提交'">
+                            {{record.statusMsg}}
+                            <a class="btn btn-default" href="">
+                                撤销申请
+                            </a>
+                        </td>
+                        <td ng-if="record.statusMsg !== '入金中或入金失败' && record.statusMsg !== '已提交'">
                             {{record.statusMsg}}
                         </td>
                         <td>
