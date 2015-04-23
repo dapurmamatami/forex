@@ -34,7 +34,7 @@
                         <td>
                             <span class="{{record.type}}_icon"></span>
                             <span ng-if="record.type === 'deposit'">入金</span>
-                            <span ng-if="record.type === 'withdraw'">出金</span>                    
+                            <span ng-if="record.type === 'withdraw'">出金</span>
                         </td>
                         <td>
                             {{record.code}}
@@ -42,18 +42,18 @@
                         <td>
                             {{record.amount | currency: '$'}}
                         </td>
-                        <td ng-if="record.statusMsg === '入金中或入金失败'">
+                        <td ng-if="record.status === 2 || record.status === 3">
                             <a class="btn btn-default" href="#/money/deposit">
                                 继续充值
                             </a>
                         </td>
-                        <td ng-if="record.statusMsg === '已提交'">
+                        <td ng-if="record.status === -1">
                             {{record.statusMsg}}
-                            <a class="btn btn-default" href="">
+                            <a class="btn btn-default" href="" ng-click="cancelWithdraw(record.code)">
                                 撤销申请
                             </a>
                         </td>
-                        <td ng-if="record.statusMsg !== '入金中或入金失败' && record.statusMsg !== '已提交'">
+                        <td ng-if="record.status !== 2 && record.status !== 3 && record.status !== -1">
                             {{record.statusMsg}}
                         </td>
                         <td>

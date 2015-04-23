@@ -14,7 +14,8 @@
                 getDepositAmnt: getDepositAmnt,
                 getFXRate: getFXRate,
                 deposit: deposit,
-                withdraw: withdraw
+                withdraw: withdraw,
+                cancelWithdraw: cancelWithdraw
             };
             return service;
 
@@ -94,6 +95,18 @@
             }
 
             /**
+             * Money Service 撤消出金申请
+             * @method cancelWithdraw
+             * 
+             * @param {Number} code 出入金历史纪录的编号
+             */
+             function cancelWithdraw(code) {
+                return $http.post('/cancel_withdraw', {
+                    order_no: code
+                });
+             }
+
+            /**
              * Money Service 获取出入金历史
              *
              * @method getHistory
@@ -120,6 +133,7 @@
                         var record = {};
 
                         record['amount'] = item['amount'];
+                        record['status'] = item['status'];
                         record['timestamp'] = item['order_date'];
                         record['code'] = item['order_no'];   
 
@@ -130,39 +144,33 @@
                         }
 
                         if (item['status'] === 4) {
-
                             record['statusMsg'] = '成功';
                             record['type'] = 'deposit';
                         }
 
                         if (item['status'] === 5) {
-
                             record['statusMsg'] = '成功';
                             record['type'] = 'deposit';
                         }
 
                         if (item['status'] === 6) {
-
                             record['statusMsg'] = '成功';
                             record['type'] = 'deposit';
                         }
 
 
                         if (item['status'] === -1) {
-
                             record['statusMsg'] = '已提交';
                             record['type'] = 'withdraw';
                         }
 
                         if (item['status'] === -2) {
-
-                            record['statusMsg'] = '已撤销';
+                            record['statusMsg'] = '撤销成功';
                             record['type'] = 'withdraw';
                         }
 
 
                         if (item['status'] === -3) {
-
                             record['statusMsg'] = '处理中';
                             record['type'] = 'withdraw';
                         }
@@ -175,9 +183,7 @@
                             record['type'] = 'withdraw';
                         }
 
-
                         if (item['status'] === -5) {
-
                             record['statusMsg'] = '成功';
                             record['type'] = 'withdraw';
                         }
@@ -187,6 +193,7 @@
                     
                     return {
                         records: records,
+
                         moreRecords: data.next
                     };
                 });

@@ -14,6 +14,7 @@
         $scope.moreRecords = true;
         $scope.getRecords = getRecords;
         $scope.getMoreRecords = getMoreRecords;
+        $scope.cancelWithdraw = cancelWithdraw;
         var lastCode,  // records 中最后一项的 code
             count = 10;
 
@@ -46,6 +47,19 @@
                 lastCode = $scope.records[length - 1].code;
                 $scope.moreRecords = data.moreRecords;
                 $scope.$broadcast('stopLoadingMore');
+            });
+        }
+
+        function cancelWithdraw(code) {
+            money.cancelWithdraw(code).then(function (data) {
+
+                angular.forEach($scope.records, function (record) {
+
+                    if (record.code === code) {
+                        record.status = -2;
+                        record.statusMsg = '撤消成功';
+                    }
+                });
             });
         }
     }
