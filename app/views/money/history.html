@@ -40,7 +40,7 @@
                             {{record.code}}
                         </td>
                         <td>
-                            {{record.amount | currency}}
+                            {{record.amount | currency: '$'}}
                         </td>
                         <td ng-if="record.statusMsg === '入金中或入金失败'">
                             <a class="btn btn-default" href="#/money/deposit">

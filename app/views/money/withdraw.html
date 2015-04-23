@@ -51,7 +51,7 @@
     </p>
     <p>
         数据仅供参考，交易时以银行柜台成交价为准。更新时间：
-        {{FXRate.timestamp | dateFormatter}}
+        {{FXRate.timestamp | dateFormatter: 'UTC'}}
     </p>
 </div>
 <div class="money_content" ng-if="!personal.verified" >

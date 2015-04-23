@@ -15,7 +15,7 @@
         $scope.getRecords = getRecords;
         $scope.getMoreRecords = getMoreRecords;
         var lastCode,  // records 中最后一项的 code
-            count = 1;
+            count = 10;
 
         // 获取全部历史
         getRecords('');
