@@ -30,6 +30,21 @@
         margin-left:-25px;
     }
 
+    @include e(value_y) {
+        text-align: center;
+        font-size: 16px;
+        font-weight: 700;
+    }
+
+    @include e(value_y-pos) {
+        @extend .line_chart__value_y;
+        color: $brand-success;
+    }
+
+    @include e(value_y-neg) {
+        @extend .line_chart__value_y;
+        color: $brand-danger;
+    }
 }
 
 @include b(trade_summary) {

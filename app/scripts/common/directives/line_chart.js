@@ -25,6 +25,7 @@
                     
                     // 资产变化曲线
                     if (scope.chartType === 0) {
+                        
                         data = Highcharts.map(data, function (config) {
                             return {
                                 x: config[0] * 1000,
@@ -85,13 +86,28 @@
                             tooltip: {
                                 useHTML: true,
                                 formatter: function () {
-                                    var dateStamp = new Date(this.x);
-                                    var date = dateStamp.getFullYear() + '/' + 
-                                            (dateStamp.getMonth() + 1) +'/' + 
-                                            (dateStamp.getDate());
-                                    return '<p class="line_chart__value-x">' + date + 
-                                            '</p><p class="line_chart__value-y">' + 
-                                            this.y + '%</p>';
+                                    var date = new Date(this.x);
+                                    var dateStr = date.getFullYear() + '/' + 
+                                            (date.getMonth() + 1) +'/' + 
+                                            (date.getDate());
+                                    var className = 'line_chart__value_y';
+
+                                    if (this.y > 0) {
+                                        className = 'line_chart__value_y-pos';                                          
+                                    }                                
+                                    
+                                    if (this.y == 0) {
+                                        className = 'line_chart__value_y';
+                                    }
+
+                                    if (this.y < 0) {
+                                        className = 'line_chart__value_y-neg';
+                                    }
+
+                                    return '<p>' + dateStr + 
+                                            '</p><p class="' + className + '">' +
+                                            this.y + '%</p>';        
+
                                 }
                             },
 
@@ -119,6 +135,8 @@
                                 threshold: null
                             }]
                         };
+
+                        new Highcharts.Chart(options);
                     }
 
                     // 价格变化曲线
@@ -133,7 +151,7 @@
                         options = {
                             chart: {
                                 renderTo: 'chart',
-                                type: 'line',
+                                type: 'spline',
                                 height: 280,
                                 spacing: 10
                             },
@@ -182,13 +200,14 @@
                             tooltip: {
                                 useHTML: true,
                                 formatter: function () {
-                                    var dateStamp = new Date(this.x);
-                                    var date = dateStamp.getFullYear() + '/' + 
-                                            (dateStamp.getMonth() + 1) + '/' + 
-                                            (dateStamp.getDate());
-                                    return '<p class="line_chart__tip">' + date + 
-                                            '</p><p class="line_chart__money">$' + 
-                                            this.y + '</p>';
+                                    var date = new Date(this.x);
+                                    var dateStr = date.getFullYear() + '/' + 
+                                            (date.getMonth() + 1) + '/' + 
+                                            (date.getDate());
+                                    var className = 'line_chart__value_y';
+
+                                    return '<p>' + dateStr + '</p><p class="' + 
+                                            className + '">$' + this.y + '</p>';
                                 }
                             },
                             series: [{
@@ -215,9 +234,11 @@
                                 threshold: null
                             }]
                         };
+
+                        //$(element).highcharts('StockChart', options);
+                        $(element).highcharts(options);
                     }
 
-                    var chart = new Highcharts.Chart(options);
                 });
             }
         };
