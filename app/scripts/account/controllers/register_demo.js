@@ -49,23 +49,19 @@
         $scope.backErr = {
             username: {
                 show: false,
-                status: 0,    // 0、1、2
-                statusMsg: ''
+                status: 0    // 0、1、2
             },
             phone: {
                 show: false,
-                status: 0,    // 0、1
-                statusMsg: ''
+                status: 0    // 0、1
             },
             verifyCode: {
                 show: false,
-                status: 0,    // 0、1
-                statusMsg: ''
+                status: 0    // 0、1
             },
             email: {
                 show: false,
-                status: 0,    // 0、1
-                statusMsg: ''
+                status: 0    // 0、1
             }
         };
         $scope.registerDemo = registerDemo;
@@ -76,7 +72,37 @@
 
         $rootScope.floatBtnShow = false;
 
+        console.info($state.params);
+
+        $scope.account.username = $state.params.name;
+        $scope.account.phone = $state.params.phone;
+        $scope.account.email = $state.params.email;
+
+        // 从 landing page 进入时，验证错误
+        if ($scope.account.username) {
+
+            if (!validator.isValidTxt($scope.account.username, validator.regType.
+                    username.pattern, validator.regType.dbcs.pattern, 4, 20)) {
+                $scope.account.username = undefined;
+            }
+        }
+
+        if ($scope.account.phone) {
+
+            if (!validator.regType.phone.reg.test($scope.account.phone)) {
+                $scope.account.phone = undefined;
+            }
+        }
+
+        if ($scope.account.email) {
+
+            if (!validator.regType.email.reg.test($scope.account.email)) {
+                $scope.account.email = undefined;
+            }
+        }
+
         // return a promise object is for prop='phone'
+        // prop 值为 'username', 'phone', 'email'
         function checkExist(prop) {
             var deferred = $q.defer();
             deferred.resolve(false);
@@ -97,7 +123,6 @@
 
                     if (data.data) {
                         $scope.backErr[prop].status = 1;
-                        $scope.backErr[prop].statusMsg = '已存在';
                         return false;
                     } else {
                         return true;
@@ -108,42 +133,58 @@
 
         function registerDemo() {
 
-            if ($scope.registerForm.$invalid || $scope.backErr.username.status !== 0 || 
-                    $scope.backErr.phone.status !== 0 || $scope.backErr.email.status !== 0) {
-                $scope.formErr.username.show = true;
-                $scope.backErr.username.show = true;
-                $scope.formErr.phone.show = true;
-                $scope.backErr.phone.show = true;
-                $scope.formErr.verifyCode.show = true;
-                $scope.backErr.verifyCode.show = true;
-                $scope.formErr.email.show = true;
-                $scope.backErr.email.show = true;
-                $scope.formErr.password.show = true;
-                $scope.formErr.confirmPwd.show = true;
+            // 前端有错误
+            if ($scope.registerForm.$invalid) {
+
+                angular.forEach($scope.formErr, function (value, key) {
+                    value.show = true;
+                });
+
                 return;
             }
 
-            account.registerDemo($scope.account.username, $scope.account.phone, $scope.account.verifyCode,
-                    $scope.account.email, $scope.account.password).then(function (data) {
+            // 为了兼容 landing page 注册，查重 email
+            // phone 查重在 getVerifyCode 中，username 检查在 account.registerDemo
+            checkExist('email').then(function (data) {
 
-                if (!data.is_succ) {
-
-                    if (data.error_code === 10) {
-                        $scope.backErr.username.status = 2;
-                        $scope.backErr.username.statusMsg = '昵称包含敏感词汇，请修改';
-                    }
-
-                    if (data.error_code === 5 || data.error_code === 12) {
-                        $scope.backErr.verifyCode.status = 1;
-                        $scope.backErr.verifyCode.statusMsg = '验证码不正确';
-                    }
+                // 邮箱已存在
+                if (data === false) {
+                    $scope.backErr.email.show = true;
                 } else {
-                    $scope.step ++;
-                }        
+
+                    account.registerDemo($scope.account.username, $scope.account.phone, 
+                            $scope.account.verifyCode, $scope.account.email, 
+                            $scope.account.password, $scope.account.forkCode, 
+                            $state.params.lp, $state.params.pid,$state.params.unit, 
+                            $state.params.key).then(function (data) {
+
+                        if (!data.is_succ) {
+
+                            if (data.error_code === 7) {
+                                $scope.backErr.username.show = true;
+                                $scope.backErr.username.status = 1;
+                            }
+
+                            if (data.error_code === 10) {
+                                $scope.backErr.username.show = true;
+                                $scope.backErr.username.status = 2;
+                            }
+
+                            if (data.error_code === 5 || data.error_code === 12) {
+                                $scope.backErr.verifyCode.show = true;
+                                $scope.backErr.verifyCode.status = 1;
+                            }
+                        } else {
+                            $scope.step ++;
+                        }        
+                    });
+                }
             });
         }
 
         function getVerifyCode() {
+
+            $scope.backErr.phone.show = true;
 
             // 检查手机号码是否已经存在
             checkExist('phone').then(function (data) {
@@ -165,7 +206,6 @@
             if ($scope.backErr[name]) {
                 $scope.backErr[name].show = false;
                 $scope.backErr[name].status = 0;
-                $scope.backErr[name].statusMsg = '';
             }
         }
 

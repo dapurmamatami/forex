@@ -360,14 +360,20 @@
          * 
          * @method registerDemo
          */  
-        function registerDemo(username, phone, verifyCode, email, password, forkCode) {
+        function registerDemo(username, phone, verifyCode, email, password, 
+                forkCode, lp, pid, unit, key) {
+            
             return $http.post('/register', {
                 username: username,
                 phone: phone,
                 verify_code: verifyCode,
                 email: email,
                 password: password,
-                fork_code: forkCode
+                fork_code: forkCode,
+                lp: lp,
+                pid: pid,
+                unit: unit,
+                key: key
             });
         }
 

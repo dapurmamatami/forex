@@ -37,7 +37,7 @@
                             昵称已存在
                         </p>
                         <p class="form_row__right_alert" ng-show="backErr.username.status === 2">
-                            {{backErr.username.statusMsg}}
+                            昵称包含敏感词汇，请修改
                         </p>
                     </div>
                 </div>
@@ -103,7 +103,7 @@
                     </div>
                     <div ng-show="backErr.verifyCode.show">
                         <p class="form_row__right_alert" ng-show="backErr.verifyCode.status !== 0">
-                            {{backErr.verifyCode.statusMsg}}
+                           验证码不正确 
                         </p>
                     </div>
                 </div>

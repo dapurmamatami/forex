@@ -438,6 +438,15 @@ angular
                     }
                 }
             })
+            .state('account.registerDemo', {
+                url: '/account/register_demo?name&phone&email&lp&pid&unit&key',
+                views: {
+                    'bd@account': {
+                        templateUrl: 'views/account/register_demo.html',
+                        controller: 'AccountRegisterDemoController'
+                    }
+                }
+            })
             .state('account.subPage', {
                 url: '/account/:subPage',
                 views: {
@@ -489,17 +498,21 @@ angular
 
     .run(['$rootScope', '$state', '$stateParams', 'authorization',
             function ($rootScope, $state, $stateParams, authorization) {
-
-        $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams) {
-
-            // 在线客服是否显示
-            $rootScope.floatBtnShow = true;
+        
+        // 在线客服是否显示
+        $rootScope.floatBtnShow = true;
+                    
+        $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {            
             $rootScope.toState = toState;
-            $rootScope.toStateParams = toStateParams;
+            //$rootScope.toParams = toParams;
 
             if (toState.authenticate) {
                 authorization.authorize();
             }
+        });
+
+        $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams) {
+            console.info('流量统计');
         });
     }]);
 
