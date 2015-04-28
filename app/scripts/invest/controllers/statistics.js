@@ -23,12 +23,12 @@
                 return $scope.$parent.accountType;
             }, function () {
                 paintChart(7, '近 1 周内'); 
-                getSummaryReport(); 
+                getSummaryReport(7); 
             }, true);
         } else {
             $scope.accountType.key = 'real';
             paintChart(7, '近 1 周内');    
-            getSummaryReport();
+            getSummaryReport(7);
         }
 
         function paintChart(value, valShow) {
@@ -39,11 +39,14 @@
                 $scope.$broadcast('paintLineChart', data.data);
                 $scope.$broadcast('hideLoadingImg');
             });
+            
+            // paint chart 的同时更新资产概况                        
+            getSummaryReport(value);
         }
 
-        function getSummaryReport() {
-            stock.getSummaryReport($scope.accountType.key, $scope.userType.code).
-                    then(function (data) {
+        function getSummaryReport(period) {
+            stock.getSummaryReport($scope.accountType.key, $scope.userType.code,
+                    period).then(function (data) {
                 $scope.summary = data;
                 $scope.$broadcast('paintDonutChart', data);        
             });

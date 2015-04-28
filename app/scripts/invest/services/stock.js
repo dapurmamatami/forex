@@ -23,7 +23,7 @@
          * Stock Service 获取资产的净值的变化率
          *
          * @method getEquityReport
-         * @param {String} period 距离当前的天数
+         * @param {Number} period 距离当前的天数
          * @param {String} accountType 值为 'demo' or 'real'
          * @param {String} userCode 用户的 user code
          * @return {Object} {
@@ -65,7 +65,7 @@
          * Stock Service 获取资产概况
          *
          * @method getSummaryReport
-         * @param {String} period 距离当前的天数
+         * @param {Number} period 距离当前的天数
          * @param {String} accountType 值为 'demo' or 'real'
          * @param {String} userCode 用户的 user code
          * @return {Object} {
