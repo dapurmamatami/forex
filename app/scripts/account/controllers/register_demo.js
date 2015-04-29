@@ -6,9 +6,9 @@
         .module('tigerwitPersonalApp')
         .controller('AccountRegisterDemoController', AccountRegisterDemoController);
 
-    AccountRegisterDemoController.$inject = ['$rootScope', '$scope', '$state', '$q', 'account', 'validator'];
+    AccountRegisterDemoController.$inject = ['$window', '$rootScope', '$scope', '$state', '$q', 'account', 'validator'];
 
-    function AccountRegisterDemoController($rootScope, $scope, $state, $q, account, validator) {
+    function AccountRegisterDemoController($window, $rootScope, $scope, $state, $q, account, validator) {
         $scope.step = 1;
         $scope.account = {
             //username: ,
@@ -72,8 +72,7 @@
 
         $rootScope.floatBtnShow = false;
 
-        console.info($state.params);
-
+        // landing page enter
         $scope.account.username = $state.params.name;
         $scope.account.phone = $state.params.phone;
         $scope.account.email = $state.params.email;
@@ -100,6 +99,12 @@
                 $scope.account.email = undefined;
             }
         }
+
+        // 注册聚合统计
+        $window._mvq = [];
+        $window._mvq.push(['$setAccount', 'm-122344-0']);
+        $window._mvq.push(['$setGeneral', 'register', '', '','']);
+        $window._mvq.push(['$logConversion']);
 
         // return a promise object is for prop='phone'
         // prop 值为 'username', 'phone', 'email'
@@ -175,6 +180,14 @@
                                 $scope.backErr.verifyCode.status = 1;
                             }
                         } else {
+
+                            // 注册聚合统计
+                            $window._mvq = [];
+                            $window._mvq.push(['$setAccount', 'm-122344-0']);
+                            $window._mvq.push(['$setGeneral', 'registered', '', 
+                                    $scope.account.username, $scope.account.phone]);
+                            $window._mvq.push(['$logConversion']);
+
                             $scope.step ++;
                         }        
                     });
