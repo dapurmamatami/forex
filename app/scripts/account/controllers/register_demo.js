@@ -6,9 +6,11 @@
         .module('tigerwitPersonalApp')
         .controller('AccountRegisterDemoController', AccountRegisterDemoController);
 
-    AccountRegisterDemoController.$inject = ['$window', '$rootScope', '$scope', '$state', '$q', 'account', 'validator'];
+    AccountRegisterDemoController.$inject = ['$window', '$rootScope', '$scope', 
+            '$state', '$q', '$timeout', 'account', 'validator'];
 
-    function AccountRegisterDemoController($window, $rootScope, $scope, $state, $q, account, validator) {
+    function AccountRegisterDemoController($window, $rootScope, $scope, $state, 
+            $q, $timeout, account, validator) {
         $scope.step = 1;
         $scope.account = {
             //username: ,
@@ -62,7 +64,12 @@
             email: {
                 show: false,
                 status: 0    // 0、1
+            },
+            system: {
+                show: false,
+                status: 0
             }
+
         };
         $scope.registerDemo = registerDemo;
         $scope.showErr = showErr;
@@ -178,6 +185,24 @@
                             if (data.error_code === 5 || data.error_code === 12) {
                                 $scope.backErr.verifyCode.show = true;
                                 $scope.backErr.verifyCode.status = 1;
+                            }
+
+                            if (data.error_code === 4) {
+                                $scope.backErr.system.show = true;
+                                $scope.backErr.system.status = 1;
+
+                                $timeout(function () {
+                                    $scope.backErr.system.show = false;
+                                }, 3000);
+                            }
+
+                            if (data.error_code === 11) {
+                                $scope.backErr.system.show = true;
+                                $scope.backErr.system.status = 2;
+
+                                $timeout(function () {
+                                    $scope.backErr.system.show = false;
+                                }, 3000);
                             }
                         } else {
 
