@@ -15,6 +15,7 @@
         $scope.max_profit = data.max_profit;
         $scope.max_deficit = data.max_deficit;
         $scope.profit_rate = data.profit_rate;
+        $scope.update_date = data.update_date;
     });
   }
 

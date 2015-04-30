@@ -148,13 +148,14 @@
         overflow:hidden;
         @include b(clearTop){
             margin-top: 0px !important;
+            float:right;
+            width:415px;
         }
         ::selection{
           color:#FF0000;
         }
         @include b(topic_or_comment){
-            float:right;
-            width:415px;
+            width:100%;
             position:relative;
             margin-top: 10px;
             textarea {
@@ -164,11 +165,11 @@
                resize:none;
             }
             @include e(doToast){
-             position: absolute;
-             left:150px;
-             top:50px;
-             opacity:0;
-//             border: solid 1px #b7b7b7;
+                position: absolute;
+                left:150px;
+                top:35px;
+                opacity:0;
+//              border: solid 1px #b7b7b7;
             }
             @include b(tip_drop_menu){
                 float:left;
