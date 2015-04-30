@@ -127,7 +127,7 @@
         width: 30px;
         height: 30px;
         vertical-align: middle;
-        @include background_image_url('invest_switch.png');
+        @include img-normal($image_path + "invest_switch.png");
         background-repeat: no-repeat;
 
         @include m(summary) {

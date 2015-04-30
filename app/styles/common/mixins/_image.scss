@@ -34,14 +34,7 @@
   }
 }
 
+// Normal image
 @mixin img-normal($file) {
     background-image: url("#{$file}");
-}
-
-// 暂时留着，要删掉
-@mixin background_image_url($url) {
-    background-image: url('../images/' + $url);
-}
-@mixin background_url($url) {
-    background: url('../images/' + $url) no-repeat 50%;
 }

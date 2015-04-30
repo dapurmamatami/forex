@@ -34,6 +34,7 @@ angular
             return {
                 'request': function(configParam) {
                     configParam.timeout = config.httpTimeout;
+
                     if (!/^(http|https|ws)/.test(configParam.url) &&
                             !/\.html$/.test(configParam.url)) {
 
