@@ -512,7 +512,6 @@ angular
         });
 
         $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams) {
-            console.info('流量统计');
         });
     }]);
 

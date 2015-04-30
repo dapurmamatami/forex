@@ -6,9 +6,11 @@
         .module('tigerwitPersonalApp')
         .controller('AccountRegisterDemoController', AccountRegisterDemoController);
 
-    AccountRegisterDemoController.$inject = ['$rootScope', '$scope', '$state', '$q', 'account', 'validator'];
+    AccountRegisterDemoController.$inject = ['$window', '$rootScope', '$scope', 
+            '$state', '$q', '$timeout', 'account', 'validator'];
 
-    function AccountRegisterDemoController($rootScope, $scope, $state, $q, account, validator) {
+    function AccountRegisterDemoController($window, $rootScope, $scope, $state, 
+            $q, $timeout, account, validator) {
         $scope.step = 1;
         $scope.account = {
             //username: ,
@@ -62,7 +64,12 @@
             email: {
                 show: false,
                 status: 0    // 0、1
+            },
+            system: {
+                show: false,
+                status: 0
             }
+
         };
         $scope.registerDemo = registerDemo;
         $scope.showErr = showErr;
@@ -72,8 +79,7 @@
 
         $rootScope.floatBtnShow = false;
 
-        console.info($state.params);
-
+        // landing page enter
         $scope.account.username = $state.params.name;
         $scope.account.phone = $state.params.phone;
         $scope.account.email = $state.params.email;
@@ -100,6 +106,12 @@
                 $scope.account.email = undefined;
             }
         }
+
+        // 注册聚合统计
+        $window._mvq = [];
+        $window._mvq.push(['$setAccount', 'm-122344-0']);
+        $window._mvq.push(['$setGeneral', 'register', '', '','']);
+        $window._mvq.push(['$logConversion']);
 
         // return a promise object is for prop='phone'
         // prop 值为 'username', 'phone', 'email'
@@ -174,7 +186,33 @@
                                 $scope.backErr.verifyCode.show = true;
                                 $scope.backErr.verifyCode.status = 1;
                             }
+
+                            if (data.error_code === 4) {
+                                $scope.backErr.system.show = true;
+                                $scope.backErr.system.status = 1;
+
+                                $timeout(function () {
+                                    $scope.backErr.system.show = false;
+                                }, 3000);
+                            }
+
+                            if (data.error_code === 11) {
+                                $scope.backErr.system.show = true;
+                                $scope.backErr.system.status = 2;
+
+                                $timeout(function () {
+                                    $scope.backErr.system.show = false;
+                                }, 3000);
+                            }
                         } else {
+
+                            // 注册聚合统计
+                            $window._mvq = [];
+                            $window._mvq.push(['$setAccount', 'm-122344-0']);
+                            $window._mvq.push(['$setGeneral', 'registered', '', 
+                                    $scope.account.username, $scope.account.phone]);
+                            $window._mvq.push(['$logConversion']);
+
                             $scope.step ++;
                         }        
                     });

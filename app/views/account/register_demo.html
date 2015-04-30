@@ -240,6 +240,17 @@
                 </div>
             </div>
 
+            <div class="row mg-tp-15" ng-show="backErr.system.show">
+                <div class="col-xs-5 col-xs-offset-2">
+                    <p class="form_row__bottom_alert" ng-show="backErr.system.status === 1">
+                        注册次数过多，请稍后重试
+                    </p>
+                    <p class="form_row__bottom_alert" ng-show="backErr.system.status === 2">
+                        系统繁忙，请稍后重试
+                    </p>
+                </div>
+            </div>
+
             <div class="row mg-tp-30">
                 <div class="col-xs-5 col-xs-offset-2">
                     <button class="btn btn-danger" ng-click="registerDemo()">
