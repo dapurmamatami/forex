@@ -13,9 +13,9 @@
               map: '=',
               thatWas:'@was'
           },
-          template: "<p>" +
+          template: "<p >" +
                         "<span ng-repeat = 'cItem in contentArray' ng-if='cItem'>" +
-                            "<span ng-class = '{focus_name : cItem.show}' ng-click='skipToSomeThing(cItem.content)'>{{cItem.content}}</span>" +
+                            "<span style='word-wrap:break-word' ng-class = '{focus_name : cItem.show}' ng-click='skipToSomeThing(cItem.content)'>{{cItem.content}}</span>" +
                         "</span>" +
                     "</p>",
           replace:true,

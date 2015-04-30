@@ -18,11 +18,11 @@
 
     </div>
    <hr />
-    <div  ng-show="!isSummary" ng-controller="PersonalTopicPublishController">
+    <div  ng-show="!isSummary" ng-controller="PersonalTopicPublishController" style="overflow:hidden">
         <div class = "publisharea">
-            <img class="communicateinfo__user-icon" src="{{personal.smAvatar}}">
+            <img class="communicateinfo__user-icon" style="margin-top:10px" src="{{personal.smAvatar}}">
             <div class="clearTop">
-            <tw-publish t-remain-sum="tRemainSum" input-content="inputContent" toast-msg="toastMsg"  toast-show = 'showOrNo' do-comment="publishTopic()"></tw-publish>
+                 <tw-publish t-remain-sum="tRemainSum" input-content="inputContent" toast-msg="toastMsg"  toast-show = 'showOrNo' do-comment="publishTopic()"></tw-publish>
             </div>
             <!--<div class="clearTop topic_or_comment">-->
                 <!--<textarea  name="inputContent" ng-model="inputContent" ng-change="matchTopicContent()" prompt-special-input></textarea>-->

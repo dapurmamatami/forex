@@ -1,5 +1,5 @@
 <div class = "topicDetail">
-    <img src="/ngsrc/photo-man.png"/>
+    <img src="/avatar/{{topicDetailData.publisher_id}}_50.jpg"/>
 
 
     <div class="topic-info">
@@ -62,10 +62,10 @@
 
         <div>
             <div class="comments" ng-repeat="aitem in commentList" ng-controller="CommentsController">
-                <img src="/ngsrc/photo-man.png"/>
+                <img src="/avatar/{{aitem.comment_publisherid}}_50.jpg">
                 <div class = "comment-info" >
                     <span class = "focus_name" ng-bind="aitem['publisher_name']" ng-click="skipToSummary(aitem.comment_publisherid)"></span>
-                    <tw-content-show info="aitem.content"></tw-content-show>
+                    <tw-content-show was='true' info="aitem.content"></tw-content-show>
                     <div class = "comment-info-other">
                         <span class = "communicateinfo__ptime">{{aitem['ptime'] | startNow }}前</span>
                         <div class = "other_info">
@@ -78,10 +78,10 @@
                     <div  class = "comment-lists"  ng-show="showDiscuss" ng-controller="DiscussListController">
                         <div>
                             <div class ="comment-item" ng-repeat="bitem in discussList" ng-controller = "OneDiscussController" >
-                                <img src="/ngsrc/photo-man.png"/>
+                                <img src="/avatar/{{bitem.comment_publisherid}}_50.jpg" >
                                 <div class = "ccContent">
                                     <span class = "focus_name" ng-click="skipToSummary(bitem.comment_publisherid)" ng-bind="bitem['publisher_name']"></span>
-                                    <tw-content-show info="bitem['content']"></tw-content-show>
+                                    <tw-content-show was='true' info="bitem['content']"></tw-content-show>
                                     <div class = "ccContent-other">
                                         <span class = "communicateinfo__ptime">{{bitem['ptime'] | startNow }}前</span>
                                         <div class = "other_info">
@@ -102,17 +102,19 @@
                                 <a ng-click = "loadAll()" class="reply__loadAll">点击查看全部回复</a>
                                 <a class="reply__saysome" ng-click="showDoCommentAndAt()">我也说两句</a>
                             </div>
-                            <div class="reply__area" ng-show="showReply">
+                            <tw-publish input-content="inputContent" toast-msg="toastMsg" t-remain-sum="tRemainSum"
+                                                    toast-show = 'showOrNo' do-comment="doComment()" ng-show="showReply"></tw-publish>
+                            <!-- <div class="reply__area" ng-show="showReply">
                                 <textarea ng-model="inputContent" ng-change="matchCommentContent()"></textarea>
                                 <div class = "topicOrComment__doToast" ng-class="showOrNo">
                                   {{toastMsg}}
                                 </div>
                                 <div class = "topicOrComment__dostyl" >
-                                    <span>剩余 {{tRemainSum}}/1024 字</span>
+                                    <span>剩余 {{tRemai nSum}}/1024 字</span>
                                     <a class = "do_style__publish" ng-click="doComment()"> 发表 </a>
                                 </div>
                                 <div style="clear:both"></div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>

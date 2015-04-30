@@ -32,6 +32,7 @@
                     //$scope.inputChar = $scope.inputContent.substring(contentLength-1);
                     if(contentLength>1024){
                       $scope.inputContent = $scope.inputContent.substring(0,1024);
+                       $scope.tRemainSum  = 1024
                       return;
                     }
                     $scope.tRemainSum =contentLength;

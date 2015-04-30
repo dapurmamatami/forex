@@ -6,37 +6,37 @@
   </div>
 
   <div class="master_content_data">
-      <div class="master_data_item">
+      <div ng-repeat="item in mData" class="master_data_item">
           <div class="master_data_detail">
               <div class="master_data_specific">
-                  <img class="master_data_1" src="ngsrc/woman.png">
+                  <img class="master_data_1" src="/avatar/{{item.user_code}}_50.jpg">
                   <div class="master_data_2">
-                      <h3>HugoOchoa</h3>
-                      <p>北京,海淀</p>
+                      <h3>{{item.username}}</h3>
+                      <p>{{item.region_cn.state_name}},{{item.region_cn.city_name}}</p>
                   </div >
 
                   <div class="master_data_6">
-                    <p class="master_data_6__sum">98.36%</p>
+                    <p class="master_data_6__sum">{{item.profit_rate}}%</p>
                     <p class="mast_data_name">盈利率</p>
                   </div>
 
                   <div class="master_data_3">
-                    <p  class="master_data_3__sum">78.12%</p>
+                    <p  class="master_data_3__sum">{{item.percent_profitable}}%</p>
                     <p class="mast_data_name">胜率</p>
                   </div>
 
                   <div class="master_data_3">
-                    <p class="master_data_3__sum">129</p>
+                    <p class="master_data_3__sum">{{item.copier_count}}</p>
                     <p class="mast_data_name">复制者</p>
                   </div>
               </div>
               <p class="master_data_detail__p">
-                投资推荐:这个人很牛，可以短期内获得高收益，赶紧来复制交易吧，获取你的第一桶金。
+                {{item.desc}}
               </p>
           </div>
-          <img class="designation_icon" src="ngsrc/u295.png">
+          <img class="designation_icon" src="ngsrc/recommend_{{item.type}}.png">
       </div>
-      <div class="master_data_item">
+      <!-- <div class="master_data_item">
           <div class="master_data_detail">
               <div class="master_data_specific">
                   <img class="master_data_1" src="ngsrc/woman.png">
@@ -65,7 +65,7 @@
               </p>
           </div>
           <img class="designation_icon" ng-src="ngsrc/u380.png">
-      </div>
+      </div> -->
 
   </div>
 
