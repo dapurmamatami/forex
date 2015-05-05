@@ -73,11 +73,17 @@
               $scope.mCdata = [];
           }
           var startIndex = $scope.mCdata.length;
-          communicate.hotInvester(startIndex)
+          communicate.hotInvester(startIndex,$scope.personal.user_code)
               .then(function(data){
                   if(data.statecode){
                       $scope.mCdata = $scope.mCdata.concat(data.data.list);
                       $scope.mapKeyVal = data.data.mapKeyVal;
+                      
+                      // var fans_info = Array();
+                      // for(var aitem in data.data.attentions_info){
+                      //   fans_info.push(data.data.attentions_info[aitem].userName);
+                      // }
+                      // $scope.fans_info = fans_info;
                       if($scope.mCdata.length<10){
                          $scope.anyMore = false;
                       }else{
@@ -126,7 +132,16 @@
               $scope.communicate_identify = hot_state;
               $scope.title_name = "热门投资动态";
           }
+          communicate.getFanInfos($scope.personal.user_code).then(function(data){
+            if(data.statecode){
+              var fans_info = Array();
+              for(var aitem in data.data){
+                  fans_info.push(data.data[aitem].userName);
+              }
+              $scope.fans_info = fans_info;
+            }
 
+          })
           getCommunicateInfo();
 
       })();
@@ -199,7 +214,7 @@
               $scope.doTransmit = doTransmit;
 
               $scope.skipToSummary = skipToSummary;
-
+              $scope.skipToSymbol = skipToSymbol;
               function showDropComment(){
                   $scope.commentShowToggle = !$scope.commentShowToggle;
               }
@@ -280,7 +295,9 @@
               function skipToSummary(touchId){
                   $state.go('invest.subPage',{userCode:touchId,subPage:'summary'});
               }
-
+              function skipToSymbol(symbolType){
+                 $state.go('class.detail',{className:symbolType})
+              }
           }
 })();
 

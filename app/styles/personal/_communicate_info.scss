@@ -224,16 +224,16 @@
                 @include b(outinfo){
                     border: 1px solid transparent;
                     border-color:$brand-border-color;
-                    height:76px;
+                    height:105px;
                     margin-bottom: 18px;
                     @include e(icon){
-                        width:118px;
-                        height:76px;
+                        width:148px;
+                        height:105px;
                         border:0;
                         padding:8px;
                         display:inline;
                         float:left;
-                        background: $gray-lightest;
+                        #background: $gray-lightest;
                         margin-bottom: 1px;
                         border-right: 1px solid transparent;
                         border-bottom: 1px solid transparent;
@@ -249,6 +249,7 @@
                             font-size:18px;
                             font-weight:600;
                             color:$brand-primary;
+                            cursor:pointer;
                         }
                         @include e(htime){
                           margin:12px 12px;

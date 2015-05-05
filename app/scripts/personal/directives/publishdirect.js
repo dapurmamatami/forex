@@ -16,34 +16,49 @@
                 toastShow:'=',
                 toastMsg:'=',
                 doComment:'&',
-                tRemainSum : '='
+                tRemainSum : '=',
+                fansInfo:'='
             },
 
             replace:true,
 
             controller:function($scope){
-                $scope.showOrNo = false;
-                $scope.inputContent = '';
-                $scope.tRemainSum = 0 ;
-                $scope.matchCommentContent = matchCommentContent;
-                function matchCommentContent(){
+        
 
-                    var contentLength = $scope.inputContent.length;
-                    //$scope.inputChar = $scope.inputContent.substring(contentLength-1);
-                    if(contentLength>1024){
-                      $scope.inputContent = $scope.inputContent.substring(0,1024);
-                       $scope.tRemainSum  = 1024
-                      return;
-                    }
-                    $scope.tRemainSum =contentLength;
-                }
             }
             ,
             link:function(scope,elem){
-                elem.find('#textArea').atwho({
-                    at:"@",
-                    data:['tigerwitbone','helloworld','热门投资']
-                })
+
+                scope.$watch('fansInfo',function(newVal, oldVal){
+
+                    if(newVal===oldVal) return;
+
+                    var fansInfo = scope.fansInfo;
+
+                    elem.find('#textArea').atwho({
+                        at:"@",
+                        data:scope.fansInfo
+                    })
+                });
+
+                scope.showOrNo = false;
+                scope.inputContent = '';
+                scope.tRemainSum = 0 ;
+                scope.matchCommentContent = matchCommentContent;
+                function matchCommentContent(){
+
+                    var contentLength = scope.inputContent.length;
+                    //scope.inputChar = scope.inputContent.substring(contentLength-1);
+                    if(contentLength>1024){
+                      scope.inputContent = scope.inputContent.substring(0,1024);
+                       scope.tRemainSum  = 1024
+                      return;
+                    }
+                    scope.tRemainSum =contentLength;
+                }
+
+                
+               
                 elem.find('#textArea').atwho({
                     at:"$",
                     data:['USDJPY','EURUSD','EURGBP','USDCAD','GBPCHF','EURCHF','AUDUSD',

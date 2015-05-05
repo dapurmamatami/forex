@@ -48,8 +48,10 @@
       <p class="class_center_communicate__title">相关话题</p>
       <div  ng-show="!isSummary" ng-controller="PersonalTopicPublishController">
           <div class = "publisharea">
-              <img class="communicateinfo__user-icon" src="{{personal.smAvatar}}">
-            <tw-publish t-remain-sum="tRemainSum" input-content="inputContent" toast-msg="toastMsg"  toast-show = 'showOrNo' do-comment="publishTopic()"></tw-publish>
+              <img class="communicateinfo__user-icon" style="margin-top:10px" src="{{personal.smAvatar}}">
+              <div class="clearTop">
+                <tw-publish t-remain-sum="tRemainSum" input-content="inputContent" toast-msg="toastMsg"  toast-show = 'showOrNo' do-comment="publishTopic()"></tw-publish>
+              </div>
           </div>
         <hr />
       </div>

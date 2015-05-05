@@ -21,6 +21,7 @@
               deleteTopic: deleteTopic,
               getRemainDiscuss:getRemainDiscuss,
               getFFSum: getFFSum,
+              getFanInfos:getFanInfos,
               unvisitedMessage: unvisitedMessage,
               getMessageInfo: getMessageInfo,
               visitedMessage: visitedMessage,
@@ -35,10 +36,11 @@
          * @param startindex  开始位置
          * @returns {HttpPromise}
          */
-          function hotInvester(startindex) {
+          function hotInvester(startindex,userCode) {
 
               return topicHttp.get('/hotinvester', {
-                     startindex:startindex
+                     startindex:startindex,
+                     usercode:userCode
                   }
               );
           }
@@ -188,7 +190,15 @@
                     personal_usercode: personalUserCode
                 });
             }
+             /*
+                获取粉丝相关的详细信息
+             */ 
 
+            function getFanInfos(userCode){
+                return topicHttp.get('/getfansinfos',{
+                    usercode:userCode
+                })
+            }
             /**
              * 删除话题或者评论
              * @param usercode

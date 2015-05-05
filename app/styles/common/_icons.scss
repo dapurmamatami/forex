@@ -19,6 +19,14 @@
         height: 105px;
         @include img-retina($forex_icon_path + "#{$name}_large.png", $forex_icon_path + "#{$name}_large@2x.png", 148px, 105px)
     }
+
+    .icon-forex-simple-#{$name} {
+        width: 118px;
+        height: 76px;
+        @extend .icon-forex;
+        @include img-retina($forex_icon_path + "#{$name}_large.png", $forex_icon_path + "#{$name}_large@2x.png", 118px, 76px)
+    }
+
 }
 
 .icon-flag {

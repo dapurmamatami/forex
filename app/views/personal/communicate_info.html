@@ -22,7 +22,7 @@
         <div class = "publisharea">
             <img class="communicateinfo__user-icon" style="margin-top:10px" src="{{personal.smAvatar}}">
             <div class="clearTop">
-                 <tw-publish t-remain-sum="tRemainSum" input-content="inputContent" toast-msg="toastMsg"  toast-show = 'showOrNo' do-comment="publishTopic()"></tw-publish>
+                 <tw-publish t-remain-sum="tRemainSum" input-content="inputContent" toast-msg="toastMsg"  toast-show = 'showOrNo' do-comment="publishTopic()" fans-info="fans_info" ></tw-publish>
             </div>
             <!--<div class="clearTop topic_or_comment">-->
                 <!--<textarea  name="inputContent" ng-model="inputContent" ng-change="matchTopicContent()" prompt-special-input></textarea>-->
@@ -57,7 +57,7 @@
                             <span ng-click="skipDetail(mData.topicid)"> 详情 {{inputChar}}</span>
                         </div>
                     </div>
-                    <tw-publish t-remain-sum="tRemainSum" input-char = 'inputChar' input-content="inputContent" toast-msg="toastMsg" ng-show="commentShowToggle" toast-show = 'showOrNo' do-comment="doComment()"></tw-publish>
+                    <tw-publish t-remain-sum="tRemainSum" input-char = 'inputChar' input-content="inputContent" toast-msg="toastMsg" ng-show="commentShowToggle" toast-show = 'showOrNo' do-comment="doComment()" fans-info="fans_info" ></tw-publish>
                     <!--<div class="topic_or_comment" ng-show="commentShowToggle">-->
                         <!--<textarea ng-model="inputContent" ng-change="matchCommentContent()"></textarea>-->
                         <!--<div class = "topic_or_comment__doToast" ng-class="showOrNo">-->
@@ -79,16 +79,16 @@
                 <img class = "communicateinfo__user-icon" src="/avatar/{{mData.publisher_id}}_50.jpg">
                 <div class="communicate-out">
                     <div>
-                        <span class="focus_name"  ng-click="skipToSummary(mData.relation.publisher_id)">{{mData['relation']['username']}}</span>
+                        <span class="focus_name"  ng-click="skipToSummary(mData.relation.publisher_id)">{{mData['relation']['username']}}</span> 
                         <span> 手动平仓 </span>
-                        <span class="focus_name">{{mData['relation']['out_type']}}</span>
+                        <span class="focus_name" ng-click="skipToSymbol(mData['relation']['out_type'])">{{mData['relation']['out_type']}}</span>
                         <p class = "communicateinfo__ptime">{{mData['ptime'] | startNow}}前</p>
                     </div>
                     <div class = "outinfo">
-                        <img class = "outinfo__icon" ng-src="/images/forex_icon/{{mData['relation']['out_type']|lowercase}}@2x.png">
+                        <span class = "outinfo__icon icon-forex-large-{{mData['relation']['out_type'].toLowerCase()}}"></span>
                         <div class = "base_info">
-                            <p class="base_info__name">{{mData['relation']['out_type']}}</p>
-                            <p class="communicateinfo__ptime base_info__htime">持仓7小时23分钟</p>
+                            <p class="base_info__name" ng-click="skipToSymbol(mData['relation']['out_type'])">{{mData['relation']['out_type']}}</p>
+                            <p class="communicateinfo__ptime base_info__htime">持仓时间 {{mData['relation']['close_time']-mData['relation']['open_time']|startNow}}</p>
                         </div>
                         <span class = "outinfo__profit" >{{mData['relation']['profit_point']}}%</span>
                     </div>
@@ -98,7 +98,7 @@
                         <span ng-click="skipDetail(mData.topicid)"> 详情</span>
                     </div>
                 </div>
-                <tw-publish t-remain-sum="tRemainSum" input-char = 'inputChar' input-content="inputContent" toast-msg="toastMsg" ng-show="commentShowToggle" toast-show = 'showOrNo' do-comment="doComment()"></tw-publish>
+                <tw-publish t-remain-sum="tRemainSum" input-char = 'inputChar' input-content="inputContent" toast-msg="toastMsg" ng-show="commentShowToggle" toast-show = 'showOrNo' do-comment="doComment()" fans-info="fans_info" ></tw-publish>
                 <!--<div class="topic_or_comment" ng-show="commentShowToggle">-->
                     <!--<textarea ng-model="inputContent"></textarea>-->
                     <!--<div class = "topic_or_comment__doToast" ng-class = "showOrNo">-->
@@ -167,7 +167,7 @@
                             <span ng-click="skipDetail(mData.topicid)"> 详情</span>
                         </div>
                     </div>
-                    <tw-publish t-remain-sum="tRemainSum" input-char = 'inputChar' input-content="inputContent" toast-msg="toastMsg" ng-show="commentShowToggle" toast-show = 'showOrNo' do-comment="doComment()"></tw-publish>
+                    <tw-publish t-remain-sum="tRemainSum" input-char = 'inputChar' input-content="inputContent" toast-msg="toastMsg" ng-show="commentShowToggle" toast-show = 'showOrNo' do-comment="doComment()" fans-info="fans_info" ></tw-publish>
                     <!--<div class="topic_or_comment" ng-show="commentShowToggle">-->
                         <!--<textarea ng-model="inputContent" ng-change="matchCommentContent()"></textarea>-->
                         <!--<div class = "topic_or_comment__doToast" ng-class="showOrNo">-->
