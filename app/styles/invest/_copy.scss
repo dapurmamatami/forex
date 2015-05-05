@@ -24,10 +24,10 @@
         background-repeat: no-repeat;
 
         &.real {
-            @include img-retina($image_path + 'copy_trade.png', $image_path + 'copy_trade@2x.png', 64px, 64px);
+            @include img-retina($image_path + 'copy_trade.png', $image_path + 'copy_trade@2x.png', 127px, 66px);
         }
         &.demo {
-            @include img-retina($image_path + 'copy_trade.png', $image_path + 'copy_trade@2x.png', 64px, 64px);           
+            @include img-retina($image_path + 'copy_trade.png', $image_path + 'copy_trade@2x.png', 127px, 66px);           
             background-position: -64px; 
         }
     }
