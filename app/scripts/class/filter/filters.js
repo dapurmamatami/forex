@@ -1,4 +1,4 @@
-(function () {
+;(function () {
     'use strict';
 
     angular
@@ -9,6 +9,7 @@
         return function (input) {
 
             if (input) {
+
                 if(input=="AUDJPY"){
                   return '澳元日元';
                 }
@@ -80,7 +81,8 @@
                 }if(input=="WTOil"){
                   return '美元日元';
                 }
-
+            }else{
+                return "undfined";
             }
         }
     }
