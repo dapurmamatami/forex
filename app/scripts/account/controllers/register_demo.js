@@ -11,7 +11,7 @@
 
     function AccountRegisterDemoController($window, $rootScope, $scope, $state, 
             $q, $timeout, account, validator) {
-        $scope.step = 1;
+        $scope.step = 2;
         $scope.account = {
             //username: ,
             //phone: ,
