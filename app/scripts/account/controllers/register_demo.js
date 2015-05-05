@@ -107,11 +107,7 @@
             }
         }
 
-        // 注册聚合统计
-        $window._mvq = [];
-        $window._mvq.push(['$setAccount', 'm-122344-0']);
-        $window._mvq.push(['$setGeneral', 'register', '', '','']);
-        $window._mvq.push(['$logConversion']);
+        
 
         // return a promise object is for prop='phone'
         // prop 值为 'username', 'phone', 'email'
@@ -144,6 +140,14 @@
         }
 
         function registerDemo() {
+
+            // 注册聚合统计
+        $window._mvq = [];
+        $window._mvq.push(['$setAccount', 'm-122344-0']);
+        $window._mvq.push(['$setGeneral', 'register', '', '','']);
+        $window._mvq.push(['$logConversion']);
+
+        return;
 
             // 前端有错误
             if ($scope.registerForm.$invalid) {
