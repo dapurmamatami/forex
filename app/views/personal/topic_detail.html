@@ -98,7 +98,7 @@
                         <div class = "other_info">
                             <span ng-show="isMy"  ng-click="openConfirmDeleteC(aitem.comment_id,$index)">删除 |</span>
                             <span ng-click="doSupport()">赞({{aitem['support_sum']}}) </span>|
-                            <span ng-click="showDoComment()"> 回复({{aitem['comment_sum']}}) </span>
+                            <span ng-click="showDoCommentAndAt(aitem['publisher_name'])"> 回复({{aitem['comment_sum']}}) </span>
                         </div>
                     </div>
 
