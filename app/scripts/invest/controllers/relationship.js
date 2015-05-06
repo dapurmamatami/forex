@@ -15,7 +15,7 @@
         $scope.getInvestors = getInvestors;
         $scope.getMoreInvestors = getMoreInvestors;
         var lastId;
-        var count = 1;              //单页 investor 数
+        var count = 10;              //单页 investor 数
         
         $scope.$on('$stateChangeSuccess', function () {
             getInvestors($scope.userType.code, $state.params.type, count);
