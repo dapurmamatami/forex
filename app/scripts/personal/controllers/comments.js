@@ -17,6 +17,8 @@
         $scope.doSupport = doSupport;
         $scope.showDoComment = showDoComment;
         $scope.openConfirmDeleteD= openConfirmDeleteD;
+        $scope.showDoCommentAndAt = showDoCommentAndAt;
+
         if($scope.discussList.length>0){
             $scope.hasDiscuss = true;
             $scope.showDiscuss = true;
@@ -65,6 +67,21 @@
                 }
             });
         }
+         function showDoCommentAndAt(publisher_name){
+              if(publisher_name){
+                  $scope.inputContent= $scope.inputContent+" @"+publisher_name;
+                  $.trim($scope.inputContent);
+                  $scope.inputContent=$scope.inputContent+" ";
+              }
+
+                  $scope.showReply =true;
+                  if($scope.hasDiscuss){
+                      $scope.showDiscuss = true;
+                  }else{
+                      $scope.showDiscuss = $scope.showReply;
+                  }
+          }
+
     }
 })();
 
@@ -86,7 +103,7 @@
 
 
           $scope.matchCommentContent = matchCommentContent;
-          $scope.showDoCommentAndAt = showDoCommentAndAt;
+          // $scope.showDoCommentAndAt = showDoCommentAndAt;
           function matchCommentContent(){
               var contentLength = $scope.inputContent.length;
               if(contentLength>1024){

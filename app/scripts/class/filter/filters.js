@@ -63,12 +63,14 @@
                 }
                 if(input=="DAX"){
                   return '法兰克福指数期货';
-                }if(input=="FFI"){
+                }
+                if(input=="FFI"){
                   return '伦敦金融时报指数期货';
                 }
                 if(input=="mDJ"){
                   return '美元日元';
-                }if(input=="mND"){
+                }
+                if(input=="mND"){
                   return '美元日元';
                 }
                 if(input=="mSP"){
@@ -78,8 +80,18 @@
                 }
                 if(input=="USDX"){
                   return '美元日元';
-                }if(input=="WTOil"){
+                }
+                if(input=="WTOil"){
                   return '美元日元';
+                }
+                if(input=="USDHKD"){
+                  return '美元港币';
+                }
+                if(input=="XAUUSD"){
+                  return "黄金";
+                }
+                if(input=="XAGUSD"){
+                  return "白银";
                 }
             }else{
                 return "undfined";
