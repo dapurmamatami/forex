@@ -17,6 +17,11 @@
                 function switchItem(subPage) {
                     $scope.subPage = subPage;
                 }
+
+                $scope.$on('$stateChangeSuccess', function () {
+                    console.info('ss');
+                    $scope.subPage = $state.params.subPage;
+                });
             }
         };
     }
