@@ -45,11 +45,6 @@
                 scope.inputContent = '';
                 scope.tRemainSum = 0 ;
                 scope.matchCommentContent = matchCommentContent;
-
-                scope.ngFocus = ngFocus;
-                scope.ngkeypress = ngkeypress;
-                scope.ngkeyup = ngkeyup;
-
                 
                 function matchCommentContent(){
                     var contentLength = scope.inputContent.length;

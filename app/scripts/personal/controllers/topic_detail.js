@@ -28,7 +28,9 @@
                     if(data.statecode){
                          if(!commentLength){
                               $scope.topicDetailData = data.data;
+                              $scope.mapKeyVal = data.data.mapKeyVal;
                               $scope.content = data.data.content;
+                              console.info(data.data)
                               $scope.commentList = $scope.topicDetailData.comment_list;
                               $scope.anyMore = $scope.commentList.length<10?false:true;
                               $scope.isMy = (data.data.publisher_id == $scope.personal.user_code);
@@ -132,6 +134,9 @@
                           $scope.toastMsg = "评论成功！";
                           $scope.topicDetailData.comment_sum=$scope.topicDetailData.comment_sum+1;
                           $scope.topicDetailData.comment_list.unshift(data.data)
+
+                          $scope.$parent.mapKeyVal = angular.extend($scope.$parent.mapKeyVal,data.data.mapKeyVal);
+
                           //getTopicInfo();
                       }else{
                           $scope.toastMsg = "评论失败";
@@ -153,6 +158,17 @@
             var commentLength = $scope.commentList.length;
             getTopicInfo(commentLength);
         }
+
+        communicate.getFanInfos($scope.personal.user_code).then(function(data){
+            if(data.statecode){
+              var fans_info = Array();
+              for(var aitem in data.data){
+                  fans_info.push(data.data[aitem].userName);
+              }
+              $scope.fans_info = fans_info;
+            }
+
+          })
 
         getTopicInfo(0);
     }

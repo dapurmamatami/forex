@@ -13,6 +13,7 @@
         $scope.showReply = false;    //显示回复的开关
         $scope.isMy = ($scope.aitem.comment_publisherid == $scope.personal.user_code);      ///显示删除按钮  如果是自己的则可以删除
         $scope.discussList = $scope.aitem.discuss_list;
+        $scope.mapKeyVal = $scope.aitem.mapKeyVal;
         $scope.matchCommentContent= matchCommentContent;
         $scope.doSupport = doSupport;
         $scope.showDoComment = showDoComment;
@@ -100,7 +101,7 @@
           $scope.doComment = doComment;
           $scope.loadAll = loadAll;
           $scope.discussList = $scope.aitem.discuss_list;
-
+          $scope.mapKeyVal = $scope.aitem.mapKeyVal;
 
           $scope.matchCommentContent = matchCommentContent;
           // $scope.showDoCommentAndAt = showDoCommentAndAt;

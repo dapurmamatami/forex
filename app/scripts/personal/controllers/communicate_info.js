@@ -176,7 +176,9 @@
               .then(function(data){
                   if(data.statecode){
                       $scope.toastShow = 'cm-enter';
+
                       $scope.$parent.mCdata.unshift(data.data);
+                      $scope.$parent.mapKeyVal = angular.extend($scope.$parent.mapKeyVal,data.data.mapKeyVal);
                       $timeout(function(){
                           $scope.toastShow = 'cm-leave';
                           $timeout(function(){
@@ -185,7 +187,7 @@
                       },1000);
                   }
           },function(){});
-          $scope.tempTopicContent =$scope.inputContent;
+          $scope.tempTopicContent =$scope.inputontent;
           $scope.inputContent = "";
           $scope.tRemainSum = 0;
       }
