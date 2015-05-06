@@ -100,7 +100,7 @@
                           <p class = "communicateinfo__ptime">{{mData['ptime'] | startNow}}前</p>
                         </div>
                         <div class = "outinfo">
-                          <img class = "outinfo__icon" ng-src="/images/forex_icon/{{mData['relation']['out_type']|lowercase}}@2x.png">
+                          <span class = "outinfo__icon icon-forex-large-{{mData['relation']['out_type'].toLowerCase()}}" ></span>
                           <div class = "base_info">
                             <p class="base_info__name">{{mData['relation']['out_type']}}</p>
                             <p class="communicateinfo__ptime base_info__htime">持仓7小时23分钟</p>

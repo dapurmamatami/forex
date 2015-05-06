@@ -5,8 +5,32 @@
     <div class="topic-info">
 
         <div class="topic-content">
+
+
+
             <span class = "focus_name" ng-click="skipToSummary(topicDetailData.publisher_id)">{{topicDetailData.publisher_name}}</span>
-            <tw-content-show  was='true' ng-show="content"  info="content"></tw-content-show>
+
+
+            <div ng-if = "topicDetailData.topic_type==1" class="communicate-out">
+                <div>
+                    <span class="focus_name"  ng-click="skipToSummary(topicDetailData.publisher_id)">{{topicDetailData['username']}}</span> 
+                    <span> 手动平仓 </span>
+                    <span class="focus_name" ng-click="skipToSymbol(topicDetailData['relation']['out_type'])">{{topicDetailData['relation']['out_type']}}</span>
+                    <p class = "communicateinfo__ptime">{{topicDetailData['ptime'] | startNow}}前</p>
+                </div>
+                <div class = "outinfo">
+                    <span class = "outinfo__icon icon-forex-large-{{topicDetailData['relation']['out_type'].toLowerCase()}}"></span>
+                    <div class = "base_info">
+                        <p class="base_info__name" ng-click="skipToSymbol(topicDetailData['relation']['out_type'])">{{topicDetailData['relation']['out_type']}}</p>
+                        <p class="communicateinfo__ptime base_info__htime">持仓时间 {{topicDetailData['relation']['close_time']-topicDetailData['relation']['open_time']|startNow}}</p>
+                    </div>
+                    <span class = "outinfo__profit" >{{topicDetailData['relation']['profit_point']}}%</span>
+                </div>
+            </div>
+
+
+
+            <tw-content-show  was='true' ng-show="content"  info="content" ng-if="topicDetailData.topic_type==0 || topicDetailData.topic_type==3"></tw-content-show>
             <div class="tramsmit" ng-if="topicDetailData.topic_type==3">
                 <span class = "tramsmit__focus_name">{{topicDetailData['relation']['publisher_name']}}</span>
                 <tw-content-show   class = "tramsmit__content" info="topicDetailData['relation']['content']"></tw-content-show>
@@ -19,14 +43,17 @@
                       <span ng-click="skipDetail(topicDetailData.relation.topicid)"> 详情</span>
                     </div>
                 </div>
-            </div>
+            </div>      
+
+
+
 
             <div>
                 <span class = "communicateinfo__ptime">{{topicDetailData['ptime'] | startNow }}前</span>
                 <div class = "topic-other-info">
                     <span ng-show="isMy"  ng-click="openConfirmDeleteC(topicDetailData.topicid)">删除 |</span>
                     <span ng-click="doSupport()">赞({{topicDetailData['support_sum']}}) </span>|
-                    <span ng-click="doTransmit(topicDetailData)"> 转发({{topicDetailData['tramsmit_sum']}}) </span>|
+                    <span ng-click="doTransmit(topicDetailData)" ng-if="topicDetailData.topic_type==0 || topicDetailData.topic_type==3"> 转发({{topicDetailData['tramsmit_sum']}}) |</span>
                     <span ng-click="showDropComment()"> 评论({{topicDetailData['comment_sum']}}) </span>
                 </div>
             </div>

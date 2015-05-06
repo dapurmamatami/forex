@@ -79,7 +79,7 @@
                 <img class = "communicateinfo__user-icon" src="/avatar/{{mData.publisher_id}}_50.jpg">
                 <div class="communicate-out">
                     <div>
-                        <span class="focus_name"  ng-click="skipToSummary(mData.relation.publisher_id)">{{mData['relation']['username']}}</span> 
+                        <span class="focus_name"  ng-click="skipToSummary(mData.publisher_id)">{{mData['relation']['username']}}</span> 
                         <span> 手动平仓 </span>
                         <span class="focus_name" ng-click="skipToSymbol(mData['relation']['out_type'])">{{mData['relation']['out_type']}}</span>
                         <p class = "communicateinfo__ptime">{{mData['ptime'] | startNow}}前</p>

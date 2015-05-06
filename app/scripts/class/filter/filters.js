@@ -81,6 +81,9 @@
                 }if(input=="WTOil"){
                   return '美元日元';
                 }
+                if(inpurt=="USDHKD"){
+                  return '美元港币'
+                }
             }else{
                 return "undfined";
             }
