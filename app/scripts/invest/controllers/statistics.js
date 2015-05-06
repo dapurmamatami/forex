@@ -22,13 +22,13 @@
             $scope.$watch(function () {
                 return $scope.$parent.accountType;
             }, function () {
-                paintChart(7, '近 1 周内'); 
-                getSummaryReport(7); 
+                paintChart(30, '近 1 个月内'); 
+                getSummaryReport(30); 
             }, true);
         } else {
             $scope.accountType.key = 'real';
-            paintChart(7, '近 1 周内');    
-            getSummaryReport(7);
+            paintChart(30, '近 1 个月内');    
+            getSummaryReport(30);
         }
 
         function paintChart(value, valShow) {
