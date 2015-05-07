@@ -20,13 +20,13 @@
                   return '瑞元日元';
                 }
                 if(input=="EURAUD") {
-                  return '欧元瑞元';
+                  return '欧元瑞士法郎';
                 }
                 if(input=="EURCHF"){
-                  return '欧元瑞元';
+                  return '欧元瑞士法郎';
                 }
                 if(input=="EURGBP"){
-                  return '欧元英元';
+                  return '欧元英镑';
                 }
                 if(input=="EURJPY"){
                   return '欧元日元';
@@ -35,13 +35,13 @@
                   return '欧元美元';
                 }
                 if(input=="GBPCHF"){
-                  return '英日瑞元';
+                  return '英日瑞士法郎';
                 }
                 if(input=="GBPJPY"){
-                  return '英元日元';
+                  return '英镑日元';
                 }
                 if(input=="GBPUSD"){
-                  return '英元美元';
+                  return '英镑美元';
                 }
                 if(input=="NZDUSD"){
                   return '新西兰元美元';
@@ -50,7 +50,7 @@
                   return '美元加元';
                 }
                 if(input=="USDCHF"){
-                  return '美元瑞元';
+                  return '美元瑞士法郎';
                 }
                 if(input=="USDJPY"){
                   return '美元日元';
