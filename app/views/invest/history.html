@@ -53,7 +53,7 @@
                         </p>
                     </div>
                     <div class="col-xs-3">
-                        <a class="order_item__copied_trader" ng-href="#/invest/{{order.user_code}}/summary" ng-if="orderType === 'normal'">
+                        <a class="order_item__copied_trader"  target="_blank" ng-href="#/invest/{{order.user_code}}/summary" ng-if="orderType === 'normal'">
                             {{order.username}}
                         </a>
                         <span class="order_item__holding_time" ng-if="orderType === 'not_copy'">
@@ -101,12 +101,12 @@
             <li class="order_item bg-white" ng-repeat="copiedTrader in copiedTraders">
                 <div class="row copied_trader_info">
                     <div class="col-xs-1">
-                        <a ng-href="#/invest/{{copiedTrader.user_code}}/summary">
+                        <a target="_blank" ng-href="#/invest/{{copiedTrader.user_code}}/summary">
                             <img class="copied_trader_info__photo" ng-src="/avatar/{{copiedTrader.user_code}}_50.jpg" alt="**" style="width:50px;height:50px;">
                         </a>
                     </div>
                     <div class="col-xs-5 text-left">
-                        <a class="copied_trader_info__name" ng-href="#/invest/{{copiedTrader.user_code}}/summary"> 
+                        <a class="copied_trader_info__name" target="_blank" ng-href="#/invest/{{copiedTrader.user_code}}/summary"> 
                             {{copiedTrader.username}}
                         </a>
                         <br/>

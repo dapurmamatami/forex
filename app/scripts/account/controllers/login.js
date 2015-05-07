@@ -47,7 +47,7 @@
                             
                             // 不会出现，前端做了验证
                             if ($scope.callbackErr.status === 1) {
-                                $scope.callbackErr.message = '手机号码格式不正确';
+                                $scope.callbackErr.message = '账号格式不正确';
                             }
                             
                             if ($scope.callbackErr.status === 2) {

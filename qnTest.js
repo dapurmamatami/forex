@@ -6,7 +6,7 @@ var client = qn.create({
     accessKey: 'LDNKlOrqLzBqq1N4-QzcmEXGuVwnQ2NdFq5H-Sv0',
     secretKey: 'vqXxIhjrqbi-7MNgSlA4zmysZuJTCK-0qxy2-Sxo',
     bucket: 'tigerwit-personal',
-    domain: '7xiuhc.com1.z0.glb.clouddn.com'
+    domain: 'https://dn-itigerwit.qbox.me'
 });
 
 var options = [{
