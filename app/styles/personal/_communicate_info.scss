@@ -220,7 +220,6 @@
             @include m(out){
                 float:right;
                 width:415px;
-
                 @include b(outinfo){
                     border: 1px solid transparent;
                     border-color:$brand-border-color;

@@ -74,7 +74,7 @@
         </div>
 
 
-        <div ng-if = "item['topic_type']==1" ng-controller="PersonalCommunicateDoController">
+        <div style="overflow:hidden" ng-if = "item['topic_type']==1" ng-controller="PersonalCommunicateDoController">
             <div class="communicate" ng-init="mData = item">
                 <img class = "communicateinfo__user-icon" src="/avatar/{{mData.publisher_id}}_50.jpg">
                 <div class="communicate-out">
@@ -91,14 +91,18 @@
                             <p class="communicateinfo__ptime base_info__htime">持仓时间 {{mData['relation']['close_time']-mData['relation']['open_time']|startNow}}</p>
                         </div>
                         <span class = "outinfo__profit" >{{mData['relation']['profit_point']}}%</span>
+                        <div class = "communicateinfo__other_info">
+                            <span ng-click="doSupport(mData.topicid)">赞({{mData['support_sum']}}) </span>|
+                            <span ng-click="showDropComment()"> 评论({{mData['comment_sum']}}) </span>|
+                            <span ng-click="skipDetail(mData.topicid)"> 详情</span>
+                        </div>
                     </div>
-                    <div class = "communicateinfo__other_info">
-                        <span ng-click="doSupport(mData.topicid)">赞({{mData['support_sum']}}) </span>|
-                        <span ng-click="showDropComment()"> 评论({{mData['comment_sum']}}) </span>|
-                        <span ng-click="skipDetail(mData.topicid)"> 详情</span>
-                    </div>
+                    
+
+                    <tw-publish t-remain-sum="tRemainSum" input-char = 'inputChar' input-content="inputContent" toast-msg="toastMsg" ng-show="commentShowToggle" toast-show = 'showOrNo' do-comment="doComment()" fans-info="fans_info" ></tw-publish>
                 </div>
-                <tw-publish t-remain-sum="tRemainSum" input-char = 'inputChar' input-content="inputContent" toast-msg="toastMsg" ng-show="commentShowToggle" toast-show = 'showOrNo' do-comment="doComment()" fans-info="fans_info" ></tw-publish>
+
+                
                 <!--<div class="topic_or_comment" ng-show="commentShowToggle">-->
                     <!--<textarea ng-model="inputContent"></textarea>-->
                     <!--<div class = "topic_or_comment__doToast" ng-class = "showOrNo">-->
