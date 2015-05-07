@@ -107,14 +107,26 @@
             <i class="fa fa-search"></i>
             查看详细规则
         </a>
-        <br>
+        <br> 
+        
         <div class="text-center mg-tp-15">
-            <button class="btn btn-primary" ng-show="copyType === 'demo'" ng-disabled="copyForm.$invalid || demoCopy.minError || demoCopy.maxError" ng-click="submitCopyForm('demoCopy')">
-                确定模拟复制
-            </button>
-            <button class="btn btn-primary" ng-show="copyType === 'real'" ng-disabled="copyForm.$invalid || realCopy.minError || realCopy.maxError" ng-click="submitCopyForm('realCopy')">
-                确定真实复制
-            </button>
+            <div ng-show="copyType === 'demo'" >
+                <p class="alert alert-danger" ng-show="demoCopy.backError">
+                    {{demoCopy.backError}}
+                </p>
+                <button class="btn btn-primary" ng-disabled="copyForm.$invalid || demoCopy.minError || demoCopy.maxError" ng-click="submitCopyForm('demoCopy')">
+                    确定模拟复制
+                </button>
+            </div>
+
+            <div ng-show="copyType === 'real'">
+                <p class="alert alert-danger" ng-show="realCopy.backError">
+                    {{realCopy.backError}}
+                </p>
+                <button class="btn btn-primary"  ng-disabled="copyForm.$invalid || realCopy.minError || realCopy.maxError" ng-click="submitCopyForm('realCopy')">
+                    确定真实复制
+                </button>
+            </div>
         </div>
     </div>
     

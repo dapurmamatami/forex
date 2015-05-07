@@ -5,10 +5,10 @@
         .module('tigerwitPersonalApp')
         .controller('PersonalInfoController', PersonalInfoController);
 
-    PersonalInfoController.$inject = ['$location','$scope', '$timeout','$modal', '$cookieStore',
+    PersonalInfoController.$inject = ['$rootScope', '$location','$scope', '$timeout','$modal', '$cookieStore',
             '$state', '$q','config', 'account', 'money', 'communicate', 'copy'];
 
-    function PersonalInfoController($location, $scope, $timeout, $modal, $cookieStore, $state,
+    function PersonalInfoController($rootScope, $location, $scope, $timeout, $modal, $cookieStore, $state,
             $q, config, account, money, communicate, copy) {
         $scope.registerRealStep = 1;
         $scope.userType = {
@@ -20,6 +20,9 @@
         $scope.demoEquityInfo = {}; // 模拟账户资产信息
         $scope.registerReal = registerReal;  // 注册真实账户（实名认证）
         $scope.skipDetail = skipDetail;
+
+        // 显示在线客服图标
+        $rootScope.floatBtnShow = true;
 
         // 获取 personal 的信息
         account.getPersonalInfo().then(function (data) {
