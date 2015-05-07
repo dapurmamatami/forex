@@ -14,9 +14,11 @@
 
 			if(data.is_succ){
 				$scope.mData = data.data;
+				$scope.$broadcast('hideLoadingImg');
 			}
 		});
 		function skipToSummary(touchId){
+		   if(!touchId) return;
           $state.go('invest.subPage',{userCode:touchId,subPage:'summary'});
         }
     }

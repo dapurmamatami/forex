@@ -1,9 +1,10 @@
-<div class = "topicDetail">
+<div class = "topicDetail" style="position:relative;">
+    <div tw-loading-img></div>
+
+    
     <img src="/avatar/{{topicDetailData.publisher_id}}_50.jpg"/>
-
-
     <div class="topic-info">
-
+    
         <div class="topic-content">
 
 
@@ -60,18 +61,6 @@
 
             <tw-publish input-content="inputContent" toast-msg="toastMsg" t-remain-sum="tRemainSum"
                         toast-show = 'showOrNo' fans-info = "fans_info" do-comment="doComment()"></tw-publish>
-
-
-            <!--<div class="topicOrComment">-->
-                <!--<textarea ng-model="inputContent" ng-change="matchCommentContent()"></textarea>-->
-                <!--<div class = "topicOrComment__doToast" ng-class="showOrNo">-->
-                    <!--{{toastMsg}}-->
-                <!--</div>-->
-                <!--<div class = "do_style" >-->
-                    <!--<span>剩余 {{tRemainSum}}/1024 字</span>-->
-                    <!--<a class="do_style__publish" ng-click="doComment()"> 回复我的评论 </a>-->
-                <!--</div>-->
-            <!--</div>-->
         </div>
 
 
@@ -130,18 +119,7 @@
                                 <a class="reply__saysome" ng-click="showDoCommentAndAt()">我也说两句</a>
                             </div>
                             <tw-publish input-content="inputContent" toast-msg="toastMsg" t-remain-sum="tRemainSum"
-                                                    toast-show = 'showOrNo' do-comment="doComment()" ng-show="showReply"></tw-publish>
-                            <!-- <div class="reply__area" ng-show="showReply">
-                                <textarea ng-model="inputContent" ng-change="matchCommentContent()"></textarea>
-                                <div class = "topicOrComment__doToast" ng-class="showOrNo">
-                                  {{toastMsg}}
-                                </div>
-                                <div class = "topicOrComment__dostyl" >
-                                    <span>剩余 {{tRemai nSum}}/1024 字</span>
-                                    <a class = "do_style__publish" ng-click="doComment()"> 发表 </a>
-                                </div>
-                                <div style="clear:both"></div>
-                            </div> -->
+                                                    toast-show = 'showOrNo' do-comment="doComment()" ng-show="showReply"></tw-publish> 
                         </div>
                     </div>
                 </div>

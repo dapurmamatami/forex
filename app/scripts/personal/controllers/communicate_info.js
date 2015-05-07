@@ -89,6 +89,7 @@
                       }else{
                          $scope.anyMore = true;
                       }
+                      $scope.$broadcast('hideLoadingImg');
                   }else{
                       console.log("statemessage:"+data.statemessage);
                   }
@@ -113,6 +114,7 @@
                       }else{
                           $scope.anyMore = true;
                       }
+                      $scope.$broadcast('hideLoadingImg');
                   }else{
 
                   }

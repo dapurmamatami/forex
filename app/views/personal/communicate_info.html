@@ -1,4 +1,6 @@
 <div class="communicateinfo">
+    
+
     <div class = "head">
         <span class = "head__title">{{title_name}}</span>
 
@@ -40,151 +42,125 @@
         <hr />
     </div>
 
-
-    <div class = "communicatelist" ng-repeat="item in mCdata">
-        <div ng-if = "item['topic_type']==0" ng-controller="PersonalCommunicateDoController">
-            <div class="communicate" ng-init="mData = item">
-                <img class = "communicateinfo__user-icon" src="/avatar/{{mData.publisher_id}}_50.jpg">
-                <div class="communicate-text">
-                    <span class = "focus_name" ng-click="skipToSummary(mData.publisher_id)">{{mData['publisher_name']}}</span>
-                    <tw-content-show info = "mData['content']" map = "mapKeyVal"></tw-content-show>
-                    <div>
-                        <span class = "communicateinfo__ptime">{{mData['ptime'] | startNow }}前</span>
-                        <div class = "communicateinfo__other_info">
-                            <span ng-click="doSupport(mData)">赞({{mData['support_sum']}}) </span>|
-                            <span ng-show="isSelf" ng-click="doTransmit(mData)"> 转发({{mData['tramsmit_sum']}}) |</span>
-                            <span ng-click="showDropComment()"> 评论({{mData['comment_sum']}}) </span>|
-                            <span ng-click="skipDetail(mData.topicid)"> 详情 {{inputChar}}</span>
-                        </div>
-                    </div>
-                    <tw-publish t-remain-sum="tRemainSum" input-char = 'inputChar' input-content="inputContent" toast-msg="toastMsg" ng-show="commentShowToggle" toast-show = 'showOrNo' do-comment="doComment()" fans-info="fans_info" ></tw-publish>
-                    <!--<div class="topic_or_comment" ng-show="commentShowToggle">-->
-                        <!--<textarea ng-model="inputContent" ng-change="matchCommentContent()"></textarea>-->
-                        <!--<div class = "topic_or_comment__doToast" ng-class="showOrNo">-->
-                            <!--{{toastMsg}}-->
-                        <!--</div>-->
-                        <!--<div class = "topic_or_comment__dostyl" >-->
-                            <!--<span>剩余 {{tRemainSum}}/1024 字</span>-->
-                            <!--<a  class="do_style__publish" ng-click="doComment()"> 评论 </a>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                </div>
-            </div>
-            <hr />
-        </div>
-
-
-        <div style="overflow:hidden" ng-if = "item['topic_type']==1" ng-controller="PersonalCommunicateDoController">
-            <div class="communicate" ng-init="mData = item">
-                <img class = "communicateinfo__user-icon" src="/avatar/{{mData.publisher_id}}_50.jpg">
-                <div class="communicate-out">
-                    <div>
-                        <span class="focus_name"  ng-click="skipToSummary(mData.publisher_id)">{{mData['relation']['username']}}</span> 
-                        <span> 手动平仓 </span>
-                        <span class="focus_name" ng-click="skipToSymbol(mData['relation']['out_type'])">{{mData['relation']['out_type']}}</span>
-                        <p class = "communicateinfo__ptime">{{mData['ptime'] | startNow}}前</p>
-                    </div>
-                    <div class = "outinfo">
-                        <span class = "outinfo__icon icon-forex-large-{{mData['relation']['out_type'].toLowerCase()}}"></span>
-                        <div class = "base_info">
-                            <p class="base_info__name" ng-click="skipToSymbol(mData['relation']['out_type'])">{{mData['relation']['out_type']}}</p>
-                            <p class="communicateinfo__ptime base_info__htime">持仓时间 {{mData['relation']['close_time']-mData['relation']['open_time']|startNow}}</p>
-                        </div>
-                        <span class = "outinfo__profit" >{{mData['relation']['profit_point']}}%</span>
-                        <div class = "communicateinfo__other_info">
-                            <span ng-click="doSupport(mData.topicid)">赞({{mData['support_sum']}}) </span>|
-                            <span ng-click="showDropComment()"> 评论({{mData['comment_sum']}}) </span>|
-                            <span ng-click="skipDetail(mData.topicid)"> 详情</span>
-                        </div>
-                    </div>
-                    
-
-                    <tw-publish t-remain-sum="tRemainSum" input-char = 'inputChar' input-content="inputContent" toast-msg="toastMsg" ng-show="commentShowToggle" toast-show = 'showOrNo' do-comment="doComment()" fans-info="fans_info" ></tw-publish>
-                </div>
-
-                
-                <!--<div class="topic_or_comment" ng-show="commentShowToggle">-->
-                    <!--<textarea ng-model="inputContent"></textarea>-->
-                    <!--<div class = "topic_or_comment__doToast" ng-class = "showOrNo">-->
-                        <!--{{toastMsg}}-->
-                    <!--</div>-->
-                    <!--<div class = "topic_or_comment__dostyl" >-->
-                        <!--<span>剩余 1024/1024 字</span>-->
-                        <!--<a ng-click="doComment()"> 评论 </a>-->
-                    <!--</div>-->
-                <!--</div>-->
-            </div>
-            <hr/>
-        </div>
-
-
-        <div ng-if="item['topic_type']==2" ng-controller="PersonalCommunicateDoController">
-            <div class="communicate" ng-init="mData = item">
-                <img class = "communicateinfo__user-icon" src="/avatar/{{mData.publisher_id}}_50.jpg">
-                <div class="communicate-copy">
-                    <div>
-                        <span class="focus_name" ng-click="skipToSummary(mData.relation.be_follow_id)">{{mData['relation']['bename']}}</span>
-                        <span> 开始复制 </span>
-                        <span class="focus_name"  ng-click="skipToSummary(mData.relation.by_follow_id)">{{mData['relation']['byname']}}</span>
-                        <p class = "communicateinfo__ptime">{{mData['ptime']| startNow}}前</p>
-                    </div>
-                    <div class = "copy_info">
-                        <img class="copy_info__icon">
-                        <div class = "copy_base_info">
-                            <p class="focus_name" ng-click="skipToSummary(mData.content.by_follow_id)" >{{mData['relation']['byname']}}</p>
-                            <p class="bcount">目前共 <strong>{{mData['relation']['be_follow_sum']}}</strong> 名复制者</p>
-                        </div>
-                        <button class = "docopy">复制</button>
-                    </div>
-                </div>
-            </div>
-            <hr/>
-        </div>
-
-        <div ng-if="item['topic_type']==3" ng-controller="PersonalCommunicateDoController" >
-
-            <div class="communicate" ng-init="mData = item">
-                <img class = "communicateinfo__user-icon" src="/avatar/{{mData.publisher_id}}_50.jpg">
-                <div class="communicate-text">
-                    <span class = "focus_name" ng-click="skipToSummary(mData.publisher_id)">{{mData['publisher_name']}}</span>
-                    <p class = "communicateinfo__ptime">{{mData['ptime'] | startNow}}前</p>
-                    <tw-content-show info = "mData['content']"></tw-content-show>
-                    <div class="tramsmit">
-                        <span class = "tramsmit__focus_name" ng-click="skipToSummary(mData.relation.publisher_id)">{{mData['relation']['publisher_name']}}</span>
-                        <tw-content-show class = "tramsmit__content" info="mData['relation']['content']"></tw-content-show>
+    <div class = "communicatelist" >
+        <div tw-loading-img></div>
+        <div ng-repeat="item in mCdata">
+            <div ng-if = "item['topic_type']==0" ng-controller="PersonalCommunicateDoController">
+                <div class="communicate" ng-init="mData = item">
+                    <img class = "communicateinfo__user-icon" src="/avatar/{{mData.publisher_id}}_50.jpg">
+                    <div class="communicate-text">
+                        <span class = "focus_name" ng-click="skipToSummary(mData.publisher_id)">{{mData['publisher_name']}}</span>
+                        <tw-content-show info = "mData['content']" map = "mapKeyVal"></tw-content-show>
                         <div>
-                            <span class = "tramsmit__ptime">{{mData['relation']['ptime'] | startNow }}前</span>
-                            <div class = "tramsmit_other_info">
-                                <span ng-click="doSupport(mData.relation)">赞({{mData['relation']['support_sum']}}) </span>|
-                                <span ng-show="isSelf" ng-click="doTransmit(mData.relation)"> 转发({{mData['relation']['tramsmit_sum']}}) |</span>
-                                <span ng-click="skipDetail(mData.relation.topicid)"> 评论({{mData['relation']['comment_sum']}}) </span>|
-                                <span ng-click="skipDetail(mData.relation.topicid)"> 详情</span>
+                            <span class = "communicateinfo__ptime">{{mData['ptime'] | startNow }}前</span>
+                            <div class = "communicateinfo__other_info">
+                                <span ng-click="doSupport(mData)">赞({{mData['support_sum']}}) </span>|
+                                <span ng-show="isSelf" ng-click="doTransmit(mData)"> 转发({{mData['tramsmit_sum']}}) |</span>
+                                <span ng-click="showDropComment()"> 评论({{mData['comment_sum']}}) </span>|
+                                <span ng-click="skipDetail(mData.topicid)"> 详情 {{inputChar}}</span>
                             </div>
                         </div>
+                        <tw-publish t-remain-sum="tRemainSum" input-char = 'inputChar' input-content="inputContent" toast-msg="toastMsg" ng-show="commentShowToggle" toast-show = 'showOrNo' do-comment="doComment()" fans-info="fans_info" ></tw-publish>
+      
+                    </div>
+                </div>
+                <hr />
+            </div>
+
+
+            <div style="overflow:hidden" ng-if = "item['topic_type']==1" ng-controller="PersonalCommunicateDoController">
+                <div class="communicate" ng-init="mData = item">
+                    <img class = "communicateinfo__user-icon" src="/avatar/{{mData.publisher_id}}_50.jpg">
+                    <div class="communicate-out">
+                        <div>
+                            <span class="focus_name"  ng-click="skipToSummary(mData.publisher_id)">{{mData['relation']['username']}}</span> 
+                            <span> 手动平仓 </span>
+                            <span class="focus_name" ng-click="skipToSymbol(mData['relation']['out_type'])">{{mData['relation']['out_type']}}</span>
+                            <p class = "communicateinfo__ptime">{{mData['ptime'] | startNow}}前</p>
+                        </div>
+                        <div class = "outinfo">
+                            <span class = "outinfo__icon icon-forex-large-{{mData['relation']['out_type'].toLowerCase()}}"></span>
+                            <div class = "base_info">
+                                <p class="base_info__name" ng-click="skipToSymbol(mData['relation']['out_type'])">{{mData['relation']['out_type']}}</p>
+                                <p class="communicateinfo__ptime base_info__htime">持仓时间 {{mData['relation']['close_time']-mData['relation']['open_time']|startNow}}</p>
+                            </div>
+                            <span class = "outinfo__profit" >{{mData['relation']['profit_point']}}%</span>
+                            <div class = "communicateinfo__other_info">
+                                <span ng-click="doSupport(mData.topicid)">赞({{mData['support_sum']}}) </span>|
+                                <span ng-click="showDropComment()"> 评论({{mData['comment_sum']}}) </span>|
+                                <span ng-click="skipDetail(mData.topicid)"> 详情</span>
+                            </div>
+                        </div>
+                        
+
+                        <tw-publish t-remain-sum="tRemainSum" input-char = 'inputChar' input-content="inputContent" toast-msg="toastMsg" ng-show="commentShowToggle" toast-show = 'showOrNo' do-comment="doComment()" fans-info="fans_info" ></tw-publish>
                     </div>
 
+                    
+                </div>
+                <hr/>
+            </div>
 
-                    <div>
-                        <div class = "communicateinfo__other_info">
-                            <span ng-click="doSupport(mData)">赞({{mData['support_sum']}}) </span>|
-                            <span ng-click="showDropComment()"> 评论({{mData['comment_sum']}}) </span>|
-                            <span ng-click="skipDetail(mData.topicid)"> 详情</span>
+
+            <div ng-if="item['topic_type']==2" ng-controller="PersonalCommunicateDoController">
+                <div class="communicate" ng-init="mData = item">
+                    <img class = "communicateinfo__user-icon" src="/avatar/{{mData.publisher_id}}_50.jpg">
+                    <div class="communicate-copy">
+                        <div>
+                            <span class="focus_name" ng-click="skipToSummary(mData.relation.be_follow_id)">{{mData['relation']['bename']}}</span>
+                            <span> 开始复制 </span>
+                            <span class="focus_name"  ng-click="skipToSummary(mData.relation.by_follow_id)">{{mData['relation']['byname']}}</span>
+                            <p class = "communicateinfo__ptime">{{mData['ptime']| startNow}}前</p>
+                        </div>
+                        <div class = "copy_info">
+                            <img class="copy_info__icon">
+                            <div class = "copy_base_info">
+                                <p class="focus_name" ng-click="skipToSummary(mData.content.by_follow_id)" >{{mData['relation']['byname']}}</p>
+                                <p class="bcount">目前共 <strong>{{mData['relation']['be_follow_sum']}}</strong> 名复制者</p>
+                            </div>
+                            <button class = "docopy">复制</button>
                         </div>
                     </div>
-                    <tw-publish t-remain-sum="tRemainSum" input-char = 'inputChar' input-content="inputContent" toast-msg="toastMsg" ng-show="commentShowToggle" toast-show = 'showOrNo' do-comment="doComment()" fans-info="fans_info" ></tw-publish>
-                    <!--<div class="topic_or_comment" ng-show="commentShowToggle">-->
-                        <!--<textarea ng-model="inputContent" ng-change="matchCommentContent()"></textarea>-->
-                        <!--<div class = "topic_or_comment__doToast" ng-class="showOrNo">-->
-                            <!--{{toastMsg}}-->
-                        <!--</div>-->
-                        <!--<div class = "topic_or_comment__dostyl" >-->
-                            <!--<span>剩余 {{tRemainSum}}/1024 字</span>-->
-                            <!--<a  class="do_style__publish" ng-click="doComment()"> 评论 </a>-->
-                        <!--</div>-->
-                    <!--</div>-->
                 </div>
+                <hr/>
             </div>
-            <hr/>
+
+            <div ng-if="item['topic_type']==3" ng-controller="PersonalCommunicateDoController" >
+
+                <div class="communicate" ng-init="mData = item">
+                    <img class = "communicateinfo__user-icon" src="/avatar/{{mData.publisher_id}}_50.jpg">
+                    <div class="communicate-text">
+                        <span class = "focus_name" ng-click="skipToSummary(mData.publisher_id)">{{mData['publisher_name']}}</span>
+                        <p class = "communicateinfo__ptime">{{mData['ptime'] | startNow}}前</p>
+                        <tw-content-show info = "mData['content']"></tw-content-show>
+                        <div class="tramsmit">
+                            <span class = "tramsmit__focus_name" ng-click="skipToSummary(mData.relation.publisher_id)">{{mData['relation']['publisher_name']}}</span>
+                            <tw-content-show class = "tramsmit__content" info="mData['relation']['content']"></tw-content-show>
+                            <div>
+                                <span class = "tramsmit__ptime">{{mData['relation']['ptime'] | startNow }}前</span>
+                                <div class = "tramsmit_other_info">
+                                    <span ng-click="doSupport(mData.relation)">赞({{mData['relation']['support_sum']}}) </span>|
+                                    <span ng-show="isSelf" ng-click="doTransmit(mData.relation)"> 转发({{mData['relation']['tramsmit_sum']}}) |</span>
+                                    <span ng-click="skipDetail(mData.relation.topicid)"> 评论({{mData['relation']['comment_sum']}}) </span>|
+                                    <span ng-click="skipDetail(mData.relation.topicid)"> 详情</span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div>
+                            <div class = "communicateinfo__other_info">
+                                <span ng-click="doSupport(mData)">赞({{mData['support_sum']}}) </span>|
+                                <span ng-click="showDropComment()"> 评论({{mData['comment_sum']}}) </span>|
+                                <span ng-click="skipDetail(mData.topicid)"> 详情</span>
+                            </div>
+                        </div>
+                        <tw-publish t-remain-sum="tRemainSum" input-char = 'inputChar' input-content="inputContent" toast-msg="toastMsg" ng-show="commentShowToggle" toast-show = 'showOrNo' do-comment="doComment()" fans-info="fans_info" ></tw-publish>
+           
+                    </div>
+                </div>
+                <hr/>
+            </div>
         </div>
     </div>
     <div class="btn-loading" ng-show="anyMore" ng-click="loadMore()" tw-loading-more>

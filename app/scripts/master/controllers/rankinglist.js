@@ -47,6 +47,7 @@
                       }else{
                           $scope.anyMore = true;
                       }
+                      $scope.$broadcast('hideLoadingImg');
                       $scope.$broadcast('stopLoadingMore');
                   }
               })

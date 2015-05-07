@@ -36,6 +36,7 @@
                               $scope.commentList = $scope.commentList.concat(data.data);
                               $scope.anyMore = $scope.commentList.length<10?false:true;
                          }
+                         $scope.$broadcast('hideLoadingImg');
                          $scope.$broadcast('stopLoadingMore');
 
                     }

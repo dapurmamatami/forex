@@ -209,6 +209,8 @@
 
     @include b(communicatelist){
 
+        position:relative;
+        min-height:100px;
         @include b(communicate) {
             height:100%;
             overflow:hidden;

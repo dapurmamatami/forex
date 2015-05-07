@@ -5,14 +5,15 @@
       <span class="">更新时间：2015-03-04 12:00 GMT</span>
   </div>
 
-  <div class="master_content_data">
+  <div class="master_content_data" style ="position:relative;min-height:100px">
+      <div tw-loading-img></div>
       <div ng-repeat="item in mData" class="master_data_item">
           <div class="master_data_detail">
               <div class="master_data_specific">
                   <img class="master_data_1" src="/avatar/{{item.user_code}}_50.jpg">
                   <div class="master_data_2">
                       <h3 class="focus_name" style="font-size:20px" ng-click="skipToSummary(item.user_code)">{{item.username}}</h3>
-                      <p>{{item.region_cn.state_name}},{{item.region_cn.city_name}}</p>
+                      <p>{{item.region_cn.state_name}} </p>
                   </div >
 
                   <div class="master_data_6">

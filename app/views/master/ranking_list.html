@@ -30,7 +30,8 @@
 
     </div>
 
-    <div class="table_content_data">
+    <div class="table_content_data" style="position:relative;min-height:100px">
+        <div tw-loading-img></div>
          <table class="table table-striped" >
               <thead>
                   <tr>
@@ -48,7 +49,7 @@
                               <img src="/avatar/{{item.user_code}}_50.jpg">
                               <div class="ranking_user_info">
                                   <a class="ranking_user_info__name" ng-click="skipToUser(item.user_code)">{{item.username}}</a>
-                                  <p class="ranking_user_info__addr">{{item.region_cn.city_name}},{{item.region_cn.state_name}}</p>
+                                  <p class="ranking_user_info__addr">{{item.region_cn.city_name}} {{item.region_cn.state_name}}</p>
                               </div>
                           </div>
                       </td>
@@ -62,7 +63,7 @@
                           {{item.total_pips}}
                       </td>
                       <td class="table_greem_border" ng-class="{table_buttom_border:item.id == listData[listData.length-1].id}">
-                         {{item.profit_rate}}
+                         {{item.profit_rate}}%
                       </td>
                   </tr>
               </tbody>
