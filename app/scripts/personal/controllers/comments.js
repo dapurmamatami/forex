@@ -160,7 +160,6 @@
           function loadAll(){
               communicate.getRemainDiscuss($scope.aitem.comment_id,$scope.discussList[$scope.discussList.length-1].comment_id)
                   .then(function(data){
-                      console.info(data)
                       if(data.statecode){
                           $scope.discussList = $scope.discussList.concat(data.data)
                       }

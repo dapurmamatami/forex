@@ -25,5 +25,4 @@
         }
         getCurrency();
     }
-    console.info("test4");
 })();

@@ -24,17 +24,14 @@
         function getTopicInfo(commentLength){
             communicate.topicDetail($scope.mTopicId ,commentLength)
                 .then(function(data){
-                    console.info(data)
                     if(data.statecode){
                          if(!commentLength){
                               $scope.topicDetailData = data.data;
                               $scope.mapKeyVal = data.data.mapKeyVal;
                               $scope.content = data.data.content;
-                              console.info(data.data)
                               $scope.commentList = $scope.topicDetailData.comment_list;
                               $scope.anyMore = $scope.commentList.length<10?false:true;
                               $scope.isMy = (data.data.publisher_id == $scope.personal.user_code);
-                              console.info("isMy:"+$scope.isMy);
                          }else{
                               $scope.commentList = $scope.commentList.concat(data.data);
                               $scope.anyMore = $scope.commentList.length<10?false:true;
