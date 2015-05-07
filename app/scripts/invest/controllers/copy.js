@@ -5,9 +5,11 @@
         .module('tigerwitPersonalApp')
         .controller('InvestCopyController', InvestCopyController);
 
-    InvestCopyController.$inject = ['$scope','$state' , '$modalInstance', 'copy', 'passedScope'];
+    InvestCopyController.$inject = ['$scope','$state' , '$modalInstance', 
+            '$timeout', 'copy', 'passedScope'];
 
-    function InvestCopyController($scope, $state, $modalInstance, copy, passedScope) {
+    function InvestCopyController($scope, $state, $modalInstance, $timeout, copy, 
+            passedScope) {
         $scope.copiedTrader = passedScope.user;
         $scope.personal = passedScope.personal;
         $scope.copyType = 'demo'; // 'demo' or 'real'
@@ -21,7 +23,8 @@
             isCopy: Boolean($scope.copiedTrader.demoCopyAmount), // 是否已经复制了
             isCloseOut: true, // 取消复制时是否平仓
             minError: '',
-            maxError: '' 
+            maxError: '',
+            backError: '' 
         };
         $scope.demoCopy.percent = toDecimal($scope.demoCopy.amount / $scope.demoCopy.balance * 100);
 
@@ -33,7 +36,8 @@
             isCopy: Boolean($scope.copiedTrader.realCopyAmount),
             isCloseOut: true,
             minError: '',
-            maxError: ''  
+            maxError: '',
+            backError: ''  
         };
         $scope.realCopy.percent = toDecimal($scope.realCopy.amount / $scope.realCopy.balance * 100); 
 
@@ -70,9 +74,10 @@
                     $scope[propName].amount).then(function (data) {
                 
                 if (!data.is_succ) {
-                    return;
+                    $scope[propName].backError = data.error_msg;
+                } else {
+                    updateCopiedTraderInfo($scope.copiedTrader, propName, copy);     
                 }
-                updateCopiedTraderInfo($scope.copiedTrader, propName, copy);     
             });
         }
 
