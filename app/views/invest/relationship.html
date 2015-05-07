@@ -43,12 +43,12 @@
             <li class="investor" ng-repeat="investor in investors">
                 <div class="row">
                     <div class="col-xs-1">
-                        <a ng-href="#/invest/{{investor.userCode}}/summary">
+                        <a target="_blank" ng-href="#/invest/{{investor.userCode}}/summary">
                             <img class="investor__photo" ng-src="{{investor.smAvatar}}" alt="**">
                         </a>
                     </div>
                     <div class="col-xs-5 investor__info">
-                        <a class="investor__name" ng-href="#/invest/{{investor.userCode}}/summary">
+                        <a class="investor__name" target="_blank" ng-href="#/invest/{{investor.userCode}}/summary">
                             {{investor.username}}
                         </a>
                         <p class="investor__location">
