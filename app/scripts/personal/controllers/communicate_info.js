@@ -274,6 +274,10 @@
               }
 
               function doTransmit(mData){
+                  if(angular.inArray($scope.personal.user_code,mData.tramsmit_list)){
+
+
+                  }
                   var modalInstance = $modal.open({
                       templateUrl:'/views/personal/tramsmit_model.html',
                       controller:'TramsmitController',

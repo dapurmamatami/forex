@@ -14,8 +14,8 @@
           $scope.loadMore = loadMore ;
           $scope.skipToUser = skipToUser;
 
-          $scope.period = 7;
-          $scope.head_title='最近 1 周';
+          // $scope.period = 7;
+          // $scope.head_title='最近 1 周';
           function showMenu() {
              $scope.showDropdown = true;
           }
@@ -73,6 +73,7 @@
           function loadMore(period,after){
               getMasterList(period,after);
           }
-          getMasterList(7,0);
+          changeData(180)
+          // getMasterList(7,0);
       }
 })();
