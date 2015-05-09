@@ -26,23 +26,30 @@ var options = [{
     extNames: ['.eot', '.svg', '.ttf', '.woff']
 }];
 
-options.forEach(function (folderItem) {
+/*options.forEach(function (folderItem) {
     var temptFolder = folderItem.folder;
     var temptExtName = folderItem.extNames;
 
     walkFolder(temptFolder, function (err, results) {
         results.forEach(function (fileItem) {
             var extName = path.extname(fileItem);
+            
             if (temptExtName.indexOf(extName) >= 0) {
-                    var relativePath = path.relative('./dist/', fileItem);
-                    client.upload(fs.createReadStream(fileItem), {key: relativePath}, function (err, result) {
-                        console.log(result)
-                    })
+                var relativePath = path.relative('./dist/', fileItem);
+                client.upload(fs.createReadStream(fileItem), {key: relativePath}, 
+                        function (err, result) {
+                    console.log(result)
+                });
             }
         });
     });
-});
+});*/
 
+//https://dn-itigerwit.qbox.me/
+
+/*fs.readFile('./dist/index.html', 'utf-8', function (err, data) {
+
+});*/
 
 
 function walkFolder(startPath, callback) {
