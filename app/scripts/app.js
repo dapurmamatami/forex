@@ -142,8 +142,16 @@ angular
                         controller:'PersonalInfoController'
                     },
                     'hd@master': {
-                        templateUrl: 'views/navbar/navbar-logined.html',
-                        controller: 'NavbarController'
+                        templateUrl: function ($stateParams) {
+                            
+                            return 'views/navbar/navbar-logined.html';
+                            
+                        },
+                        controllerProvider: function ($stateParams) {
+                        
+                            return 'NavbarController';
+                             
+                        }
                     },
                     'sidebar@master':{
                         templateUrl: 'views/master/siderbar.html',
@@ -156,7 +164,7 @@ angular
             })
             .state('master.subPage', {
                 url:'/master/:subPage',
-                authenticate: true,
+                //authenticate: true,
                 views:{
                     'content@master':{
                         templateUrl:function($stateParams){

@@ -26,7 +26,7 @@ var options = [{
     extNames: ['.eot', '.svg', '.ttf', '.woff']
 }];
 
-/*options.forEach(function (folderItem) {
+options.forEach(function (folderItem) {
     var temptFolder = folderItem.folder;
     var temptExtName = folderItem.extNames;
 
@@ -43,9 +43,8 @@ var options = [{
             }
         });
     });
-});*/
+});
 
-//https://dn-itigerwit.qbox.me/
 
 /*fs.readFile('./dist/index.html', 'utf-8', function (err, data) {
 
