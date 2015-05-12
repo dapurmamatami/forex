@@ -70,8 +70,8 @@
               $scope.listData = [];
               getMasterList(period,0);
           }
-          function loadMore(period,after){
-              getMasterList(period,after);
+          function loadMore(){
+              getMasterList($scope.period,$scope.listData[$scope.listData.length-1].id);
           }
           changeData(180)
           // getMasterList(7,0);
