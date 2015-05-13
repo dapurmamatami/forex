@@ -27,12 +27,11 @@
 @import "common/navbar";
 @import "common/layout";
 @import "common/dropdown";
-//@import "common/hd_order";
 @import "common/icons";
 @import "common/modal";
-//@import "common/content";
 @import "common/carousel";
 @import "common/sidebar";
+@import "common/pagination";
 
 
 @import "common/table_data";
@@ -80,6 +79,7 @@
 @import "money/deposit";
 @import "money/history";
 @import "money/withdraw";
+@import "money/bonus";
 
 @import "message/message";
 @import "message/ad_side";

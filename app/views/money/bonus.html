@@ -1,0 +1,147 @@
+<div class="money_content">
+    <div class="money_bonus">
+        <div class="date_searchbar">
+            <span class="date_searchbar__tip">日期</span>
+            <form class="form-inline" name="withdrawForm" novalidate>
+                <div class="input-group">
+                    <input class="form-control" 
+                           name="" 
+                           type="text"
+                           required>
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary" ng-click="openWithdrawMdl()">
+                            查询
+                        </button>
+                    </span>
+                </div>
+
+                <div ng-show="">
+                    <p class="alert alert-danger">
+                        请输入金额
+                    </p>
+                </div>
+            </form>
+        </div>
+
+        <h3 class="money_content__title">
+            分成明细
+        </h3>
+        <div class="money_content__h_divider"></div>
+
+        <div class="row">
+            <div class="col-xs-4 bonus_pnl">
+                <h4>当月分成</h4>
+                <p>
+                    <span class="bonus_pnl__number-danger">$44494.00</span>
+                    美元
+                </p>
+            </div>
+            <div class="col-xs-4 bonus_pnl">
+                <h4>累计分成</h4>
+                <p>
+                    <span class="bonus_pnl__number-danger">$44494.00</span>
+                    美元
+                </p>
+
+                <div class="bonus_pnl__v_divider"></div>
+            </div>
+        </div>
+
+        <div class="money_bonus__h_divider"></div>
+
+        <div class="row">
+            <div class="col-xs-4 bonus_pnl">
+                <h4>当前跟随资金</h4>
+                <p>
+                    <span class="bonus_pnl__number-success">$88888</span>
+                    美元
+                </p>
+            </div>
+            <div class="col-xs-4 bonus_pnl">
+                <h4>跟随人数</h4>
+                <p>
+                    <span class="bonus_pnl__number">88888</span>
+                    人
+                </p>
+
+                <div class="bonus_pnl__v_divider"></div>
+
+            </div>
+            <div class="col-xs-4 bonus_pnl">
+                <h4>当前跟随资金</h4>
+                <p>
+                    <span class="bonus_pnl__number">898</span>
+                    人
+                </p>
+
+                <div class="bonus_pnl__v_divider"></div>
+            </div>
+        </div>
+
+        <div class="money_bonus__h_divider"></div>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>跟随人</th>
+                    <th>当前跟随平仓盈利</th>
+                    <th>跟随浮动盈亏</th>
+                    <th>历史最高分成值</th>
+                    <th>我的分成</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>跟单人 007</td>
+                    <td>$2500</td>
+                    <td>$5000</td>
+                    <td>$555</td>
+                    <td>$555</td>
+                    <td>详情🔎</td>
+                </tr>
+                <tr>
+                    <td>跟单人 007</td>
+                    <td>$2500</td>
+                    <td>$5000</td>
+                    <td>$555</td>
+                    <td>$555</td>
+                    <td>🔎详情</td>
+                </tr>
+                <tr>
+                    <td>跟单人 007</td>
+                    <td>$2500</td>
+                    <td>$5000</td>
+                    <td>$555</td>
+                    <td>$555</td>
+                    <td>详情🔎</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <ul class="pagination">
+            <li>
+                <a href="">前一页</a>
+            </li>
+            <li>
+                <a href="">1</a>
+            </li>
+            <li>
+                <a href="">2</a>
+            </li>
+            <li>
+                <a href="">3</a>
+            </li>
+            <li>
+                <a href="">后一页</a>
+            </li>
+        </ul>
+
+        <p class="money_bonus__page_info">
+            第 <span>1</span> 页
+            共 <span>10</span> 页
+        </p>
+
+        <div class="money_bonus__h_divider mg-0"></div>
+    </div>
+</div>

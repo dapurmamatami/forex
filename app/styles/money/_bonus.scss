@@ -1,0 +1,68 @@
+@include b(money_bonus) {
+
+    .table > tbody > tr > td{
+        line-height: 40px;
+    }
+
+    .pagination {
+        float: right;
+        margin: 0;
+    }
+
+    @include e(h_divider) {
+        @extend .money_content__h_divider;
+        margin: 15px 0;
+    }
+
+    @include e(page_info) {
+        margin-bottom: 0;
+        padding: 6px 12px;
+    }
+}
+
+@include b(bonus_pnl) {
+    padding: 0;
+
+    h4 {
+        margin-left: 30px;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    @include e(number) {
+        margin-left: 30px;
+        font-size: 24px;
+        font-weight: 700;
+
+        @include m(danger) {
+            @extend .bonus_pnl__number;
+            color: $brand-danger;            
+        }
+
+        @include m(success) {
+            @extend .bonus_pnl__number;
+            color: $brand-success;            
+        }
+    }
+
+    @include e(v_divider) {
+        position: absolute;
+        top: 0px;
+        width: 1px;
+        height: 70px;
+        background-color: $brand-border;
+    }
+}
+
+@include b(date_searchbar) {
+    float: right;
+
+    .form-inline {
+        width: 200px;
+    }
+
+    @include e(tip) {
+        font-size: 16px;
+        font-weight: 700;
+    }
+}
