@@ -42,16 +42,18 @@
                 (function getEquity() {
                     money.getLastEquity().then(function (data) {
                         $scope.realEquityInfo = data;
+                        console.info($scope.realEquityInfo);
                         $scope.$broadcast('equity',data);
                         $timeout(getEquity, 5 * 1000);
                     });
-                })();
+                })();            			  
             }
 
             // 获取模拟账户的 money，传递给 copy modal
             money.getLastEquity('demo').then(function (data) {
                 $scope.demoEquityInfo = data;
             });
+    
         });
 
         // 获取开通真实账户的进度信息

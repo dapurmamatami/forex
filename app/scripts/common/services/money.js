@@ -15,7 +15,8 @@
                 getFXRate: getFXRate,
                 deposit: deposit,
                 withdraw: withdraw,
-                cancelWithdraw: cancelWithdraw
+                cancelWithdraw: cancelWithdraw,
+                getAvailableBalance: getAvailableBalance
             };
             return service;
 
@@ -32,6 +33,17 @@
              */
             function getLastEquity(type) {
                 return $http.get('/equity/last', {
+                    params: {
+                        tiger_source: type
+                    }
+                });
+            }
+            
+            /*
+            	获取复制可用金额
+             */
+            function getAvailableBalance(type) {
+                return $http.get('/copy_available_balance', {
                     params: {
                         tiger_source: type
                     }

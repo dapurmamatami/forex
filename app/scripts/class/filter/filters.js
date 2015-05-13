@@ -35,7 +35,7 @@
                   return '欧元美元';
                 }
                 if(input=="GBPCHF"){
-                  return '英日瑞士法郎';
+                  return '英镑瑞士法郎';
                 }
                 if(input=="GBPJPY"){
                   return '英镑日元';
