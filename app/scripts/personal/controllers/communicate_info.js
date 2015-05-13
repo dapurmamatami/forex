@@ -84,7 +84,7 @@
                       //   fans_info.push(data.data.attentions_info[aitem].userName);
                       // }
                       // $scope.fans_info = fans_info;
-                      if($scope.mCdata.length<10){
+                      if($scope.mCdata.length<6){
                          $scope.anyMore = false;
                       }else{
                          $scope.anyMore = true;
@@ -109,7 +109,7 @@
                   if(data.statecode){
                       $scope.mCdata = $scope.mCdata.concat(data.data.list);
                       $scope.mapKeyVal = data.data.mapKeyVal;
-                      if($scope.mCdata.length<10){
+                      if($scope.mCdata.length<6){
                           $scope.anyMore = false;
                       }else{
                           $scope.anyMore = true;
