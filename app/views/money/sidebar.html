@@ -6,11 +6,14 @@
         <li ng-class="{active: subPage === 'history'}" ng-click="switchItem('history')">
             <a ng-href="#/money/history">出入金历史</a>
         </li>
-         <li ng-class="{active: subPage === 'deposit'}" ng-click="switchItem('deposit')">
+        <li ng-class="{active: subPage === 'deposit'}" ng-click="switchItem('deposit')">
             <a ng-href="#/money/deposit">入金到账户</a>
         </li>
-         <li ng-class="{active: subPage === 'withdraw'}" ng-click="switchItem('withdraw')">
+        <li ng-class="{active: subPage === 'withdraw'}" ng-click="switchItem('withdraw')">
             <a ng-href="#/money/withdraw">从账户出金</a>
+        </li>
+        <li ng-class="{active: subPage === 'bonus'}" ng-click="switchItem('bonus')">
+            <a ng-href="#/money/bonus">我的分成</a>
         </li>
     </ul>
 

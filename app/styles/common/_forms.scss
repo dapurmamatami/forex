@@ -426,9 +426,8 @@ input[type="checkbox"] {
 
 // [converter] extracted from `.form-inline` for libsass compatibility
 @mixin form-inline {
+    display: inline-block;
 
-  // Kick in the inline
-  @media (min-width: $screen-sm-min) {
     // Inline-block all the things for "inline"
     .form-group {
       display: inline-block;
@@ -550,7 +549,6 @@ input[type="checkbox"] {
     .has-feedback .form-control-feedback {
       top: 0;
     }
-  }
 }
 // [converter] extracted as `@mixin form-inline` for libsass compatibility
 .form-inline {
