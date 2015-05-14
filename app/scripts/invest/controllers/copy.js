@@ -18,7 +18,7 @@
         // 模拟账户复制
         $scope.demoCopy = {
             amount: $scope.copiedTrader.demoCopyAmount || '100.00',
-            balance: passedScope.demoBalance,
+            balance: passedScope.demoBalance || '0.00',
             percent: '', //toDecimal($scope.demoCopy.amount / $scope.demoCopy.balance * 100)
             isCopy: Boolean($scope.copiedTrader.demoCopyAmount), // 是否已经复制了
             isCloseOut: true, // 取消复制时是否平仓
@@ -28,10 +28,11 @@
         };
         $scope.demoCopy.percent = toDecimal($scope.demoCopy.amount / $scope.demoCopy.balance * 100);
 
+
         // 真实账户复制
         $scope.realCopy = {
             amount: $scope.copiedTrader.realCopyAmount || '100.00',
-            balance: passedScope.realBalance,
+            balance: passedScope.realBalance || '0.00',
             percent: '', //toDecimal($scope.realCopy.amount / $scope.realCopy.balance * 100)
             isCopy: Boolean($scope.copiedTrader.realCopyAmount),
             isCloseOut: true,
@@ -55,7 +56,6 @@
         $scope.$watch('realCopy.amount', function (amount) {
             validateAmount('realCopy', amount);
         });
-
 
         function switchCopyType() {
             
@@ -102,8 +102,8 @@
         function toDecimal(x) {
             var f = parseFloat(x);
 
-            if (isNaN(f)) {
-                return;
+            if (isNaN(f) || f === Infinity) {
+                return undefined;
             }
 
             var f = Math.round(x * 100) / 100;
@@ -131,6 +131,10 @@
                 return;
             }
             $scope[propName].percent = toDecimal(f / $scope[propName].balance * 100);
+
+            if ($scope[propName].percent == undefined) {
+                $scope[propName].percent = '无效';
+            }
            
             if (f < 100) {
                 $scope[propName].minError = '复制金额最少是 100 美金';
