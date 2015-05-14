@@ -1,6 +1,5 @@
 <div class="copy_modal">
     <div class="row">
-
         <div class="col-xs-4">
             <img class="copy_modal__photo" ng-src="{{copiedTrader.smAvatar}}">
             <div class="copy_modal__copy_type" ng-class="{demo: copyType === 'demo', real: copyType === 'real'}"> 
@@ -12,7 +11,7 @@
             <h4 class="copy_modal__name">
                 {{copiedTrader.username}}
             </h4>
-            <span class="copy_modal__copy_type-switch" ng-show="!isCancel" ng-click="switchCopyType()">
+            <span class="copy_modal__copy_type-switch" ng-show="!isCancel && personal.real_id" ng-click="switchCopyType()">
                 <span ng-show="copyType === 'demo'">
                     <i class="fa fa-exchange"></i>
                     换用真实账户复制
@@ -23,7 +22,6 @@
                 </span>
             </span>
         </div>
-
     </div>
 
     <div ng-show="!isCancel">
@@ -191,5 +189,4 @@
             </form>
         </div>
     </div>
-
 </div>

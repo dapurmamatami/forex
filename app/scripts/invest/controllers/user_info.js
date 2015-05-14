@@ -83,8 +83,8 @@
                         return {
                             user: $scope.user,
                             personal: $scope.personal,
-                            realBalance: $scope.realEquityInfo.balance,
-                            demoBalance: $scope.demoEquityInfo.balance
+                            realBalance: $scope.realEquityInfo.copyAvaBalance,
+                            demoBalance: $scope.demoEquityInfo.copyAvaBalance
                         }
                     }
                 }
