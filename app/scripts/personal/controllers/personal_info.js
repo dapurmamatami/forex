@@ -37,21 +37,41 @@
             getAdditionalInfo($scope.personal, $scope.personal.user_code, account, communicate);
 
             // 是否注册真实账户
-            if (data.verified) {
-                // 获取真实账户的 money
+            if (data.real_id) {
+                // 获取真实账户的净值信息
                 (function getEquity() {
-                    money.getLastEquity().then(function (data) {
-                        $scope.realEquityInfo = data;
+                    money.getLastEquity().then(function (data) {                        
+                        angular.extend($scope.realEquityInfo, {
+                            equity: data.equity,      // 净值
+                            balance: data.balance,    // 余额
+                            timestamp: data.timestamp // 时间
+                        });
                         console.info($scope.realEquityInfo);
                         $scope.$broadcast('equity',data);
                         $timeout(getEquity, 5 * 1000);
                     });
-                })();            			  
+                })();
+
+                // 获取可用复制金额
+                money.getCopyAvaBalance().then(function (data) {
+                    angular.extend($scope.realEquityInfo, {
+                        copyAvaBalance: data.available
+                    });
+                });
             }
 
-            // 获取模拟账户的 money，传递给 copy modal
+            // 获取模拟账户的资产信息，传递给 copy modal
             money.getLastEquity('demo').then(function (data) {
-                $scope.demoEquityInfo = data;
+                angular.extend($scope.demoEquityInfo, {
+                    equity: data.equity,      // 净值
+                    balance: data.balance,    // 余额
+                    timestamp: data.timestamp // 时间
+                });
+            });
+            money.getCopyAvaBalance('demo').then(function (data) {
+                angular.extend($scope.demoEquityInfo, {
+                    copyAvaBalance: data.available
+                });
             });
     
         });

@@ -95,12 +95,14 @@
            * @param startindex
            * @returns {HttpPromise}
            */
-            function relationTopic(usercode,startindex){
+            function relationTopic(usercode,startindex,isloginuser){
                 return topicHttp.get('/relationtopic', {
                           startindex:startindex,
-                          usercode:usercode
+                          usercode:usercode,
+                          isloginuser:isloginuser
                       });
             }
+            
 
           /**
            *  点赞

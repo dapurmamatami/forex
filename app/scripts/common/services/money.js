@@ -16,7 +16,7 @@
                 deposit: deposit,
                 withdraw: withdraw,
                 cancelWithdraw: cancelWithdraw,
-                getAvailableBalance: getAvailableBalance
+                getCopyAvaBalance: getCopyAvaBalance
             };
             return service;
 
@@ -39,16 +39,22 @@
                 });
             }
             
-            /*
-            	获取复制可用金额
+            /**
+             * Money Service 获取可用复制金额
+             *
+             * @method getCopyAvaBalance
+             * @param {String} type 值为 'demo' or 'real'
+             * @return {Object} {
+             *     
+             * }
              */
-            function getAvailableBalance(type) {
+            function getCopyAvaBalance(type) {
                 return $http.get('/copy_available_balance', {
                     params: {
                         tiger_source: type
                     }
                 });
-            }
+            }            
 
             /**
              * Money Service 获取入金时的入金金额限制
