@@ -28,7 +28,6 @@
         };
         $scope.demoCopy.percent = toDecimal($scope.demoCopy.amount / $scope.demoCopy.balance * 100);
 
-
         // 真实账户复制
         $scope.realCopy = {
             amount: $scope.copiedTrader.realCopyAmount || '100.00',
@@ -40,7 +39,8 @@
             maxError: '',
             backError: ''  
         };
-        $scope.realCopy.percent = toDecimal($scope.realCopy.amount / $scope.realCopy.balance * 100); 
+        $scope.realCopy.percent = toDecimal($scope.realCopy.amount / $scope.realCopy.balance * 100);  
+        
 
         $scope.switchCopyType = switchCopyType;
         $scope.submitCopyForm = submitCopyForm;
@@ -142,8 +142,10 @@
                 $scope[propName].minError = '';
             }
 
-            if (f > $scope[propName].balance * COPY_MAX_PERCENT) {
-                $scope[propName].maxError = '复制金额最多是可用复制金的 50%';
+            //if (f > $scope[propName].balance * COPY_MAX_PERCENT) {
+                //$scope[propName].maxError = '复制金额最多是可用复制金的 50%';
+            if (f > $scope[propName].balance) {
+                $scope[propName].maxError = '复制金额不能超过可用复制金';
             } else {
                 $scope[propName].maxError = '';
             }

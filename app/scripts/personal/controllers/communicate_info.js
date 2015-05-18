@@ -104,7 +104,7 @@
              $scope.mCdata = [];
           }
           var startIndex = $scope.mCdata.length;
-          communicate.relationTopic($scope.userCode,startIndex)
+          communicate.relationTopic($scope.userCode,startIndex,$scope.isLoginUser)
               .then(function(data){
                   if(data.statecode){
                       $scope.mCdata = $scope.mCdata.concat(data.data.list);
@@ -128,7 +128,14 @@
               $scope.userCode = $state.params.userCode;
               $scope.communicate_identify = summary_state;
               $scope.title_name = '近期投资动态';
+              if($scope.personal.user_code == $scope.userCode)
+              {
+              	$scope.isLoginUser = true;
+              }else{
+              	$scope.isLoginUser = false;
+              }
               $scope.isSummary = true;
+              
           }else{
               $scope.userCode = $cookieStore.get('userCode');
               $scope.communicate_identify = hot_state;

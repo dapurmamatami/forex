@@ -40,8 +40,7 @@
             if (data.real_id) {
                 // 获取真实账户的净值信息
                 (function getEquity() {
-                    money.getLastEquity().then(function (data) {
-                        
+                    money.getLastEquity().then(function (data) {                        
                         angular.extend($scope.realEquityInfo, {
                             equity: data.equity,      // 净值
                             balance: data.balance,    // 余额
@@ -74,6 +73,7 @@
                     copyAvaBalance: data.available
                 });
             });
+    
         });
 
         // 获取开通真实账户的进度信息
