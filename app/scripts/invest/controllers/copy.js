@@ -102,7 +102,7 @@
         function toDecimal(x) {
             var f = parseFloat(x);
 
-            if (isNaN(f) || f === Infinity) {
+            if (isNaN(f) || !isFinite(f)) {
                 return undefined;
             }
 
