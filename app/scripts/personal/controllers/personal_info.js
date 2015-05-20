@@ -46,7 +46,6 @@
                             balance: data.balance,    // 余额
                             timestamp: data.timestamp // 时间
                         });
-                        console.info($scope.realEquityInfo);
                         $scope.$broadcast('equity',data);
                         $timeout(getEquity, 5 * 1000);
                     });

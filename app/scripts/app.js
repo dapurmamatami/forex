@@ -11,13 +11,11 @@ angular
         'ngRoute',
         'ngSanitize',
         'ui.router',
-        'ngCookies' //add by fwb
+        'ngCookies'
     ]);
 
 angular
     .module('tigerwitPersonalApp')
-
-
     .config(['$httpProvider', function ($httpProvider) {
         'use strict';
         if (!$httpProvider.defaults.headers.get) {
@@ -66,10 +64,10 @@ angular
                     }
                 },
                 'responseError': function(response) {
-
-                    if (response.status === 401 && $rootScope.resetPassword) {
+                    console.log(response);
+                    if (response.status === 401) {
                         //ga('send', 'event', '401', response.config.url);
-                        $location.path('/login')
+                        $location.path('/account/login');
                         return $q.reject(response);
                     } else {
                         return $q.reject(response);
@@ -83,10 +81,10 @@ angular
     .module('tigerwitPersonalApp')
     .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$controllerProvider',
             function ($stateProvider, $urlRouterProvider, $httpProvider, $controllerProvider) {
+        
         $urlRouterProvider.otherwise('/account/login');
 
         $stateProvider
-
             .state('personal', {
                 views: {
                     '': {
@@ -168,86 +166,86 @@ angular
                 views:{
                     'content@master':{
                         templateUrl:function($stateParams){
-                          $stateParams.subPage = $stateParams.subPage || 'recommend';
-                          return 'views/master/' + $stateParams.subPage + '.html';
+                            $stateParams.subPage = $stateParams.subPage || 'recommend';
+                            return 'views/master/' + $stateParams.subPage + '.html';
                         },
-                      controllerProvider:function($stateParams){
-                        var ctrlPrefix = 'Master';
-                        var ctrlSuffix = 'Controller';
-                        var subPage = $stateParams.subPage || 'recommend';
-                        var ctrlRoot = modifyCtrlName(subPage);
-                        var ctrlName = ctrlPrefix + ctrlRoot + ctrlSuffix;
-                        return ctrlName;
-                      }
+                        controllerProvider:function($stateParams){
+                            var ctrlPrefix = 'Master';
+                            var ctrlSuffix = 'Controller';
+                            var subPage = $stateParams.subPage || 'recommend';
+                            var ctrlRoot = modifyCtrlName(subPage);
+                            var ctrlName = ctrlPrefix + ctrlRoot + ctrlSuffix;
+                            return ctrlName;
+                        }
                     }
                 }
             })
-          .state('class',{
-            views:{
-              '@':{
-                templateUrl:'views/layout/layout-2-sm.html',
-                controller:'PersonalInfoController'
-              },
-              'hd@class': {
-                templateUrl: 'views/navbar/navbar-logined.html',
-                controller: 'NavbarController'
-              },
-              'sidebar@class':{
-                templateUrl: 'views/class/siderbar.html',
-                controller:''
-              },
-              'ft@class': {
-                templateUrl: 'views/layout/footer.html'
-              }
-            }
-          })
-          .state('class.subPage',{
-            url:'/class/:subPage',
-            authenticate: true,
-            views:{
-              'content@class':{
-                templateUrl:function($stateParams){
-                  $stateParams.subPage = $stateParams.subPage || 'currency';
-                  return 'views/class/' + $stateParams.subPage + '.html';
-                },
-                controllerProvider:function($stateParams){
-                 var ctrlPrefix = 'Class';
-                 var ctrlSuffix = 'Controller';
-                 var subPage = $stateParams.subPage || 'currency';
-                 var ctrlRoot = modifyCtrlName(subPage);
-                 var ctrlName = ctrlPrefix + ctrlRoot + ctrlSuffix;
-                 return ctrlName;
+            .state('class', {
+                views: {
+                    '@': {
+                        templateUrl:'views/layout/layout-2-sm.html',
+                        controller:'PersonalInfoController'
+                    },
+                    'hd@class': {
+                        templateUrl: 'views/navbar/navbar-logined.html',
+                        controller: 'NavbarController'
+                    },
+                    'sidebar@class': {
+                        templateUrl: 'views/class/siderbar.html',
+                        controller:''
+                    },
+                    'ft@class': {
+                        templateUrl: 'views/layout/footer.html'
+                    }
                 }
-              }
-            }
-          })
-          .state('class.detail',{
-            url:'/class/detail/:className',
-            views:{
-              '@':{
-                templateUrl:'views/class/layout-2-class.html',
-                controller:'PersonalInfoController'
-              },
-              'hd@class.detail': {
-                templateUrl: 'views/navbar/navbar-logined.html',
-                controller: 'NavbarController'
-              },
-              'content@class.detail':{
-                templateUrl: 'views/class/detail.html',
-              },
-              'lsider@class.detail':{
-                templateUrl: 'views/class/lsider.html',
-                controller:''
-              },
-              'rsider@class.detail':{
-                templateUrl: 'views/class/rsider.html',
-                controller:''
-              },
-              'ft@class.detail': {
-                templateUrl: 'views/layout/footer.html'
-              }
-            }
-          })
+            })
+            .state('class.subPage', {
+                url:'/class/:subPage',
+                authenticate: true,
+                views: {
+                    'content@class': {
+                        templateUrl: function($stateParams){
+                            $stateParams.subPage = $stateParams.subPage || 'currency';
+                            return 'views/class/' + $stateParams.subPage + '.html';
+                        },
+                        controllerProvider: function($stateParams){
+                            var ctrlPrefix = 'Class';
+                            var ctrlSuffix = 'Controller';
+                            var subPage = $stateParams.subPage || 'currency';
+                            var ctrlRoot = modifyCtrlName(subPage);
+                            var ctrlName = ctrlPrefix + ctrlRoot + ctrlSuffix;
+                            return ctrlName;
+                        }
+                    }
+                }
+            })
+            .state('class.detail', {
+                url:'/class/detail/:className',
+                views:{
+                    '@': {
+                        templateUrl:'views/class/layout-2-class.html',
+                        controller:'PersonalInfoController'
+                    },
+                    'hd@class.detail': {
+                        templateUrl: 'views/navbar/navbar-logined.html',
+                        controller: 'NavbarController'
+                    },
+                    'content@class.detail': {
+                        templateUrl: 'views/class/detail.html',
+                    },
+                    'lsider@class.detail': {
+                        templateUrl: 'views/class/lsider.html',
+                        controller:''
+                    },
+                    'rsider@class.detail': {
+                        templateUrl: 'views/class/rsider.html',
+                        controller:''
+                    },
+                    'ft@class.detail': {
+                        templateUrl: 'views/layout/footer.html'
+                    }
+                }
+            })
 
             .state('message', {
                 url:'/message/:type_message',
@@ -317,13 +315,13 @@ angular
                             return ctrlName;
                         }
                       },
-                    'content@invest.subPage':{
-                      templateUrl: 'views/personal/communicate_info.html',
-                      controller: 'PersonalCommunicateInfoController'
+                    'content@invest.subPage': {
+                        templateUrl: 'views/personal/communicate_info.html',
+                        controller: 'PersonalCommunicateInfoController'
                     },
-                    'sidebar-ad@invest.subPage':{
-                      templateUrl: 'views/invest/summary_side.html',
-                      controller: 'InvestSummaryController'
+                    'sidebar-ad@invest.subPage': {
+                        templateUrl: 'views/invest/summary_side.html',
+                        controller: 'InvestSummaryController'
                     }
                 }
             })

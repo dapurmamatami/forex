@@ -16,7 +16,8 @@
                 return angular.isDefined(_identify);
             },
             isLogined: function () {
-                return angular.isDefined(_identify)  && _identify !== null && _identify.is_succ;
+                return angular.isDefined(_identify)  && _identify !== null &&
+                        _identify.is_succ;
             },
             isAuthenticated: function () {
                 return _authenticated;
@@ -54,11 +55,11 @@
                 $http.get('/check').then(function (data) {
                     _authenticated = true;
                     _identify = data;
-                    deferred.resolve(_identify)
+                    deferred.resolve(_identify);
                 }, function () {
                     _identify = null;
                     _authenticated = false;
-                    deferred.resolve(_identify)
+                    deferred.resolve(_identify);
                 });
                 return deferred.promise;
             }

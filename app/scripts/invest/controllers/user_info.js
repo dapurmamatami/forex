@@ -54,10 +54,10 @@
         }
 
         
-        money.getAvailableBalance('demo').then(function (data) {
+        money.getCopyAvaBalance('demo').then(function (data) {
             $scope.demoAvaBalance = data.available; 	
         });
-        money.getAvailableBalance().then(function (data) {
+        money.getCopyAvaBalance().then(function (data) {
             $scope.realAvaBalance = data.available; 	
         });
         
@@ -81,8 +81,6 @@
             });
         }
         
-        console.info($scope);
-
         function openCopyModal(size) {
             $modal.open({
                 templateUrl: 'views/invest/copy.html',
