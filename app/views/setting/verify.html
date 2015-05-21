@@ -97,43 +97,50 @@
 
         <label>证件照</label>
         <div class="upload_form row">
-            <div class="col-xs-6 text-center">
-                <div class="upload_form__front" data-face="front" tw-upload-form >
+                <div class="upload_image">
+                    <div class="col-xs-6">
+                        <div class="upload_image__front" for="front" tw-upload-image>
+                            <input id="front" class="upload_image__input" name="file" type="file" accept="image/jpeg,image/png">
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="upload_image__back" for="back" tw-upload-image>
+                            <input id="back" class="upload_image__input" name="file" type="file" accept="image/jpeg,image/png">
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="upload_image__tip">
+                            <p class="alert alert-warning" ng-if="account.id.frontImgStatus === 1">
+                                {{account.id.frontImgMsg}}
+                            </p>
+                            <p class="alert alert-success" ng-if="account.id.frontImgStatus === 2">
+                                {{account.id.frontImgMsg}}
+                            </p>
+                            <p class="alert alert-danger" ng-if="account.id.frontImgStatus === 3">
+                                {{account.id.frontImgMsg}}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="upload_image__tip">
+                            <p class="alert alert-warning" ng-if="account.id.backImgStatus === 1">
+                                {{account.id.backImgMsg}}
+                            </p>
+                            <p class="alert alert-success" ng-if="account.id.backImgStatus === 2">
+                                {{account.id.backImgMsg}}
+                            </p>
+                            <p class="alert alert-danger" ng-if="account.id.backImgStatus === 3">
+                                {{account.id.backImgMsg}}
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-xs-6 text-center">
-                <div class="upload_form__back" data-face="back" tw-upload-form >
-                </div> 
-            </div>
-            <div class="col-xs-6 text-center">
-                <div class="upload_form__tip">
-                    <p class="alert alert-warning" ng-if="account.id.frontImgStatus === 1">
-                        {{account.id.frontImgMsg}}
-                    </p>
-                    <p class="alert alert-success" ng-if="account.id.frontImgStatus === 2">
-                        {{account.id.frontImgMsg}}
-                    </p>
-                    <p class="alert alert-danger" ng-if="account.id.frontImgStatus === 3">
-                        {{account.id.frontImgMsg}}
-                    </p>
-                </div>
-            </div>
-            <div class="col-xs-6 text-center">
-                <div class="upload_form__tip">
-                    <p class="alert alert-warning" ng-if="account.id.backImgStatus === 1">
-                        {{account.id.backImgMsg}}
-                    </p>
-                    <p class="alert alert-success" ng-if="account.id.backImgStatus === 2">
-                        {{account.id.backImgMsg}}
-                    </p>
-                    <p class="alert alert-danger" ng-if="account.id.backImgStatus === 3">
-                        {{account.id.backImgMsg}}
-                    </p>
-                </div>
-            </div>
-        </div>
-        
+            <p class="account_register__tip">
+            * 目前只支持 png，jpg，jpeg，gif 的图片格式，大小控制在 3M 之内。
+            </p>
         <div class="text-center mg-bt-15">
+            {{verifyForm.$invalid}},{{account.id.frontImgStatus}},{{account.id.backImgStatus}}
             <button class="btn btn-primary" ng-disabled="verifyForm.$invalid || account.id.frontImgStatus !== 2 || account.id.backImgStatus !== 2" ng-click="submitVerifyForm()">
                 确定提交
             </button>

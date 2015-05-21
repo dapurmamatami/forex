@@ -2,8 +2,7 @@
     <div class="account_register__step" ng-show="step === 1">
         <div class="modal-header">
             <button class="close" ng-click="closeModal()">X</button>
-            <span class="account_register__step_tip">
-                还差 3 步就能完成
+            <span class="account_register__step_tip register_step-1">
             </span>
             <h3 class="modal-title">
                 基本信息
@@ -79,8 +78,7 @@
     <div class="account_register__step" ng-if="step === 2">
         <div class="modal-header">
             <button class="close" ng-click="closeModal()">X</button>
-            <span class="account_register__step_tip">
-                还差 2 步就能完成
+            <span class="account_register__step_tip register_step-2">
             </span>
             <h3 class="modal-title">
                 上传证件照
@@ -90,14 +88,14 @@
             <div class="row">
                 <div class="upload_image">
                     <div class="col-xs-6">
-                        <label class="upload_image__front" for="front" tw-upload-image>
+                        <div class="upload_image__front" for="front" tw-upload-image>
                             <input id="front" class="upload_image__input" name="file" type="file" accept="image/jpeg,image/png">
-                        </label>
+                        </div>
                     </div>
                     <div class="col-xs-6">
-                        <label class="upload_image__front" for="back" tw-upload-image>
+                        <div class="upload_image__back" for="back" tw-upload-image>
                             <input id="back" class="upload_image__input" name="file" type="file" accept="image/jpeg,image/png">
-                        </label>
+                        </div>
                     </div>
                     <div class="col-xs-6">
                         <div class="upload_image__tip">
@@ -141,8 +139,7 @@
     <div class="account_register__step" ng-if="step ===3">
         <div class="modal-header">
             <button class="close" ng-click="closeModal()">X</button>
-            <span class="account_register__step_tip">
-                还差 1 步就能完成
+            <span class="account_register__step_tip register_step_3">
             </span>
             <h3 class="modal-title">
                 风险调查

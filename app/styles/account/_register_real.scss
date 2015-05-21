@@ -98,14 +98,30 @@
         margin-top: 30px;
     }
 }
+@include b(register_step) {
+    width: 155px;
+    height: 38px;
+    @include m(1){
+        @extend .register_step;
+        @include img-normal($account_path + "step1.jpg");
+    }
+    @include m(2){
+        @extend .register_step;
+        @include img-normal($account_path + "step2.jpg");
+    }
+    @include m(3){
+        @extend .register_step;
+        @include img-normal($account_path + "step3.jpg");
+    }
+}
 
 @include b(upload_image) {
-    
+
     @include e(front) {
         position: relative;
         display: block;
-        width: 240px;
-        height: 150px;
+        width: 220px;
+        height: 132px;
         margin-left: auto;
         margin-right: auto;
         @include img-normal($image_path + "id_card-front.png");
