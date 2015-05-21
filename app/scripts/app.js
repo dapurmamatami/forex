@@ -66,7 +66,6 @@ angular
                     }
                 },
                 'responseError': function(response) {
-
                     if (response.status === 401 && $rootScope.resetPassword) {
                         //ga('send', 'event', '401', response.config.url);
                         $location.path('/login')
