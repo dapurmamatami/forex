@@ -50,10 +50,10 @@
         <div class="trade_summary__panel col-xs-4">
             <h4>盈利率</h4>
             <p class="trade_summary__percent-profit" ng-if="summary.total_profit_rate.indexOf('-') < 0">
-                +{{summary.total_profit_rate}}
+                +{{summary.total_profit_rate}}%
             </p>
             <p class="trade_summary__percent-deficit" ng-if="summary.total_profit_rate.indexOf('-') >= 0">
-                {{summary.total_profit_rate}}
+                {{summary.total_profit_rate}}%
             </p>
             <p class="trade_summary__tips">
                 用户的盈利幅度
