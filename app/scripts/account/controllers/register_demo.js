@@ -72,6 +72,7 @@
 
         };
         $scope.registerDemo = registerDemo;
+        $scope.registerLeads = registerLeads;
         $scope.showErr = showErr;
         $scope.hideErr = hideErr;
         $scope.getVerifyCode = getVerifyCode;
@@ -107,6 +108,7 @@
             }
         }
 
+
         // return a promise object is for prop='phone'
         // prop 值为 'username', 'phone', 'email'
         function checkExist(prop) {
@@ -138,14 +140,11 @@
         }
 
         function registerDemo() {
-
             // 前端有错误
             if ($scope.registerForm.$invalid) {
-
                 angular.forEach($scope.formErr, function (value, key) {
                     value.show = true;
                 });
-
                 return;
             }
 
@@ -158,10 +157,10 @@
                     $scope.backErr.email.show = true;
                 } else {
 
-                    account.registerDemo($scope.account.username, $scope.account.phone, 
-                            $scope.account.verifyCode, $scope.account.email, 
-                            $scope.account.password, $scope.account.forkCode, 
-                            $state.params.lp, $state.params.pid,$state.params.unit, 
+                    account.registerDemo($scope.account.username, $scope.account.phone,
+                            $scope.account.verifyCode, $scope.account.email,
+                            $scope.account.password, $scope.account.forkCode,
+                            $state.params.lp, $state.params.pid,$state.params.unit,
                             $state.params.key).then(function (data) {
 
                         if (!data.is_succ) {
@@ -198,13 +197,63 @@
                                     $scope.backErr.system.show = false;
                                 }, 3000);
                             }
-                        } else {                            
+                        } else {
                             $scope.step ++;
-                        }        
+                        }
                     });
                 }
             });
         }
+
+
+        function registerLeads() {
+            // 为了兼容 landing page 注册，查重 email
+            // phone 查重在 getVerifyCode 中，username 检查在 account.registerLeads
+            checkExist('email').then(function (data) {
+                // 邮箱已存在
+                if (data === false) {
+                    $scope.backErr.email.show = true;
+                } else {
+
+                    account.registerLeads($scope.account.username, $scope.account.phone, $scope.account.email,
+                            $state.params.lp, $state.params.pid,$state.params.unit,
+                            $state.params.key).then(function (data) {
+
+                        if (!data.is_succ) {
+
+                            if (data.error_code === 7) {
+                                $scope.backErr.username.show = true;
+                                $scope.backErr.username.status = 1;
+                            }
+
+                            if (data.error_code === 10) {
+                                $scope.backErr.username.show = true;
+                                $scope.backErr.username.status = 2;
+                            }
+
+                            if (data.error_code === 4) {
+                                $scope.backErr.system.show = true;
+                                $scope.backErr.system.status = 1;
+
+                                $timeout(function () {
+                                    $scope.backErr.system.show = false;
+                                }, 3000);
+                            }
+
+                            if (data.error_code === 11) {
+                                $scope.backErr.system.show = true;
+                                $scope.backErr.system.status = 2;
+
+                                $timeout(function () {
+                                    $scope.backErr.system.show = false;
+                                }, 3000);
+                            }
+                        }
+                    });
+                }
+            });
+        }
+        registerLeads();
 
         function getVerifyCode() {
 
