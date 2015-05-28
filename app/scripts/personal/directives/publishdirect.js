@@ -62,8 +62,10 @@
                 elem.find('#textArea').atwho({
                     at:"$",
                     data:['USDJPY','EURUSD','EURGBP','USDCAD','GBPCHF','EURCHF','AUDUSD',
-                      'USDCHF','NZDUSD','GBPUSD','GBPJPY','EURAUD','CHFJPY','AUDJPY','SILVER','GOLD',
-                      'WTOil','USDX','SFC','NK','mSP','mND','mDJ','HSI','FFI','DAX']
+                      'USDCHF','NZDUSD','GBPUSD','GBPJPY','EURAUD','CHFJPY','AUDJPY',
+                      'AUDCAD', 'AUDCHF', 'AUDNZD', 'CADCHF', 'CADJPY', 'EURCAD',
+                      'EURNZD', 'GBPAUD', 'GBPCAD', 'GBPNZD', 'NZDCAD', 'NZDCHF', 'NZDJPY',
+                      'SILVER','GOLD','WTOil','USDX','SFC','NK','mSP','mND','mDJ','HSI','FFI','DAX']
                 })
             }
 
