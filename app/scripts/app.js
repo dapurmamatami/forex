@@ -64,10 +64,7 @@ angular
                     }
                 },
                 'responseError': function(response) {
-                    console.log(response);
-                    if (response.status === 401) {
-                        //ga('send', 'event', '401', response.config.url);
-                        $location.path('/account/login');
+                    if (response.status === 404) {
                         return $q.reject(response);
                     } else {
                         return $q.reject(response);
