@@ -7,9 +7,7 @@
 
     function symbolToCn() {
         return function (input) {
-
             if (input) {
-
                 if(input=="AUDJPY"){
                   return '澳元日元';
                 }
@@ -92,6 +90,45 @@
                 }
                 if(input=="XAGUSD"){
                   return "白银";
+                }
+                if(input=="AUDCAD"){
+                  return "澳元加元";
+                }
+                if(input=="AUDCHF"){
+                  return "澳元瑞士法郎";
+                }
+                if(input=="AUDNZD"){
+                  return "澳元新西兰元";
+                }
+                if(input=="CADCHF"){
+                  return "加元瑞士法郎";
+                }
+                if(input=="CADJPY"){
+                  return "加元日元";
+                }
+                if(input=="EURCAD"){
+                  return "欧元加元";
+                }
+                if(input=="EURNZD"){
+                  return "欧元新西兰元";
+                }
+                if(input=="GBPAUD"){
+                  return "英镑澳元";
+                }
+                if(input=="GBPCAD"){
+                  return "英镑加元";
+                }
+                if(input=="GBPNZD"){
+                  return "英镑新西兰元";
+                }
+                if(input=="NZDCAD"){
+                  return "新西兰元加元";
+                }
+                if(input=="NZDCHF"){
+                  return "新西兰元瑞士法郎";
+                }
+                if(input=="NZDJPY"){
+                  return "新西兰元日元";
                 }
             }else{
                 return "undfined";

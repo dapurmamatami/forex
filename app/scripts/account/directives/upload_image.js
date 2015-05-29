@@ -23,7 +23,6 @@
                     },
                     done: function (e, data) {
                         imagePath = JSON.parse(data.result).path;
-                        
                         if ($('.upload_image__image', element).length === 1) {
                             $('.upload_image__image', element).remove();
                         }

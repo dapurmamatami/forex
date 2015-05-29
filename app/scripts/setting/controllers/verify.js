@@ -53,31 +53,24 @@
         });
 
 
-        $scope.$on('uploadFormStart', function (event, data) {
+        $scope.$on('uploadImageStart', function (event, data) {
             $scope.$apply(function () {
                 $scope.account.id[data.face + 'ImgStatus'] = 1;
                 $scope.account.id[data.face + 'ImgMsg'] = '正在上传...';    
             });
         });
 
-        $scope.$on('uploadFormSuccess', function (event, data) {
+        $scope.$on('uploadImageSuccess', function (event, data) {
             $scope.$apply(function () {
                 $scope.account.id[data.face + 'ImgStatus'] = 2;
                 $scope.account.id[data.face + 'ImgMsg'] = '上传成功';    
             });
         });
 
-        $scope.$on('uploadFormError', function (event, data) {
+        $scope.$on('uploadImageFail', function (event, data) {
             $scope.$apply(function () {
                 $scope.account.id[data.face + 'ImgStatus'] = 3;
                 $scope.account.id[data.face + 'ImgMsg'] = '上传失败！请上传小于 3MB 的图片';    
-            });
-        });
-
-        $scope.$on('uploadFormTypeError', function (event, data) {
-            $scope.$apply(function () {
-                $scope.account.id[data.face + 'ImgStatus'] = 3;
-                $scope.account.id[data.face + 'ImgMsg'] = '上传失败！图片格式不正确';    
             });
         });
 

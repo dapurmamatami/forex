@@ -31,6 +31,7 @@
             login: login,
             logout: logout,
             registerDemo: registerDemo,
+            registerLeads: registerLeads,
             verifyCode: verifyCode,
             setNewPwd: setNewPwd,
             encrypt: encrypt
@@ -370,6 +371,20 @@
                 email: email,
                 password: password,
                 fork_code: forkCode,
+                lp: lp,
+                pid: pid,
+                unit: unit,
+                key: key
+            });
+        }
+
+
+        function registerLeads(username, phone, email, lp, pid, unit, key) {
+
+            return $http.post('/statistics_register', {
+                username: username,
+                phone: phone,
+                email: email,
                 lp: lp,
                 pid: pid,
                 unit: unit,

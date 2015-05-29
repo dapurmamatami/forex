@@ -16,6 +16,8 @@
                 deposit: deposit,
                 withdraw: withdraw,
                 cancelWithdraw: cancelWithdraw,
+                getBonus: getBonus,
+                getBonusList: getBonusList,
                 getCopyAvaBalance: getCopyAvaBalance
             };
             return service;
@@ -216,5 +218,53 @@
                     };
                 });
             }
+
+            /**
+             * Bonus Service 获取分成金额
+             * @method getBonus
+             *
+             * @param {Number} code 分成金额
+             */
+             function getBonus() {
+                return $http.get('/getbonus', {});
+             }
+
+            /**
+             * Bonus Service 获取分成明细
+             * @method getBonusList
+             *
+             * @param {Number} usercode 跟单者usercode
+             */
+             function getBonusList(lastId, count) {
+                return $http.get('/getbonuslist', {
+                    params: {
+                        after: lastId,
+                        count: count
+                    }
+                }).then(function (data) {
+                    if (!data.is_succ) return;
+                    if (Object.prototype.toString.call(data.data) !== '[object Array]') return;
+                    // 要返回的记录
+                    var records = [];
+
+                    angular.forEach(data.data, function (item) {
+                        var record = {};
+
+                        record['username'] = item['username'];
+                        record['nowprofit'] = item['nowprofit'];
+                        record['rateprofit'] = item['rateprofit'];
+                        record['histopdiv'] = item['histopdiv'];
+                        record['div'] = item['div'];
+
+                        this.push(record);
+                    }, records);
+
+                    return {
+                        records: records,
+
+                        moreRecords: data.next
+                    };
+                })
+             }
         }
 })();
