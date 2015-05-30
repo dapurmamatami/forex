@@ -10,7 +10,7 @@
 
     function MoneyBonusController($scope, $modal, money) {
         $scope.datepicker = {
-            //date: ,
+            //date: , // 2015-05
             options: {
                 format: 'YYYY-MM'
             }
@@ -35,17 +35,16 @@
         var year = date.getFullYear();
         var month = date.getMonth() + 1;
         var dateString = year + '-' +month;
-
         $scope.datepicker.date = dateString;
 
         $scope.$watch('datepicker.date', function (date) {
             console.info(date);
         });
 
-        money.getBonus($scope.personal.user_code).then(function (data) {
-            $scope.bonusSummary = data.data;
-            //$scope.$broadcast('hideLoadingImg');
-        });
+        // money.getBonus($scope.personal.user_code).then(function (data) {
+        //     $scope.bonusSummary = data.data;
+        //     //$scope.$broadcast('hideLoadingImg');
+        // });
 
         getList(1, $scope.datepicker.date);
 
@@ -83,14 +82,17 @@
         }
 
         // open detail modal
-        function openModal(userCode) {
+        function openModal(copierUserCode) {
             $modal.open({
                 templateUrl: 'views/money/bonus_modal.html',
-                //controller: 'MoneyBonusDetailController',
+                controller: 'MoneyBonusDetailController',
                 size: 'lg',
                 resolve: {
-                    userCode: function () {
-                        return userCode;
+                    passedScope: function () {
+                        return {
+                            copierUserCode: copierUserCode,
+                            userCode: $scope.personal.user_code
+                        };
                     }
                 }
             });

@@ -82,3 +82,20 @@
         font-weight: 700;
     }
 }
+
+@include b(bonus_detail) {
+    
+    .table {
+   
+        thead > tr > th,
+        tbody > tr > td {
+            line-height: 40px;
+            text-align: center;
+        }
+    }
+    
+    @include e(profit) {
+        color: $brand-success;
+    }
+
+}

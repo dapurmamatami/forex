@@ -1,3 +1,4 @@
+;
 (function () {
     'use strict';
 
@@ -18,6 +19,7 @@
             cancelWithdraw: cancelWithdraw,
             getBonus: getBonus,
             getBonusList: getBonusList,
+            getBonusDetail: getBonusDetail,
             getCopyAvaBalance: getCopyAvaBalance
         };
         return service;
@@ -60,9 +62,6 @@
          * Money Service 获取入金时的入金金额限制
          *
          * @method getDepositAmnt
-         * @param 
-         * @return  
-         * }
          */
         function getDepositAmnt() {
             return $http.get('/pay_limit');
@@ -72,9 +71,6 @@
          * Money Service 获取美元对人民币汇率
          *
          * @method getFXRate
-         * @param 
-         * @return  
-         * }
          */
         function getFXRate() {
             return $http.get('/get_parity');
@@ -84,9 +80,6 @@
          * Money Service 入金
          *
          * @method deposit
-         * @param 
-         * @return  
-         * }
          */
         function deposit(amount) {
             return $http.get('/pay', {
@@ -100,9 +93,6 @@
          * Money Service 出金
          *
          * @method withdraw
-         * @param 
-         * @return  
-         * }
          */
         function withdraw(amount, bankAddr, cardNum) {
             return $http.post('/withdraw', {
@@ -114,8 +104,8 @@
 
         /**
          * Money Service 撤消出金申请
+         *
          * @method cancelWithdraw
-         * 
          * @param {Number} code 出入金历史纪录的编号
          */
          function cancelWithdraw(code) {
@@ -131,8 +121,6 @@
          * @param {String} type 值为 'payment' or 'withdraw' 出金还是入金
          * @param {String} after 值为 '' 或者数字
          * @param {Number} count 每次请求的记录个数
-         * @return  
-         * }
          */
         function getHistory(type, lastId, count) {
             return $http.get('/pay_history', {
@@ -219,6 +207,7 @@
 
         /**
          * Money Service 获取分成信息
+         *
          * @method getBonus
          *
          */
@@ -233,6 +222,7 @@
 
         /**
          * Money Service 获取我的分成列表
+         *
          * @method getBonusList
          *
          */
@@ -242,6 +232,21 @@
                     page: page,
                     count: count,
                     date: date
+                }
+            });
+        }
+
+        /**
+         * Money Service 获取分成详情
+         *
+         * @method getBonusDetail
+         *
+         */
+        function getBonusDetail(userCode, copierUserCode) {
+            return $http.get('/scripts/common/data/bonus_detail.js', {
+                params: {
+                    user_code: userCode,
+                    copier_user_code: copierUserCode
                 }
             });
         }

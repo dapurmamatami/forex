@@ -52,7 +52,7 @@ angular
                             return configParam;
                         }
 
-                        if (configParam.url === '/scripts/common/data/data.js') {
+                        if (/^\/scripts/.test(configParam.url)) {
                             return configParam;
                         }
 
