@@ -1,3 +1,4 @@
+<div tw-loading-img></div>
 <div class="money_content">
     <div class="money_bonus">
         <div class="date_searchbar">
@@ -5,9 +6,13 @@
             <form class="form-inline" name="withdrawForm" novalidate>
                 <div class="input-group">
                     <input class="form-control"
-                           name=""
+                           name="date"
                            type="text"
-                           required>
+                           required
+                           ng-model="datepicker.date"
+                           tw-datetimepicker
+                           datetimepicker-options="{{datepicker.options}}" 
+                           >
                     <span class="input-group-btn">
                         <button class="btn btn-primary" ng-click="openWithdrawMdl()">
                             查询
@@ -32,14 +37,18 @@
             <div class="col-xs-4 bonus_pnl">
                 <h4>当月分成</h4>
                 <p>
-                    <span class="bonus_pnl__number-danger">{{bonus[0]['month_dividend']}}</span>
+                    <span class="bonus_pnl__number-danger">
+                        {{ bonusSummary.month_dividend || 0 }}
+                    </span>
                     美元
                 </p>
             </div>
             <div class="col-xs-4 bonus_pnl">
                 <h4>累计分成</h4>
                 <p>
-                    <span class="bonus_pnl__number-danger">{{bonus[0]['all_dividend']}}</span>
+                    <span class="bonus_pnl__number-danger">
+                        {{ bonusSummary.all_dividend || 0 }}
+                    </span>
                     美元
                 </p>
 
@@ -53,14 +62,18 @@
             <div class="col-xs-4 bonus_pnl">
                 <h4>当前跟随资金</h4>
                 <p>
-                    <span class="bonus_pnl__number-success">{{bonus[0]['month_dividend']}}</span>
+                    <span class="bonus_pnl__number-success">
+                        xxx
+                    </span>
                     美元
                 </p>
             </div>
             <div class="col-xs-4 bonus_pnl">
                 <h4>跟随人数</h4>
                 <p>
-                    <span class="bonus_pnl__number">{{bonus[0]['all_dividend']}}</span>
+                    <span class="bonus_pnl__number">
+                        xxx
+                    </span>
                     人
                 </p>
 
@@ -70,62 +83,52 @@
             <div class="col-xs-4 bonus_pnl">
                 <h4>当前跟随资金</h4>
                 <p>
-                    <span class="bonus_pnl__number">{{bonus[0]['timestamp']}}</span>
+                    <span class="bonus_pnl__number">
+                        xxx
+                    </span>
                     人
                 </p>
 
                 <div class="bonus_pnl__v_divider"></div>
             </div>
         </div>
+       
+        <div ng-show="bonusList.length > 0">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>跟随人</th>
+                        <th>当前跟随平仓盈利</th>
+                        <th>跟随浮动盈亏</th>
+                        <th>历史最高分成值</th>
+                        <th>我的分成</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="bonus in bonusList">
+                        <td>
+                            {{bonus.username}}
+                        </td>
+                        <td>{{bonus.now_profit}}</td>
+                        <td>{{bonus.rate_profit}}</td>
+                        <td>{{bonus.top_bonus}}</td>
+                        <td>{{bonus.bonus}}</td>
+                        <td>
+                            <a href="" ng-click="openModal(bonus.user_code)">详情</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>    
+    
+            <div class="text-right">
+                <p tw-pagination></p>                
+            </div>
+        </div>
+        
+        <div ng-if="bonusList.length == 0">
+            <p class="text-center">无数据!</p>
+        </div>
 
-        <div class="money_bonus__h_divider"></div>
-
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>跟随人</th>
-                    <th>当前跟随平仓盈利</th>
-                    <th>跟随浮动盈亏</th>
-                    <th>历史最高分成值</th>
-                    <th>我的分成</th>
-                    <th>操作</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="record in records">
-                    <td>{{record.username}}</td>
-                    <td>{{record.nowprofit}}</td>
-                    <td>{{record.rateprofit}}</td>
-                    <td>{{record.histopdiv}}</td>
-                    <td>{{record.div}}</td>
-                    <td>详情🔎</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <ul class="pagination">
-            <li>
-                <a href="">前一页</a>
-            </li>
-            <li>
-                <a href="">1</a>
-            </li>
-            <li>
-                <a href="">2</a>
-            </li>
-            <li>
-                <a href="">3</a>
-            </li>
-            <li>
-                <a href="">后一页</a>
-            </li>
-        </ul>
-
-        <p class="money_bonus__page_info">
-            第 <span>1</span> 页
-            共 <span>10</span> 页
-        </p>
-
-        <div class="money_bonus__h_divider mg-0"></div>
     </div>
 </div>

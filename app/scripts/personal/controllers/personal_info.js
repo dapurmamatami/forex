@@ -52,7 +52,7 @@
                 })();
 
                 // 获取可用复制金额
-                money.getCopyAvaBalance().then(function (data) {
+                money.getCopyAvaBalance('real', $scope.personal.user_code).then(function (data) {
                     angular.extend($scope.realEquityInfo, {
                         copyAvaBalance: data.available
                     });
@@ -67,7 +67,7 @@
                     timestamp: data.timestamp // 时间
                 });
             });
-            money.getCopyAvaBalance('demo').then(function (data) {
+            money.getCopyAvaBalance('demo', $scope.personal.user_code).then(function (data) {
                 angular.extend($scope.demoEquityInfo, {
                     copyAvaBalance: data.available
                 });

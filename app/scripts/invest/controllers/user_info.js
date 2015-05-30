@@ -53,14 +53,6 @@
             getFanSum($scope.user, personalUserCode, communicate);
         }
 
-        
-        money.getCopyAvaBalance('demo').then(function (data) {
-            $scope.demoAvaBalance = data.available; 	
-        });
-        money.getCopyAvaBalance().then(function (data) {
-            $scope.realAvaBalance = data.available; 	
-        });
-        
         /* 
          * 获取 user（别人）的 fan sum，同时确定 personal 与 user 的关注关系
          * 参数 personalUserCode 是 personalUserCode 而非 $scope.personal.user_code（异步数据）

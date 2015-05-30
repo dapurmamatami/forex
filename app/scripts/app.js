@@ -51,6 +51,11 @@ angular
                         if(/^\/communicate/.test(configParam.url)) {
                             return configParam;
                         }
+
+                        if (configParam.url === '/scripts/common/data/data.js') {
+                            return configParam;
+                        }
+
                         configParam.url = config.apiUrl + configParam.url;
                     }
                     return configParam;

@@ -13,6 +13,7 @@
         <!-- bower:css -->
         <link rel="stylesheet" href="bower_components/cropper/dist/cropper.css" />
         <link rel="stylesheet" href="bower_components/jquery.atwho/dist/css/jquery.atwho.css" />
+        <link rel="stylesheet" href="bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
         <!-- endbower -->
         <!-- endbuild -->
         <!-- build:css(.tmp) styles/main.css -->
@@ -50,6 +51,9 @@
         <script src="bower_components/jsencrypt/bin/jsencrypt.min.js"></script>
         <script src="bower_components/Caret.js/src/jquery.caret.js"></script>
         <script src="bower_components/jquery.atwho/dist/js/jquery.atwho.js"></script>
+        <script src="bower_components/moment/moment.js"></script>
+        <script src="bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+        <script src="bower_components/eonasdan-bootstrap-datetimepicker/src/js/bootstrap-datetimepicker.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
 
@@ -80,6 +84,8 @@
         <script src="scripts/common/directives/set_font_size.js"></script>
         <script src="scripts/common/directives/publish_box.js"></script>
         <script src="scripts/common/directives/txt_valid.js"></script>
+        <script src="scripts/common/directives/datetimepicker.js"></script>
+        <script src="scripts/common/directives/pagination.js"></script>
 
         <script src="scripts/navbar/controllers/navbar.js"></script>
 
@@ -170,10 +176,10 @@
         <script>
         var _hmt = _hmt || [];
         (function() {
-          var hm = document.createElement("script");
-          hm.src = "//hm.baidu.com/hm.js?e2d8c88ce38a79186b7acc81d614806c";
-          var s = document.getElementsByTagName("script")[0];
-          s.parentNode.insertBefore(hm, s);
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?e2d8c88ce38a79186b7acc81d614806c";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
         })();
         </script>
         <script>
