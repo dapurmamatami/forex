@@ -25,11 +25,11 @@
             },
             pages: [],
             //selectPage: , bind to pagination.selectPage
-            args: $scope.datepicker, //其他参数，这里是查询日期 
             getList: getList            
         };
         $scope.openModal = openModal;
-        var count = 1; // 单页显示数
+        $scope.search = search;
+        var count = 4; // 单页显示数
 
         var date = new Date();
         var year = date.getFullYear();
@@ -37,26 +37,31 @@
         var dateString = year + '-' +month;
         $scope.datepicker.date = dateString;
 
-        $scope.$watch('datepicker.date', function (date) {
-            console.info(date);
+        $scope.$watch('personal.user_code', function (newVal) {
+            if (typeof newVal !== 'undefined') {
+                getSummary();        
+                getList(1, $scope.datepicker.date);        
+            }
         });
 
-        // money.getBonus($scope.personal.user_code).then(function (data) {
-        //     $scope.bonusSummary = data.data;
-        //     //$scope.$broadcast('hideLoadingImg');
-        // });
+        // 获取 bonus summary
+        function getSummary() {
+            $scope.$broadcast('showLoadingImg');
 
-        getList(1, $scope.datepicker.date);
+            money.getBonus($scope.personal.user_code, $scope.datepicker.date).
+                    then(function (data) {
+                $scope.bonusSummary = data.data[0];
+                $scope.$broadcast('hideLoadingImg');
+            });
+        }
 
         // 获取一个 list
         // page 为当前页，date 为查询日期，如：2015-05
-        function getList(page, date) {
+        function getList(page) {
             $scope.$broadcast('showLoadingImg');
-            money.getBonusList(page, count, date).then(function (data) {
-                //console.info(data);
-                
+            money.getBonusList($scope.personal.user_code, page, count, 
+                    $scope.datepicker.date).then(function (data) {
                 $scope.bonusList = data.data;
-                //$scope.bonusList = [];
 
                 angular.extend($scope.pagebar.config, {
                     total: getTotal(data.sum, count),
@@ -91,11 +96,18 @@
                     passedScope: function () {
                         return {
                             copierUserCode: copierUserCode,
-                            userCode: $scope.personal.user_code
+                            userCode: $scope.personal.user_code,
+                            date: $scope.datepicker.date
                         };
                     }
                 }
             });
+        }
+
+        // search
+        function search() {
+            getSummary();
+            getList(1, $scope.datepicker.date);
         }
     }
 })();

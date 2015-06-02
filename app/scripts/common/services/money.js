@@ -226,12 +226,13 @@
          * @method getBonusList
          *
          */
-        function getBonusList(page, count, date) {
-            return $http.get('/scripts/common/data/data.js', {
+        function getBonusList(userCode, page, count, date) {
+            return $http.get('/getbonuslist', {
                 params: {
+                    cros_user: userCode,
                     page: page,
-                    count: count,
-                    date: date
+                    pagesize: count,
+                    month: date
                 }
             });
         }
@@ -242,11 +243,12 @@
          * @method getBonusDetail
          *
          */
-        function getBonusDetail(userCode, copierUserCode) {
-            return $http.get('/scripts/common/data/bonus_detail.js', {
+        function getBonusDetail(userCode, copierUserCode, date) {
+            return $http.get('/getbonusdetail', {
                 params: {
-                    user_code: userCode,
-                    copier_user_code: copierUserCode
+                    cros_user: userCode,
+                    copier: copierUserCode,
+                    month: date
                 }
             });
         }

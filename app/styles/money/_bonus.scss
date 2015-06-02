@@ -84,7 +84,7 @@
 }
 
 @include b(bonus_detail) {
-    
+    min-height: 500px;
     .table {
    
         thead > tr > th,

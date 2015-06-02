@@ -14,7 +14,7 @@
                            datetimepicker-options="{{datepicker.options}}" 
                            >
                     <span class="input-group-btn">
-                        <button class="btn btn-primary" ng-click="openWithdrawMdl()">
+                        <button class="btn btn-primary" ng-click="search()">
                             查询
                         </button>
                     </span>
@@ -38,7 +38,7 @@
                 <h4>当月分成</h4>
                 <p>
                     <span class="bonus_pnl__number-danger">
-                        {{ bonusSummary.month_dividend || 0 }}
+                        $ {{ bonusSummary.bonus || 0 }}
                     </span>
                     美元
                 </p>
@@ -47,7 +47,7 @@
                 <h4>累计分成</h4>
                 <p>
                     <span class="bonus_pnl__number-danger">
-                        {{ bonusSummary.all_dividend || 0 }}
+                        $ {{ bonusSummary.all_bonus || 0 }}
                     </span>
                     美元
                 </p>
@@ -63,7 +63,7 @@
                 <h4>当前跟随资金</h4>
                 <p>
                     <span class="bonus_pnl__number-success">
-                        xxx
+                        $ {{ bonusSummary.copy_amount || 0 }}
                     </span>
                     美元
                 </p>
@@ -72,7 +72,7 @@
                 <h4>跟随人数</h4>
                 <p>
                     <span class="bonus_pnl__number">
-                        xxx
+                        {{ bonusSummary.copy_count || 0 }}
                     </span>
                     人
                 </p>
@@ -81,10 +81,10 @@
 
             </div>
             <div class="col-xs-4 bonus_pnl">
-                <h4>当前跟随资金</h4>
+                <h4>当前跟单</h4>
                 <p>
                     <span class="bonus_pnl__number">
-                        xxx
+                        {{ bonusSummary.total_order || 0 }}
                     </span>
                     人
                 </p>
@@ -127,7 +127,7 @@
         </div>
         
         <div ng-if="bonusList.length == 0">
-            <p class="text-center">无数据!</p>
+            <p class="text-center mg-tp-30">无数据!</p>
         </div>
 
     </div>

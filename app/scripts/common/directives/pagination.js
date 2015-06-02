@@ -100,9 +100,13 @@
         }
 
         function selectPage(pagebar, page) {
-            pagebar.config.page = page;
+            if (page.disabled) {
+                return;
+            }
+
+            pagebar.config.page = page.number;
             this.render(pagebar);
-            pagebar.getList(page, pagebar.args.date);
+            pagebar.getList(page.number);
         }
 
         function render(pagebar) {
@@ -115,14 +119,13 @@
                 '<ul class="pagination">' +
                     '<li ng-repeat="page in pagebar.pages"' +
                     'ng-class="{active:page.active,disabled:page.disabled}">' +
-                        '<a href="" ng-click="pagebar.selectPage(page.number)">' +
+                        '<a href="" ng-click="pagebar.selectPage(page)">' +
                             '{{page.text}}' +
                         '</a>' +
                     '</li>' +
                 '</ul>',
             replace: true,
             link: function (scope, element, attrs) {
-
                 scope.$watch('pagebar', function (newVal, oldVal) {
                     if (newVal === oldVal) return;
                     pagination.updateConfig(newVal.config);
