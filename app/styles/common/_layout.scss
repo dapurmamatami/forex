@@ -75,8 +75,6 @@
 
 }
 
-
-
 @include b(layout-1) {
 
     .hd {
@@ -117,13 +115,7 @@
                 @extend .bd_col_2__sidebar;
                 width: 230px;
             }
-            @include m(200){
-              @extend .col-lg-3;
-              width: 200px;
-              padding: 0;
-            }
         }
-
 
         @include e(content) {
             @extend .col-lg-9;
@@ -134,15 +126,9 @@
                 @extend .bd_col_2__content;
                 width: 730px;
             }
-            @include m(750) {
-                @extend .col-lg-9;
-                width: 750px;
-                padding: 0;
-            }
         }
     }
 }
-
 
 // 三列布局
 @include b(layout-3) {

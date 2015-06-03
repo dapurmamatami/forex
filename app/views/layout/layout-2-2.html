@@ -1,20 +1,23 @@
 <div class="layout-2" ng-attr-id="{{moduleId}}">
     <div class="hd" ui-view="hd" >
     </div>
+    
     <div class="bd_col_2">
-        <div class="row" ng-controller="ClassDetailController">
-            <div class="bd_col_2__sidebar" ui-view="lsider">
+        <div class="row">
+            <div class="bd_col_2__sidebar" ui-view="sidebar">
             </div>
             <div class="bd_col_2__content content_layout">
                 <div class="row">
-                    <div class="class_detail_layout_center" ui-view="content">
+                    <div class="content_layout__content" ui-view="content">
                     </div>
-                    <div class="class_detail_layout_sider"  ui-view="rsider">
+                    <div class="content_layout__sidebar" ui-view="sidebar-ad">
                     </div>    
                 </div>
             </div>
         </div>
     </div>
+    
     <div class="ft" ui-view="ft">
     </div>
 </div>
+

@@ -20,7 +20,8 @@
             getBonus: getBonus,
             getBonusList: getBonusList,
             getBonusDetail: getBonusDetail,
-            getCopyAvaBalance: getCopyAvaBalance
+            getCopyAvaBalance: getCopyAvaBalance,
+            depositAct: depositAct
         };
         return service;
 
@@ -214,7 +215,7 @@
         function getBonus(userCode, date) {
             return $http.get('/getbonus', {
                 params: {
-                    cors_user: userCode,
+                    cros_user: userCode,
                     month: date
                 }
             });
@@ -252,6 +253,20 @@
                 }
             });
         }
+        
+        /**    
+         * Money Service 参加活动点击入金按钮
+         *
+         * @method depositAct
+         *
+         */
+        function depositAct(userCode) {
+            return $http.get('/xxx', {
+                params: {
+                    cros_user: userCode
+                }
+            });
+        } 
     }
 })();
 

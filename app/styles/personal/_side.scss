@@ -300,3 +300,52 @@
         }
     }
 }
+
+@include b(serve_mdl) {
+    .close {
+        position: relative;
+        z-index: 1;
+        margin-top: 20px;
+        margin-right: 20px;
+        color: #fff;
+    }
+    
+    .modal-footer {
+        text-align: center;
+    }
+    
+    .btn-primary {
+        padding-left: 40px;
+        padding-right: 40px;
+        font-size: 18px;
+    }
+
+    @include e(content) {
+        background-color: $brand-primary;
+
+        &:after {
+            position: relative;
+            top: 50px;
+            display: block;
+            width: 30px;
+            margin: 0 auto;
+            border-top: 25px solid $brand-primary;
+            border-left: 25px solid transparent;
+            border-right: 25px solid transparent;
+            content: '';
+        }
+    }
+
+    @include e(logo) {
+        text-align: center;
+
+        .fa-check-circle-o {
+            font-size: 80px;
+            color: #fff;    
+        }
+    }
+
+    @include e(intro) {
+        color: #fff;
+    }
+}

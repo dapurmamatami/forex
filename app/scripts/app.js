@@ -90,7 +90,7 @@ angular
             .state('personal', {
                 views: {
                     '': {
-                        templateUrl: 'views/layout/layout-3.html',
+                        templateUrl: 'views/layout/layout-2-2.html',
                         controller: 'PersonalInfoController'
                     },
                     'hd@personal': {
@@ -109,15 +109,14 @@ angular
                 url: '/personal',
                 authenticate: true,
                 views: {
-
                     'content@personal': {
                         templateUrl:  'views/personal/communicate_info.html',
                         controller:'PersonalCommunicateInfoController'
-                        },
+                    },
 
                     'sidebar-ad@personal': {
                         templateUrl:'views/personal/serve_side.html',
-                        controller:''
+                        controller:'PersonalServeController'
                     }
                 }
             })
