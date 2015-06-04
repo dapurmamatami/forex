@@ -83,9 +83,6 @@
             }
         });
 
-        //
-        switchLayout();
-
         /*
          * 获取 personal 的其他的信息，包括 copier sum、
          * copied trader sum、fan sum、following sum、region
@@ -115,16 +112,6 @@
                     }
                 }
             });
-        }
-
-        function switchLayout(){
-            if($location.$$url == 'topic_detail'){
-                $scope.layoutContent= 'content__detail';
-                $scope.layoutSide = 'content__share';
-            }else{
-                $scope.layoutContent= 'content__content';
-                $scope.layoutSide = 'content__sidebar-ad';
-            }
         }
 
         //跳转到指定详情界面

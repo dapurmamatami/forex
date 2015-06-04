@@ -30,7 +30,12 @@
                     <td>{{ bonusDetail.open_price }}</td>
                     <td>{{ bonusDetail.close_price }}</td>
                     <td>{{ bonusDetail.close_timestamp | dateFormatter }}</td>
-                    <td class="bonus_detail__profit">${{ bonusDetail.profit }}</td>
+                    <td class="bonus_detail__tip-success" ng-if="bonusDetail.profit.indexOf('-') < 0">
+                        ${{ bonusDetail.profit }}
+                    </td>
+                    <td class="bonus_detail__tip-danger" ng-if="bonusDetail.profit.indexOf('-') >= 0">
+                        ${{ bonusDetail.profit }}                        
+                    </td>
                 </tr>
             </tbody>
         </table>        

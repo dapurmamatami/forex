@@ -94,8 +94,11 @@
         }
     }
     
-    @include e(profit) {
+    @include e(tip-success) {
         color: $brand-success;
     }
 
+    @include e(tip-danger) {
+        color: $brand-danger;
+    }
 }
