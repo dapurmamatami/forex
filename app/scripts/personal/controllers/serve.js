@@ -30,8 +30,6 @@
                                 $state.go('money.subPage', {subPage: 'deposit'});                                
                             }
                         });
-                        closeModal();
-                        $state.go('money.subPage', {subPage: 'deposit'});
                     }
                 },
                 size: 'md',
