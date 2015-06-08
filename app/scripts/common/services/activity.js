@@ -22,7 +22,7 @@
          *
          */
         function collectInfo(userCode) {
-            return $http.get('/xxx', {
+            return $http.get('/participate', {
                 params: {
                     cros_user: userCode
                 }

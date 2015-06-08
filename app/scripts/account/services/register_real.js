@@ -11,7 +11,7 @@
     // 因为有多种注册真实账户的方式，故把共用部分抽离出来
     function registerReal(accountService) {
         var service = {
-            checkIdExist: checkIdExist,
+            //checkIdExist: checkIdExist,
             eliminateErr: eliminateErr,
             postNameId: postNameId,
             submitQuest: submitQuest

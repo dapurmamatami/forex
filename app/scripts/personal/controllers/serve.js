@@ -32,10 +32,6 @@
                                 $state.go('money.subPage', {subPage: 'deposit'});                                
                             }
                         });
-                        
-                        // 等接口完成后去掉
-                        closeModal();
-                        $state.go('money.subPage', {subPage: 'deposit'});
                     }
                 },
                 size: 'md',
