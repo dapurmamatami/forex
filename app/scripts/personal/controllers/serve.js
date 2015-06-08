@@ -24,12 +24,16 @@
                     }
 
                     function toDeposit() {
-                        activity.collectInfo(personal.user_code).then(function (data) {
+                        var userCode = personal.user_code;
+
+                        activity.collectInfo(userCode).then(function (data) {
                             if (data.is_succ) {
                                 closeModal();
                                 $state.go('money.subPage', {subPage: 'deposit'});                                
                             }
                         });
+                        
+                        // 等接口完成后去掉
                         closeModal();
                         $state.go('money.subPage', {subPage: 'deposit'});
                     }
