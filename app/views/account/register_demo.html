@@ -75,7 +75,7 @@
                 </div>
             </div>
             
-            <div class="row form_row">
+            <!-- <div class="row form_row">
                 <div class="col-xs-2 text-right">
                     <label>验证码</label>
                 </div>
@@ -107,7 +107,7 @@
                         </p>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <div class="row form_row">
                 <div class="col-xs-2 text-right">
@@ -247,6 +247,9 @@
                     </p>
                     <p class="form_row__bottom_alert" ng-show="backErr.system.status === 2">
                         系统繁忙，请稍后重试
+                    </p>
+                    <p class="form_row__bottom_alert" ng-show="backErr.system.status === 6">
+                        手机号码已注册
                     </p>
                 </div>
             </div>

@@ -165,6 +165,11 @@
 
                         if (!data.is_succ) {
 
+                            if (data.error_code === 6) {
+                                $scope.backErr.phone.show = true;
+                                $scope.backErr.phone.status = 1;
+                            }
+
                             if (data.error_code === 7) {
                                 $scope.backErr.username.show = true;
                                 $scope.backErr.username.status = 1;

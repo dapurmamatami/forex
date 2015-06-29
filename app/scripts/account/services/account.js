@@ -378,6 +378,9 @@
             });
         }
 
+        /**
+         * Account Service 统计通过 landing page 注册的用户   
+         */
 
         function registerLeads(username, phone, email, lp, pid, unit, key) {
 
