@@ -21,7 +21,7 @@
             balance: passedScope.demoBalance || '0.00',
             percent: '', //toDecimal($scope.demoCopy.amount / $scope.demoCopy.balance * 100)
             isCopy: Boolean($scope.copiedTrader.demoCopyAmount), // 是否已经复制了
-            isCloseOut: true, // 取消复制时是否平仓
+            isCloseOut: false, // 取消复制时是否平仓
             minError: '',
             maxError: '',
             backError: '' 
@@ -34,7 +34,7 @@
             balance: passedScope.realBalance || '0.00',
             percent: '', //toDecimal($scope.realCopy.amount / $scope.realCopy.balance * 100)
             isCopy: Boolean($scope.copiedTrader.realCopyAmount),
-            isCloseOut: true,
+            isCloseOut: false,
             minError: '',
             maxError: '',
             backError: ''  
@@ -89,7 +89,7 @@
         function submitCancelForm(propName) {
             copy.cancelCopy($scope.copiedTrader.userCode, $scope[propName].isCloseOut,
                     $scope.copyType).then(function (data) {
-                
+                        
                 if (!data.is_succ) {
                     return;
                 }
