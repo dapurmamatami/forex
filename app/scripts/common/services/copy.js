@@ -85,7 +85,7 @@
         function cancelCopy(userCode, isCloseOut, copyType) {
             return $http.post('/uncopy', {
                 user_code: userCode,
-                auto_delete: true,
+                auto_delete: false,
                 to: copyType
             });
         }
