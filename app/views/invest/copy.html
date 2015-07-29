@@ -132,7 +132,7 @@
         <div class="copy_modal__content">
              <form name="cancelCopyForm" novalidate >
                 <div ng-if="copyType ==='demo'">    
-                    <div class="radio">
+                    <!-- div class="radio">
                         <label>
                             <input name="closeOut"
                                    type="radio"
@@ -141,15 +141,15 @@
                                    ng-model="demoCopy.isCloseOut">
                             取消模拟复制并平仓
                         </label>
-                    </div>
+                    </div -->
                     <div class="radio">
                         <label>
                             <input name="closeOut"
                                    type="radio"
                                    required
-                                   ng-value="false"
+                                   ng-value="true"
                                    ng-model="demoCopy.isCloseOut">
-                            仅取消模拟复制
+                            取消模拟复制
                         </label>
                     </div>
                     <div class="text-center pd-tp-15">
@@ -160,7 +160,7 @@
                 </div>
 
                 <div ng-if="copyType === 'real'">
-                    <div class="radio">
+                    <!-- div class="radio">
                         <label>
                             <input name="closeOut"
                                    type="radio"
@@ -169,15 +169,16 @@
                                    ng-model="realCopy.isCloseOut">
                             取消真实复制并平仓
                         </label>
-                    </div>
+                    </div -->
                     <div class="radio">
                         <label>
                             <input name="closeOut"
                                    type="radio"
                                    required
-                                   ng-value="false"
+                                   value="false"
+                                   ng-value="true"
                                    ng-model="realCopy.isCloseOut">
-                            仅取消真实复制
+                            取消真实复制
                         </label>
                     </div>
                     <div class="text-center pd-tp-15">

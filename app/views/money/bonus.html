@@ -38,7 +38,7 @@
                 <h4>当月分成</h4>
                 <p>
                     <span class="bonus_pnl__number-danger">
-                        $ {{ bonusSummary.bonus || 0 }}
+                        $ {{ bonusSummary.month_bonus || 0 }}
                     </span>
                     美元
                 </p>
@@ -81,7 +81,7 @@
 
             </div>
             <div class="col-xs-4 bonus_pnl">
-                <h4>当前跟单</h4>
+                <h4>跟单总数</h4>
                 <p>
                     <span class="bonus_pnl__number">
                         {{ bonusSummary.total_order || 0 }}
