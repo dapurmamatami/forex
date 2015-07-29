@@ -31,7 +31,7 @@
             password: false,
             verifyCode: false
         };
-
+        $scope.verifyCodeBtnClickable = true;
         $scope.submitFormStep1 = submitFormStep1;
         $scope.getVerifyCode = getVerifyCode;
         $scope.submitFormStep2 = submitFormStep2;
@@ -99,10 +99,20 @@
         }
 
         function getVerifyCode() {
+            showErr('newPhone');
+
+            if ($scope.formStep2['newPhone'].$invalid) {
+                return;
+            }
+
+            $scope.verifyCodeBtnClickable = false;
+            
             checkExist().then(function (data) {
                 if (data) {
                     $scope.startTimer();
                     account.getVerifyCode($scope.phone.newNumber);
+                } else {
+                    $scope.verifyCodeBtnClickable = true;
                 }
             });
         }

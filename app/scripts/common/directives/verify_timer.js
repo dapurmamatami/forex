@@ -14,16 +14,17 @@
             restrict: 'A',
             replace: true,
             scope: {
-                startTimer: '='
+                startTimer: '=',
+                verifyCodeBtnClickable: '='
             },
             template: 
-                '<span>' + 
+                '<button>' + 
                     '<span ng-show="timer.start">' + '获取验证码' + '</span>' +        
                     '<span ng-show="timer.running">' + '{{timer.seconds}}' + ' 秒</span>' + 
                     '<span ng-show="timer.restart">' + '重新获取' + '</span>' + 
-                '</span>',
+                '</button>',
             link: function (scope, element, attrs) {
-                var totalSeconds = 31;
+                var totalSeconds = 61;
                 
                 scope.timer = {
                     seconds: totalSeconds,
@@ -66,6 +67,7 @@
                         scope.timer.restart = true;
                         scope.timer.seconds = totalSeconds;
                         element.attr('disabled', false);
+                        scope.verifyCodeBtnClickable = true;
                         return;
                     }
                     scope.timer.seconds --;

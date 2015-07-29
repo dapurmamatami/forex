@@ -28,8 +28,8 @@
             newPwd: false,
             confirmPwd: false
         };
+        $scope.verifyCodeBtnClickable = true;
         $scope.goNextStep = goNextStep;
-
         $scope.hideErr = hideErr;
         $scope.showErr = showErr;
         $scope.getVerifyCode = getVerifyCode;
@@ -63,12 +63,21 @@
         }
 
         function getVerifyCode() {
+            showErr('number');
+            
+            if ($scope.formStep1['number'].$invalid) {
+                return;
+            }
+
+            $scope.verifyCodeBtnClickable = false;
             
             // 检查手机号码是否已经存在
             checkExist().then(function (data) {
                 if (data) {
                     $scope.startTimer();
                     account.getVerifyCode($scope.phone.number, true);
+                } else {
+                    $scope.verifyCodeBtnClickable = true;
                 }
             });
         }

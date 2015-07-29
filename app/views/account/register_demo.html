@@ -75,7 +75,7 @@
                 </div>
             </div>
             
-            <<div class="row form_row">
+            <div class="row form_row">
                 <div class="col-xs-2 text-right">
                     <label>验证码</label>
                 </div>
@@ -91,8 +91,8 @@
                 </div>
 
                 <div class="col-xs-2">
-                    <span class="verify_timer_btn" tw-verify-timer start-timer="startTimer" ng-click="getVerifyCode()">
-                    </span>
+                    <button class="verify_timer_btn" tw-verify-timer start-timer="startTimer" verify-code-btn-clickable="verifyCodeBtnClickable" ng-disabled="!verifyCodeBtnClickable" ng-click="getVerifyCode()">
+                    </button>
                 </div>
 
                 <div class="col-xs-4">

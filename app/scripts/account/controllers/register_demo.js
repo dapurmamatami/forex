@@ -69,8 +69,8 @@
                 show: false,
                 status: 0
             }
-
         };
+        $scope.verifyCodeBtnClickable = true;
         $scope.registerDemo = registerDemo;
         $scope.registerLeads = registerLeads;
         $scope.showErr = showErr;
@@ -108,6 +108,7 @@
             }
         }
 
+        registerLeads();
 
         // return a promise object is for prop='phone'
         // prop 值为 'username', 'phone', 'email'
@@ -210,7 +211,6 @@
             });
         }
 
-
         function registerLeads() {
             // 为了兼容 landing page 注册，查重 email
             // phone 查重在 getVerifyCode 中，username 检查在 account.registerLeads
@@ -258,17 +258,23 @@
                 }
             });
         }
-        registerLeads();
 
         function getVerifyCode() {
+            showErr('phone');
+            
+            if ($scope.registerForm['phone'].$invalid) {
+                return;
+            }
 
-            $scope.backErr.phone.show = true;
+            $scope.verifyCodeBtnClickable = false;
 
             // 检查手机号码是否已经存在
             checkExist('phone').then(function (data) {
                 if (data) {
                     $scope.startTimer();
                     account.getVerifyCode($scope.account.phone);
+                } else {
+                    $scope.verifyCodeBtnClickable = true;
                 }
             });
         }
@@ -288,7 +294,9 @@
         }
 
         function showErr(name) {
-            $scope.formErr[name].show = true;
+            if ($scope.formErr[name]) {
+                $scope.formErr[name].show = true;
+            }
 
             if ($scope.backErr[name]) {
                 $scope.backErr[name].show = true;
